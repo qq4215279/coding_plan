@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gobestsoft.mapper.SysDeptMapper">
+
+    <select id="queryDeptCountByPid" parameterType="int" resultType="java.lang.Integer">
+
+        SELECT
+              COUNT(0)
+        FROM
+                sys_dept AS d1 INNER JOIN dept_organization ON d1.id = dept_organization.dept_id
+        WHERE
+                dept_organization.p_id = #{pId}	;
+
+    </select>
+
+
+</mapper>

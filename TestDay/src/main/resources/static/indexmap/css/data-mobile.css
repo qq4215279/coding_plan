@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+.app {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../img/index_bg.png);
+    background-size: 100vw 100vh;
+}
+.app .header {
+    width: 100vw;
+    height: 12.29vh;
+    background-image: url(../img/index_title.png);
+    background-size: 100vw 12.29vh;
+}
+.app .header .p1 {
+    margin: 0;
+    padding: 0;
+    /* width: 29.33vw; */
+    /* width: 34.33vw; */
+    height: 2.69vh;
+    margin: 0 auto;
+    font-size: 18px;
+    color: #48A7EA;
+    padding-top: 3.49vh;
+    font-weight: bold;
+    text-align: center;
+}
+.app .header .p2 {
+    margin: 0;
+    padding: 0;
+    /* width: 27.46vw; */
+    /* width: 31.46vw; */
+    height: 2.69vh;
+    margin: 0 auto;
+    font-size: 18px;
+    color: #48A7EA;
+    font-weight: bold;
+    padding-top: 1.19vh;
+    text-align: center;
+}
+.app .content {
+    margin: 0;
+    padding: 0;
+    margin: 0 auto;
+    margin-top: 5.39vh;
+    width: 92.53vw;
+    height: 26.68vh;
+    background-image: url(../img/index_data_bg.png);
+    background-size: 92.53vw 26.68vh;
+}
+.app .content .p3 {
+    margin: 0;
+    padding: 0;
+    /* width: 28.53vw; */
+    height: 2.09vh;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #77FBFD;
+    padding-top: 2.14vh;
+    font-weight: bold;
+    text-align: center;
+}
+.app .content .total {
+    width: 100%;
+    height: 4.94vh;
+    margin-top: 3.14vh;
+    color: #77FBFD;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    line-height: 6.94vh;
+}
+.app .content .bk {
+    margin: 0;
+    padding: 0;
+    width: 80vw;
+    margin: 0 auto;
+    height: 0.14vh;
+    margin-top: 2vh;
+    background-image: url(../img/title_bg.gif);
+    background-size: 92vw 0.14vh;
+}
+.app .content .total .dou {
+    display: inline-block;
+    font-size: 25px;
+    color: #ffffff;
+    margin-right: 2.66vw;
+}
+.app .content .total .num {
+    display: inline-block;
+    width: 6.66vw;
+    height: 4.94vh;
+    background-image: url(../img/index_num_bg.png);
+    background-repeat: no-repeat;
+    background-size: 6.66vw 4.94vh;
+    font-size: 25px;
+    color: #FFF45C;
+    text-align: center;
+    margin-right: 2.66vw;
+    line-height: 4.94vh;
+}
+.app .content .btn {
+    margin:0;
+    padding: 0;
+    width: 40vw;
+    height: 7.19vh;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 7.19vh;
+    font-size: 13px;
+    color: #98A0BD;
+    background-image: url(../img/index_btn.png);
+    background-size: 40vw 7.19vh;
+    background-repeat: no-repeat;
+    margin-top: 2.24vh;
+}

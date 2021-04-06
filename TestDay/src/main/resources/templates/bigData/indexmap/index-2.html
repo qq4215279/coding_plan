@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+
+    <script src="https://cdn.bootcss.com/echarts/4.0.2/echarts.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/information.css">
+    <title>海南工会云-组织建设</title>
+    <style>
+        .line1 {
+            position: fixed;
+            top: 33.333vh;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #ffffff;
+            z-index: 99999999;
+        }
+
+        .line2 {
+            position: fixed;
+            top: 66.666vh;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #ffffff;
+            z-index: 99999999;
+        }
+
+        .col1 {
+            position: fixed;
+            top: 0;
+            left: 33.333vw;
+            bottom: 0;
+            width: 1px;
+            background-color: #ffffff;
+            z-index: 99999999;
+        }
+
+        .col2 {
+            position: fixed;
+            top: 0;
+            right: 33.333vw;
+            bottom: 0;
+            width: 1px;
+            background-color: #ffffff;
+            z-index: 99999999;
+        }
+        video{
+            /* width: 100vw;
+            height: 100vh; */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* transform: scale(1.2); */
+        }
+        .gradient-text{ 
+            background-image:-webkit-linear-gradient(bottom,#0bade5,#24a7d4,#3e7ceb);
+         -webkit-background-clip:text; 
+         -webkit-text-fill-color:transparent;
+         font-size:34px;
+         padding: 10px }
+         .side {
+             width: 93.697vw;
+             height: 94.166vh;
+             z-index: 1000;
+             margin: 0 auto; 
+             margin-top: 2.03vh;
+             background-color:transparent;
+             background-image: url(img/pop_ups_bg.png);
+             background-size: 93.697vw 94.166vh;
+             background-repeat: no-repeat;
+             border: 0px;
+         }
+         .table {
+            width:82.69vw;height:80%;color: white;
+            margin: 0 auto;
+            display: block;
+            margin-top: 7.907vh;
+            overflow: auto;
+            text-align: center;
+            border-collapse: collapse;
+         }
+         .table tr {
+             height: 5.55vh;
+             border-bottom: 1px solid rgba(35, 255, 255, 0.4);
+         }
+         .return {
+             width: 2.29vw;
+             height: 4.07vh;
+             margin: 0 auto;
+             margin-top: 2.8vh;
+             background-image: url(img/close@2x.png);
+             background-repeat: no-repeat;
+             background-size: 2.29vw 4.07vh;
+         }
+         .return1 {
+            width: 2.29vw;
+             height: 4.07vh;
+             margin: 0 auto;
+             margin-top: 4.2vh;
+             background-image: url(img/close@2x.png);
+             background-repeat: no-repeat;
+             background-size: 2.29vw 4.07vh;
+         }
+         .back {
+             width: 83.02vw;
+             height: 5.74vh;
+             margin: 0 auto;
+             margin-top: 7.87vh;
+             color: #23FFFF;
+             font-size: 2.222vh;
+             line-height: 5.74vh;
+             font-weight: 900;
+             text-align: center;
+             background-color:transparent;
+         }
+         .span{
+             display: inline-block;
+             width: 3.11vw;
+             height: 5.55vh;
+             background-image: url(img/back.png);
+             background-repeat: no-repeat;
+             float: left;
+             margin-left: 2.3vw;
+             /* background-position: -2px -3px; */
+             background-size: 3.11vw 5.55vh;
+
+         }
+         .side .content {
+             float: left;
+             width: 29.531vw;
+             height: 65.74vh;
+             border: 1px solid #0F9DED;
+             margin-top: 2.777vh;
+             margin-left: 6.302vw;
+         }
+    </style>
+</head>
+
+<body>
+    <video src="video/new_bg.mp4"  autoplay="autoplay" loop></video>
+    <dialog class="side" id="dialog">
+            <table class="table">
+                <thead style="height: 5.55vh;width: 90.69vw;font-size: 2.222vh;">
+                    <tr style="width:90.69vw;height: 5.55vh;">
+                        <th style="width:10vw;color: #23FFFF;"></th>
+                        <th style="width:14vw;color: #23FFFF;">姓名</th>
+                        <th style="width:30vw;color: #23FFFF;">所属工会</th>
+                        <th style="width:30vw;color: #23FFFF;">上级工会</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody" style="font-size:1.851vh;">
+                </tbody>
+            </table>
+            <div class="return" id="ret"></div>
+            <div class="numlist">共计 <span id="numlist" style="color:#F7CF5E;"></span> 条信息</div>
+            <ul class="pagecode" id="ul">
+                <li class="li" index='00'></li>
+                <li class="li" index='0'></li>
+                <li class="li11" index='1'>1</li>
+                <li class="li" index='2'>2</li>
+                <li class="li" index='3'>3</li>
+                <li class="li" index='4'>4</li>
+                <li class="li" index='5'>5</li>
+                <li class="li" index='6'></li>
+                <li class="li" index='66'></li>
+            </ul>
+        </dialog>
+    <dialog class="side" id="dialog1">
+        <div class="back">
+            <span class="span" id="goback"></span>
+            个人信息
+        </div>
+        <div class="content" id="content">
+            <!-- <div class="headphoto">
+                <img src="" alt="" class="img">
+            </div>
+            <div class="info-name">流星雨</div>
+            <p class="p"><span class="span-name">性别</span><span class="span-name1">男</span></p>
+            <p class="p"><span class="span-name">出生日期</span><span class="span-name1">1995-06-01</span></p>
+            <p class="p"><span class="span-name">民族</span><span class="span-name1">汉</span></p>
+            <p class="p"><span class="span-name">有效证件类型</span><span class="span-name1">身份证</span></p>
+            <p class="p"><span class="span-name">证件号码</span><span class="span-name1">123456789123456789</span></p>
+            <p class="p"><span class="span-name">就业状态</span><span class="span-name1">在岗</span></p> -->
+        </div>
+        <div class="content1" id="content1">
+            <!-- <div class="text1">
+                <div class="border-right"></div>
+                <p class="p1"><span class="span-name2">学历</span><span class="span-name22">本科</span></p>
+                <p class="p1"><span class="span-name2">技术等级</span><span class="span-name22">职业资格一级</span></p>
+                <p class="p1"><span class="span-name2">移动电话</span><span class="span-name22">17356513930</span></p>
+                <p class="p1"><span class="span-name2">户籍类型</span><span class="span-name22">非农业户口</span></p>
+                <p class="p1"><span class="span-name2">户籍所在地</span><span class="span-name22">海南海口美兰区</span></p>
+                <p class="p1"><span class="span-name2">会籍变化类型</span><span class="span-name22">入会</span></p>
+                <p class="p1"><span class="span-name2">会籍变化日期</span><span class="span-name22">2018-04-01</span></p>
+                <p class="p1"><span class="span-name2">会籍变化原因</span><span class="span-name22">--</span></p>
+                <p class="p1"><span class="span-name2">政治面貌</span><span class="span-name22">政治面貌</span></p>
+            </div>
+            <div class="text1">
+                <p class="p1"><span class="span-name2">所在单位</span><span class="span-name22">s信息科技有限公司</span></p>
+                <p class="p1"><span class="span-name2">籍贯</span><span class="span-name22">海南海口</span></p>
+                <p class="p1"><span class="span-name2">出生地</span><span class="span-name22">海南海口琼山区</span></p>
+            </div> -->
+        </div>
+        <div class="return1" id="ret1"></div>
+    </dialog>
+    <!-- <div class="line1"></div>
+    <div class="line2"></div>
+    <div class="col1"></div>
+    <div class="col2"></div> -->
+    <div id="openDIa">
+            <div class="top-title">
+                    <div class="nar">
+                            <span class="home"></span>
+                            <span class="city" id="city">海南省</span>
+                        <span class="lef"></span>
+                        <span class="city" id="cityLaw"></span>
+                        <span class="lef"></span>
+                        <span class="city" id="cityLawow"></span>
+                    </div>
+                <h3 class="gradient-text">海南省总工会-组织建设</h3>
+                <div class="con-date">
+                    <img class="icon-time" src="./img/time_icon@2x.png" alt="" srcset="">
+                    <span id="date">
+                      
+                    </span>
+                </div>
+            </div>
+            <div class="con-vip-num-count">
+                <div class="title-vip-num-count">
+                    工会组织会员数统计
+                </div>
+                <div class="con-gif" style="margin-top: -7px">
+                    <img style="width: 384px;height: 1px;opacity:0.6;" class="title_gif" src="img/title_bg.gif" alt="">
+                </div>
+              
+                <div class="con-org-rank" id="vip-num-count">
+                    <!-- <div class="org-rank-item">
+                        <div class="rank-num">
+                            1
+                        </div>
+                        <div class="org-name">
+                            海航集团有限公司
+                        </div>
+                        <div class="org-rank-bar">
+        
+                        </div>
+                        <div class="org-num">
+                            2688
+                        </div>
+                    </div> -->
+                   
+                </div>
+                <div class="text-rank1">
+                    （各组织会员数排行）
+                </div>
+                <div id="country-ratio">
+        
+                </div>
+                <div class="text-rank2">
+                    （工会会员人数全市/县占比统计）
+                </div>
+            </div>
+            <div class="con-VIP-num">
+                <div class="VIP-num-title">
+                    会员人数
+                </div>
+                <div class="VIP-num" style="width:80vw;margin:0 auto;">
+                    <span class="VIP-item">
+                        1
+                    </span>
+                    <img class="icon-comma" src="./img/comma@2x.png" alt="">
+                    <span class="VIP-item">
+                        2
+                    </span>
+                    <span class="VIP-item">
+                        3
+                    </span>
+                    <span class="VIP-item">
+                        4
+                    </span>
+                </div>
+            </div>
+            <div class="con-vip-add">
+                <div class="title-vip-add">
+                    会员人数增长趋势
+                </div>
+                <div class="day-add style-add">
+                    日增长
+                </div>
+                <div class="mon-add style-add active-add">
+                    月增长
+                </div>
+                <div class="year-add style-add">
+                    年增长
+                </div>
+                <div id="vip-add">
+        
+                </div>
+            </div>
+            <div class="swiper-container con-vip-nation">
+                    <div class="con-gif" style="margin-top: 4px">
+                            <img style="width: 384px;height: 1px;opacity:0.6;" class="title_gif" src="img/title_bg.gif" alt="">
+                        </div>
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="title-Nation">
+                            工会会员民族占比统计
+                        </div>
+                        <div id="Nation" class="wh"></div>
+                        <div class="con-nation">
+                            <div class="item-nation">
+                                <div class="name-nation">
+                                    汉族（1458741）
+                                </div>
+                                <div class="con-progress">
+                                    <div class="bar">
+        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-nation">
+                                <div class="name-nation">
+                                    黎族（254684）
+                                </div>
+                                <div class="con-progress">
+                                    <div class="bar">
+        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-nation">
+                                <div class="name-nation">
+                                    壮族（256454）
+                                </div>
+                                <div class="con-progress">
+                                    <div class="bar">
+        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-nation">
+                                <div class="name-nation">
+                                    苗族（236436）
+                                </div>
+                                <div class="con-progress">
+                                    <div class="bar">
+        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-nation">
+                                <div class="name-nation">
+                                    其他（24578）
+                                </div>
+                                <div class="con-progress">
+                                    <div class="bar">
+        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="title-Nation">
+                            工会会员学历占比统计
+                        </div>
+                        <div id="Education" class="wh">
+                            <div class="edu-item">
+                                <div class="edu-name">
+                                    小学及以下
+                                </div>
+                                <div class="edu-bar">
+        
+                                </div>
+                                <div class="edu-p">
+                                    12%
+                                </div>
+                              
+                            </div>
+                            <div class="edu-item">
+                                <div class="edu-name">
+                                        初中
+                                </div>
+                                <div class="edu-bar">
+        
+                                </div>
+                                <div class="edu-p">
+                                    12%
+                                </div>
+                            </div>
+                            <div class="edu-item">
+                                <div class="edu-name">
+                                        高中/技校
+                                </div>
+                                <div class="edu-bar">
+        
+                                </div>
+                                <div class="edu-p">
+                                    12%
+                                </div>
+                            </div>
+                            <div class="edu-item">
+                                <div class="edu-name">
+                                        中专
+                                </div>
+                                <div class="edu-bar">
+        
+                                </div>
+                                <div class="edu-p">
+                                    12%
+                                </div>
+                            </div>
+                            <div class="edu-item">
+                                <div class="edu-name">
+                                        大专
+                                </div>
+                                <div class="edu-bar">
+        
+                                </div>
+                                <div class="edu-p">
+                                    12%
+                                </div>
+                            </div>
+                            <div class="edu-item">
+                                <div class="edu-name">
+                                        大学本科
+                                </div>
+                                <div class="edu-bar">
+        
+                                </div>
+                                <div class="edu-p">
+                                    12%
+                                </div>
+                            </div>
+                            <div class="edu-item">
+                                <div class="edu-name">
+                                        硕士研究生
+                                </div>
+                                <div class="edu-bar">
+        
+                                </div>
+                                <div class="edu-p">
+                                    12%
+                                </div>
+                            </div>
+                            <div class="edu-item">
+                                <div class="edu-name">
+                                        博士研究生
+                                </div>
+                                <div class="edu-bar">
+        
+                                </div>
+                                <div class="edu-p">
+                                    12%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="con-org-num">
+                <div class="title-org-num">
+                    工会组织数统计
+                </div>
+                <div class="con-gif" style="margin-top: -10px">
+                       <img style="width: 384px;height: 1px;opacity:0.6;" class="title_gif" src="img/title_bg.gif" alt="">
+                    </div>
+                <div class="now-org-num" id="now-org-num">
+                    <span>
+                        当前组织数：
+                    </span>
+                    <div class="now-org-num-item">
+                            5
+                        </div>
+                        <img class="icon-zz-comma" src="img/zz_comma@2x.png" alt="" srcset="">
+                    <div class="now-org-num-item">
+                        5
+                    </div>
+                    <div class="now-org-num-item">
+                        5
+                    </div>
+                    <div class="now-org-num-item">
+                        5
+                    </div>
+                </div>
+                <div class="con-org-rank" id="org-count">
+                    <!-- <div class="org-rank-item">
+                        <div class="rank-num">
+                            1
+                        </div>
+                        <div class="org-name">
+                            海口市
+                        </div>
+                        <div class="org-rank-bar">
+        
+                        </div>
+                        <div class="org-num">
+                            2688
+                        </div>
+                    </div> -->
+                    
+                </div>
+            </div>
+            <div class="swiper-container con-vip-age">
+                    <div class="con-gif" style="margin-top: 3px">
+                            <img style="width: 384px;height: 1px;opacity:0.6;" class="title_gif" src="img/title_bg.gif" alt="">
+                        </div>
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="title-vip-age">
+                            工会会员年龄占比统计
+                        </div>
+                        <div id="vipAge">
+        
+                        </div>
+        
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="title-Nation">
+                            工会会员性别占比统计
+                        </div>
+                        <div id="vipSex" class="wh"></div>
+                    </div>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+            </div>
+    </div>
+    <!-- <div class="con-vip-age">
+        <div class="title-vip-age">
+            工会会员年龄占比统计
+        </div>
+        <div id="">
+
+        </div>
+    </div> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/app-2.js"></script>
+</body>
+
+</html>

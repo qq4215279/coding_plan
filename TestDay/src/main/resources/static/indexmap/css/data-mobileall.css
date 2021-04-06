@@ -1,0 +1,179 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+.app {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../img/index_bg.png);
+    background-size: 100vw 100vh;
+}
+.app .header {
+    width: 100vw;
+    height: 12.29vh;
+    background-image: url(../img/index_title.png);
+    background-size: 100vw 12.29vh;
+}
+.app .header .p1 {
+    margin: 0;
+    padding: 0;
+    /* width: 29.33vw; */
+    /* width: 34.33vw; */
+    height: 2.69vh;
+    margin: 0 auto;
+    font-size: 18px;
+    color: #48A7EA;
+    padding-top: 3.49vh;
+    font-weight: bold;
+    text-align: center;
+}
+.app .header .p2 {
+    margin: 0;
+    padding: 0;
+    /* width: 27.46vw; */
+    /* width: 31.46vw; */
+    height: 2.69vh;
+    margin: 0 auto;
+    font-size: 18px;
+    color: #48A7EA;
+    font-weight: bold;
+    padding-top: 1.19vh;
+    text-align: center;
+}
+.app .header .back {
+    position:absolute;
+    top: 2.84vh;
+    left: 2.93vw;
+    width: 5.86vw;
+    height: 3.29vh;
+    background-image: url(../img/back.png);
+    background-size: 5.86vw 3.29vh;
+    background-repeat: no-repeat;
+}
+.app .choose {
+    width: 81.33vw;
+    height: 5.84vh;
+    border: 1px solid rgba(117, 217, 233, 0.24);
+    margin: 0 auto;
+    margin-top: 3.29vh;
+    border-radius: 20px 20px 20px 20px;
+}
+.app .choose .span1 {
+    float: left;
+    display: inline-block;
+    width: 49.5%;
+    height: 5.84vh;
+    color: #4490B1;
+    font-size: 13px;
+    text-align: center;
+    line-height: 5.84vh;
+    font-weight: bold;
+
+}
+.app .choose .choosed {
+    border: 1px solid #2C8897;
+    border-radius: 20px 20px 20px 20px;
+    color: #77FBFD;
+}
+.app .peoplenum {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    height: 1.94vh;
+    color: rgba(182, 221, 221, 0.8);
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 2.39vh;
+}
+.app .list {
+    width: 94.66vw;
+    height: 71.11vh;
+    margin: 0 auto;
+    margin-top: 2.39vh;
+    overflow: auto;
+}
+.app .list .title1 {
+    width: 94.66vw;
+    height: 6.14vh;
+}
+.app .list .title {
+    top: 27.886vh;
+    width: 94.66vw;
+    height: 6.14vh;
+    position: fixed;
+    background-image: url(../img/list_top_bg.png);
+    background-size: 94.66vw 6.14vh;
+    background-repeat: no-repeat;
+}
+.app .list .title .org-item {
+    display: inline-block;
+    width: 14.933vw;
+    height: 1.949vh;
+    margin-left: 16.8vw;
+    margin-top: 2.24vh;
+    color: #77FBFD;
+    font-size: 13px;
+}
+.app .list .title .org-num {
+    float: right;
+    display: inline-block;
+    width: 11.2vw;
+    height: 1.949vh;
+    margin-right: 5.6vw;
+    margin-top: 2.24vh;
+    color: #77FBFD;
+    font-size: 13px;
+}
+.app .list .org-all {
+    width: 94.66vw;
+    height: 6.14vh;
+    display: flex;
+    align-items: center;
+}
+.app .list .org-all .num {
+    display: inline-block;
+    width: 4.8vw;
+    height: 1.5vh;
+    line-height: 1.5vh;
+    background-color: #B81226;
+    margin-left: 2.666vw;
+    /* margin-top: 2.848vh; */
+    font-size: 0.8333vw;
+    color: #fff;
+    text-align: center;
+}
+.app .list .org-all .name {
+    margin: 0;
+    padding: 0;
+    height: 4.047vh;
+    width: 28vw;
+    font-size: 12px;
+    color: #ffffff;
+    margin-left: 5.6vw;
+    letter-spacing: 1px;
+}
+.app .list .org-all .bar {
+    width: 26.666vw;
+    height: 0.749vh;
+    background-color: #61D2ED;
+    margin-left: 4.48vw;
+}
+.app .list .org-all .peoplenumber {
+    display: inline-block;
+    width: 19.66vw;
+    height: 1.799vh;
+    text-align: right;
+    color: #ffffff;
+    font-size: 12px;
+}
+.app .list .org-all:nth-child(3) .num {
+    background-color: #E35915;
+}
+.app .list .org-all:nth-child(4) .num {
+    background-color: #FFBE2C;
+}
+.app .list .org-all:nth-child(n+5) .num {
+    background-color: #1DAED2;
+}

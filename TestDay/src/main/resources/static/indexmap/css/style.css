@@ -1,0 +1,639 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* background-image: url('../img/background@2x.png'); */
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+}
+
+.top-title {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-image: url('../img/title_bg@2x.png');
+    background-repeat: no-repeat;
+    background-size: 100vw 9.814vh;
+    height: 9.814vh;
+    text-align: center;
+}
+.con-gif{
+    position: absolute;
+    top: 5.648vh;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+.title_gif{
+    /* width: 19.27vw;
+    height: 0.925vh;
+    position: absolute;
+    top: 5.648vh;
+    left: 4.479vw; */
+    /* display: block; */
+    /* transform: scaleX(1.3) translateX(25%)  */
+}
+.img-top-title {
+    width: 16.145vw;
+    height: 3.611vh;
+    margin-top: 2.962vh;
+}
+
+.con-date {
+    position: absolute;
+    top: 3.8vh;
+    left: 78.072vw;
+}
+
+.icon-time {
+    width: 1.041vw;
+    height: 1.851vh;
+    vertical-align: middle;
+}
+
+#date {
+    font-size: 0.833vw;
+    color: #52FFFF;
+}
+
+.con-vip-num-count {
+    background-image: url('../img/vip_num_bg.png');
+    background-repeat: no-repeat;
+    background-size: 29.531vw 87.592vh;
+    position: fixed;
+    top: 11.574vh;
+    left: 1.979vw;
+    width: 29.531vw;
+    height: 87.592vh;
+}
+.con-vip-num-count .org-num{
+    width: auto!important;
+}
+
+.title-vip-num-count {
+    font-size: 1.354vw;
+    color: #23FFFF;
+    font-weight: 600;
+    position: absolute;
+    top: 2.87vh;
+    left: 0;
+    right: 0;
+    text-align: center;
+
+}
+
+#vip-num-count {
+    width: 26.406vw;
+    height: 41.666vh;
+    position: absolute;
+    top: 9.185vh;
+    left: 1.562vw;
+}
+
+.text-rank1 {
+    position: absolute;
+    top: 52vh;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #fff;
+    font-size: 0.729vw;
+}
+
+#country-ratio {
+    width: 26.406vw;
+    height: 26.851vh;
+    position: absolute;
+    left: 1.562vw;
+    right: 0;
+    bottom: 4.333vh;
+}
+
+.text-rank2 {
+    position: absolute;
+    bottom: 3.7vh;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #fff;
+    font-size: 0.729vw;
+}
+
+.VIP-num-title {
+    position: fixed;
+    top: 13.888vh;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 1.35vw;
+    font-family: PingFang-SC-Medium;
+    font-weight: bold;
+    color: rgba(101, 198, 231, 1);
+    letter-spacing: 0.4vw;
+}
+
+.VIP-num {
+    position: fixed;
+    top: 18.981vh;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.icon-comma {
+    width: 0.468vw;
+    height: 1.759vh;
+    vertical-align: bottom;
+}
+
+.VIP-item {
+    display: inline-block;
+    width: 3.645vw;
+    height: 8.518vh;
+    line-height: 8.518vh;
+    background-image: url('../img/num_bg@2x.png');
+    background-repeat: no-repeat;
+    background-size: 3.645vw 8.518vh;
+    font-size: 3.541vw;
+    color: #FFF45C;
+}
+
+.con-vip-add {
+    width: 33.958vw;
+    height: 35.185vh;
+    position: fixed;
+    top: 31.111vh;
+    left: 33.02vw;
+    background-image: url('../img/vip-add-bg.png');
+    background-repeat: no-repeat;
+    background-size: 33.958vw 35.185vh;
+}
+
+.title-vip-add {
+    color: #23FFFF;
+    font-size: 1.25vw;
+    font-weight: bold;
+    margin-top: 2.037vh;
+    margin-left: 1.197vw;
+}
+
+#vip-add {
+    /* width: 32.395vw;
+    height: 22.685vh;
+    position: absolute;
+    top: 9.722vh;
+    left: 0.781vw; */
+    width: 32.395vw;
+    height: 85%;
+    position: absolute;
+    top: 8.722vh;
+    left: 0.781vw;
+}
+
+.style-add {
+    font-size: 0.9375vw;
+    color: #65C6E7;
+    top: 2.314vh;
+}
+
+.style-add:hover {
+    cursor: pointer;
+}
+
+.active-add {
+    font-weight: bold;
+    color:yellow;
+}
+
+.day-add {
+    position: absolute;
+    right: 10.364vw;
+}
+
+.mon-add {
+    position: absolute;
+    right: 5.468vw;
+}
+
+.year-add {
+    position: absolute;
+    right: 1.041vw;
+}
+
+.con-vip-nation {
+    width: 33.958vw;
+    height: 29.722vh;
+    position: fixed;
+    bottom: 1.296vh;
+    left: 33.02vw;
+    background-image: url('../img/Nation_bg.png');
+    background-repeat: no-repeat;
+    background-size: 33.958vw 29.722vh;
+}
+.con-vip-nation .con-gif{
+    top: 4.203vh;
+}
+.swiper-pagination-bullet {
+    background: #23FFFF !important;
+    width: 0.416vw;
+    height: 0.416vw;
+}
+
+.swiper-pagination-bullet-active {
+    background: #23FFFF !important;
+    width: 1.041vw;
+    height: 0.555vh;
+    border-radius: 3px;
+}
+
+.title-Nation {
+    position: absolute;
+    top: 2.407vh;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 1.25vw;
+    color: #23FFFF;
+    font-weight: 600;
+}
+
+#Nation {
+    width: 19.979vw;
+    height: 23.24vh;
+    position: absolute;
+    top: 6.481vh;
+    left: 0;
+}
+
+.con-nation {
+    width: 11.51vw;
+    height: 23.24vh;
+    position: absolute;
+    top: 7.87vh;
+    right: 2.359vw;
+}
+
+.name-nation {
+    font-size: 0.677vw;
+    color: #65C6E7;
+}
+
+.con-progress {
+    border: 1px solid rgba(63, 195, 208, 1);
+    width: 100%;
+    height: 1.018vh;
+    float: left;
+    margin-bottom: 1vh;
+    position: relative;
+}
+
+.bar {
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: 0;
+    right: 10%;
+    background-color: #3FC3D0;
+}
+
+.con-nation .item-nation:nth-child(2) .name-nation {
+    color: #6B95E2;
+}
+
+.con-nation .item-nation:nth-child(2) .con-progress {
+    border-color: #6B95E2;
+}
+
+.con-nation .item-nation:nth-child(2) .bar {
+    right: 70%;
+    background-color: #6B95E2;
+}
+
+.con-nation .item-nation:nth-child(3) .name-nation {
+    color: #7CF092;
+}
+
+.con-nation .item-nation:nth-child(3) .con-progress {
+    border-color: #7CF092;
+}
+
+.con-nation .item-nation:nth-child(3) .bar {
+    right: 50%;
+    background-color: #7CF092;
+}
+
+.con-nation .item-nation:nth-child(4) .name-nation {
+    color: #E8C164;
+}
+
+.con-nation .item-nation:nth-child(4) .con-progress {
+    border-color: #E8C164;
+}
+
+.con-nation .item-nation:nth-child(4) .bar {
+    right: 50%;
+    background-color: #E8C164;
+}
+
+.con-nation .item-nation:nth-child(5) .name-nation {
+    color: #F26E83;
+}
+
+.con-nation .item-nation:nth-child(5) .con-progress {
+    border-color: #F26E83;
+}
+
+.con-nation .item-nation:nth-child(5) .bar {
+    right: 50%;
+    background-color: #F26E83;
+}
+
+.con-org-num {
+    position: fixed;
+    top: 11.851vh;
+    right: 2.291vw;
+    width: 28.697vw;
+    height: 51.759vh;
+    background-image: url('../img/org_num-bg.png');
+    background-repeat: no-repeat;
+    background-size: 28.697vw 51.759vh;
+}
+
+.title-org-num {
+    font-size: 1.25vw;
+    color: #23FFFF;
+    font-weight: 600;
+    text-align: center;
+    position: absolute;
+    top: 2.5vh;
+    left: 0;
+    right: 0;
+}
+
+.now-org-num {
+    position: absolute;
+    top: 9.07vh;
+    left: 1.197vw;
+    height: 3.888vh;
+    line-height: 3.888vh;
+    color: #D6E3F7;
+    font-weight: 600;
+}
+
+.now-org-num span {
+    font-size: 0.8333vw;
+}
+
+.now-org-num-item {
+    display: inline-block;
+    width: 2.083vw;
+    height: 3.888vh;
+    background-image: url('../img/zz_num_bg@2x.png');
+    background-repeat: no-repeat;
+    background-size: 2.083vw 3.888vh;
+    font-size: 1.458vw;
+    text-align: center;
+}
+
+.con-org-rank {
+    position: absolute;
+    top: 14.814vh;
+    left: 1.718vw;
+    right: 0.781vw;
+    height: 34.259vh;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar-track-piece {
+    /*滚动条凹槽的颜色，还可以设置边框属性*/
+    background-color: #1B2C4B;
+}
+
+::-webkit-scrollbar {
+    /*滚动条的宽度*/
+    width: 0.416vw;
+    /* height: 9px; */
+}
+
+::-webkit-scrollbar-thumb {
+    /*滚动条的设置*/
+    background-color: #3B5B93;
+    background-clip: padding-box;
+    min-height: 28px;
+}
+
+/* ::-webkit-scrollbar-thumb:hover {
+    background-color: #bbb;
+} */
+
+.org-rank-item {
+    height: 2vh;
+    line-height: 2vh;
+    display: inline-block;
+    width: 100%;
+    margin-top: 0.52vw;
+}
+
+.rank-num {
+    display: inline-block;
+    width: 1.875vw;
+    height: 1.851vh;
+    background-color: #B81226;
+    font-size: 0.8333vw;
+    color: #fff;
+    text-align: center;
+}
+
+#org-count .org-name {
+    display: flex;
+    color: #23FFFF;
+    font-size: 0.9375vw;
+    line-height: 0.9375vw;
+    height: 3vh;
+    width: 6vw;
+}
+#org-count .org-rank-item{
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+.org-rank-bar {
+    display: inline-block;
+    width: 14.0625vw;
+    height: 0.925vh;
+    background-color: #F7CF5E;
+    margin-left: 1.354vw;
+   
+}
+.ana-trs{
+    animation-name: trs;
+    animation-duration: 2s;
+    animation-iteration-count:1;
+    animation-fill-mode: forwards;
+    transform-origin:0% 50%;
+}
+@keyframes trs{
+    0%{
+        transform: scaleX(0)
+        
+    }
+    100%{
+        transform: scaleX(0.9999)
+    }
+}
+
+.org-num {
+    /* margin-top: 0.4vh; */
+    float: right;
+    width: 3.125vw;
+    text-align: left;
+    font-size: 0.9375vw;
+    font-weight: 600;
+    color: #F7CF5E;
+}
+
+.con-org-rank .org-rank-item:nth-child(2) .rank-num {
+    background-color: #E35915;
+}
+
+.con-org-rank .org-rank-item:nth-child(3) .rank-num {
+    background-color: #FFBE2C;
+}
+
+.con-org-rank .org-rank-item:nth-child(n+4) .rank-num {
+    background-color: #1DAED2;
+}
+
+.con-org-rank .org-rank-item:nth-child(n+4) .org-rank-bar {
+    background-color: #1DAED2;
+    width: 53%;
+}
+#vip-num-count .org-rank-item{
+    height: 2.87vh;
+    display: flex;
+    align-items: center
+}
+/* #vip-num-count .org-name{
+    display: inline-block;
+    width: 4.791vw;
+    height: 2.87vh;
+  color: #FFFFFF;
+  font-size: 0.7291vw;
+  line-height: 0.7291vw;
+  vertical-align:-webkit-baseline-middle;
+} */
+
+ .org-name{
+    display: flex;
+    align-items: center;
+    width: 4.791vw;
+    height: 2.87vh;
+  color: #FFFFFF;
+  font-size: 0.7291vw;
+  line-height: 1.3!important;
+  font-weight: 600;
+  margin-left: 0.677vw;
+  /* vertical-align: middle; */
+  vertical-align:-webkit-baseline-middle;
+}
+
+#vip-num-count .org-num{
+    float: none;
+    display: inline-block;
+}
+#vip-num-count .org-rank-bar{
+    background: linear-gradient(to right,#1E87F3,#17D5F1);
+    width: 40%;
+}
+.con-vip-age{
+    position: fixed;
+    right: 2.291vw;
+    bottom: 1.388vh;
+    width: 28.697vw;
+    height: 31.666vh;
+    background-image: url('../img/vip_age_bg.png');
+    background-repeat: no-repeat;
+    background-size: 28.697vw 31.666vh;
+}
+.con-vip-age .con-gif{
+    top: 4.203vh;
+}
+.title-vip-age{
+    position: absolute;
+    top: 2.5vh;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 1.25vw;
+    color: #23FFFF;
+    font-weight:600;
+}
+#vipAge,#vipSex{
+    position: absolute;
+    top: 7.407vh;
+    left: 0;
+    right: 0;
+    bottom: 1.85vh;
+
+}
+#Education{
+    position: absolute;
+    top: 7.407vh;
+    left: 3.072vw;
+    right: 2.812vw;
+    bottom: 2.777vh;
+}
+.edu-item{
+    float: left;
+    height: 1.388vh;
+    margin-bottom: 1vh;
+    width: 100%;
+}
+.edu-name{
+    width: 5vw;
+    font-size: 0.729vw;
+    color: #fff;
+    font-weight:600;
+    display: inline-block;
+}
+.edu-bar{
+    display: inline-block;
+    width: 60%;
+    height: 0.925vh;
+    background-color: #1EB4CB;
+    margin-left: 1.041vw;
+}
+.edu-p{
+    font-size: 0.729vw;
+    color: #FFF45C;
+    display: inline-block;
+    float: right;
+    margin-top: 1vh;
+}
+.icon-zz-comma{
+    width: 0.2604vw;
+    height: 0.9259vh;
+    vertical-align: bottom;
+}
+
+.clear{
+    clear: both;
+}
+.ml-18{
+    margin-left: 0.9375vw;
+}
+.ml-10{
+    margin-left: 0.5208vw;
+}
+.line2-over {
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }

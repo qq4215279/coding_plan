@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>海南省总工会大数据中心</title>
+  <script src="js/jquery.min.js"></script>
+  <!--<script src="../../../resources/static/js/jquery.min.js"></script>-->
+  <style>
+  *{padding: 0;margin: 0;}
+  .box {width: 100vw;height: 100vh;display: flex;justify-content: center;align-items: center;flex-direction: column;background-image: url('./img/bgBg.png');background-size: cover;background-repeat: no-repeat;}
+  .box_word {margin-top:2px;font-size: 46px;color: rgb(255,255,255);letter-spacing:3px;}
+  .box_login {width: 480px;height: 310px;background-color: rgba(255, 255, 255, 0.5);box-shadow: 0 1px 9px 0 lightgrey;margin-top: 90px;display: flex;align-items: center;flex-direction: column;border-radius: 5px;}
+  .box_login_account {width: 80%;height: 40px;margin-top: 50px;border: 1px solid lightgrey;border-radius: 5px;position: relative;background-color: rgba(255, 255, 255, 0.5);}
+  .box_login_account_null {margin-left: 5px;color: red;font-size: 14px;}
+  .box_login_account_in {width: 100%;height: 100%;border: 0;font-size: 14px;color: #cdcdcd;border-radius: 5px;background-color: rgba(255, 255, 255, 0.8);text-indent: 30px;}
+  .box_login_account_icon {position: absolute;width: 22px;height: 22px;top: 10px;left: 5px;}
+  .box_login_pass {width: 80%;height: 40px;border: 1px solid lightgrey;border-radius: 5px;margin-top: 20px;position: relative;}
+  .box_login_btn {width: 80%;height: 40px;background: rgb(88, 158, 248);border-radius: 5px;margin-top: 40px;text-align: center;line-height: 40px;color: white;cursor: pointer;font-size: 20px;}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1 class="box_word">海南省总工会大数据中心</h1>
+
+    <div class="box_login">
+      <p class="box_login_account_null" id="msg" th:text="${msg}"></p>
+      <div class="box_login_account" id="boxa">
+        <img src="./img/xingxing2.png" alt="" class="box_login_account_icon">
+        <input type="text" class="box_login_account_in" id='username' name="username" autofocus onblur="checkUsername()"
+               value="" placeholder="账号" />
+        <p class="box_login_account_null" id="nulla"></p>
+      </div>
+      <div class="box_login_pass" id="boxb">
+          <img src="./img/xingxing1.png" alt="" class="box_login_account_icon">
+          <input type="password" class="box_login_account_in" id='password' name="password" onblur="checkPassword()"
+                 value="" placeholder="密码" />
+        <p class="box_login_account_null" id="nullb"></p>
+      </div>
+      <button class="box_login_btn" id="submitBtn" >登录</button>
+    </div>
+  </div>
+</body>
+<script>
+
+  var flag = true;
+  var username = '';
+  var password = '';
+  //var ctxPath = "/" + location.pathname.split("/")[1]
+  var checkUsername = function () {
+    username = $("#username").val();
+    if (username === '') {
+      $("#nulla").html("账号不能为空");
+      flag = false;
+    } else {
+      $("#nulla").html("");
+      flag = true;
+    }
+  };
+
+  var checkPassword = function () {
+    password = $("#password").val();
+    if (password === '') {
+      $("#nullb").html("密码不能为空");
+      flag = false;
+    } else {
+      $("#nullb").html("");
+      flag = true;
+    }
+  };
+
+  var checkUser = function () {
+    checkUsername();
+    checkPassword();
+    if (flag) {
+
+      $.post( "/checkUser", {username: username, password: password}, function (res) {
+        if (res > 0) {
+          location.href = "/index.html";
+        } else {
+          $("#msg").html("用户名或密码错误，请重新输入！！！");
+        }
+      })
+    }
+  }
+
+  $(function () {
+
+    $("#submitBtn").click(function () {
+      checkUser();
+    });
+
+    //回车登录
+    $(document).keydown(function (event) {
+      if (event.keyCode === 13) {
+        checkUser();
+      }
+    })
+
+  })
+
+
+</script>
+</html>
