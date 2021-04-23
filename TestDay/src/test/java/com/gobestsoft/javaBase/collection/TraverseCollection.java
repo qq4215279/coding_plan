@@ -41,14 +41,14 @@ public class TraverseCollection {
     /**
      * 匿名对象
      */
-    private static Map<String, Object> map1 = new HashMap<String, Object>() {
-        {
-            map1.put("username", "zhangsan");
-            map1.put("password", 123);
-            map1.put("age", 20);
-            list.add(map1);
-        }
-    };
+//    private static Map<String, Object> map1 = new HashMap<String, Object>() {
+//        {
+//            map1.put("username", "zhangsan");
+//            map1.put("password", 123);
+//            map1.put("age", 20);
+//            list.add(map1);
+//        }
+//    };
 
     /**
      * 静态代码块初始化
@@ -186,7 +186,24 @@ public class TraverseCollection {
         System.out.println("==================================4");
     }
 
-    public static void main(String[] args) {
+    /**
+     * map遍历方式4: Iterator遍历获取，然后获取到Map.Entry<String, String>，再得到getKey()和getValue()
+     * Iterator
+     * @return
+     */
+    public static void traverseMapMethod05(Map<String, Object> map1) {
+        map1.forEach((key, val) -> {
+            System.out.println("key:" + key + " value:" + val);
+        });
 
+        System.out.println("==================================5");
+    }
+
+    public static void main(String[] args) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", "lihua");
+        map.put("age", 20);
+
+        traverseMapMethod05(map);
     }
 }
