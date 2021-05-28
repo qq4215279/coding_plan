@@ -2,6 +2,7 @@ package com.demo.Geek.c0.comparator;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.PriorityQueue;
 
 /**
  * 比较器：Comparator使用
@@ -63,11 +64,15 @@ class Test {
         list.add(new PersonComparator("bbb", 10));
         list.add(new PersonComparator("ddd", 40));
 
+        // 使用方式1：
         // 打印list的原始序列
         System.out.println(list);
         list.sort(new AseAgePerson());
 
         //list.sort(new DescAgePerson());
         System.out.println(list);
+
+        // 使用方式2:
+        PriorityQueue<PersonComparator> queue = new PriorityQueue<>(new AseAgePerson());
     }
 }
