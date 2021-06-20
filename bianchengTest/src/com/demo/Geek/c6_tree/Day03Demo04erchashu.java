@@ -22,14 +22,14 @@ public class Day03Demo04erchashu { // 二叉树遍历： 前序：  中序：   
 
 
     List<Integer> list = new ArrayList<>();
-    public List<Integer> postorderTraversal(TreeNode root) {//递归后序遍历
+    public List<Integer> postOrderTraversal(TreeNode root) { // 递归后序遍历
 
         if (root == null)
             return list;
 
         if (root != null) {
-            postorderTraversal(root.left);
-            postorderTraversal(root.right);
+            postOrderTraversal(root.left);
+            postOrderTraversal(root.right);
             list.add(root.val);
         }
         return list;

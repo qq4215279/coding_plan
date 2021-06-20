@@ -38,7 +38,6 @@ public class Day03Demo00_startLinkedList {
     }
 
     public ListNode reverseList(ListNode head) {// 1.迭代
-
         ListNode cur = head;
         ListNode pre = null;
 

@@ -5,10 +5,7 @@
 
 package com.demo.Geek.c5_hash_collection;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Day01Demo02 { //LeetCode  49
 
@@ -33,12 +30,12 @@ public class Day01Demo02 { //LeetCode  49
      * 不考虑答案输出的顺序。
      */
 
-    public List<List<String>> groupAnagrams00(String[] strs) {// 1.排序数组分类
+    public List<List<String>> groupAnagrams00(String[] strs) { // 1.排序数组分类
         // 时间复杂度：O(NK \log K)O(NKlogK)，其中 NN 是 strs 的长度，而 KK 是 strs 中字符串的最大长度。
         if (strs.length == 0)
             return new ArrayList<>();
 
-        HashMap<String, ArrayList<String>> map = new HashMap<>();
+        Map<String, ArrayList<String>> map = new HashMap<>();
         for (String s : strs) {
             char[] chars = s.toCharArray();
             Arrays.sort(chars);

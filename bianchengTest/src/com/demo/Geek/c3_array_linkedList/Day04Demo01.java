@@ -28,7 +28,6 @@ public class Day04Demo01 { // LeetCode 24
     }
 
     public ListNode swapPairs(ListNode head) {
-
         // 定义前去结点技巧：！！！！
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
@@ -36,15 +35,16 @@ public class Day04Demo01 { // LeetCode 24
 
         ListNode cur = head;
 
-        while ( cur != null && cur.next != null) {
-
+        while (cur != null && cur.next != null) {
             ListNode firstNode = cur;
             ListNode secondNode = cur.next;
 
+            // 1.即: 前一个节点、当前节点、后一个节点的next节点分别等于谁谁谁！！
             pre.next = secondNode;  // 让之前指向1节点的现在指向交换后的2节点
             firstNode.next = secondNode.next;  // 1节点的next 指向 2节点的next（即3节点）
             secondNode.next = firstNode; // 此时2节点的next 指向 1节点   完成交换
 
+            // 2.下一个节点判断
             pre = firstNode;
             cur = firstNode.next;
         }

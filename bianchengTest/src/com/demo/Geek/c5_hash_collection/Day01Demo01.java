@@ -9,7 +9,6 @@ import java.util.Arrays;
 
 public class Day01Demo01 { //LeetCode  242
 
-
     /**
      * 有效的字母异位词
      * 异位词：字母出现的次数一样，只是顺序不一样
@@ -30,8 +29,8 @@ public class Day01Demo01 { //LeetCode  242
      * 如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？
      */
 
-    public boolean isAnagram00(String s, String t) { // 1.暴力：排序！ O(nlogn)：因为排序时间复杂度为O(nlogn)，比较两个字符串的成本 O(n)O(n)
 
+    public boolean isAnagram00(String s, String t) { // 1.暴力：排序！ O(nlogn)：因为排序时间复杂度为O(nlogn)，比较两个字符串的成本 O(n)O(n)
         if (s.length() != t.length())
             return false;
 
@@ -44,7 +43,6 @@ public class Day01Demo01 { //LeetCode  242
     }
 
     public boolean isAnagram01(String s, String t) { // 2.通过hash函数，对两个字符串中每个字母的出现次数并进行比较。 O(n)
-
         if (s.length() != t.length())
             return false;
 
@@ -60,11 +58,9 @@ public class Day01Demo01 { //LeetCode  242
         }
 
         return true;
-
     }
 
     public boolean isAnagram02(String s, String t) { // 3.hash改进版本  O(n)
-
         // 3.先用计数器表计算 ss，然后用 tt 减少计数器表中的每个字母的计数器。如果在任何时候计数器低于零，
         // 我们知道 tt 包含一个不在 ss 中的额外字母，并立即返回 FALSE。
 

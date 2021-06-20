@@ -18,8 +18,7 @@ public class Day02Demo01 { //LeetCode： T84
      * 以上是柱状图的示例，其中每个柱子的宽度为 1，给定的高度为 [2,1,5,6,2,3]。
      */
 
-    public static int largestRectangleArea00(int[] heights) {//1.暴力解法  O(n^3)
-
+    public static int largestRectangleArea00(int[] heights) { // 1.暴力解法  O(n^3)
         int maxArea = 0;
         for (int i = 0; i < heights.length; i++) {
             for (int j = 0; j < heights.length; j++) {
@@ -34,8 +33,7 @@ public class Day02Demo01 { //LeetCode： T84
         return maxArea;
     }
 
-    public static int largestRectangleArea0(int[] heights) {//2.优化暴力解法
-
+    public static int largestRectangleArea0(int[] heights) { // 2.优化暴力解法
         int maxArea = 0;
         for (int i = 0; i < heights.length; i++) {
             int minheight = Integer.MAX_VALUE;
@@ -48,8 +46,7 @@ public class Day02Demo01 { //LeetCode： T84
         return maxArea;
     }
 
-    public int largestRectangleArea(int[] heights) {// 3.单调栈
-
+    public int largestRectangleArea(int[] heights) { // 3.单调栈
         Stack<Integer> stack = new Stack<>();
         stack.push(-1);
         int maxArea = 0;

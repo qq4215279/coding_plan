@@ -30,7 +30,6 @@ public class Demo02 { // LeetCode 22
     }
 
     public void _generate(int left, int right, int n, String s) {
-
         if (left == n && right == n) {
             result.add(s);
             return;

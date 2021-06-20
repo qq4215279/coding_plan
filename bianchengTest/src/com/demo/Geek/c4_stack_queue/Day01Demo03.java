@@ -41,7 +41,6 @@ public class Day01Demo03 {// LeetCode：T239
      */
 
     public static int[] maxSlidingWindow01(int[] nums, int k) {  // 双端队列处理    O（n）
-
         //        if (nums == null || nums.length == 0 || k <= 0 || nums.length < k) {
         //            return new int[nums.length -k + 1];
         //        }
@@ -70,9 +69,7 @@ public class Day01Demo03 {// LeetCode：T239
     }
 
     public static int[] maxSlidingWindow02(int[] nums, int k) {  // 暴力    O（n*k）
-
         int[] res = new int[nums.length - k + 1];
-
         for (int i = 0; i < nums.length - k + 1; i++) {
             int max = nums[i];
             for (int j = i; j < i + k - 1; j++) {

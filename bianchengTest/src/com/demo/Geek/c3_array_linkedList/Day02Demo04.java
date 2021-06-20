@@ -20,8 +20,7 @@ public class Day02Demo04 { //T1
      * 所以返回 [0, 1]
      */
 
-    public static int[] twoSum01(int[] nums, int target) {//方法1：使用集合
-
+    public static int[] twoSum01(int[] nums, int target) { //方法1：使用集合
         HashMap<Integer, Integer> map = new HashMap<>();
 
         for (int i = 0; i < nums.length; i++) {
@@ -38,7 +37,7 @@ public class Day02Demo04 { //T1
         return null;
     }
 
-    public static int[] twoSum02(int[] nums, int target) {//方法1：暴力解：使用两层循环。 O(n^2)
+    public static int[] twoSum02(int[] nums, int target) { //方法1：暴力解：使用两层循环。 O(n^2)
 
         for (int i = 0; i < nums.length ; i++) {
             for (int j = i+1; j < nums.length ; j++) {

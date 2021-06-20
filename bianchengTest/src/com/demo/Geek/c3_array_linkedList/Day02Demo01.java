@@ -19,14 +19,14 @@ public class Day02Demo01 { //LeetCode T125
      * *
      **/
 
-    public static boolean isPalindrome01(String s) {// 双指针
+    public static boolean isPalindrome01(String s) { // 双指针
         if (s == null) return true;
 
         char[] chars = s.toCharArray();
         int p = 0;
         int q = s.length() - 1;
         while (p < q) {
-            while (!Character.isLetterOrDigit(chars[p]) ){
+            while (!Character.isLetterOrDigit(chars[p]) ){ // 判断是否是数字或字母
                 p++;
             }
             while (!Character.isLetterOrDigit(chars[q])){
@@ -50,17 +50,17 @@ public class Day02Demo01 { //LeetCode T125
 
         s = s.toLowerCase();
         int l = s.length();
-        StringBuilder str = new StringBuilder(l);
+        StringBuilder sb = new StringBuilder(l);
         for (char c : s.toCharArray()) {
             if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z')) {
                 System.out.println("char: " + c);
-                str.append(c);
+                sb.append(c);
             }
         }
         System.out.println("s:" + s);
-        System.out.println("str:" + str.toString());
-        System.out.println("reverseStr:" + str.reverse().toString());
-        return str.toString().equals(str.reverse().toString());
+        System.out.println("sb:" + sb.toString());
+        System.out.println("reverseStr:" + sb.reverse().toString());
+        return sb.toString().equals(sb.reverse().toString());
     }
 
     public static boolean isPalindrome03(String s) { // 验证不能用字节反转字符串操作 eg: 转成字节后：95 7 =>  7 95

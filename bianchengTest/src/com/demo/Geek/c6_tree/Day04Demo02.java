@@ -53,10 +53,10 @@ public class Day04Demo02 {  //LeetCode T98
         return true;
     }
 
-    public boolean isValidBST2(TreeNode root) { //方法2：排序二叉树的中序遍历是递增
-
-        if (root == null)
+    public boolean isValidBST2(TreeNode root) { // 方法2：排序二叉树的中序遍历是递增
+        if (root == null) {
             return true;
+        }
 
         List<Integer> list = inOrder(root);
         for (int i = 0; i < list.size() - 1; i++) {
@@ -73,8 +73,9 @@ public class Day04Demo02 {  //LeetCode T98
     List<Integer> list = new ArrayList<>();
 
     public List<Integer> inOrder(TreeNode root) {
-        if (root == null)
+        if (root == null) {
             return list;
+        }
 
         inOrder(root.left);
         list.add(root.val);

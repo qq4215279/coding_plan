@@ -38,7 +38,6 @@ public class Day01Demo01 {// LeetCode：T20
      */
 
     public static boolean isValid01(String s) {// 暴力求解：不断用replace()匹配的括号替换成->""      O(n^2)
-
         char[] chars = s.toCharArray();
         if (chars == null) {
             return true;

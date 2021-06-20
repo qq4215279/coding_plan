@@ -49,8 +49,7 @@ public class Day03Demo02 {  //LeetCode T141
 
     }
 
-    public boolean hasCycle02(ListNode head) {//快慢指针法
-
+    public boolean hasCycle02(ListNode head) { //快慢指针法
         if (head == null || head.next == null)
             return false;
 
