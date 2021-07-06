@@ -20,7 +20,7 @@ import java.util.stream.IntStream;
 public class ArraysTest {
 
     @Test
-    public void methodsTest() {
+    public void apiTest() {
         // 1. 数组转集合asList(T... a)   （此方法与 Collection.toArray(T[] a) 结合使用）
         List<String> stooges = Arrays.asList("Larry", "Moe", "Curly");
 

@@ -134,8 +134,10 @@ public class StreamTest {
      * 3. 转成map,注:key不能相同，否则报错。Collectors.toMap(params1, params2, params3)
      * 4. 字符串分隔符连接: Collectors.joining("", "", "")
      * 5. 聚合操作:
-     *      求总数: Collectors.counting()                    求最大: Collectors.maxBy(Integer::compare)
-     *      求最小: Collectors.summingInt(Person::getAge)    求平均: Collectors.averagingDouble(Person::getAge) averagingInt() averagingLong()
+     *      求总数: Collectors.counting()
+     *      求最大: Collectors.maxBy(Integer::compare)
+     *      求最小: Collectors.summingInt(Person::getAge)
+     *      求平均: Collectors.averagingDouble(Person::getAge) averagingInt() averagingLong()
      * 6. 分组: Collectors.groupingBy(Person::getAge)
      * 7.分区: Collectors.partitioningBy(person -> person.getAge() > 30)
      */

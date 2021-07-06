@@ -20,15 +20,20 @@ public class CharTest01 {
         byte aa = 1;
         short bb = 1;
         boolean cc = true;
+
         // char类型
         char dd = '!';
         char ee = 33;
+        char ff = (char)(dd + ee);
+        int gg = ff;
 
         System.out.println("aa: " + aa);
         System.out.println("bb: " + bb);
         System.out.println("cc: " + cc);
         System.out.println("dd: " + dd);
         System.out.println("ee: " + ee);
+        System.out.println("ff: " + ff);
+        System.out.println("gg: " + gg);
 
         System.out.println("--------------->");
 
