@@ -6,7 +6,7 @@ import java.util.Queue;
 public class Demo03 { // LeetCode 226
 
     /**
-     * 反转二叉树
+     * 反转二叉树（镜像二叉树）
      * <p>
      * 翻转一棵二叉树。
      * <p>
@@ -37,7 +37,6 @@ public class Demo03 { // LeetCode 226
     }
 
     public TreeNode invertTree(TreeNode root) { // 1.递归
-
         if (root == null)
             return null;
 
@@ -51,7 +50,6 @@ public class Demo03 { // LeetCode 226
     }
 
     public TreeNode invertTree02(TreeNode root) { // 2.迭代
-
         if (root == null)
             return null;
 

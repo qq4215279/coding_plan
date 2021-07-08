@@ -27,7 +27,7 @@ public class Del_last_N_Node {  // ???
      *
      */
 
-    public class ListNode {
+    public static class ListNode {
         int val;
         ListNode next;
 
@@ -36,44 +36,89 @@ public class Del_last_N_Node {  // ???
         }
     }
 
-    public ListNode removeNthFromEnd(ListNode head, int n) {
-
+    public static ListNode removeNthFromEnd(ListNode head, int n) {
         if (head == null) {
             return null;
         }
 
+        ListNode c = head;
         ListNode cur = head;
 
         int count = 1;
         // 找出链表size
-        while (cur.next != null) {
+        while (c.next != null) {
             count++;
-            cur = cur.next;
+            c = c.next;
         }
         if (n > count) {
             return head;
         }
 
-        int delNum = count - n + 1;
+        int delNum = count - n;
         int num = 1;
-        ListNode pre = cur;
         while (cur.next != null) {
             cur = cur.next;
             num++;
 
             if (num == delNum) {
-                pre.next = cur.next;
+                cur.next = cur.next.next;
+                break;
             }
-
-
-
-        }
-
-        if (cur.next != null) {
-            cur.next = cur.next.next;
         }
 
         return head;
+    }
+
+    public static ListNode removeNthFromEnd2(ListNode head, int n) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode quickNode = head;
+        ListNode slowNode = head;
+
+        for (int i = 0; i < n - 1; i++) {
+            if (quickNode.next == null) {
+                return head;
+            }
+            quickNode = quickNode.next;
+        }
+
+        ListNode pre = null;
+        while (quickNode.next != null) {
+            quickNode = quickNode.next;
+            pre = slowNode;
+            slowNode = slowNode.next;
+        }
+
+        // 删除节点
+        pre.next = slowNode.next;
+
+        return head;
+    }
+
+    public static void print(ListNode head) {
+        if (head == null) {
+            System.out.println("空。。。。。");
+        }
+
+        while (head != null) {
+            System.out.println(head.val);
+            head = head.next;
+        }
+    }
+
+    public static void main(String[] args) {
+        ListNode node = new ListNode(1);
+        node.next = new ListNode(2);
+        node.next.next = new ListNode(3);
+        node.next.next.next = new ListNode(4);
+        node.next.next.next.next = new ListNode(5);
+
+        ListNode head = removeNthFromEnd(node, 2);
+//        ListNode head = removeNthFromEnd2(node, 2);
+        print(head);
+
     }
 
 }

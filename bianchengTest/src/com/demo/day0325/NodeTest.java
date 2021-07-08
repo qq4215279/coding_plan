@@ -1,7 +1,7 @@
 package com.demo.day0325;
 
 
-public class NodeTest {  //代替test
+public class NodeTest {  // 代替test
 
     public static class Node {
         public int value;

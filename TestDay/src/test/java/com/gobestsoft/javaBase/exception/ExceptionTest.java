@@ -69,17 +69,17 @@ public class ExceptionTest {
     public static void main(String[] args) throws ArithmeticException {
 
         // 不做处理
-        int division = ExceptionTest.getInstance().division_NoTreatment(10);
-        System.out.println("结果1---------------> " + division);
+//        int division = ExceptionTest.getInstance().division_NoTreatment(10);
+//        System.out.println("结果1---------------> " + division);
 
         // try catch
-//        int division2 = ExceptionTest.getInstance().division_Try_Catch(10);
-//        System.out.println("try catch 可以继续往下走。。。");
-//        System.out.println("结果2--------------> " + division2);
+        int division2 = ExceptionTest.getInstance().division_Try_Catch(10);
+        System.out.println("try catch 可以继续往下走。。。");
+        System.out.println("结果2--------------> " + division2);
 //
 //        // throws
-//        int division3 = ExceptionTest.getInstance().division_Throws(10);
-//        System.out.println("结果3--------------> " + division3);
+        int division3 = ExceptionTest.getInstance().division_Throws(10);
+        System.out.println("结果3--------------> " + division3);
 
     }
 
