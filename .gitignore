@@ -22,12 +22,15 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-#maven
-/target/
-
 # out
 /out/
 
 #idea
 *.idea
 *.iml
+
+#maven
+/target/
+/TestDay/target/
+/itcast-rabbitmq/target/
+/StudyDemo/target/
