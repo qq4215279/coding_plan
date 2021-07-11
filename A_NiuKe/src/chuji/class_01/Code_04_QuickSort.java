@@ -2,7 +2,7 @@ package chuji.class_01;
 
 import java.util.Arrays;
 
-public class Code_04_QuickSort {//快速排序   时间复杂度O(N*logN)额外空间复杂度O（logN）
+public class Code_04_QuickSort {// 快速排序（交换排序）   时间复杂度O(N*logN)额外空间复杂度O（logN）
 
 	public static void quickSort(int[] arr) {
 		if (arr == null || arr.length < 2) {

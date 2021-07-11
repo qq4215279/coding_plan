@@ -2,7 +2,7 @@ package chuji.class_01;
 
 import java.util.Arrays;
 
-public class Code_05_MergeSort {    //归并排序
+public class Code_05_MergeSort { // 归并排序
 
 	public static void mergeSort(int[] arr) {
 		if (arr == null || arr.length < 2) {

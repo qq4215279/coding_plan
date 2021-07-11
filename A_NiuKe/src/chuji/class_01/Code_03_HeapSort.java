@@ -2,14 +2,14 @@ package chuji.class_01;
 
 import java.util.Arrays;
 
-public class Code_03_HeapSort {	//堆排序
+public class Code_03_HeapSort {	// 堆排序（选择排序）
 
 	public static void heapSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
 		}
 
-		for (int i = 0; i < arr.length; i++) {	//遍历数组的每个元素，确保生成大根堆
+		for (int i = 0; i < arr.length; i++) {	// 遍历数组的每个元素，确保生成大根堆
 			heapInsert(arr, i);
 		}
 
@@ -21,28 +21,28 @@ public class Code_03_HeapSort {	//堆排序
 		}
 	}
 
-	public static void heapInsert(int[] arr, int index) {//1.大根堆排序方法
-		while (arr[index] > arr[(index - 1) / 2]) {		//当前位置的数与父位置的数比较，符合就交换
+	public static void heapInsert(int[] arr, int index) { // 1.大根堆排序方法
+		while (arr[index] > arr[(index - 1) / 2]) {		// 当前位置的数与父位置的数比较，符合就交换
 			swap(arr, index, (index - 1) / 2);
-			index = (index - 1) / 2;	//当前数来到父位置，继续while ,知道while不符合条件
+			index = (index - 1) / 2;	// 当前数来到父位置，继续while ,知道while不符合条件
 		}
 	}
 
-	public static void heapify(int[] arr, int index, int size) {//2.解决堆上突然一个数变化了，让它重新形成大根堆的方法
-		int left = index * 2 + 1;	//左孩子
-		while (left < size) {//size用来判断左孩子是否越界（是否存在左孩子）
-			int largest = left + 1 < size && arr[left + 1] > arr[left] ? left + 1 : left;//判断是否下沉，选出左右孩子中的较大者
-			largest = arr[largest] > arr[index] ? largest : index; 	//让自己和左右孩子中的较大者判断，孩子与自己比较是否下沉
+	public static void heapify(int[] arr, int index, int size) { // 2.解决堆上突然一个数变化了，让它重新形成大根堆的方法
+		int left = index * 2 + 1;	// 左孩子
+		while (left < size) { // size用来判断左孩子是否越界（是否存在左孩子）
+			int largest = left + 1 < size && arr[left + 1] > arr[left] ? left + 1 : left; // 判断是否下沉，选出左右孩子中的较大者
+			largest = arr[largest] > arr[index] ? largest : index; 	// 让自己和左右孩子中的较大者判断，孩子与自己比较是否下沉
 			if (largest == index) {
-				break;								//heapify思路：找自己的左右两个孩子，两个孩子先比较找出更大的那个与自己比较，
-			}									    //比自己大就交换，且要继续重复heapify；否则直接结束
-			swap(arr, largest, index);	//潜台词表示 largest ！= index
-			index = largest;		//当前索引变成左右孩子较大者的索引
+				break;								// heapify思路：找自己的左右两个孩子，两个孩子先比较找出更大的那个与自己比较，
+			}									    // 比自己大就交换，且要继续重复heapify；否则直接结束
+			swap(arr, largest, index);	// 潜台词表示 largest ！= index
+			index = largest;		// 当前索引变成左右孩子较大者的索引
 			left = index * 2 + 1;
 		}
 	}
 
-	public static void swap(int[] arr, int i, int j) {	//交换
+	public static void swap(int[] arr, int i, int j) {	// 交换
 		int tmp = arr[i];
 		arr[i] = arr[j];
 		arr[j] = tmp;

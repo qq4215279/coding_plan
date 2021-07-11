@@ -2,7 +2,7 @@ package chuji.class_01;
 
 import java.util.Arrays;
 
-public class Code_02_SelectionSort {//选择排序--全局选择！
+public class Code_02_SelectionSort { // 选择排序--全局选择！
 
 	public static void selectionSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
@@ -10,8 +10,8 @@ public class Code_02_SelectionSort {//选择排序--全局选择！
 		}
 		for (int i = 0; i < arr.length - 1; i++) {
 			int minIndex = i;
-			for (int j = i + 1; j < arr.length; j++) {	//j开始值由当前i值决定
-				minIndex = arr[j] < arr[minIndex] ? j : minIndex;//相邻两个数比较，符合就记录该数为minIndex
+			for (int j = i + 1; j < arr.length; j++) {	// j开始值由当前i值决定
+				minIndex = arr[j] < arr[minIndex] ? j : minIndex; // 相邻两个数比较，符合就记录该数为minIndex
 			}
 			swap(arr, i, minIndex);
 		}
