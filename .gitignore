@@ -34,3 +34,5 @@ hs_err_pid*
 /TestDay/target/
 /itcast-rabbitmq/target/
 /StudyDemo/target/
+bin\
+bin\
