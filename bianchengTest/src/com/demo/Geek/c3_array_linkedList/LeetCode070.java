@@ -5,7 +5,7 @@
 
 package com.demo.Geek.c3_array_linkedList;
 
-public class Day02Demo03 { //T70
+public class LeetCode070 { // T70
 
     /**
      * 爬楼梯问题：   即 Fibonacci数列问题

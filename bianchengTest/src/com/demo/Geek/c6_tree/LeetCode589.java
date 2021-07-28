@@ -8,7 +8,7 @@ package com.demo.Geek.c6_tree;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Day03Demo03 {  // LeetCode T589:N叉树的前序遍历        T590: N叉树的后序遍历
+public class LeetCode589 {  // LeetCode T589:N叉树的前序遍历        T590: N叉树的后序遍历
 
     /**
      * N叉树的前序遍历

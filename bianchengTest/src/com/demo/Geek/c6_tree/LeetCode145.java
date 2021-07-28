@@ -8,7 +8,7 @@ package com.demo.Geek.c6_tree;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Day03Demo04erchashu { // 二叉树遍历： 前序：  中序：   后序：T145
+public class LeetCode145 { // 二叉树遍历： 前序：  中序：   后序：T145
 
     public class TreeNode {
         int val;

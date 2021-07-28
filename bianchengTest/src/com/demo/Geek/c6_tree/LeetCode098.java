@@ -8,7 +8,7 @@ package com.demo.Geek.c6_tree;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Day04Demo02 {  //LeetCode T98
+public class LeetCode098 {  // LeetCode T98
 
     /**
      * 验证二叉搜索数树

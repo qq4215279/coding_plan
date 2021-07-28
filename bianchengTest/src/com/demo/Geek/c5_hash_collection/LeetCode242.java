@@ -7,7 +7,7 @@ package com.demo.Geek.c5_hash_collection;
 
 import java.util.Arrays;
 
-public class Day01Demo01 { //LeetCode  242
+public class LeetCode242 { // LeetCode  242
 
     /**
      * 有效的字母异位词

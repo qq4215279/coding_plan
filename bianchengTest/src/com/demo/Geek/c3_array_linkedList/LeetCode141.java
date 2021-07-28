@@ -8,7 +8,7 @@ package com.demo.Geek.c3_array_linkedList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class Day03Demo02 {  //LeetCode T141
+public class LeetCode141 {  // LeetCode T141
 
     /**
      * 环形链表

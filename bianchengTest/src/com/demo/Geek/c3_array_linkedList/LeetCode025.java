@@ -5,7 +5,7 @@
 
 package com.demo.Geek.c3_array_linkedList;
 
-public class Day04Demo02 { // LeetCode 25
+public class LeetCode025 { // LeetCode 25
 
     /**
      * K 个一组翻转链表

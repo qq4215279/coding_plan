@@ -3,7 +3,7 @@ package com.demo.Geek.c7_recursion;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Demo03 { // LeetCode 226
+public class LeetCode226 { // LeetCode 226
 
     /**
      * 反转二叉树（镜像二叉树）

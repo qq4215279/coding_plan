@@ -5,7 +5,7 @@
 
 package com.demo.Geek.c3_array_linkedList;
 
-public class Day01Demo01 {  //LeetCode T26
+public class LeetCode026 {  // LeetCode T26
     // TODO 2020/5/21
     /**
      * 删除排序数组中重复项

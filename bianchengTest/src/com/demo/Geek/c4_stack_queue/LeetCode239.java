@@ -8,7 +8,7 @@ package com.demo.Geek.c4_stack_queue;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class Day01Demo03 {// LeetCode：T239
+public class LeetCode239 {// LeetCode：T239
 
     /**
      * 滑动窗口最大值

@@ -7,7 +7,7 @@ package com.demo.Geek.c4_stack_queue;
 
 import java.util.Stack;
 
-public class MinStack {// LeetCode：T155
+public class MinStack { // LeetCode：T155
 
     /**
      * 最小栈 MinStack

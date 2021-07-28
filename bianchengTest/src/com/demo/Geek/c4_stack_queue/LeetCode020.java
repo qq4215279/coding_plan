@@ -8,7 +8,7 @@ package com.demo.Geek.c4_stack_queue;
 import java.util.HashMap;
 import java.util.Stack;
 
-public class Day01Demo01 {// LeetCode：T20
+public class LeetCode020 { // LeetCode：T20
 
     /**
      * 有效的括号

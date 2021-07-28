@@ -7,7 +7,7 @@ package com.demo.Geek.c3_array_linkedList;
 
 import java.util.List;
 
-public class Day04Demo01 { // LeetCode 24
+public class LeetCode024 { // LeetCode 24
 
     /**
      * 给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。

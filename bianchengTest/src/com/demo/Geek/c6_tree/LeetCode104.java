@@ -5,7 +5,7 @@
 
 package com.demo.Geek.c6_tree;
 
-public class Day04Demo01 {  //LeetCode T104
+public class LeetCode104 {  // LeetCode T104
 
     /**
      * 二叉树的最大深度

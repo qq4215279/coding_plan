@@ -7,7 +7,7 @@ package com.demo.Geek.c4_stack_queue;
 
 import java.util.Stack;
 
-public class Day02Demo01 { //LeetCode： T84
+public class LeetCode084 { // LeetCode： T84
 
     /**
      * 柱状图中的最大矩形

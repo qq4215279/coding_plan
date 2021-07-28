@@ -18,7 +18,7 @@ public class Quesstion02Test {
         }
 
         System.out.println(a);
-        String replace = a.replace("n", "%20");
+        String replace = a.replace(" ", "%20");
         System.out.println(replace);
 
     }

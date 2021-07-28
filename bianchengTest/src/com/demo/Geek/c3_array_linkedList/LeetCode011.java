@@ -5,7 +5,7 @@
 
 package com.demo.Geek.c3_array_linkedList;
 
-public class Day01Demo02 {  //LeetCode T11
+public class LeetCode011 {  // LeetCode T11
 
     /**
      * 盛最多水的容器

@@ -7,7 +7,7 @@ package com.demo.Geek.c3_array_linkedList;
 
 import java.util.*;
 
-public class Day02Demo05 { //T15
+public class LeetCode015 { // T15
 
     /**
      * 三数之和

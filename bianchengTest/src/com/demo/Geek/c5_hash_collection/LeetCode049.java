@@ -7,7 +7,7 @@ package com.demo.Geek.c5_hash_collection;
 
 import java.util.*;
 
-public class Day01Demo02 { //LeetCode  49
+public class LeetCode049 { // LeetCode  49
 
     /**
      * 字符异位词分组

@@ -3,7 +3,7 @@ package com.demo.Geek.c7_recursion;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Demo02 { // LeetCode 22
+public class LeetCode022 { // LeetCode 22
 
     /**
      * 括号生成
@@ -43,7 +43,7 @@ public class Demo02 { // LeetCode 22
     }
 
     public static void main(String[] args) {
-        List<String> list = new Demo02().generateParenthesis(3);
+        List<String> list = new LeetCode022().generateParenthesis(3);
         list.forEach(s -> {
             System.out.println(s);
         });

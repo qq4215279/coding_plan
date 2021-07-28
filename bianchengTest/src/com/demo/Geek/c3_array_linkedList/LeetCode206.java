@@ -5,7 +5,7 @@
 
 package com.demo.Geek.c3_array_linkedList;
 
-public class Day03Demo01 {  //LeetCode T206
+public class LeetCode206 {  // LeetCode T206
 
     /**
      *反转链表

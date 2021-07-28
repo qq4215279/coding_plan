@@ -3,7 +3,7 @@ package com.demo.Geek.c7_recursion;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Demo04 { // LeetCode 111
+public class LeetCode111 { // LeetCode 111
 
     /**
      * 二叉树的最小深度
