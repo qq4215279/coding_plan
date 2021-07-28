@@ -2,7 +2,7 @@ package chuji.class_01;
 
 import java.util.Arrays;
 
-public class Code_04_QuickSort {// 快速排序（交换排序）   时间复杂度O(N*logN)额外空间复杂度O（logN）
+public class Code_04_QuickSort { // 快速排序（交换排序）   时间复杂度O(N*logN)额外空间复杂度O（logN）
 
 	public static void quickSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
@@ -11,28 +11,44 @@ public class Code_04_QuickSort {// 快速排序（交换排序）   时间复杂
 		quickSort(arr, 0, arr.length - 1);
 	}
 
-	public static void quickSort(int[] arr, int l, int r) {//l,r表示左右指针
-		if (l < r) {//加上下面这行代码变成随机快排：
-			swap(arr, l + (int) (Math.random() * (r - l + 1)), r);//表示从l到r上随机选择一个位置然后与r位置上的数进行交换。
-			int[] p = partition(arr, l, r);	//求出等于区域的左右边界
-			quickSort(arr, l, p[0] - 1);//递归子过程，等于区域的左边界
-			quickSort(arr, p[1] + 1, r);//递归子过程，等于区域的右边界
+	/**
+	 *  快速排序
+	 * @param arr
+	 * @param l 左指针
+	 * @param r 右指针
+	 */
+	public static void quickSort(int[] arr, int l, int r) {
+		// 加上下面这行代码变成随机快排：
+		if (l < r) {
+			swap(arr, l + (int) (Math.random() * (r - l + 1)), r); // 表示从l到r上随机选择一个位置然后与r位置上的数进行交换。
+			int[] p = partition(arr, l, r);	 // 求出等于区域的左右边界
+			quickSort(arr, l, p[0] - 1); // 递归子过程，等于区域的左边界
+			quickSort(arr, p[1] + 1, r); // 递归子过程，等于区域的右边界
 		}
 	}
 
-	public static int[] partition(int[] arr, int l, int r) {	//默认返回等于区域在哪个范围
+	/**
+	 *  （...less区）l...r（ more区...） r
+	 * @param arr
+	 * @param l
+	 * @param r
+	 * @return
+	 */
+	public static int[] partition(int[] arr, int l, int r) { // 默认返回等于区域在哪个范围
 		int less = l - 1;
 		int more = r;
 		while (l < more) {
 			if (arr[l] < arr[r]) {
-				swap(arr, ++less, l++);//表示less区域的数与less右边一个数交换，并且less区域+1，l指针+1
+				swap(arr, ++less, l++); // 表示less区域的数与less右边一个数交换，并且less区域+1，l指针+1
 			} else if (arr[l] > arr[r]) {
 				swap(arr, --more, l);
 			} else {
 				l++;
 			}
 		}
-		swap(arr, more, r);		//为什么需要交换？？
+
+		// 最右边的r与more边界交换
+		swap(arr, more, r);
 		return new int[] { less + 1, more };//返回等于区域的左右两个边界，让这个两个边界去重复子过程
 	}
 

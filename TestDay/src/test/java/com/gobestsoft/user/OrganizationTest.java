@@ -64,7 +64,8 @@ public class OrganizationTest {
 
     }
 
-    /*@Test
+    /*
+    @Test
     public void test3(){
 
         //统计专属会员个数

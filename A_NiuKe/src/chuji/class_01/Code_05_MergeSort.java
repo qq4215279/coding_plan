@@ -8,34 +8,51 @@ public class Code_05_MergeSort { // 归并排序
 		if (arr == null || arr.length < 2) {
 			return;
 		}
-		mergeSort(arr, 0, arr.length - 1);
+		doMergeSort(arr, 0, arr.length - 1);
 	}
 
-	public static void mergeSort(int[] arr, int l, int r) {//方法重载
+	public static void doMergeSort(int[] arr, int l, int r) {
 		if (l == r) {
 			return;
 		}
-		int mid = l + ((r - l) >> 1);                       //小机灵 等价于mid=l+(r-l)/2
-		mergeSort(arr, l, mid);                             //调用子过程--左边排好序
-		mergeSort(arr, mid + 1, r);                      //调用子过程--右边排好序
+		// 小机灵 等价于 mid = l + (r - l) / 2
+		int mid = l + ((r - l) >> 1);
+		// 调用子过程--左边排好序
+		doMergeSort(arr, l, mid);
+		// 调用子过程--右边排好序
+		doMergeSort(arr, mid + 1, r);
 		merge(arr, l, mid, r);
 	}
 
-	public static void merge(int[] arr, int l, int m, int r) {	//外排的方式填入辅助数组
-		int[] help = new int[r - l + 1];        //准备辅助数组
-		int i = 0;                              //用于给新数组赋值
-		int p1 = l;                             // 指针一样（左）
-		int p2 = m + 1;                         // 指针一样（右）
+	/**
+	 * 外排的方式填入辅助数组
+	 * @param arr
+	 * @param l
+	 * @param m
+	 * @param r
+	 */
+	public static void merge(int[] arr, int l, int m, int r) {
+		// 准备辅助数组
+		int[] help = new int[r - l + 1];
+		// 用于给新数组赋值
+		int i = 0;
+		// 指针一样（左）
+		int p1 = l;
+		// 指针一样（右）
+		int p2 = m + 1;
 		while (p1 <= m && p2 <= r) {
 			help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];//重点！！
 		}
-		while (p1 <= m) {                       //把剩下排好顺序的直接赋值到辅助数组上
+		// 把剩下排好顺序的直接赋值到辅助数组上
+		while (p1 <= m) {
 			help[i++] = arr[p1++];
 		}
-		while (p2 <= r) {                       //把剩下排好顺序的直接赋值到辅助数组上
+		// 把剩下排好顺序的直接赋值到辅助数组上
+		while (p2 <= r) {
 			help[i++] = arr[p2++];
 		}
-		for (i = 0; i < help.length; i++) {     //把排好序的辅助数组上的值从新赋给arr数组
+		// 把排好序的辅助数组上的值从新赋给arr数组
+		for (i = 0; i < help.length; i++) {
 			arr[l + i] = help[i];
 		}
 	}
