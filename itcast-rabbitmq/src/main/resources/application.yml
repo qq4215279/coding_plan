@@ -1,9 +1,0 @@
-server:
-  port: 8083
-spring:
-  rabbitmq:
-    host: localhost         #192.168.128.133
-    username: guest
-    password: guest
-    virtual-host: /
-    port: 5672
