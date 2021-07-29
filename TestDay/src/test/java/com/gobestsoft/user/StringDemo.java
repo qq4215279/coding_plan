@@ -15,11 +15,11 @@ public class StringDemo {
         System.out.println(s2);
 
         String s4 = "aaa?#bbb#ccc#ddd";
-        s4 = s4.substring(0,s4.indexOf("?"));//aaa
-        System.out.println("s4: "+s4);
+        s4 = s4.substring(0, s4.indexOf("?"));//aaa
+        System.out.println("s4: " + s4);
 
-        String[] lessonName = new String[]{"语文","数学","英语"};
-        System.out.println("---------------->"+lessonName.toString());
+        String[] lessonName = new String[] {"语文", "数学", "英语"};
+        System.out.println("---------------->" + lessonName.toString());
 
     }
 }

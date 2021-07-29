@@ -11,7 +11,7 @@ public class ReadMenberId {
 
         String line;
         ArrayList<String> list = new ArrayList<>();
-        while ((line=fr.readLine()) != null){
+        while ((line = fr.readLine()) != null) {
             list.add(line);
         }
         return list;
