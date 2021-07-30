@@ -3,7 +3,7 @@
  * All Right Reserved.
  */
 
-package com.gobestsoft.java_base.timerTask;
+package com.gobestsoft.java_base.timer_task;
 
 import java.util.Date;
 import java.util.Timer;

@@ -19,10 +19,12 @@ public class Base64Test {
 
     @Test
     public void encoder() {
+        // Encoder
         Base64.Encoder encoder = Base64.getEncoder();
         byte[] encode = encoder.encode("123456hh你好".getBytes());
         System.out.println("encode: " + new String(encode));
 
+        // Decoder
         Base64.Decoder decoder = Base64.getDecoder();
         byte[] decode = decoder.decode(encode);
         System.out.println("decode: " + new String(decode));

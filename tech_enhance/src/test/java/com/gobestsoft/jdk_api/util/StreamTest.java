@@ -31,15 +31,15 @@ public class StreamTest {
     @Test
     public void defineStreamTest() throws FileNotFoundException {
         // 1.集合创建流 Stream stream() : 返回一个顺序流  Stream parallelStream() : 返回一个并行流
-        new ArrayList<>().stream();
+        Stream<Integer> stream = new ArrayList<Integer>().stream();
 
         // 2. 数组创建流 Arrays.stream(T[] arr)
         // 注：引用类型的数组返回Stream流；而基本数据类型(int\long\double)的数组返回IntStream\LongStream\DoubleStream流
-        Stream IntegerStream = Arrays.stream(new Integer[] {1, 2, 3});
+        Stream integerStream = Arrays.stream(new Integer[] {1, 2, 3});
         IntStream IntStream = Arrays.stream(new int[] {1, 2, 3});
 
         // 3. 由值创建流 Stream.of(T... values); 实际实现：return Arrays.stream(values);
-         Stream.of(1,2,3);
+        Stream<Integer> integerStream2 = Stream.of(1, 2, 3);
 
         // 4. 从文件中获得流 使用BufferedReader的lines方法从文件中获得行的流
         BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("file.txt")));
@@ -55,10 +55,10 @@ public class StreamTest {
      * peek()：如同于map，能得到流中的每一个元素。但map接收的是一个Function表达式，有返回值；而peek接收的是Consumer表达式，没有返回值。
      * forEach():
      *
-     * max：返回流中元素最大值
-     * min：返回流中元素最小值
-     * allMatch：接收一个 Predicate 函数，当流中每个元素都符合该断言时才返回true，否则返回false
-     * noneMatch：接收一个 Predicate 函数，当流中每个元素都不符合该断言时才返回true，否则返回false
+     * max()：返回流中元素最大值
+     * min()：返回流中元素最小值
+     * allMatch(() -> {})：接收一个 Predicate 函数，当流中每个元素都符合该断言时才返回true，否则返回false
+     * noneMatch(() -> {})：接收一个 Predicate 函数，当流中每个元素都不符合该断言时才返回true，否则返回false
      * anyMatch：接收一个 Predicate 函数，只要流中有一个元素满足该断言则返回true，否则返回false
      * findFirst：返回流中第一个元素
      * findAny：返回流中的任意元素
@@ -68,7 +68,6 @@ public class StreamTest {
      * mapToInt(): 转成int数组
      * mapToLong()
      * mapToDouble():
-     *
      *
      * sorted(Comparator com)：定制排序，自定义Comparator排序器
      *

@@ -3,7 +3,7 @@
  * All Right Reserved.
  */
 
-package com.gobestsoft.java_base.compileCommand;
+package com.gobestsoft.java_base.compile_command;
 
 /**
  * HelloWorld

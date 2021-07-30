@@ -3,7 +3,7 @@
  * All Right Reserved.
  */
 
-package com.gobestsoft.java_base.basicDataType;
+package com.gobestsoft.java_base.basic_data_type;
 
 import org.junit.Test;
 

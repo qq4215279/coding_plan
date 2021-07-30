@@ -1,4 +1,4 @@
-package com.gobestsoft.java_base.basicDataType;
+package com.gobestsoft.java_base.basic_data_type;
 
 /**
  * IaddAdd
