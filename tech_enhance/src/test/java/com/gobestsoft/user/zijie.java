@@ -1,4 +1,4 @@
-package com.gobestsoft.biancheng;
+package com.gobestsoft.user;
 
 public class zijie {
 

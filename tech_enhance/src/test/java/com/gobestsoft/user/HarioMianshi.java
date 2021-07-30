@@ -1,6 +1,6 @@
-package com.gobestsoft.biancheng;
+package com.gobestsoft.user;
 
-public class mianshi {
+public class HarioMianshi {
 
     /**
      * 题⽬： 在字符串A中找出所有字符串B（长度>1）出现的位置，大小写不计。 不限编程语言，但是不要使用字符串操作函数
@@ -65,7 +65,7 @@ public class mianshi {
     }
 
     public static void main(String[] args) {
-        mianshi mianshi = new mianshi();
+        HarioMianshi mianshi = new HarioMianshi();
         System.out.println(mianshi.test("abcde", "de")); // 4
         System.out.println(mianshi.test("abcde", "c")); // 3
         System.out.println(mianshi.test("abcdebc", "bcf")); // 0
