@@ -2,19 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>dream_plan</artifactId>
-        <groupId>com.mumu</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mumu</groupId>
     <artifactId>tech_enhance</artifactId>
     <version>1.0-SNAPSHOT</version>
     <!--  打包后的名字  -->
-    <name>tech_enhance</name>
+    <build>
+        <finalName>tech_enhance</finalName>
+    </build>
     <packaging>war</packaging>
+
+    <parent>
+        <artifactId>dream_plan</artifactId>
+        <groupId>com.mumu</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
     <dependencies>
         <!-- web + (mybatis+mapper+mysql+jdbc) + test + thymeleaf+ pagehelper + lang3 -->
