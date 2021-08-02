@@ -43,7 +43,7 @@ public class LeetCode070 { // T70
         return f3;
     }
 
-    public int climbStairs00(int n) {// 递归
+    public int climbStairs00(int n) { // 递归
         int f1 = 1;
         int f2 = 2;
 
