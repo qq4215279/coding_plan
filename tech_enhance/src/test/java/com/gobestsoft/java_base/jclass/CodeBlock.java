@@ -67,6 +67,33 @@ public class CodeBlock {
             System.out.println("普通代码块");
         }
     }
+
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        System.out.println("开始执行main方法====>");
+
+        new CodeBlock().normalBlock();;
+        System.out.println("--------------->");
+        new CodeBlock("我有参数").normalBlock();
+
+        // 结果
+       /*
+          静态代码块
+          构造代码块
+          无参构造函数执行~
+          开始执行main方法====>
+          构造代码块
+          无参构造函数执行~
+          普通代码块
+          --------------->
+          构造代码块
+          有参构造函数执行~我有参数
+          普通代码块
+        */
+    }
 }
 
 class Test {
@@ -75,7 +102,19 @@ class Test {
 
         new CodeBlock().normalBlock();;
         System.out.println("--------------->");
-        new CodeBlock("我有参数").normalBlock();;
+        new CodeBlock("我有参数").normalBlock();
+
+        /*
+          开始执行main方法====>
+          构造代码块
+          无参构造函数执行~
+          普通代码块
+          --------------->
+          构造代码块
+          有参构造函数执行~我有参数
+          普通代码块
+        */
+
     }
 }
 
