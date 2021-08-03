@@ -18,46 +18,51 @@ public class LeetCode111 { // LeetCode 111
      * 返回它的最小深度  2.
      */
 
-    public class TreeNode {
-        int val;
+    public static class TreeNode {
+        int value;
         TreeNode left;
         TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
+        TreeNode(int value) {
+            this.value = value;
         }
     }
 
-    public int minDepth(TreeNode root) { // 1.递归
-
-        if (root == null)
+    public static int minDepth(TreeNode root) { // 1.递归
+        if (root == null) {
             return 0;
-
+        }
         if ((root.left == null) && (root.right == null)) {
             return 1;
         }
 
         int min_depth = Integer.MAX_VALUE;
-        if (root.left != null)
+        if (root.left != null) {
             min_depth = Math.min(min_depth, minDepth(root.left));
-        if (root.right != null)
+        }
+        if (root.right != null) {
             min_depth = Math.min(min_depth, minDepth(root.right));
+        }
 
         return min_depth + 1;
     }
 
-    public int minDepth02(TreeNode root) { // 2.迭代
-
+    public static int minDepth02(TreeNode root) { // 2.迭代
         int count = 0;
         TreeNode cur = root;
-
 
         return 1;
     }
 
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(100);
+        root.right = new TreeNode(2);
+        root.left.left = new TreeNode(22);
+        root.left.right = new TreeNode(32);
 
-
-
+        System.out.println("minDepth: " + minDepth(root));
+    }
 
 
 }

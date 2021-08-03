@@ -3,6 +3,11 @@ package com.gobestsoft.java_base.comparator;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * 比较器：Comparable使用
+ *  升序：return this.- o2;
+ *  降序: return o1 - this.;
+ */
 public class PersonComparable implements Comparable {
     private int age;
     private String name;
@@ -17,8 +22,8 @@ public class PersonComparable implements Comparable {
         if (o instanceof PersonComparable) {
             PersonComparable personComparable = (PersonComparable) o;
             int result;
-            result = getAge() - personComparable.getAge();
-            // result =person.getAge() -  getAge();
+            result = getAge() - personComparable.getAge(); // 升序
+            // result = person.getAge() -  getAge(); // 降序
             return result;
         }
         return 0;
@@ -50,7 +55,7 @@ public class PersonComparable implements Comparable {
 
 
     public static void main(String[] args) {
-        ArrayList<PersonComparable> list = new ArrayList<PersonComparable>();
+        ArrayList<PersonComparable> list = new ArrayList<>();
         list.add(new PersonComparable("ccc", 20));
         list.add(new PersonComparable("AAA", 30));
         list.add(new PersonComparable("bbb", 10));

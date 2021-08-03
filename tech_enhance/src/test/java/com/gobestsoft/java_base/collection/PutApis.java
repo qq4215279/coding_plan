@@ -36,7 +36,9 @@ public class PutApis {
     public void putIfAbsentTest() {
         Map<String, Integer> map = new HashMap<>();
 
-        map.putIfAbsent("t1", 11);
+        map.put("t1", 123);
+        int value = map.putIfAbsent("t1", 11);
+        System.out.println("value: " + value);
 
         // 等价于
         if (map.containsKey("t1") && map.get("t1") != null) {
@@ -70,8 +72,16 @@ public class PutApis {
     @Test
     public void computeIfPresentTest() {
         Map<String, Integer> map = new HashMap<>();
+        map.put("1", 1);
+        map.put("2", 2);
+        map.put("3", 3);
 
-
+        //如果value值不存在，返回的是新的value值
+        map.computeIfPresent("0", (k,v) -> v * 100);
+//        int value1 = map.computeIfPresent("0", (k,v) -> v * 100);
+//        System.out.println("value1: " + value1);
+        int value2 = map.computeIfPresent("2", (k,v) -> v * 100);
+        System.out.println("value2: " + value2);
 
     }
 

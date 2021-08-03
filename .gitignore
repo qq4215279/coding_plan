@@ -34,7 +34,5 @@ hs_err_pid*
 
 #maven
 /target/
-/TestDay/target/
-/itcast-rabbitmq/target/
-/StudyDemo/target/
 
+/tech_enhance/target/

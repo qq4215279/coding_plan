@@ -5,7 +5,9 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
- * 比较器：Comparator使用
+ * 比较器：Comparator<T>使用
+ *  升序：return o1 - o2;
+ *  降序: return o2 - o1;
  */
 public class PersonComparator {
     private int age;
@@ -34,7 +36,7 @@ public class PersonComparator {
 
     @Override
     public String toString() {
-        return "Person{" + "age=" + age + ", name='" + name + '\'' + '}';
+        return "PersonComparator{" + "age=" + age + ", name='" + name + '\'' + '}';
     }
 }
 
@@ -72,7 +74,18 @@ class Test {
         //list.sort(new DescAgePerson());
         System.out.println(list);
 
+        System.out.println("----------------------------------------------------------------->");
+
         // 使用方式2:
         PriorityQueue<PersonComparator> queue = new PriorityQueue<>(new AseAgePerson());
+        queue.add(new PersonComparator("zhangsan", 400));
+        queue.add(new PersonComparator("lisi", 30));
+        queue.add(new PersonComparator("lihua", 31));
+        queue.add(new PersonComparator("ming", 100));
+
+        while (!queue.isEmpty()) {
+            PersonComparator personComparator = queue.poll();
+            System.out.println(personComparator.toString());
+        }
     }
 }
