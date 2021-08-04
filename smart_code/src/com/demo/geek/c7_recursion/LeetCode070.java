@@ -43,7 +43,12 @@ public class LeetCode070 { // T70
         return f3;
     }
 
-    public int climbStairs00(int n) { // 递归
+    /**
+     * 递归: f(n) = f(n-1) + f(n-2)
+     * @param n
+     * @return
+     */
+    public int climbRecursion(int n) {
         int f1 = 1;
         int f2 = 2;
 
@@ -54,7 +59,7 @@ public class LeetCode070 { // T70
             return f2;
         }
 
-        return climbStairs00(n - 1) + climbStairs00(n - 2);
+        return climbRecursion(n - 1) + climbRecursion(n - 2);
     }
 
 }
