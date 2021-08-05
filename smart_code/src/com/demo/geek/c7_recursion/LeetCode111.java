@@ -47,6 +47,17 @@ public class LeetCode111 { // LeetCode 111
         return min_depth + 1;
     }
 
+    public static int minDepth2(TreeNode root) { // 1.递归
+        if (root == null) {
+            return 0;
+        }
+
+        int l = minDepth(root.left);
+        int r = minDepth(root.right);
+
+        return l > r ? l : r + 1;
+    }
+
     public static int minDepth02(TreeNode root) { // 2.迭代
         int count = 0;
         TreeNode cur = root;
@@ -62,6 +73,7 @@ public class LeetCode111 { // LeetCode 111
         root.left.right = new TreeNode(32);
 
         System.out.println("minDepth: " + minDepth(root));
+        System.out.println("minDepth2: " + minDepth2(root));
     }
 
 
