@@ -7,14 +7,30 @@ package com.demo.geek.c6_tree;
 
 import com.demo.common.entity.TreeNode;
 
-public class BinaryTreeNodeNum {  // 代替test
+public class BinaryTreeNodeNum {
 
     /**
      * 问：求二叉树节点数量
      */
 
+    /**
+     * 递归实现
+     * @param head
+     * @return
+     */
+    public static int nodeNum2(TreeNode head) {
+        if (head == null) {
+            return 0;
+        }
 
+        return nodeNum2(head.left) + nodeNum2(head.right) + 1;
+    }
 
+    /**
+     * 为什么搞的这么复杂？？？
+     * @param head
+     * @return
+     */
     public static int nodeNum(TreeNode head) {
         if (head == null) {
             return 0;
@@ -22,14 +38,14 @@ public class BinaryTreeNodeNum {  // 代替test
         return bs(head, 1, mostLeftLevel(head, 1));
     }
 
-    public static int bs(TreeNode treeNode, int l, int h) {
-        if (l == h) {
+    public static int bs(TreeNode treeNode, int l, int height) {
+        if (l == height) {
             return 1;
         }
-        if (mostLeftLevel(treeNode.right, l + 1) == h) {
-            return (1 << (h - l)) + bs(treeNode.right, l + 1, h);
+        if (mostLeftLevel(treeNode.right, l + 1) == height) {
+            return (1 << (height - l)) + bs(treeNode.right, l + 1, height);
         } else {
-            return (1 << (h - l - 1)) + bs(treeNode.left, l + 1, h);
+            return (1 << (height - l - 1)) + bs(treeNode.left, l + 1, height);
         }
     }
 
@@ -49,7 +65,8 @@ public class BinaryTreeNodeNum {  // 代替test
         head.left.right = new TreeNode(5);
         head.right.left = new TreeNode(6);
 
-        System.out.println(nodeNum(head));
+//        System.out.println(nodeNum(head));
+        System.out.println(nodeNum2(head));
     }
 
 }

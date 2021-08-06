@@ -7,15 +7,21 @@ package com.demo.geek.c6_tree;
 
 import com.demo.common.entity.TreeNode;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
-public class Day03Demo044_PreInPosTraversal { // 实现二叉树的先序、中序、后序遍历，包括递归方式和非递归方式
+/**
+ * 实现二叉树的先序、中序、后序遍历，包括递归方式和非递归方式
+ */
+public class BinaryTreeNodeOrder {
 
 
-    //递归的方式实现遍历二叉树
-    public static void preOrderRecur(TreeNode head) {    //先序遍历
+    /**
+     * 递归的方式实现先序遍历二叉树
+     * @author liuzhen
+     * @date 2021/8/6 17:19
+     * @return
+     */
+    public static void preOrderRecur(TreeNode head) {
         if (head == null) {
             return;
         }
@@ -24,7 +30,43 @@ public class Day03Demo044_PreInPosTraversal { // 实现二叉树的先序、中�
         preOrderRecur(head.right);
     }
 
-    public static void inOrderRecur(TreeNode head) { // 中序遍历
+    /**
+     * 非递归的方式实现先序遍历二叉树：
+     * @author liuzhen
+     * @date 2021/8/6 17:22
+     * @param head
+     * @return void
+     */
+    public static void preOrderUnRecur(TreeNode head) {
+        System.out.print("pre-order: ");
+        if (head != null) {
+            // 准备一个栈 ，因为需要从底层回到上层去，所有借用了栈技术。
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            stack.add(head);
+            while (!stack.isEmpty()) {
+                // 弹出当前节点，即为头节点。右左孩子压完栈后，此时左节点来到栈顶，即为弹出当前节点了
+                head = stack.pop();
+                System.out.print(head.value + " ");
+                // 有右孩子，就先把右孩子压栈，
+                if (head.right != null) {
+                    stack.push(head.right);
+                }
+                // 再把左孩子压栈。
+                if (head.left != null) {
+                    stack.push(head.left);
+                }
+            }
+        }
+        System.out.println();
+    }
+
+    /**
+     * 递归的方式实现中序遍历二叉树
+     * @author liuzhen
+     * @date 2021/8/6 17:19
+     * @return
+     */
+    public static void inOrderRecur(TreeNode head) {
         if (head == null) {
             return;
         }
@@ -33,79 +75,63 @@ public class Day03Demo044_PreInPosTraversal { // 实现二叉树的先序、中�
         inOrderRecur(head.right);
     }
 
-    public static boolean inOrderRecurIsBST(TreeNode head) { // 中序遍历判断是否是搜索二叉树
-        if (head == null) {
-            return true;
-        }
-        List<Integer> list = new ArrayList<Integer>();
-        inOrder(head, list);
-
-        for (int i = 0; i < list.size() - 1; i++) {
-            if (list.get(i) >= list.get(i + 1))
-                return false;
-        }
-
-        return true;
-    }
-
-    private static void inOrder(TreeNode head, List<Integer> list) {
-        if (head == null) {
-            return;
-        }
-        inOrder(head.left, list);
-        list.add(head.value);
-        inOrder(head.right, list);
-    }
-
-    public static void posOrderRecur(TreeNode head) { // 后续遍历
-        if (head == null) {
-            return;
-        }
-        posOrderRecur(head.left);
-        posOrderRecur(head.right);
-        System.out.print(head.value + " ");
-    }
-
-    // 非递归的方式实现遍历二叉树：
-    public static void preOrderUnRecur(TreeNode head) {    // 非递归先序遍历
-        System.out.print("pre-order: ");
-        if (head != null) {
-            Stack<TreeNode> stack = new Stack<TreeNode>();    // 准备一个栈 ，因为需要从底层回到上层去，所有借用了栈技术。
-            stack.add(head);
-            while (!stack.isEmpty()) {
-                head = stack.pop();        // 弹出当前节点，即为头节点。右左孩子压完栈后，此时左节点来到栈顶，即为弹出当前节点了
-                System.out.print(head.value + " ");
-                if (head.right != null) {    // 有右孩子，就先把右孩子压栈，
-                    stack.push(head.right);
-                }
-                if (head.left != null) {    // 再把左孩子压栈。
-                    stack.push(head.left);
-                }
-            }
-        }
-        System.out.println();
-    }
-
-    public static void inOrderUnRecur(TreeNode head) {    // 非递归中序遍历（00：22）
+    /**
+     * 非递归中序遍历（00：22）
+     * @author liuzhen
+     * @date 2021/8/6 17:25
+     * @param head
+     * @return void
+     */
+    public static void inOrderUnRecur(TreeNode head) {
         System.out.print("in-order: ");
         if (head != null) {
             Stack<TreeNode> stack = new Stack<TreeNode>();
-            while (!stack.isEmpty() || head != null) {    // 栈不为空且有当前节点时
-                if (head != null) {        // 当前节点不为空
-                    stack.push(head);    // 则当前节点进栈
-                    head = head.left;    // 有左孩子时，当前节点变为左孩子继续进栈
-                } else {        // 直到当前节点为空（即左孩子为空）时
-                    head = stack.pop();        // 开始从栈中弹出当前孩子
-                    System.out.print(head.value + " ");    // 弹出并且打印
-                    head = head.right;    // 当前节点变为右孩子
+            // 栈不为空且有当前节点时
+            while (!stack.isEmpty() || head != null) {
+                // 当前节点不为空
+                if (head != null) {
+                    // 则当前节点进栈
+                    stack.push(head);
+                    // 有左孩子时，当前节点变为左孩子继续进栈
+                    head = head.left;
+                } else { // 直到当前节点为空（即左孩子为空）时
+                    // 开始从栈中弹出当前孩子
+                    head = stack.pop();
+                    // 弹出并且打印
+                    System.out.print(head.value + " ");
+                    // 当前节点变为右孩子
+                    head = head.right;
                 }
             }
-        }            // 总的思路为：当前节点为空，从栈中拿一个，打印，当前节点不为空当前节点压入栈，向右移动，当前节点为左。
+        }    // 总的思路为：当前节点为空，从栈中拿一个，打印，当前节点不为空当前节点压入栈，向右移动，当前节点为左。
 
         System.out.println();
     }
 
-    public static void posOrderUnRecur1(TreeNode head) {    // 非递归后续遍历（00：38）
+    /**
+     * 后续遍历
+     * @author liuzhen
+     * @date 2021/8/6 17:22
+     * @param head
+     * @return void
+     */
+    public static void postOrderRecur(TreeNode head) {
+        if (head == null) {
+            return;
+        }
+        postOrderRecur(head.left);
+        postOrderRecur(head.right);
+        System.out.print(head.value + " ");
+    }
+
+    /**
+     * 非递归后续遍历（00：38）
+     * @author liuzhen
+     * @date 2021/8/6 17:26
+     * @param head
+     * @return void
+     */
+    public static void postOrderUnRecur1(TreeNode head) {
         System.out.print("pos-order: ");        // 采用先中，再右，再左的思路；中用新生成的辅助栈存起来
         if (head != null) {
             Stack<TreeNode> s1 = new Stack<TreeNode>();    //
@@ -128,7 +154,14 @@ public class Day03Demo044_PreInPosTraversal { // 实现二叉树的先序、中�
         System.out.println();
     }
 
-    public static void posOrderUnRecur2(TreeNode h) {    //不用辅助栈的方式
+    /**
+     * 不用辅助栈的方式 后续遍历
+     * @author liuzhen
+     * @date 2021/8/6 17:28
+     * @param h
+     * @return void
+     */
+    public static void postOrderUnRecur2(TreeNode h) {
         System.out.print("pos-order: ");
         if (h != null) {
             Stack<TreeNode> stack = new Stack<TreeNode>();
@@ -171,18 +204,18 @@ public class Day03Demo044_PreInPosTraversal { // 实现二叉树的先序、中�
         inOrderRecur(head);
         System.out.println();
         System.out.print("pos-order: ");
-        posOrderRecur(head);
+        postOrderRecur(head);
         System.out.println();
 
         // unrecursive
         System.out.println("============unrecursive=============");
         preOrderUnRecur(head);
         inOrderUnRecur(head);
-        posOrderUnRecur1(head);
-        posOrderUnRecur2(head);
+        postOrderUnRecur1(head);
+        postOrderUnRecur2(head);
 
         System.out.println("------------------------------------------------------------------");
-        System.out.println(inOrderRecurIsBST(head));
+//        System.out.println(inOrderRecurIsBST(head));
 
     }
 

@@ -1,7 +1,5 @@
 package com.demo.common.entity;
 
-import com.demo.geek.c6_tree.LeetCode589;
-
 import java.util.*;
 
 /**

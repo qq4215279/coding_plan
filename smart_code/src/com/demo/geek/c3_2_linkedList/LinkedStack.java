@@ -5,9 +5,11 @@
 
 package com.demo.geek.c3_2_linkedList;
 
-/*
-*  用链表实现栈的功能
-* */
+/**
+ * 用链表实现栈的功能
+ * @author liuzhen
+ * @date 2021/8/6 18:26
+ */
 public class LinkedStack<T> {
     public static class Node<T> {
         T item;

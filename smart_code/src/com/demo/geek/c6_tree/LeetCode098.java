@@ -25,12 +25,19 @@ public class LeetCode098 {  // LeetCode T98
      */
 
 
-
-    public boolean isValidBST(TreeNode root) { // *****递归实现！！！！！
+    /**
+     * 递归实现
+     * @author liuzhen
+     * @date 2021/8/6 17:37
+     * @param root
+     * @return boolean
+     */
+    public boolean isValidBST(TreeNode root) {
         return recurse(root, null, null);
     }
 
-    public boolean recurse(TreeNode root, Integer lower, Integer upper) {
+    /** 递归 */
+    private boolean recurse(TreeNode root, Integer lower, Integer upper) {
         if (root == null)
             return true;
 
@@ -47,7 +54,14 @@ public class LeetCode098 {  // LeetCode T98
         return true;
     }
 
-    public boolean isValidBST2(TreeNode root) { // 方法2：排序二叉树的中序遍历是递增
+    /**
+     * 方法2：排序二叉树的中序遍历是递增
+     * @author liuzhen
+     * @date 2021/8/6 17:37
+     * @param root
+     * @return boolean
+     */
+    public boolean isValidBST2(TreeNode root) {
         if (root == null) {
             return true;
         }
@@ -64,8 +78,16 @@ public class LeetCode098 {  // LeetCode T98
         return true;
     }
 
-    List<Integer> list = new ArrayList<>();
 
+
+    /**
+     * 中序遍历
+     * @author liuzhen
+     * @date 2021/8/6 18:10
+     * @param root
+     * @return java.util.List<java.lang.Integer>
+     */
+    List<Integer> list = new ArrayList<>();
     public List<Integer> inOrder(TreeNode root) {
         if (root == null) {
             return list;

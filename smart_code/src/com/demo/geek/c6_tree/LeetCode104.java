@@ -29,14 +29,10 @@ public class LeetCode104 {  // LeetCode T104
      * @return 最大深度
      */
     public int maxDepth(TreeNode root) {
-
         if (root == null)
             return 0;
 
-        int leftMaxDepth = maxDepth(root.left);
-        int rightMaxDepth = maxDepth(root.right);
-        int h = Math.max(leftMaxDepth, rightMaxDepth) + 1;
-        return h;
+        return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
     }
 
 }

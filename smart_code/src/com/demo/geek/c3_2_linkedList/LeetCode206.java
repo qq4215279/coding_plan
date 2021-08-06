@@ -10,16 +10,14 @@ import com.demo.common.entity.Node;
 public class LeetCode206 {  // LeetCode T206
 
     /**
-     *反转链表
-     *反转一个单链表。
+     * 反转链表
+     * 反转一个单链表。
      *
      * 输入: 1->2->3->4->5->NULL
      * 输出: 5->4->3->2->1->NULL
      */
 
-
     public Node reverseList(Node head) {//方法一：迭代          时间复杂度是 O(n)    空间复杂度：O(1)O(1)。
-
         if(head == null || head.next == null)
             return head;
 
@@ -36,7 +34,6 @@ public class LeetCode206 {  // LeetCode T206
     }
 
     public Node reverseList02(Node head) { //方法二：递归         时间复杂度是 O(n)    空间复杂度：O(1)O(1)。
-
         if(head == null || head.next == null)
             return head;
 
@@ -46,8 +43,6 @@ public class LeetCode206 {  // LeetCode T206
         head.next = null;
         return newHead;
     }
-
-
 
     public static void main(String[] args) {
 

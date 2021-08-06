@@ -7,7 +7,7 @@ package com.demo.geek.c3_1_array;
 
 import java.util.HashMap;
 
-public class LeetCode001 { // T1
+public class LeetCode001 { // LeetCode T1
 
     /**
      * 两数之和

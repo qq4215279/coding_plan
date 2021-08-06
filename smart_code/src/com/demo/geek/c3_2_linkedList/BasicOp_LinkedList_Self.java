@@ -9,11 +9,16 @@ import com.demo.common.entity.Node;
 
 import java.util.Hashtable;
 
+/**
+ * 链表的基本操作
+ * @author liuzhen
+ * @date 2021/8/6 18:23
+ */
 public class BasicOp_LinkedList_Self {
 
     // 1.链表添加结点
-    public static void addNode(Node head, int data) {
-        Node newNode = new Node(data);
+    public static void addNode(Node head, int value) {
+        Node newNode = new Node(value);
         if (head == null) {
             head = newNode;
         }

@@ -10,6 +10,11 @@ import com.demo.common.entity.TreeNode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 二叉树的遍历: 前序：  中序：   后序：T145
+ * @author liuzhen
+ * @date 2021/8/6 18:02
+ */
 public class LeetCode145 { // 二叉树遍历： 前序：  中序：   后序：T145
 
     List<Integer> list = new ArrayList<>();

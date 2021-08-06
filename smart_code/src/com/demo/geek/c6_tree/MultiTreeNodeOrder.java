@@ -10,7 +10,12 @@ import com.demo.common.entity.MultiTreeNode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeetCode589 {  // LeetCode T589:N叉树的前序遍历        T590: N叉树的后序遍历
+/**
+ * N叉树的前序，层次，后续遍历
+ * @author liuzhen
+ * @date 2021/8/6 18:13
+ */
+public class MultiTreeNodeOrder { // LeetCode T589:N叉树的前序遍历;  层次遍历：       T590: N叉树的后序遍历
 
     /**
      * N叉树的前序遍历
