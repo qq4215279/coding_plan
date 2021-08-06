@@ -1,5 +1,7 @@
 package com.demo.geek.c7_recursion;
 
+import com.demo.common.entity.TreeNode;
+
 public class LeetCode111 { // LeetCode 111
 
     /**
@@ -18,15 +20,6 @@ public class LeetCode111 { // LeetCode 111
      * 返回它的最小深度  2.
      */
 
-    public static class TreeNode {
-        int value;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int value) {
-            this.value = value;
-        }
-    }
 
     public static int minDepth(TreeNode root) { // 1.递归
         if (root == null) {

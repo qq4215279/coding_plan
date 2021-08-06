@@ -5,6 +5,8 @@
 
 package com.demo.geek.c6_tree;
 
+import com.demo.common.entity.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,15 +24,7 @@ public class LeetCode098 {  // LeetCode T98
      * 所有左子树和右子树自身必须也是二叉搜索树。
      */
 
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
     public boolean isValidBST(TreeNode root) { // *****递归实现！！！！！
         return recurse(root, null, null);
@@ -40,7 +34,7 @@ public class LeetCode098 {  // LeetCode T98
         if (root == null)
             return true;
 
-        int value = root.val;
+        int value = root.value;
         if (lower != null && value <= lower)
             return false;
         if (upper != null && value >= upper)
@@ -78,7 +72,7 @@ public class LeetCode098 {  // LeetCode T98
         }
 
         inOrder(root.left);
-        list.add(root.val);
+        list.add(root.value);
         inOrder(root.right);
         return list;
     }

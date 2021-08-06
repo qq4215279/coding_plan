@@ -1,5 +1,7 @@
 package com.demo.geek.c7_recursion;
 
+import com.demo.common.entity.Node;
+
 /**
  * LeetCode002
  * 两数相加
@@ -30,21 +32,12 @@ public class LeetCode002 { // LeetCode 2
      */
 
 
-    public static class Node {
-        public int value;
-        public Node next;
-
-        public Node(int value) {
-            this.value = value;
-        }
-
-        public Node(int value, Node next) {
-            this.value = value;
-            this.next = next;
-        }
-    }
-
-
+    /**
+     * 递归
+     * @param note1
+     * @param note2
+     * @return
+     */
     public static Node addTwoNumbersByRecursion(Node note1, Node note2) {
         if (note1 == null && note2 == null) {
             return null;
@@ -61,24 +54,13 @@ public class LeetCode002 { // LeetCode 2
         if (total >= 10) {
             total = total % 10;
             if (note1.next != null) {
-                note1.next.value += 1; 
+                note1.next.value += 1;
             } else {
                 note1.next = new Node(1);
             }
         }
 
         return new Node(total, addTwoNumbersByRecursion(note1.next, note2.next));
-    }
-
-    public static void print(Node node) {
-        if (node == null) {
-            return;
-        }
-
-        while (node != null) {
-            System.out.println(node.value);
-            node = node.next;
-        }
     }
 
     public static void main(String[] args) {
@@ -92,7 +74,7 @@ public class LeetCode002 { // LeetCode 2
 
 //        Node node = addTwoNumbers(node1, node2);
         Node node = addTwoNumbersByRecursion(node1, node2);
-        print(node);
+        node.print();
 
     }
 

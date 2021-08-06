@@ -51,10 +51,37 @@ public class LeetCode022 { // LeetCode 22
 
     }
 
+    private ArrayList<String> res;
+    public List<String> generate(int  n) {
+        res = new ArrayList<>();
+        _generateTest(0, 0, n, "");
+        return res;
+    }
+
+    public void _generateTest(int left, int right, int n, String s) {
+        if (left == n && right == n) {
+            res.add(s);
+            return;
+        }
+
+        // 左括号: 随时加，只要不超标
+        if (left < n)
+            _generateTest(left + 1, right, n, s + "(");
+        if (right < n) // 右括号: 只要不超标
+            _generateTest(left, right + 1, n, s + ")");
+
+    }
+
     public static void main(String[] args) {
-        List<String> list = new LeetCode022().generateParenthesis(3);
-        System.out.println(list.toString());
-        System.out.println("size:" + list.size());
+//        List<String> list = new LeetCode022().generateParenthesis(3);
+//        System.out.println(list.toString());
+//        System.out.println("size:" + list.size());
+
+        System.out.println("=============>");
+
+        List<String> list2 = new LeetCode022().generate(1);
+        System.out.println(list2.toString());
+        System.out.println("size2:" + list2.size());
     }
 
 }

@@ -4,6 +4,8 @@
  */
 package com.demo.geek.c3_2_linkedList;
 
+import com.demo.common.entity.Node;
+
 /**
  * DelNode
  * @author liuzhen
@@ -26,22 +28,13 @@ public class Del_last_N_Node {  // ???
      *
      */
 
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
-    public static ListNode removeNthFromEnd(ListNode head, int n) {
+    public static Node removeNthFromEnd(Node head, int n) {
         if (head == null) {
             return null;
         }
 
-        ListNode c = head;
-        ListNode cur = head;
+        Node c = head;
+        Node cur = head;
 
         int count = 1;
         // 找出链表size
@@ -68,13 +61,13 @@ public class Del_last_N_Node {  // ???
         return head;
     }
 
-    public static ListNode removeNthFromEnd2(ListNode head, int n) {
+    public static Node removeNthFromEnd2(Node head, int n) {
         if (head == null || head.next == null) {
             return head;
         }
 
-        ListNode quickNode = head;
-        ListNode slowNode = head;
+        Node quickNode = head;
+        Node slowNode = head;
 
         for (int i = 0; i < n - 1; i++) {
             if (quickNode.next == null) {
@@ -83,7 +76,7 @@ public class Del_last_N_Node {  // ???
             quickNode = quickNode.next;
         }
 
-        ListNode pre = null;
+        Node pre = null;
         while (quickNode.next != null) {
             quickNode = quickNode.next;
             pre = slowNode;
@@ -96,25 +89,25 @@ public class Del_last_N_Node {  // ???
         return head;
     }
 
-    public static void print(ListNode head) {
+    public static void print(Node head) {
         if (head == null) {
             System.out.println("空。。。。。");
         }
 
         while (head != null) {
-            System.out.println(head.val);
+            System.out.println(head.value);
             head = head.next;
         }
     }
 
     public static void main(String[] args) {
-        ListNode node = new ListNode(1);
-        node.next = new ListNode(2);
-        node.next.next = new ListNode(3);
-        node.next.next.next = new ListNode(4);
-        node.next.next.next.next = new ListNode(5);
+        Node node = new Node(1);
+        node.next = new Node(2);
+        node.next.next = new Node(3);
+        node.next.next.next = new Node(4);
+        node.next.next.next.next = new Node(5);
 
-        ListNode head = removeNthFromEnd(node, 2);
+        Node head = removeNthFromEnd(node, 2);
 //        ListNode head = removeNthFromEnd2(node, 2);
         print(head);
 

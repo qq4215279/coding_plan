@@ -5,6 +5,8 @@
 
 package com.demo.geek.c6_tree;
 
+import com.demo.common.entity.MultiTreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,55 +22,36 @@ public class LeetCode589 {  // LeetCode T589:N叉树的前序遍历        T590:
      * 返回其前序遍历: [1,3,5,6,2,4]。
      */
 
-    // N叉树定义：
-    public static class Node {
-        public int val;
-        public List<Node> children;
-
-        public Node() {
-        }
-
-        public Node(int _val) {
-            val = _val;
-        }
-
-        public Node(int _val, List<Node> _children) {
-            val = _val;
-            children = _children;
-        }
-    }
-
-
 
     List<Integer> list = new ArrayList<>();
 
-    public List<Integer> preOrder(Node root) {  // 前序递归遍历N叉树
+    public List<Integer> preOrder(MultiTreeNode root) {  // 前序递归遍历N叉树
         if (root == null)
             return list;
 
         if (root != null) {
-            list.add(root.val);
-            for (Node node : root.children) {
+            list.add(root.value);
+            for (MultiTreeNode node : root.children) {
                 preOrder(node);
             }
         }
         return list;
     }
 
-    public List<Integer> postOrder(Node root) {  // 后序递归遍历N叉树
+    public List<Integer> postOrder(MultiTreeNode root) {  // 后序递归遍历N叉树
         if (root == null)
             return list;
 
         if (root != null) {
-            for (Node node : root.children) {
+            for (MultiTreeNode node : root.children) {
                 postOrder(node);
             }
-            list.add(root.val);
+            list.add(root.value);
         }
         return list;
     }
 
-    public List<Integer> levelOrder(Node root) {  // 层次递归遍历N叉树
+    public List<Integer> levelOrder(MultiTreeNode root) {  // 层次递归遍历N叉树
 
 
         return list;

@@ -5,6 +5,8 @@
 
 package com.demo.geek.c6_tree;
 
+import com.demo.common.entity.TreeNode;
+
 public class LeetCode104 {  // LeetCode T104
 
     /**
@@ -17,16 +19,6 @@ public class LeetCode104 {  // LeetCode T104
      * 示例：
      * 给定二叉树 [3,9,20,null,null,15,7]，x
      */
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
     /**
      * 递归实现二叉树最大深度

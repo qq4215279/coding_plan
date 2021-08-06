@@ -5,6 +5,8 @@
 
 package com.demo.geek.c3_2_linkedList;
 
+import com.demo.common.entity.Node;
+
 public class LeetCode025 { // LeetCode 25
 
     /**
@@ -23,16 +25,8 @@ public class LeetCode025 { // LeetCode 25
      * 你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。
      */
 
-    public class ListNode {
-        int val;
-        ListNode next;
 
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
-    public ListNode reverseKGroup(ListNode head, int k) {
+    public Node reverseKGroup(Node head, int k) {
 
 
 

@@ -5,6 +5,8 @@
 
 package com.demo.geek.c3_2_linkedList;
 
+import com.demo.common.entity.Node;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -22,21 +24,12 @@ public class LeetCode141 {  // LeetCode T141
      * 解释：链表中有一个环，其尾部连接到第二个节点。
      */
 
-    public static class ListNode{
-        public int val;
-        public ListNode next;
-
-        public ListNode (int val) {
-            this.val = val;
-        }
-    }
-
-    public boolean hasCycle(ListNode head) {//hash函数法
+    public boolean hasCycle(Node head) {//hash函数法
 
         if (head == null || head.next == null)
             return false;
 
-        Set<ListNode> set = new LinkedHashSet<>();
+        Set<Node> set = new LinkedHashSet<>();
         while (head != null) {
             if (set.contains(head)) {
                 return true;
@@ -49,12 +42,12 @@ public class LeetCode141 {  // LeetCode T141
 
     }
 
-    public boolean hasCycle02(ListNode head) { //快慢指针法
+    public boolean hasCycle02(Node head) { //快慢指针法
         if (head == null || head.next == null)
             return false;
 
-        ListNode slow = head.next;
-        ListNode fast = head.next.next;
+        Node slow = head.next;
+        Node fast = head.next.next;
 
         while (fast != null || fast.next != null) {//fast.next判断作用：判断fast是否移动到末尾
             if (slow == fast) {

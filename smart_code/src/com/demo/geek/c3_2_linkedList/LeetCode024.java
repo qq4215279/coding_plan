@@ -5,6 +5,8 @@
 
 package com.demo.geek.c3_2_linkedList;
 
+import com.demo.common.entity.Node;
+
 public class LeetCode024 { // LeetCode 24
 
     /**
@@ -16,26 +18,17 @@ public class LeetCode024 { // LeetCode 24
      *
      */
 
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
-    public ListNode swapPairs(ListNode head) {
+    public Node swapPairs(Node head) {
         // 定义前去结点技巧：！！！！
-        ListNode dummy = new ListNode(-1);
+        Node dummy = new Node(-1);
         dummy.next = head;
-        ListNode pre = dummy;
+        Node pre = dummy;
 
-        ListNode cur = head;
+        Node cur = head;
 
         while (cur != null && cur.next != null) {
-            ListNode firstNode = cur;
-            ListNode secondNode = cur.next;
+            Node firstNode = cur;
+            Node secondNode = cur.next;
 
             // 1.即: 前一个节点、当前节点、后一个节点的next节点分别等于谁谁谁！！
             pre.next = secondNode;  // 让之前指向1节点的现在指向交换后的2节点

@@ -3,7 +3,7 @@
  * All Right Reserved.
  */
 
-package com.demo.geek.c3_2_linkedList;
+package com.demo.geek.c0.string;
 
 public class LeetCode125 { // LeetCode T125
     /**

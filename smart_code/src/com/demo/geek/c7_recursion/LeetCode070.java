@@ -44,11 +44,13 @@ public class LeetCode070 { // T70
     }
 
     /**
-     * 递归: f(n) = f(n-1) + f(n-2)
+     * 递归: f(n) = f(n-1) + f(n-2)  解释: f(n-1): 直接上1阶楼梯到f(n); f(n-2): 也可以直接上2阶楼梯到f(n); 两种选择。
+     * 递归总结：对于每一次都有多种选择的情况，递归写法是自上而下写调用递归，有多少种可能，就调用多少次递归函数。如果是将多种可能的求和(eg: 此题)，则将多次
+     *  递归的结果返回累加；如果是对每次递归比较出大小，则在两次递归后在继续写业务逻辑，比如比较大小，返回业务上需要的结果。
      * @param n
      * @return
      */
-    public int climbRecursion(int n) {
+    public static int climbRecursion(int n) {
         int f1 = 1;
         int f2 = 2;
 
@@ -60,6 +62,11 @@ public class LeetCode070 { // T70
         }
 
         return climbRecursion(n - 1) + climbRecursion(n - 2);
+    }
+
+    public static void main(String[] args) {
+        int i = climbRecursion(5);
+        System.out.println(i);
     }
 
 }

@@ -5,6 +5,7 @@
 
 package com.demo.geek.c3_2_linkedList;
 
+import com.demo.common.entity.Node;
 
 public class ReverseList {
 
@@ -19,29 +20,13 @@ public class ReverseList {
      *
      * A linked list can be reversed either iteratively or recursively. Could you implement both?
      */
-    public class ListNode {
-        int val;
-        ListNode next;
 
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
-    public ListNode reverseList(ListNode head) {// 1.迭代
-        ListNode cur = head;
-        ListNode pre = null;
+    public Node reverseList(Node head) {// 1.迭代
+        Node cur = head;
+        Node pre = null;
 
         while (cur != null) {
-            ListNode next = cur.next;
+            Node next = cur.next;
             cur.next = pre;
             pre = cur;
             cur = next;
@@ -49,13 +34,13 @@ public class ReverseList {
         return pre;
     }
 
-    public ListNode reverseList02(ListNode head) { // 2.递归
+    public Node reverseList02(Node head) { // 2.递归
 
-        ListNode cur = head;
-        ListNode pre = null;
+        Node cur = head;
+        Node pre = null;
 
         while (cur != null) {
-            ListNode next = cur.next;
+            Node next = cur.next;
             cur.next = pre;
             pre = cur;
             cur = next;

@@ -1,5 +1,7 @@
 package com.demo.geek.c7_recursion;
 
+import com.demo.common.entity.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -26,30 +28,22 @@ public class LeetCode226 { // LeetCode 226
      *  9 6 3  1
      */
 
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
-
-    public TreeNode invertTree(TreeNode root) { // 1.递归
+    public static TreeNode invertTree(TreeNode root) { // 1.递归
+        // 9 的左右子节点直接返回了，所以没有再调用递归。
         if (root == null)
             return null;
 
         TreeNode left = invertTree(root.left);
         TreeNode right = invertTree(root.right);
 
+        // 左右子节点发生交换
         root.left = right;
         root.right = left;
 
-        return root;
+        return root; // 返回当前节点给上一级调用
     }
 
-    public TreeNode invertTree02(TreeNode root) { // 2.迭代
+    public static TreeNode invertTree02(TreeNode root) { // 2.迭代
         if (root == null)
             return null;
 
@@ -68,6 +62,23 @@ public class LeetCode226 { // LeetCode 226
                 queue.add(curtent.right);
         }
         return root;
+    }
+
+    public static void main(String[] args) {
+        TreeNode treeNode = new TreeNode(4);
+        treeNode.left = new TreeNode(2);
+        treeNode.left.left = new TreeNode(1);
+        treeNode.left.right = new TreeNode(3);
+        treeNode.right = new TreeNode(7);
+        treeNode.right.left = new TreeNode(6);
+        treeNode.right.right = new TreeNode(9);
+
+//        TreeNode result1 = invertTree(treeNode);
+//        result1.print();
+
+        TreeNode result2 = invertTree02(treeNode);
+        result2.print();
+
     }
 
 

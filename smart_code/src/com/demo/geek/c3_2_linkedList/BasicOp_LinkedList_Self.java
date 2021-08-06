@@ -5,18 +5,11 @@
 
 package com.demo.geek.c3_2_linkedList;
 
+import com.demo.common.entity.Node;
+
 import java.util.Hashtable;
 
 public class BasicOp_LinkedList_Self {
-
-    public static class Node {
-        public int value;
-        public Node next;
-
-        public Node(int value) {
-            this.value = value;
-        }
-    }
 
     // 1.链表添加结点
     public static void addNode(Node head, int data) {
