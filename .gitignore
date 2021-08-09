@@ -22,20 +22,17 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# out
-/out/
-
-# bin
-/bin/
-
 #idea
 *.idea
 *.iml
 
 #maven
 /target/
-
 /tech_enhance/target/
 
-/smart_code/bin/com/demo/geek/c7_recursion/pic/二叉树深度递归图解.png
-/smart_code/bin/com/demo/geek/c7_recursion/pic/括号生成.png
+# bin
+/bin/
+/smart_code/bin/
+
+# out
+/out/
