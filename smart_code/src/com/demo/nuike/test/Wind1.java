@@ -5,18 +5,15 @@
 
 package com.demo.nuike.test;
 
+import com.demo.common.entity.Node;
+
 import java.util.Stack;
 
-public class Wind1 { // 输入两个递增排序的链表，合并这两个链表并使新链表中的结点仍然是按照递减排序的。
+public class Wind1 {
 
-    public static class Node {
-        public int value;
-        public Node next;
-
-        public Node(int value) {
-            this.value = value;
-        }
-    }
+    /**
+     * 题目：输入两个递减排序的链表，合并这两个链表并使新链表中的结点仍然是按照递减排序的。
+     */
 
     public static Node nodeSort0(Node head) {
         Stack<Node> stack = new Stack<>();
@@ -30,7 +27,7 @@ public class Wind1 { // 输入两个递增排序的链表，合并这两个链�
             nodeDesc = stack.pop();
             nodeDesc = nodeDesc.next;
         }
-        return nodeDesc;    //返回降序后的链表
+        return nodeDesc;    // 返回降序后的链表
     }
 
     public static Node nodeSort(Node head) {
@@ -44,7 +41,7 @@ public class Wind1 { // 输入两个递增排序的链表，合并这两个链�
         }
         head = pre;
 
-        return head;    //返回降序后的链表
+        return head;    // 返回降序后的链表
     }
 
     public static Node merge(Node node1, Node node2) {
@@ -52,7 +49,7 @@ public class Wind1 { // 输入两个递增排序的链表，合并这两个链�
         Node node22 = node2;
         Node help0 = null;
 
-        //得到头节点
+        // 得到头节点
         if (node11.value > node22.value) {
             help0 = node11;
             node11 = node11.next;
@@ -87,24 +84,14 @@ public class Wind1 { // 输入两个递增排序的链表，合并这两个链�
         return help0;
     }
 
-    public static void printNodeList(Node node) {  //打印链表
-        System.out.print("Node List: ");
-        while (node != null) {
-            System.out.print(node.value + " ");
-            node = node.next;
-        }
-        System.out.println();
-    }
-
     public static void main(String[] args) {
-
         Node head1 = null;
         head1 = new Node(1);
         head1.next = new Node(3);
         head1.next.next = new Node(6);
         head1.next.next.next = new Node(9);
         Node node11 = nodeSort(head1);
-        printNodeList(node11);//9 6 3 1
+        node11.print(); // 9 6 3 1
 
         Node head2 = null;
         head2 = new Node(2);
@@ -113,11 +100,11 @@ public class Wind1 { // 输入两个递增排序的链表，合并这两个链�
         head2.next.next.next = new Node(12);
         head2.next.next.next.next = new Node(19);
         Node node22 = nodeSort(head2);
-        printNodeList(node22);//19 12 5 4 2
+        node22.print(); //19 12 5 4 2
 
         System.out.println("------------");
         Node rel = merge(node11, node22);
-        printNodeList(rel);   //19 12 9 6 5 4 3 2 1
+        rel.print(); //19 12 9 6 5 4 3 2 1
 
     }
 }

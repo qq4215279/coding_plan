@@ -10,7 +10,6 @@ import java.util.Queue;
  * @version 1.0.0 2021/8/6 15:52
  */
 public class TreeNode implements INode {
-
     public int value;
     public TreeNode left;
     public TreeNode right;

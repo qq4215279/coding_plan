@@ -5,21 +5,17 @@
 
 package com.demo.nuike.test;
 
+import com.demo.common.entity.Node;
+
 import java.util.Stack;
 
-public class Wind2 {   // 给定一个单链表（无环），请判断是否是回文结构。在删除倒数第K个节点后，是否为回文结构。
+public class Wind2 {
 
-    public static class Node {
-        public int value;
-        public Node next;
+    /**
+     * 题目：给定一个单链表（无环），请判断是否是回文结构。在删除倒数第K个节点后，是否为回文结构。
+     */
 
-        public Node(int value) {
-            this.value = value;
-        }
-    }
-
-    public static boolean ishuiwei(Node head){
-
+    public static boolean ishuiwei(Node head) {
         Stack<Node> stack = new Stack<>();
         Node cur = head;
         while (cur != null) {
@@ -36,9 +32,9 @@ public class Wind2 {   // 给定一个单链表（无环），请判断是否是
         return true;
     }
 
-    public static boolean ishuiwei2(Node head, int k){
-
-        if(k == 1){//删除头结点
+    public static boolean ishuiwei2(Node head, int k) {
+        // 删除头结点
+        if (k == 1) {
             head = head.next;
             return ishuiwei(head);
         }
@@ -46,8 +42,8 @@ public class Wind2 {   // 给定一个单链表（无环），请判断是否是
         Node pre = head;
         Node cur = pre.next;
         int i = 1;
-        while (cur != null){
-            if (i == k){
+        while (cur != null) {
+            if (i == k) {
                 pre.next = cur.next;
                 return ishuiwei(pre);
             }
@@ -58,9 +54,7 @@ public class Wind2 {   // 给定一个单链表（无环），请判断是否是
         return ishuiwei(pre);
     }
 
-
     public static void main(String[] args) {
-
         Node head1 = null;
         head1 = new Node(1);
         head1.next = new Node(8);
@@ -69,8 +63,8 @@ public class Wind2 {   // 给定一个单链表（无环），请判断是否是
         head1.next.next.next.next = new Node(8);
         head1.next.next.next.next.next = new Node(1);
 
-        System.out.println(ishuiwei(head1));            //true
-        System.out.println(ishuiwei2(head1, 1));     //false
+        System.out.println(ishuiwei(head1)); // true
+        System.out.println(ishuiwei2(head1, 1)); // false
 
     }
 }
