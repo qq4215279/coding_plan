@@ -1,6 +1,7 @@
 package com.gobestsoft.java_base.comparator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -68,15 +69,24 @@ class Test {
 
         // 使用方式1：
         // 打印list的原始序列
-        System.out.println(list);
+        System.out.println("排序前list: " + list);
         list.sort(new AseAgePerson());
-
         //list.sort(new DescAgePerson());
-        System.out.println(list);
+        System.out.println("排序后list: " + list);
 
         System.out.println("----------------------------------------------------------------->");
 
         // 使用方式2:
+        PersonComparator[] arr = list.toArray(new PersonComparator[0]);
+        Arrays.sort(arr, new DescAgePerson());
+        System.out.println("arr: ");
+        for (PersonComparator p : arr) {
+            System.out.println(p.toString());
+        }
+
+        System.out.println("----------------------------------------------------------------->");
+
+        // 使用方式3:
         PriorityQueue<PersonComparator> queue = new PriorityQueue<>(new AseAgePerson());
         queue.add(new PersonComparator("zhangsan", 400));
         queue.add(new PersonComparator("lisi", 30));
