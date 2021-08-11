@@ -115,14 +115,19 @@ public class Basic8DataType {
      */
     @Test
     public void test03() {
-        short s1 = 1;
-        short s2 = 2;
-        short s3 = (short)(s1 + s2); // s1 + s2 会转成int类型进行计算
-
         // 同理 byte 和 char
         byte b1 = 1;
         byte b2 = 2;
         byte b3 = (byte)(b1 + b2); // b1 + b2 会转成int类型进行计算
+
+        short s1 = 1;
+        short s2 = 2;
+        short s3 = (short)(s1 + s2); // s1 + s2 会转成int类型进行计算
+
+        char c1 = 1;
+        char c2 = 2;
+        char c3 = (char)(c1 + c2); // c1 + c2 会转成int类型进行计算
+
     }
 
     /**
@@ -137,8 +142,10 @@ public class Basic8DataType {
         byte b2 = 2;
         byte b3 = 1 + 2; // 不需要强转，因为1和2都是常量，...
         byte b4 = (byte)(b1 + b2); // 需进行强转，因为b1和b2是变量，...
+        byte b5 = (byte)(b1 + 3); // 需进行强转，因为b1是变量，...
         System.out.println(b3);
         System.out.println(b4);
+        System.out.println(b5);
     }
 
     /**
