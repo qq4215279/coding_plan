@@ -29,6 +29,7 @@ hs_err_pid*
 #maven
 /target/
 /tech_enhance/target/
+/smart_code/target/
 
 # bin
 /bin/
