@@ -1,6 +1,11 @@
 package com.demo.nuike.chuji.class_04;
 
-public class Code_05_PaperFolding {	//折纸问题,给定一 个输入参数N，代表纸条都从下边向上方连续对折N次， 请从上到下打印所有折痕的方向
+public class Code_05_PaperFolding {
+
+	/**
+	 * 折纸问题,给定一个输入参数N，代表纸条都从下边向上方连续对折N次， 请从上到下打印所有折痕的方向
+	 * @param N
+	 */
 
 	public static void printAllFolds(int N) {
 		printProcess(1, N, true);

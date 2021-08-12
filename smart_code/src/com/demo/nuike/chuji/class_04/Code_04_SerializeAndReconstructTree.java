@@ -1,56 +1,94 @@
 package com.demo.nuike.chuji.class_04;
 
+import com.demo.common.entity.TreeNode;
+import com.demo.common.utils.BinaryTreeUtil;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Code_04_SerializeAndReconstructTree {	//介绍二叉树的序列化和反序列化			#——》读夏普，表示空
+public class Code_04_SerializeAndReconstructTree {
 
-	public static class Node {
-		public int value;
-		public Node left;
-		public Node right;
+	/**
+	 * 介绍二叉树先序与层次便利店的序列化和反序列化			# —>  读夏普，表示空
+	 */
 
-		public Node(int data) {
-			this.value = data;
+	/**
+	 * 先序遍历字符串--序列化		#代表空，！作用是分隔符
+	 * @author liuzhen
+	 * @date 2021/8/12 22:49
+	 * @param head
+	 * @return java.lang.String
+	 */
+	public static String serialByPre(TreeNode head) {
+		// 当子节点为空，左右两个子节点用"#!"表示，不能省略
+		if (head == null) {
+			// 加上空占位符能更好的区分树的结构
+			return "#!";
 		}
-	}
-
-	public static String serialByPre(Node head) {	//先序遍历字符串序列化		#代表空，！作用是分隔符
-		if (head == null) {		//当子节点为空，左右两个子节点用"#!"表示，不能省略
-			return "#!";		//加上空占位符能更好的区分树的结构
-		}
-		String res = head.value + "!";	//为每一个节点加"!"，可以更好的区分每个值的之间的区别，比如：12！3！；1！23！
+		// 为每一个节点加"!"，可以更好的区分每个值的之间的区别，比如：12!3!,1!23!
+		String res = head.value + "!";
 		res += serialByPre(head.left);
 		res += serialByPre(head.right);
-		return res;	//最后返回序列完的字符串
+		// 最后返回序列完的字符串
+		return res;
 	}
 
-	public static Node reconByPreString(String preStr) {	//先序遍历字符串的反序列化
-		String[] values = preStr.split("!");	//将序列化的字符串通过分隔"!"，把分割的每个字符串装进数组里
-		Queue<String> queue = new LinkedList<String>();
+	/**
+	 * 先序遍历字符串的--反序列化
+	 * @author liuzhen
+	 * @date 2021/8/12 22:50
+	 * @param preStr
+	 * @return com.demo.common.entity.TreeNode
+	 */
+	public static TreeNode reconByPreString(String preStr) {
+		// 将序列化的字符串通过分隔"!"，把分割的每个字符串装进数组里
+		String[] values = preStr.split("!");
+		Queue<String> queue = new LinkedList<>();
 		for (int i = 0; i != values.length; i++) {
-			queue.offer(values[i]);		//再把该数组里的字符串装进队列里
+			// 再把该数组里的字符串装进队列里
+			queue.offer(values[i]);
 		}
 		return reconPreOrder(queue);
 	}
 
-	public static Node reconPreOrder(Queue<String> queue) {
-		String value = queue.poll();	//从队列里弹出一个值
-		if (value.equals("#")) {	//判断是否有空值（"#"代表序列化时的空值）
-			return null;	//有空，则跳出循环
+	/**
+	 * do先序遍历字符串的--反序列化
+	 * @author liuzhen
+	 * @date 2021/8/12 22:50
+	 * @param queue
+	 * @return com.demo.common.entity.TreeNode
+	 */
+	private static TreeNode reconPreOrder(Queue<String> queue) {
+		// 从队列里弹出一个值
+		String value = queue.poll();
+		// 判断是否有空值（"#"代表序列化时的空值）
+		if (value.equals("#")) {
+			// 有空，则跳出循环
+			return null;
 		}
-		Node head = new Node(Integer.valueOf(value));	//没空，将该值生成头节点
-		head.left = reconPreOrder(queue);	//递归，生成头节点的左子节点
-		head.right = reconPreOrder(queue);	//递归，生成头节点的右子节点
+		// 没空，将该值生成头节点
+		TreeNode head = new TreeNode(Integer.valueOf(value));
+		// 递归，生成头节点的左子节点
+		head.left = reconPreOrder(queue);
+		// 递归，生成头节点的右子节点
+		head.right = reconPreOrder(queue);
 		return head;
 	}
 
-	public static String serialByLevel(Node head) {		//分层字符串的序列化============================================
+	/**
+	 * 分层遍历字符串--序列化
+	 * @author liuzhen
+	 * @date 2021/8/12 22:52
+	 * @param head
+	 * @return java.lang.String
+	 */
+	public static String serialByLevel(TreeNode head) {
 		if (head == null) {
 			return "#!";
 		}
 		String res = head.value + "!";
-		Queue<Node> queue = new LinkedList<Node>();	//用队列来装链表的节点
+		// 用队列来装链表的节点
+		Queue<TreeNode> queue = new LinkedList<>();
 		queue.offer(head);
 		while (!queue.isEmpty()) {
 			head = queue.poll();
@@ -70,141 +108,129 @@ public class Code_04_SerializeAndReconstructTree {	//介绍二叉树的序列化
 		return res;
 	}
 
-	public static Node reconByLevelString(String levelStr) {	//分层字符串的反序列化
-		String[] values = levelStr.split("!");	//层次遍历->生成字符串
+	/**
+	 * 分层字符串的反序列化
+	 * @author liuzhen
+	 * @date 2021/8/12 22:53
+	 * @param levelStr
+	 * @return com.demo.common.entity.TreeNode
+	 */
+	public static TreeNode reconByLevelString(String levelStr) {
+		// 层次遍历->生成字符串
+		String[] values = levelStr.split("!");
 		int index = 0;
-		Node head = generateNodeByString(values[index++]);
-		Queue<Node> queue = new LinkedList<Node>();
+		TreeNode head = generateNodeByString(values[index++]);
+		Queue<TreeNode> queue = new LinkedList<>();
 		if (head != null) {
-			queue.offer(head);	//进队列
+			// 进队列
+			queue.offer(head);
 		}
-		Node node = null;
+		TreeNode treeNode = null;
 		while (!queue.isEmpty()) {
-			node = queue.poll();	//出队列
-			node.left = generateNodeByString(values[index++]);
-			node.right = generateNodeByString(values[index++]);
-			if (node.left != null) {
-				queue.offer(node.left);
+			// 出队列
+			treeNode = queue.poll();
+			treeNode.left = generateNodeByString(values[index++]);
+			treeNode.right = generateNodeByString(values[index++]);
+			if (treeNode.left != null) {
+				queue.offer(treeNode.left);
 			}
-			if (node.right != null) {
-				queue.offer(node.right);
+			if (treeNode.right != null) {
+				queue.offer(treeNode.right);
 			}
 		}
 		return head;
 	}
 
-	public static Node generateNodeByString(String val) {	//去掉空的字符串(#)
+	/**
+	 * 生成一个节点对象
+	 * @author liuzhen
+	 * @date 2021/8/12 22:53
+	 * @param val
+	 * @return com.demo.common.entity.TreeNode
+	 */
+	private static TreeNode generateNodeByString(String val) {
 		if (val.equals("#")) {
 			return null;
 		}
-		return new Node(Integer.valueOf(val));
+		return new TreeNode(Integer.valueOf(val));
 	}
 
-	// for test -- print tree
-	public static void printTree(Node head) {
-		System.out.println("Binary Tree:");
-		printInOrder(head, 0, "H", 17);
-		System.out.println();
-	}
-
-	public static void printInOrder(Node head, int height, String to, int len) {
-		if (head == null) {
-			return;
-		}
-		printInOrder(head.right, height + 1, "v", len);
-		String val = to + head.value + to;
-		int lenM = val.length();
-		int lenL = (len - lenM) / 2;
-		int lenR = len - lenM - lenL;
-		val = getSpace(lenL) + val + getSpace(lenR);
-		System.out.println(getSpace(height * len) + val);
-		printInOrder(head.left, height + 1, "^", len);
-	}
-
-	public static String getSpace(int num) {
-		String space = " ";
-		StringBuffer buf = new StringBuffer("");
-		for (int i = 0; i < num; i++) {
-			buf.append(space);
-		}
-		return buf.toString();
-	}
 
 	public static void main(String[] args) {
-		Node head = null;
-		printTree(head);
+		TreeNode head = null;
+		BinaryTreeUtil.printTree(head);
 
 		String pre = serialByPre(head);
 		System.out.println("serialize tree by pre-order: " + pre);
 		head = reconByPreString(pre);
 		System.out.print("reconstruct tree by pre-order, ");
-		printTree(head);
+		BinaryTreeUtil.printTree(head);
 
 		String level = serialByLevel(head);
 		System.out.println("serialize tree by level: " + level);
 		head = reconByLevelString(level);
 		System.out.print("reconstruct tree by level, ");
-		printTree(head);
+		BinaryTreeUtil.printTree(head);
 
 		System.out.println("====================================");
 
-		head = new Node(1);
-		printTree(head);
+		head = new TreeNode(1);
+		BinaryTreeUtil.printTree(head);
 
 		pre = serialByPre(head);
 		System.out.println("serialize tree by pre-order: " + pre);
 		head = reconByPreString(pre);
 		System.out.print("reconstruct tree by pre-order, ");
-		printTree(head);
+		BinaryTreeUtil.printTree(head);
 
 		level = serialByLevel(head);
 		System.out.println("serialize tree by level: " + level);
 		head = reconByLevelString(level);
 		System.out.print("reconstruct tree by level, ");
-		printTree(head);
+		BinaryTreeUtil.printTree(head);
 
 		System.out.println("====================================");
 
-		head = new Node(1);
-		head.left = new Node(2);
-		head.right = new Node(3);
-		head.left.left = new Node(4);
-		head.right.right = new Node(5);
-		printTree(head);
+		head = new TreeNode(1);
+		head.left = new TreeNode(2);
+		head.right = new TreeNode(3);
+		head.left.left = new TreeNode(4);
+		head.right.right = new TreeNode(5);
+		BinaryTreeUtil.printTree(head);
 
 		pre = serialByPre(head);
 		System.out.println("serialize tree by pre-order: " + pre);
 		head = reconByPreString(pre);
 		System.out.print("reconstruct tree by pre-order, ");
-		printTree(head);
+		BinaryTreeUtil.printTree(head);
 
 		level = serialByLevel(head);
 		System.out.println("serialize tree by level: " + level);
 		head = reconByLevelString(level);
 		System.out.print("reconstruct tree by level, ");
-		printTree(head);
+		BinaryTreeUtil.printTree(head);
 
 		System.out.println("====================================");
 
-		head = new Node(100);
-		head.left = new Node(21);
-		head.left.left = new Node(37);
-		head.right = new Node(-42);
-		head.right.left = new Node(0);
-		head.right.right = new Node(666);
-		printTree(head);
+		head = new TreeNode(100);
+		head.left = new TreeNode(21);
+		head.left.left = new TreeNode(37);
+		head.right = new TreeNode(-42);
+		head.right.left = new TreeNode(0);
+		head.right.right = new TreeNode(666);
+		BinaryTreeUtil.printTree(head);
 
 		pre = serialByPre(head);
 		System.out.println("serialize tree by pre-order: " + pre);
 		head = reconByPreString(pre);
 		System.out.print("reconstruct tree by pre-order, ");
-		printTree(head);
+		BinaryTreeUtil.printTree(head);
 
 		level = serialByLevel(head);
 		System.out.println("serialize tree by level: " + level);
 		head = reconByLevelString(level);
 		System.out.print("reconstruct tree by level, ");
-		printTree(head);
+		BinaryTreeUtil.printTree(head);
 
 		System.out.println("====================================");
 

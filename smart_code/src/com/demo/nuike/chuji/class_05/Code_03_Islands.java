@@ -1,6 +1,6 @@
 package com.demo.nuike.chuji.class_05;
 
-public class Code_03_Islands {	//岛问题
+public class Code_03_Islands {	// 岛问题
 
 	public static int countIslands(int[][] m) {
 		if (m == null || m[0] == null) {
@@ -20,34 +20,24 @@ public class Code_03_Islands {	//岛问题
 		return res;
 	}
 
-	public static void infect(int[][] m, int i, int j, int N, int M) {	//感染函数
+	public static void infect(int[][] m, int i, int j, int N, int M) {	// 感染函数
 		if (i < 0 || i >= N || j < 0 || j >= M || m[i][j] != 1) {
 			return;
 		}
 		m[i][j] = 2;
-		infect(m, i + 1, j, N, M);	//对这个数的上下左右进行判断是否进行感染
+		infect(m, i + 1, j, N, M);	// 对这个数的上下左右进行判断是否进行感染
 		infect(m, i - 1, j, N, M);
 		infect(m, i, j + 1, N, M);
 		infect(m, i, j - 1, N, M);
 	}
 
 	public static void main(String[] args) {
-		int[][] m1 = {  { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
-				        { 0, 1, 1, 1, 0, 1, 1, 1, 0 }, 
-				        { 0, 1, 1, 1, 0, 0, 0, 1, 0 },
-				        { 0, 1, 1, 0, 0, 0, 0, 0, 0 }, 
-				        { 0, 0, 0, 0, 0, 1, 1, 0, 0 }, 
-				        { 0, 0, 0, 0, 1, 1, 1, 0, 0 },
-				        { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, };
+		int[][] m1 = {{0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 1, 1, 1, 0, 1, 1, 1, 0}, {0, 1, 1, 1, 0, 0, 0, 1, 0}, {0, 1, 1, 0, 0, 0, 0, 0, 0},
+			{0, 0, 0, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0},};
 		System.out.println(countIslands(m1));
 
-		int[][] m2 = {  { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
-						{ 0, 1, 1, 1, 1, 1, 1, 1, 0 }, 
-						{ 0, 1, 1, 1, 0, 0, 0, 1, 0 },
-						{ 0, 1, 1, 0, 0, 0, 1, 1, 0 }, 
-						{ 0, 0, 0, 0, 0, 1, 1, 0, 0 }, 
-						{ 0, 0, 0, 0, 1, 1, 1, 0, 0 },
-						{ 0, 0, 0, 0, 0, 0, 0, 0, 0 }, };
+		int[][] m2 = {{0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 1, 1, 1, 1, 1, 1, 1, 0}, {0, 1, 1, 1, 0, 0, 0, 1, 0}, {0, 1, 1, 0, 0, 0, 1, 1, 0},
+			{0, 0, 0, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0},};
 		System.out.println(countIslands(m2));
 
 	}

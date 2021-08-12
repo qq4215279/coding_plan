@@ -1,23 +1,20 @@
 package com.demo.nuike.chuji.class_04;
 
+import com.demo.common.entity.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class Code_01_PreInPosTraversal { //实现二叉树的先序、中序、后序遍历，包括递归方式和非递归方式
+public class Code_01_PreInPosTraversal {
 
-	public static class Node {
-		public int value;
-		public Node left;
-		public Node right;
+	/**
+	 * 实现二叉树的先序、中序、后序遍历，包括递归方式和非递归方式
+	 * @param head
+	 */
 
-		public Node(int data) {
-			this.value = data;
-		}
-	}
-
-	//递归的方式实现遍历二叉树
-	public static void preOrderRecur(Node head) {	//先序遍历
+	// 递归的方式实现遍历二叉树
+	public static void preOrderRecur(TreeNode head) {	//先序遍历
 		if (head == null) {
 			return;
 		}
@@ -26,7 +23,7 @@ public class Code_01_PreInPosTraversal { //实现二叉树的先序、中序、�
 		preOrderRecur(head.right);
 	}
 
-	public static void inOrderRecur(Node head) {	//中序遍历
+	public static void inOrderRecur(TreeNode head) {	//中序遍历
 		if (head == null) {
 			return;
 		}
@@ -35,7 +32,7 @@ public class Code_01_PreInPosTraversal { //实现二叉树的先序、中序、�
 		inOrderRecur(head.right);
 	}
 
-	public static boolean inOrderRecurIsBST(Node head) {	//中序遍历判断是否是搜索二叉树
+	public static boolean inOrderRecurIsBST(TreeNode head) {	//中序遍历判断是否是搜索二叉树
 		if (head == null) {
 			return true;
 		}
@@ -49,7 +46,7 @@ public class Code_01_PreInPosTraversal { //实现二叉树的先序、中序、�
 
 		return true;
 	}
-	private static void inOrder(Node head, List<Integer> list){
+	private static void inOrder(TreeNode head, List<Integer> list){
 		if(head == null){
 			return;
 		}
@@ -60,7 +57,7 @@ public class Code_01_PreInPosTraversal { //实现二叉树的先序、中序、�
 
 
 
-	public static void posOrderRecur(Node head) {	//后续遍历
+	public static void posOrderRecur(TreeNode head) {	//后续遍历
 		if (head == null) {
 			return;
 		}
@@ -70,10 +67,10 @@ public class Code_01_PreInPosTraversal { //实现二叉树的先序、中序、�
 	}
 
 	//非递归的方式实现遍历二叉树：
-	public static void preOrderUnRecur(Node head) {	//非递归先序遍历
+	public static void preOrderUnRecur(TreeNode head) {	//非递归先序遍历
 		System.out.print("pre-order: ");
 		if (head != null) {
-			Stack<Node> stack = new Stack<Node>();	//准备一个栈 ，因为需要从底层回到上层去，所有借用了栈技术。
+			Stack<TreeNode> stack = new Stack<TreeNode>();	//准备一个栈 ，因为需要从底层回到上层去，所有借用了栈技术。
 			stack.add(head);
 			while (!stack.isEmpty()) {
 				head = stack.pop();		//弹出当前节点，即为头节点。右左孩子压完栈后，此时左节点来到栈顶，即为弹出当前节点了
@@ -89,10 +86,10 @@ public class Code_01_PreInPosTraversal { //实现二叉树的先序、中序、�
 		System.out.println();
 	}
 
-	public static void inOrderUnRecur(Node head) {	//非递归中序遍历（00：22）
+	public static void inOrderUnRecur(TreeNode head) {	//非递归中序遍历（00：22）
 		System.out.print("in-order: ");
 		if (head != null) {
-			Stack<Node> stack = new Stack<Node>();
+			Stack<TreeNode> stack = new Stack<TreeNode>();
 			while (!stack.isEmpty() || head != null) {	//栈不为空且有当前节点时
 				if (head != null) {		//当前节点不为空
 					stack.push(head);	//则当前节点进栈
@@ -109,11 +106,11 @@ public class Code_01_PreInPosTraversal { //实现二叉树的先序、中序、�
 		System.out.println();
 	}
 
-	public static void posOrderUnRecur1(Node head) {	//非递归后续遍历（00：38）
+	public static void posOrderUnRecur1(TreeNode head) {	//非递归后续遍历（00：38）
 		System.out.print("pos-order: ");		//采用先中，再右，再左的思路；中用新生成的辅助栈存起来
 		if (head != null) {
-			Stack<Node> s1 = new Stack<Node>();	//
-			Stack<Node> s2 = new Stack<Node>();	//辅助栈，存所有进去的"中"
+			Stack<TreeNode> s1 = new Stack<TreeNode>();	//
+			Stack<TreeNode> s2 = new Stack<TreeNode>();	//辅助栈，存所有进去的"中"
 			s1.push(head);
 			while (!s1.isEmpty()) {		//此步跟非递归前序遍历很像
 				head = s1.pop();	//弹出当前节点，即为头节点。右左孩子压完栈后，此时左节点来到栈顶，即为弹出当前节点了
@@ -132,12 +129,12 @@ public class Code_01_PreInPosTraversal { //实现二叉树的先序、中序、�
 		System.out.println();
 	}
 
-	public static void posOrderUnRecur2(Node h) {	//不用辅助栈的方式
+	public static void posOrderUnRecur2(TreeNode h) {	//不用辅助栈的方式
 		System.out.print("pos-order: ");
 		if (h != null) {
-			Stack<Node> stack = new Stack<Node>();
+			Stack<TreeNode> stack = new Stack<TreeNode>();
 			stack.push(h);
-			Node c = null;
+			TreeNode c = null;
 			while (!stack.isEmpty()) {
 				c = stack.peek();
 				if (c.left != null && h != c.left && h != c.right) {
@@ -154,17 +151,17 @@ public class Code_01_PreInPosTraversal { //实现二叉树的先序、中序、�
 	}
 
 	public static void main(String[] args) {
-		Node head = new Node(5);
-		head.left = new Node(3);
-		head.right = new Node(8);
-		head.left.left = new Node(2);
-		head.left.right = new Node(4);
-		head.left.left.left = new Node(1);
-		head.right.left = new Node(7);
-		head.right.left.left = new Node(6);
-		head.right.right = new Node(10);
-		head.right.right.left = new Node(9);
-		head.right.right.right = new Node(11);
+		TreeNode head = new TreeNode(5);
+		head.left = new TreeNode(3);
+		head.right = new TreeNode(8);
+		head.left.left = new TreeNode(2);
+		head.left.right = new TreeNode(4);
+		head.left.left.left = new TreeNode(1);
+		head.right.left = new TreeNode(7);
+		head.right.left.left = new TreeNode(6);
+		head.right.right = new TreeNode(10);
+		head.right.right.left = new TreeNode(9);
+		head.right.right.right = new TreeNode(11);
 
 		// recursive
 		System.out.println("==============recursive==============");

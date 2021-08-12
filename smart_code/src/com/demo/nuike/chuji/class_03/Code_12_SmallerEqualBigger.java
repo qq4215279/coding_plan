@@ -1,17 +1,14 @@
 package com.demo.nuike.chuji.class_03;
 
-public class Code_12_SmallerEqualBigger {//将单向链表按某值划分成左边小、中间相等、右边大的形式
+import com.demo.common.entity.Node;
 
-	public static class Node {
-		public int value;
-		public Node next;
+public class Code_12_SmallerEqualBigger {
 
-		public Node(int data) {
-			this.value = data;
-		}
-	}
+	/**
+	 * 将单向链表按某值划分成左边小、中间相等、右边大的形式
+	 */
 
-	public static Node listPartition1(Node head, int pivot) {	//pivot：支点，枢轴
+	public static Node listPartition1(Node head, int pivot) {	// pivot：支点，枢轴
 		if (head == null) {
 			return head;
 		}
@@ -24,7 +21,7 @@ public class Code_12_SmallerEqualBigger {//将单向链表按某值划分成左�
 		Node[] nodeArr = new Node[i];
 		i = 0;
 		cur = head;
-		for (i = 0; i != nodeArr.length; i++) {		//把单链表放进一个数组里
+		for (i = 0; i != nodeArr.length; i++) {		// 把单链表放进一个数组里
 			nodeArr[i] = cur;
 			cur = cur.next;
 		}
@@ -57,7 +54,7 @@ public class Code_12_SmallerEqualBigger {//将单向链表按某值划分成左�
 		nodeArr[b] = tmp;
 	}
 
-	public static Node listPartition2(Node head, int pivot) {	//进阶问题
+	public static Node listPartition2(Node head, int pivot) {	// 进阶问题
 		Node sH = null; // small head
 		Node sT = null; // small tail
 		Node eH = null; // equal head

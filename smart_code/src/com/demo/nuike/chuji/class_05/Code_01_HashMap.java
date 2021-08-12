@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-public class Code_01_HashMap {	//认识hash函数
+public class Code_01_HashMap {	// 认识hash函数
 
 	public static void main(String[] args) {
 		HashMap<String, String> map = new HashMap<>();

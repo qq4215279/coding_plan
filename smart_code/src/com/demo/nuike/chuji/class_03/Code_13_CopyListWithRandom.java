@@ -14,23 +14,23 @@ public class Code_13_CopyListWithRandom {
 		}
 	}
 
-	public static Node copyListWithRand1(Node head) {	//方法一，用hash表
+	public static Node copyListWithRand1(Node head) {	// 方法一，用hash表
 		HashMap<Node, Node> map = new HashMap<Node, Node>();
 		Node cur = head;
-		while (cur != null) {	//表示遍历所有节点，并在value中生成所有拷贝节点
-			map.put(cur, new Node(cur.value));	//key表示当前节点，value表示当前节点的拷贝节点。
+		while (cur != null) {	// 表示遍历所有节点，并在value中生成所有拷贝节点
+			map.put(cur, new Node(cur.value));	// key表示当前节点，value表示当前节点的拷贝节点。
 			cur = cur.next;
 		}
 		cur = head;
 		while (cur != null) {
-			map.get(cur).next = map.get(cur.next);	//左边表示当前节点的拷贝节点，右边表示当前节点的next节点的拷贝节点。左边指向右边
-			map.get(cur).rand = map.get(cur.rand);	//表示（左边）拷贝节点的rand指针指向（右边）原来当原来连边的rand指针指向的拷贝节点
+			map.get(cur).next = map.get(cur.next);	// 左边表示当前节点的拷贝节点，右边表示当前节点的next节点的拷贝节点。左边指向右边
+			map.get(cur).rand = map.get(cur.rand);	// 表示（左边）拷贝节点的rand指针指向（右边）原来当原来连边的rand指针指向的拷贝节点
 			cur = cur.next;
 		}
 		return map.get(head);
 	}
 
-	public static Node copyListWithRand2(Node head) {	//方法二：
+	public static Node copyListWithRand2(Node head) {	// 方法二：
 		if (head == null) {
 			return null;
 		}

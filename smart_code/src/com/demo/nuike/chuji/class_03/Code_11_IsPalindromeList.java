@@ -1,21 +1,19 @@
 package com.demo.nuike.chuji.class_03;
 
+import com.demo.common.entity.Node;
+
 import java.util.Stack;
 
-public class Code_11_IsPalindromeList {	//判断一个链表是否为回文结构
+public class Code_11_IsPalindromeList {	// 判断一个链表是否为回文结构
 
-	public static class Node {
-		public int value;
-		public Node next;
-
-		public Node(int data) {
-			this.value = data;
-		}
-	}
-
-	// need n extra space
+	/**
+	 * need n extra space\
+	 * 通过栈
+	 * @param head
+	 * @return
+	 */
 	public static boolean isPalindrome1(Node head) {
-		Stack<Node> stack = new Stack<Node>();
+		Stack<Node> stack = new Stack<>();
 		Node cur = head;
 		while (cur != null) {
 			stack.push(cur);
@@ -97,91 +95,82 @@ public class Code_11_IsPalindromeList {	//判断一个链表是否为回文结�
 		return res;
 	}
 
-	public static void printLinkedList(Node node) {	//打印链表
-		System.out.print("Linked List: ");
-		while (node != null) {
-			System.out.print(node.value + " ");
-			node = node.next;
-		}
-		System.out.println();
-	}
-
 	public static void main(String[] args) {
 
 		Node head = null;
-		printLinkedList(head);
-		System.out.print(isPalindrome1(head) + " | ");
-		System.out.print(isPalindrome2(head) + " | ");
-		System.out.println(isPalindrome3(head) + " | ");
-		printLinkedList(head);
-		System.out.println("=========================");
+//		head.print();
+//		System.out.print(isPalindrome1(head) + " | ");
+//		System.out.print(isPalindrome2(head) + " | ");
+//		System.out.println(isPalindrome3(head) + " | ");
+//		head.print();
+//		System.out.println("=========================");
 
 		head = new Node(1);
-		printLinkedList(head);
+		head.print();
 		System.out.print(isPalindrome1(head) + " | ");
 		System.out.print(isPalindrome2(head) + " | ");
 		System.out.println(isPalindrome3(head) + " | ");
-		printLinkedList(head);
+		head.print();
 		System.out.println("=========================");
 
 		head = new Node(1);
 		head.next = new Node(2);
-		printLinkedList(head);
+		head.print();
 		System.out.print(isPalindrome1(head) + " | ");
 		System.out.print(isPalindrome2(head) + " | ");
 		System.out.println(isPalindrome3(head) + " | ");
-		printLinkedList(head);
+		head.print();
 		System.out.println("=========================");
 
 		head = new Node(1);
 		head.next = new Node(1);
-		printLinkedList(head);
+		head.print();
 		System.out.print(isPalindrome1(head) + " | ");
 		System.out.print(isPalindrome2(head) + " | ");
 		System.out.println(isPalindrome3(head) + " | ");
-		printLinkedList(head);
+		head.print();
 		System.out.println("=========================");
 
 		head = new Node(1);
 		head.next = new Node(2);
 		head.next.next = new Node(3);
-		printLinkedList(head);
+		head.print();
 		System.out.print(isPalindrome1(head) + " | ");
 		System.out.print(isPalindrome2(head) + " | ");
 		System.out.println(isPalindrome3(head) + " | ");
-		printLinkedList(head);
+		head.print();
 		System.out.println("=========================");
 
 		head = new Node(1);
 		head.next = new Node(2);
 		head.next.next = new Node(1);
-		printLinkedList(head);
+		head.print();
 		System.out.print(isPalindrome1(head) + " | ");
 		System.out.print(isPalindrome2(head) + " | ");
 		System.out.println(isPalindrome3(head) + " | ");
-		printLinkedList(head);
+		head.print();
 		System.out.println("=========================");
 
 		head = new Node(1);
 		head.next = new Node(2);
 		head.next.next = new Node(3);
 		head.next.next.next = new Node(1);
-		printLinkedList(head);
+		head.print();
 		System.out.print(isPalindrome1(head) + " | ");
 		System.out.print(isPalindrome2(head) + " | ");
 		System.out.println(isPalindrome3(head) + " | ");
-		printLinkedList(head);
+		head.print();
 		System.out.println("=========================");
 
 		head = new Node(1);
 		head.next = new Node(2);
 		head.next.next = new Node(2);
 		head.next.next.next = new Node(1);
-		printLinkedList(head);
+		head.print();
 		System.out.print(isPalindrome1(head) + " | ");
 		System.out.print(isPalindrome2(head) + " | ");
 		System.out.println(isPalindrome3(head) + " | ");
-		printLinkedList(head);
+		head.print();
 		System.out.println("=========================");
 
 		head = new Node(1);
@@ -189,11 +178,11 @@ public class Code_11_IsPalindromeList {	//判断一个链表是否为回文结�
 		head.next.next = new Node(3);
 		head.next.next.next = new Node(2);
 		head.next.next.next.next = new Node(1);
-		printLinkedList(head);
+		head.print();
 		System.out.print(isPalindrome1(head) + " | ");
 		System.out.print(isPalindrome2(head) + " | ");
 		System.out.println(isPalindrome3(head) + " | ");
-		printLinkedList(head);
+		head.print();
 		System.out.println("=========================");
 
 	}
