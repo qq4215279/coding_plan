@@ -24,7 +24,7 @@ public class Node implements INode {
      */
     @Override
     public void print() {
-        System.out.print("Node List: ");
+        System.out.println("Linked List: ");
         Node cur = this;
         if (cur == null) {
             return;

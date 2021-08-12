@@ -8,7 +8,7 @@ import java.util.Collections;
  *  升序：return this.- o2;
  *  降序: return o1 - this.;
  */
-public class PersonComparable implements Comparable {
+public class PersonComparable implements Comparable<PersonComparable> {
     private int age;
     private String name;
 
@@ -17,16 +17,36 @@ public class PersonComparable implements Comparable {
         this.name = name;
     }
 
-    @Override
+    /**
+     * 写法1：在类上：implements Comparable
+     * @author liuzhen
+     * @date 2021/8/12 14:22
+     * @param o
+     * @return int
+     */
+   /* @Override
     public int compareTo(Object o) {
         if (o instanceof PersonComparable) {
             PersonComparable personComparable = (PersonComparable) o;
-            int result;
-            result = getAge() - personComparable.getAge(); // 升序
-            // result = person.getAge() -  getAge(); // 降序
+            int result = getAge() - personComparable.getAge(); // 升序
+            // int result = person.getAge() -  getAge(); // 降序
             return result;
         }
         return 0;
+    }*/
+
+    /**
+     * 写法2：在类上：implements Comparable<PersonComparable>
+     * @author liuzhen
+     * @date 2021/8/12 14:22
+     * @param personComparable
+     * @return int
+     */
+    @Override
+    public int compareTo(PersonComparable personComparable) {
+        int result = getAge() - personComparable.getAge(); // 升序
+        // int result = person.getAge() -  getAge(); // 降序
+        return result;
     }
 
     @Override
@@ -65,4 +85,5 @@ public class PersonComparable implements Comparable {
         Collections.sort(list);
         System.out.printf("Original sort, list:%s\n", list);
     }
+
 }

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class Code_10_GetAllNotIncluded {//
+public class Code_10_GetAllNotIncluded { //
 
 	public static List<Integer> GetAllNotIncluded(int[] A, int[] B) {
 		List<Integer> res = new ArrayList<>();

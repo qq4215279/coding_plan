@@ -1,8 +1,9 @@
 package com.demo.nuike.chuji.class_01;
 
-import java.util.Arrays;
+import com.demo.common.utils.ArrayUtil;
+import com.demo.common.utils.LogarithmUtil;
 
-public class Code_03_HeapSort {	// 堆排序（选择排序）
+public class Code_03_HeapSort {	// 堆排序（选择排序） 时间复杂度O(N*logN)，额外空间复杂度O(1)
 
 	/**
 	 * 堆排序（选择排序）
@@ -20,10 +21,10 @@ public class Code_03_HeapSort {	// 堆排序（选择排序）
 
 		// 2. 对数组遍历，每个元素与0位置上的数进行交换，再进行下沉排序
 		int size = arr.length;
-		swap(arr, 0, --size);
+		ArrayUtil.swap(arr, 0, --size);
 		while (size > 0) {
 			heapify(arr, 0, size);
-			swap(arr, 0, --size);
+			ArrayUtil.swap(arr, 0, --size);
 		}
 	}
 
@@ -35,9 +36,11 @@ public class Code_03_HeapSort {	// 堆排序（选择排序）
 	 * @param index
 	 */
 	public static void heapInsert(int[] arr, int index) {
-		while (arr[index] > arr[(index - 1) / 2]) {		// 当前位置的数与父位置的数比较，符合就交换
-			swap(arr, index, (index - 1) / 2);
-			index = (index - 1) / 2;	// 当前数来到父位置，继续while ,知道while不符合条件
+		// 当前位置的数与父位置的数比较，符合就交换
+		while (arr[index] > arr[(index - 1) / 2]) {
+			ArrayUtil.swap(arr, index, (index - 1) / 2);
+			// 当前数来到父位置，继续while ,知道while不符合条件
+			index = (index - 1) / 2;
 		}
 	}
 
@@ -56,75 +59,12 @@ public class Code_03_HeapSort {	// 堆排序（选择排序）
 			if (largest == index) {
 				break;
 			}
-			swap(arr, largest, index);	// 潜台词表示 largest != index
+			ArrayUtil.swap(arr, largest, index);	// 潜台词表示 largest != index
 			index = largest;		// 当前索引变成左右孩子较大者的索引
 			left = index * 2 + 1;
 		}
 	}
 
-	public static void swap(int[] arr, int i, int j) {	// 交换
-		int tmp = arr[i];
-		arr[i] = arr[j];
-		arr[j] = tmp;
-	}
-
-
-	// for test
-	public static void comparator(int[] arr) {
-		Arrays.sort(arr);
-	}
-
-	// for test
-	public static int[] generateRandomArray(int maxSize, int maxValue) {
-//		int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
-		int[] arr = new int[7];
-		for (int i = 0; i < arr.length; i++) {
-			arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
-		}
-		return arr;
-	}
-
-	// for test
-	public static int[] copyArray(int[] arr) {
-		if (arr == null) {
-			return null;
-		}
-		int[] res = new int[arr.length];
-		for (int i = 0; i < arr.length; i++) {
-			res[i] = arr[i];
-		}
-		return res;
-	}
-
-	// for test
-	public static boolean isEqual(int[] arr1, int[] arr2) {
-		if ((arr1 == null && arr2 != null) || (arr1 != null && arr2 == null)) {
-			return false;
-		}
-		if (arr1 == null && arr2 == null) {
-			return true;
-		}
-		if (arr1.length != arr2.length) {
-			return false;
-		}
-		for (int i = 0; i < arr1.length; i++) {
-			if (arr1[i] != arr2[i]) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	// for test
-	public static void printArray(int[] arr) {
-		if (arr == null) {
-			return;
-		}
-		for (int i = 0; i < arr.length; i++) {
-			System.out.print(arr[i] + " ");
-		}
-		System.out.println();
-	}
 
 	// for test
 	public static void main(String[] args) {
@@ -144,10 +84,10 @@ public class Code_03_HeapSort {	// 堆排序（选择排序）
 //		}
 //		System.out.println(succeed ? "Nice!" : "Fucking fucked!");
 
-		int[] arr = generateRandomArray(100, 20);
-		printArray(arr);
+		int[] arr = LogarithmUtil.generateRandomArray(100, 20);
+		LogarithmUtil.printArray(arr);
 		heapSort(arr);
-		printArray(arr);
+		LogarithmUtil.printArray(arr);
 	}
 
 }

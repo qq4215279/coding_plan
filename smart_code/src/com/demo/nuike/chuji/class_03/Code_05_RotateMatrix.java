@@ -1,9 +1,10 @@
 package com.demo.nuike.chuji.class_03;
 
-public class Code_05_RotateMatrix { //旋转正方形
+public class Code_05_RotateMatrix { // 旋转正方形
 
 	public static void rotate(int[][] matrix) {
-		int tR = 0;			//t-->start   d-->end	R-->row		C-->col
+		// t-->start   d-->end	R-->row		C-->col
+		int tR = 0;
 		int tC = 0;
 		int dR = matrix.length - 1;
 		int dC = matrix[0].length - 1;
@@ -13,18 +14,20 @@ public class Code_05_RotateMatrix { //旋转正方形
 	}
 
 	public static void rotateEdge(int[][] m, int tR, int tC, int dR, int dC) {
-		int times = dC - tC; 		//表示一行有几个点，
+		// 表示一行有几个点
+		int times = dC - tC;
 		int tmp = 0;
-		for (int i = 0; i != times; i++) {	//i就是出发点,4个边界的点依此交换交换
+		// i就是出发点,4个边界的点依此交换交换
+		for (int i = 0; i != times; i++) {
 			tmp = m[tR][tC + i];			// tem = [0,0]
-			m[tR][tC + i] = m[dR - i][tC];	//eg:[0,0]->[n,0]
-			m[dR - i][tC] = m[dR][dC - i];	//[1,n]->[n-1,n-1]
-			m[dR][dC - i] = m[tR + i][dC];	//[n-1,n-1]->[0,n-1]
-			m[tR + i][dC] = tmp;			//[0,n-1]->[0,0]
+			m[tR][tC + i] = m[dR - i][tC];	// eg:[0,0]->[0,n]
+			m[dR - i][tC] = m[dR][dC - i];	// [0,n]->[n,n]
+			m[dR][dC - i] = m[tR + i][dC];	// [n,n]->[n,0]
+			m[tR + i][dC] = tmp;			// [n,0]->[0,0]
 		}
 	}
 
-	public static void printMatrix(int[][] matrix) {	//打印旋转后的矩阵
+	public static void printMatrix(int[][] matrix) {	// 打印旋转后的矩阵
 		for (int i = 0; i != matrix.length; i++) {
 			for (int j = 0; j != matrix[0].length; j++) {
 				System.out.print(matrix[i][j] + " ");

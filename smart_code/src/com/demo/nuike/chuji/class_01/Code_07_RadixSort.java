@@ -2,7 +2,7 @@ package com.demo.nuike.chuji.class_01;
 
 import java.util.Arrays;
 
-public class Code_07_RadixSort {//基数排序
+public class Code_07_RadixSort { // 基数排序
 
 	// only for no-negative value
 	public static void radixSort(int[] arr) {

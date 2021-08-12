@@ -1,8 +1,10 @@
 package com.demo.nuike.chuji.class_01;
 
+import com.demo.common.utils.LogarithmUtil;
+
 import java.util.Arrays;
 //	带更进、、、
-public class Code_11_MaxGap {//Gap 间隙 缺口		Class3补充问题。用的是桶排序	求排完序后相邻两数的最大差值
+public class Code_11_MaxGap { // Gap 间隙 缺口		Class3补充问题。用的是桶排序	求排完序后相邻两数的最大差值
 
 	public static int maxGap(int[] nums) {
 		if (nums == null || nums.length < 2) {
@@ -58,35 +60,14 @@ public class Code_11_MaxGap {//Gap 间隙 缺口		Class3补充问题。用的是
 	}
 
 	// for test
-	public static int[] generateRandomArray(int maxSize, int maxValue) {
-		int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
-		for (int i = 0; i < arr.length; i++) {
-			arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
-		}
-		return arr;
-	}
-
-	// for test
-	public static int[] copyArray(int[] arr) {
-		if (arr == null) {
-			return null;
-		}
-		int[] res = new int[arr.length];
-		for (int i = 0; i < arr.length; i++) {
-			res[i] = arr[i];
-		}
-		return res;
-	}
-
-	// for test
 	public static void main(String[] args) {
 		int testTime = 500000;
 		int maxSize = 100;
 		int maxValue = 100;
 		boolean succeed = true;
 		for (int i = 0; i < testTime; i++) {
-			int[] arr1 = generateRandomArray(maxSize, maxValue);
-			int[] arr2 = copyArray(arr1);
+			int[] arr1 = LogarithmUtil.generateRandomArray(maxSize, maxValue);
+			int[] arr2 = LogarithmUtil.copyArray(arr1);
 			if (maxGap(arr1) != comparator(arr2)) {
 				succeed = false;
 				break;

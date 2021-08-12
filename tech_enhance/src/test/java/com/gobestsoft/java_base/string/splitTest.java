@@ -18,7 +18,8 @@ public class splitTest {
         String[] split = aa.split(",");
 
         System.out.println("长度： " + split.length); // 长度： 5
-        System.out.println("--->" + split[3]); // --->
+        System.out.println("split[3]--->" + split[3] + "!"); // split[3]--->?
+        System.out.println("split[4]--->" + split[4] + "!"); // split[4]---> ?
 
         System.out.println("----------------------------------->");
 
@@ -26,7 +27,7 @@ public class splitTest {
         String[] bbSplit = bb.split(",");
 
         System.out.println("长度： " + bbSplit.length); // 长度： 3
-        System.out.println("--->" + bbSplit[3]); // 报错: java.lang.ArrayIndexOutOfBoundsException: 3
+        System.out.println("bbSplit[3]--->" + bbSplit[3]); // 报错: java.lang.ArrayIndexOutOfBoundsException: 3
     }
 
 }

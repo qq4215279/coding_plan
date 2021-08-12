@@ -3,7 +3,7 @@ package com.demo.nuike.chuji.class_01;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class Code_09_Comparator {//比较
+public class Code_09_Comparator { // 比较
 
 	public static class Student {
 		public String name;
@@ -27,30 +27,24 @@ public class Code_09_Comparator {//比较
 	}
 
 	public static class IdDescendingComparator implements Comparator<Student> {
-
 		@Override
 		public int compare(Student o1, Student o2) {
 			return o2.id - o1.id;
 		}
-
 	}
 
 	public static class AgeAscendingComparator implements Comparator<Student> {
-
 		@Override
 		public int compare(Student o1, Student o2) {
 			return o1.age - o2.age;
 		}
-
 	}
 
 	public static class AgeDescendingComparator implements Comparator<Student> {
-
 		@Override
 		public int compare(Student o1, Student o2) {
 			return o2.age - o1.age;
 		}
-
 	}
 
 	public static void printStudents(Student[] students) {
@@ -65,7 +59,7 @@ public class Code_09_Comparator {//比较
 		Student student2 = new Student("B", 2, 21);
 		Student student3 = new Student("C", 3, 22);
 
-		Student[] students = new Student[] { student3, student2, student1 };
+		Student[] students = new Student[] {student3, student2, student1};
 		printStudents(students);
 
 		Arrays.sort(students, new IdAscendingComparator());
