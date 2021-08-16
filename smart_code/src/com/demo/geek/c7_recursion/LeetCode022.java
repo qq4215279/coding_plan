@@ -30,7 +30,7 @@ public class LeetCode022 { // LeetCode 22
     }
 
     /**
-     * 思路: 想象成有2n个格子，从左到右填括号，每个格子可以填左括号与右括号，当2n个格子填满后递归一次就结束。
+     * 思路(深度优先遍历): 想象成有2n个格子，从左到右填括号，每个格子可以填左括号与右括号，当2n个格子填满后递归一次就结束。
      * 填格子的条件根据题意总结下来: 左括号: 随时加，只要不超标；右括号: 左个数 > 右个数
      * @param left
      * @param right
@@ -83,5 +83,7 @@ public class LeetCode022 { // LeetCode 22
         System.out.println(list2.toString());
         System.out.println("size2:" + list2.size());
     }
+
+    
 
 }

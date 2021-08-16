@@ -29,6 +29,9 @@ public class LeetCode102 {
      *   [15,7]
      * ]
      *
+     * 思路：
+     * 1. BFS:
+     * 2. DFS: 因为深度遍历时，能够知道每一层级，通过每一层层级时存储value值，eg： Map<level,list>
      */
 
     public List<List<Integer>> levelOrder(TreeNode root) {
