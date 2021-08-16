@@ -94,7 +94,7 @@ public class LeetCode169 {
     }
 
     public static void main(String[] args) {
-        int[] nums = {4, 3, 3};
+        int[] nums = {3, 4, 3};
         int i = majorityElement(nums);
         System.out.println(i);
 

@@ -41,7 +41,7 @@ public class LeetCode051 {
      * @param n
      * @return java.util.List<java.util.List<java.lang.String>>
      */
-    public List<List<String>> solveNQueens(int n) {
+    public static List<List<String>> solveNQueens(int n) {
         List<List<String>> res = new ArrayList<>();
         // 定义每行皇后所在的index的数组
         int[] queens = new int[n];
@@ -59,6 +59,13 @@ public class LeetCode051 {
 
     /**
      * 回溯
+     * 重点：
+     * 1. 判断最近左上斜对角元素：int na = row - i;
+     *      . Q .   Q: 0 - 1 = -1
+     *      . . i   i: 1 - 2 = -1
+     * 2. 判断最近右上斜对角元素：int pie = row + i;
+     *      . Q     Q: 0 + 1 = 1
+     *      i .     i: 1 + 0 = 1
      * @param res
      * @param queens
      * @param n
@@ -67,7 +74,7 @@ public class LeetCode051 {
      * @param naSet
      * @param pieSet
      */
-    public static void backtrack(List<List<String>> res, int[] queens, int n, int row, Set<Integer> columnSet, Set<Integer> naSet,
+    private static void backtrack(List<List<String>> res, int[] queens, int n, int row, Set<Integer> columnSet, Set<Integer> naSet,
                           Set<Integer> pieSet) {
         if (row == n) {
             List<String> board = generateBoard(queens, n);
@@ -75,26 +82,38 @@ public class LeetCode051 {
             return;
         }
 
+        // 每次递归后都是一行一行横着遍历
         for (int i = 0; i < n; i++) {
             if (columnSet.contains(i)) {
                 continue;
             }
+            /*
+            * 判断最近左上斜对角元素：int na = row - i;
+            * . Q .   Q: 0 - 1 = -1
+            * . . i   i: 1 - 2 = -1
+            */
             int na = row - i;
             if (naSet.contains(na)) {
                 continue;
             }
+            /*
+             * 判断最近右上斜对角元素：int pie = row + i;
+             * . Q    Q: 0 + 1 = 1
+             * i .    i: 1 + 0 = 1
+             */
             int pie = row + i;
             if (pieSet.contains(pie)) {
                 continue;
             }
 
+            // 暂存lie、na、pie的Q位置
             queens[row] = i;
             columnSet.add(i);
             naSet.add(na);
             pieSet.add(pie);
-            //
+            // 递归下一行，找下一行的Q位置
             backtrack(res, queens, n, row + 1, columnSet, naSet, pieSet);
-            //
+            // 将每次递归中间过程产生的数清除
             queens[row] = -1;
             columnSet.remove(i);
             naSet.remove(na);
@@ -102,7 +121,7 @@ public class LeetCode051 {
         }
     }
 
-    public static List<String> generateBoard(int[] queens, int n) {
+    private static List<String> generateBoard(int[] queens, int n) {
         List<String> board = new ArrayList<String>();
         for (int i = 0; i < n; i++) {
             char[] row = new char[n];
@@ -111,6 +130,11 @@ public class LeetCode051 {
             board.add(new String(row));
         }
         return board;
+    }
+
+    public static void main(String[] args) {
+        List<List<String>> lists = solveNQueens(4);
+        System.out.println(lists);
     }
 
 }
