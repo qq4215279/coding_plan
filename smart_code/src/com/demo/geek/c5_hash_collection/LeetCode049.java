@@ -39,7 +39,7 @@ public class LeetCode049 { // LeetCode  49
         for (String s : strs) {
             char[] chars = s.toCharArray();
             Arrays.sort(chars);
-            String key = String.valueOf(chars); //字符数组也可以通过String静态类转字符串！！！！！
+            String key = String.valueOf(chars); // 字符数组也可以通过String静态类转字符串！！！！！
             if (!map.containsKey(key)){
                 map.put(key, new ArrayList<>());
             }

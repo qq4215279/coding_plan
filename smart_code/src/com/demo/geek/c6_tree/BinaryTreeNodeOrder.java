@@ -12,7 +12,7 @@ import java.util.Stack;
 /**
  * 实现二叉树的先序、中序、后序遍历，包括递归方式和非递归方式
  */
-public class BinaryTreeNodeOrder {
+public class BinaryTreeNodeOrder { // 后续遍历 LeetCode145
 
 
     /**
@@ -87,14 +87,14 @@ public class BinaryTreeNodeOrder {
         if (head != null) {
             Stack<TreeNode> stack = new Stack<TreeNode>();
             // 栈不为空且有当前节点时
-            while (!stack.isEmpty() || head != null) {
-                // 当前节点不为空
+            while (head != null || !stack.isEmpty()) {
+                // 当前节点存在，开始进栈处理
                 if (head != null) {
                     // 则当前节点进栈
                     stack.push(head);
                     // 有左孩子时，当前节点变为左孩子继续进栈
                     head = head.left;
-                } else { // 直到当前节点为空（即左孩子为空）时
+                } else { // 直到当前节点为空（即左孩子为空）时，开始出栈处理
                     // 开始从栈中弹出当前孩子
                     head = stack.pop();
                     // 弹出并且打印
@@ -106,6 +106,17 @@ public class BinaryTreeNodeOrder {
         }    // 总的思路为：当前节点为空，从栈中拿一个，打印，当前节点不为空当前节点压入栈，向右移动，当前节点为左。
 
         System.out.println();
+    }
+
+    public static void inOrderUnRecur2(TreeNode head) {
+        System.out.print("in-order2: ");
+
+        if (head == null) {
+            return;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+
     }
 
     /**
@@ -126,27 +137,39 @@ public class BinaryTreeNodeOrder {
 
     /**
      * 非递归后续遍历（00：38）
+     * 思路：采用先中，再右，再左的思路；中用新生成的辅助栈存起来。
+     *      后续遍历特点：head最后出来，过了head.right节点，过了head.right.right节点...,
+     *      所以在根据栈先进后出特性，先进head,再进head.right,再进head.right.right,...,
+     *
+     *
      * @author liuzhen
      * @date 2021/8/6 17:26
      * @param head
      * @return void
      */
     public static void postOrderUnRecur1(TreeNode head) {
-        System.out.print("pos-order: ");        // 采用先中，再右，再左的思路；中用新生成的辅助栈存起来
+        System.out.print("pos-order: ");
         if (head != null) {
-            Stack<TreeNode> s1 = new Stack<TreeNode>();    //
-            Stack<TreeNode> s2 = new Stack<TreeNode>();    // 辅助栈，存所有进去的"中"
+            Stack<TreeNode> s1 = new Stack<TreeNode>();
+            // 辅助栈，存所有进去的"中"
+            Stack<TreeNode> s2 = new Stack<TreeNode>();
             s1.push(head);
-            while (!s1.isEmpty()) {        // 此步跟非递归前序遍历很像
-                head = s1.pop();    // 弹出当前节点，即为头节点。右左孩子压完栈后，此时左节点来到栈顶，即为弹出当前节点了
-                s2.push(head);        // 辅助栈把当前节点（被认为是“中”）进入辅助栈
-                if (head.left != null) {    // 有左孩子，就先把左孩子压栈，
+            // 此步跟非递归前序遍历很像
+            while (!s1.isEmpty()) {
+                // 弹出当前节点，即为头节点。右左孩子压完栈后，此时左节点来到栈顶，即为弹出当前节点了
+                head = s1.pop();
+                // 辅助栈把当前节点（被认为是“中”）进入辅助栈
+                s2.push(head);
+                // 有左孩子，就先把左孩子压栈，
+                if (head.left != null) {
                     s1.push(head.left);
                 }
-                if (head.right != null) {    // 有右孩子，就先把右孩子压栈，
+                // 有右孩子，就先把右孩子压栈，
+                if (head.right != null) {
                     s1.push(head.right);
                 }
             }
+            // 打印所有节点
             while (!s2.isEmpty()) {
                 System.out.print(s2.pop().value + " ");
             }
@@ -158,24 +181,24 @@ public class BinaryTreeNodeOrder {
      * 不用辅助栈的方式 后续遍历
      * @author liuzhen
      * @date 2021/8/6 17:28
-     * @param h
+     * @param head
      * @return void
      */
-    public static void postOrderUnRecur2(TreeNode h) {
+    public static void postOrderUnRecur2(TreeNode head) {
         System.out.print("pos-order: ");
-        if (h != null) {
+        if (head != null) {
             Stack<TreeNode> stack = new Stack<TreeNode>();
-            stack.push(h);
+            stack.push(head);
             TreeNode c = null;
             while (!stack.isEmpty()) {
                 c = stack.peek();
-                if (c.left != null && h != c.left && h != c.right) {
+                if (c.left != null && head != c.left && head != c.right) {
                     stack.push(c.left);
-                } else if (c.right != null && h != c.right) {
+                } else if (c.right != null && head != c.right) {
                     stack.push(c.right);
                 } else {
                     System.out.print(stack.pop().value + " ");
-                    h = c;
+                    head = c;
                 }
             }
         }

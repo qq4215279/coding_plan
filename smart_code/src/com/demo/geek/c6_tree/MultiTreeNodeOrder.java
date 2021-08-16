@@ -8,7 +8,9 @@ package com.demo.geek.c6_tree;
 import com.demo.common.entity.MultiTreeNode;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * N叉树的前序，层次，后续遍历
@@ -28,11 +30,19 @@ public class MultiTreeNodeOrder { // LeetCode T589:N叉树的前序遍历;  层�
      */
 
 
-    List<Integer> list = new ArrayList<>();
+    private static List<Integer> list = new ArrayList<>();
 
-    public List<Integer> preOrder(MultiTreeNode root) {  // 前序递归遍历N叉树
-        if (root == null)
+    /**
+     * 前序递归遍历N叉树
+     * @author liuzhen
+     * @date 2021/8/13 16:18
+     * @param root
+     * @return java.util.List<java.lang.Integer>
+     */
+    public static List<Integer> preOrder(MultiTreeNode root) {
+        if (root == null) {
             return list;
+        }
 
         if (root != null) {
             list.add(root.value);
@@ -43,9 +53,17 @@ public class MultiTreeNodeOrder { // LeetCode T589:N叉树的前序遍历;  层�
         return list;
     }
 
-    public List<Integer> postOrder(MultiTreeNode root) {  // 后序递归遍历N叉树
-        if (root == null)
+    /**
+     * 后序递归遍历N叉树
+     * @author liuzhen
+     * @date 2021/8/13 16:18
+     * @param root
+     * @return java.util.List<java.lang.Integer>
+     */
+    public static List<Integer> postOrder(MultiTreeNode root) {
+        if (root == null) {
             return list;
+        }
 
         if (root != null) {
             for (MultiTreeNode node : root.children) {
@@ -56,32 +74,57 @@ public class MultiTreeNodeOrder { // LeetCode T589:N叉树的前序遍历;  层�
         return list;
     }
 
-    public List<Integer> levelOrder(MultiTreeNode root) {  // 层次递归遍历N叉树
+    /**
+     * 层次递归遍历N叉树
+     * @author liuzhen
+     * @date 2021/8/13 16:17
+     * @param root
+     * @return java.util.List<java.lang.Integer>
+     */
+    public static List<Integer> levelOrder(MultiTreeNode root) {
+        if (root == null) {
+            return list;
+        }
 
+        Queue<MultiTreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            MultiTreeNode pollNode = queue.poll();
+            list.add(pollNode.value);
+
+            List<MultiTreeNode> children = pollNode.children;
+            for (MultiTreeNode childNode : children) {
+                queue.offer(childNode);
+            }
+        }
 
         return list;
     }
 
-
+    /**
+     * test print()
+     *                1
+     *        100    178     10
+     *     99    30
+     *
+     * @param args
+     */
     public static void main(String[] args) {
+        // 子节点
+        List<MultiTreeNode> c1ChildNodes = new ArrayList<>();
+        c1ChildNodes.add(new MultiTreeNode(99));
+        c1ChildNodes.add(new MultiTreeNode(30));
+        MultiTreeNode c1 = new MultiTreeNode(100, c1ChildNodes);
+        // 父节点
+        List<MultiTreeNode> headChildNodes = new ArrayList<>();
+        headChildNodes.add(c1);
+        headChildNodes.add(new MultiTreeNode(178));
+        headChildNodes.add(new MultiTreeNode(10));
+        MultiTreeNode head = new MultiTreeNode(1, headChildNodes);
 
-//        Node Aa = new Node(5);
-//        Node Ab = new Node(6);
-//        Node B = new Node(2);
-//        Node C = new Node(4);
-//        List<Node> AList = new ArrayList<>();
-//        AList.add(Aa);
-//        AList.add(Ab);
-//        Node A = new Node(3, AList);
-//        List<Node> rootList = new ArrayList<>();
-//        rootList.add(A);
-//        rootList.add(B);
-//        rootList.add(C);
-//        Node root = new Node(1, rootList);
-
-//        new Day03Demo03().preorder(root);
-
-
+        List<Integer> list = levelOrder(head);
+        System.out.println(list);
     }
 
 }
