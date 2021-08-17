@@ -13,6 +13,10 @@ package com.gobestsoft.java_base.string;
  */
 public class splitTest {
 
+    /**
+     * String a = new String(“1”+”2”)最终创建了几个对象: 2
+     * @param args
+     */
     public static void main(String[] args) {
         String aa = "aa,bb,cc,, ";
         String[] split = aa.split(",");

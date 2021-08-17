@@ -5,11 +5,11 @@ import com.demo.common.utils.LogarithmUtil;
 
 /**
  * InsertSort
- * 插入排序
+ * 直接插入排序
  * @author liuzhen
  * @version 1.0.0 2021/7/11 23:23
  */
-public class InsertSort {
+public class InsertSort { // 直接插入排序（插入排序） 时间复杂度O(N^2) 空间复杂度O(1)
 
     public static void insertSort(int[] arr) {
         if (arr == null || arr.length < 2) {
@@ -30,6 +30,8 @@ public class InsertSort {
 
         insertSort(arr);
         LogarithmUtil.printArray(arr);
+
+        
     }
 
 }

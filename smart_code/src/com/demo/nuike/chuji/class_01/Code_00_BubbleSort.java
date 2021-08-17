@@ -3,7 +3,7 @@ package com.demo.nuike.chuji.class_01;
 import com.demo.common.utils.ArrayUtil;
 import com.demo.common.utils.LogarithmUtil;
 
-public class Code_00_BubbleSort { // 冒泡排序（交换排序） 时间复杂度O(N^2)
+public class Code_00_BubbleSort { // 冒泡排序（交换排序） 时间复杂度O(N^2) 空间复杂度O(1)
 
 	public static void bubbleSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
