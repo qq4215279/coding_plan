@@ -36,7 +36,7 @@ public class LeetCode033 {
      * 进阶：你可以设计一个时间复杂度为 O(log n) 的解决方案吗？
      *
      * 思路：
-     * 1. 暴力：还原 O(logN)  -> 圣墟 -> 二分: O(logN)
+     * 1. 暴力：还原 O(logN)  -> 升序 -> 二分: O(logN)
      * 2. 正解：二分查找:   - 单调  - 边界  - index
      *
      */
@@ -85,6 +85,7 @@ public class LeetCode033 {
         return -1;
     }
 
+    // TODO
     public int search2(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return -1;
