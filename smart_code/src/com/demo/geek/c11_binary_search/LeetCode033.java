@@ -52,7 +52,7 @@ public class LeetCode033 {
      * @param target
      * @return int
      */
-    public int search(int[] nums, int target) {
+    public static int search(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return -1;
         }
@@ -85,8 +85,8 @@ public class LeetCode033 {
         return -1;
     }
 
-    // TODO
-    public int search2(int[] nums, int target) {
+    // TODO                                                  0 1 2 3 4 5 6
+    public static int search2(int[] nums, int target) { //   3 4 5 6 7 1 2
         if (nums == null || nums.length == 0) {
             return -1;
         }
@@ -95,22 +95,56 @@ public class LeetCode033 {
         int low = 0;
         int high = nums.length - 1;
 
-        while (low <= high) {
+        while (low < high) {
             int middle = low + (high - low) / 2;
-
             // 左边升序，向后规约
             if (nums[low] < nums[middle]) {
-                low = middle + 1;
+                low = middle;
             } else { // 右边升序，所以向左规约
-                high = middle - 1;
+                high = middle;
             }
         }
+
+        int r = high;
+//        System.out.println(r);
+        // 数组复制
+        int[] newArr = new int[nums.length];
+        System.arraycopy(nums, r + 1, newArr, 0, nums.length - r - 1);
+        System.arraycopy(nums, 0, newArr, nums.length - r - 1, r + 1);
 
         // 升序
 
         // 二分
+        int res = binarySearch(newArr, target);
 
-        return 1;
+        return res;
+    }
+
+    public static int binarySearch(int[] nums, int target) {
+        if (nums == null || nums.length < 0) {
+            return -1;
+        }
+
+        int left = 0;
+        int right = nums.length;
+
+        while (left <= right) {
+            int middle = left + (right - left) / 2;
+            if (target == nums[middle]) {
+                return middle;
+            } else if (target > nums[middle]) {
+                left = middle + 1;
+            } else if (target < nums[middle]) {
+                right = middle - 1;
+            }
+        }
+
+        return -1;
+    }
+
+    public static void main(String[] args) {         // right = 4   7
+        System.out.println(search(new int[] {3, 4, 5, 6, 7, 1, 2}, 1));
+        System.out.println(search2(new int[] {3, 4, 5, 6, 7, 1, 2}, 1));
     }
 
 }
