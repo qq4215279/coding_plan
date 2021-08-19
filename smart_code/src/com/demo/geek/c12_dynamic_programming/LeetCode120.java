@@ -1,5 +1,6 @@
 package com.demo.geek.c12_dynamic_programming;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,10 +36,76 @@ public class LeetCode120 {
      * -104 <= triangle[i][j] <= 104
      *  
      * 进阶： 你可以只使用 O(n) 的额外空间（n 为三角形的总行数）来解决这个问题吗？
+     *
+     * 思路：
+     * 1. brute-force,递归，n层：left or right：2^n
+     * 2. DP:
+     *  a. 重复性（分治）:  problem(i,j) = min(sub(i+1, j), sub(i+1, j+1)) + a[i,j]
+     *  b. 定义状态分组: f[i,j]
+     *  c. DP方程：f[i,j] = min(f[i+1, j], f[i+1, j+1]) + a[i,j]
      */
 
-    public int minimumTotal(List<List<Integer>> triangle) {
+    /**
+     *
+     * @author liuzhen
+     * @date 2021/8/19 22:15
+     * @param triangle
+     * @return int
+     */
+    public static int minimumTotal(List<List<Integer>> triangle) {
+        int[] A = new int[triangle.size() + 1];
+        for (int i = triangle.size() - 1; i >=  0; i--) {
+            for (int j = 0; j < triangle.get(i).size(); j++) {
+                A[j] = Math.min(A[j], A[j + 1]) + triangle.get(i).get(j);
+            }
+        }
 
-        return 0;
+        return A[0];
+    }
+
+    /**
+     * DP方程解法
+     * @author liuzhen
+     * @date 2021/8/19 22:26
+     * @param triangle
+     * @return int
+     */
+    public static int minimumTotal2(List<List<Integer>> triangle) {
+        int n = triangle.size();
+        int[] dp = new int[n + 1];
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = 0; j <= i; j++) {
+                dp[j] = Math.min(dp[j], dp[j + 1]) + triangle.get(i).get(j);
+            }
+        }
+        return dp[0];
+    }
+
+    public static void main(String[] args) { // triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
+        List<List<Integer>> triangle = new ArrayList<>();
+        List<Integer> list1 = new ArrayList<>();
+        list1.add(2);
+        List<Integer> list2 = new ArrayList<>();
+        list2.add(3);
+        list2.add(4);
+        List<Integer> list3= new ArrayList<>();
+        list3.add(6);
+        list3.add(5);
+        list3.add(7);
+        List<Integer> list4 = new ArrayList<>();
+        list4.add(4);
+        list4.add(1);
+        list4.add(8);
+        list4.add(3);
+        triangle.add(list1);
+        triangle.add(list2);
+        triangle.add(list3);
+        triangle.add(list4);
+
+        System.out.println(minimumTotal(triangle));
+
+        System.out.println("===========================>");
+
+        System.out.println(minimumTotal2(triangle));
     }
 }

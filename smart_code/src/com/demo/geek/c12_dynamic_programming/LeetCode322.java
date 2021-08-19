@@ -35,14 +35,87 @@ public class LeetCode322 {
      * 输出：2
      *  
      * 提示：
-     *
      * 1 <= coins.length <= 12
      * 1 <= coins[i] <= 231 - 1
      * 0 <= amount <= 104
+     *
+     * 思路:
+     * 1. 暴力：递归，指数级别
+     * 2. BFS：如图零钱兑换递归状态树，层次遍历，当当前层结果为0时，层数既为结果
+     * 3. DP：
+     *     a. subProblems
+     *     b. DP array: f(n) = min{f(n-k), for k in [1,2,5]}) + 1       => 这里的+1不理解？？？
+     *     c. DP方程
+     *
      */
 
-    public int coinChange(int[] coins, int amount) {
+    /**
+     * 递归写法
+     * @author liuzhen
+     * @date 2021/8/19 23:02
+     * @param coins
+     * @param amount
+     * @return int
+     */
+    public static int coinChange(int[] coins, int amount) {
+        if (amount < 1) {
+            return 0;
+        }
 
-        return 0;
+        return helper(coins, amount, new int[amount]);
     }
+
+    private static int helper(int[] coins, int rem, int[] count) {
+        // not valid
+        if (rem < 0) {
+            return -1;
+        }
+        // completed
+        if (rem == 0) {
+            return 0;
+        }
+        // already computed, so reuse
+        if (count[rem - 1] != 0) {
+            return count[rem - 1];
+        }
+
+        int min = Integer.MAX_VALUE;
+        for (int coin : coins) {
+            int res = helper(coins, rem - coin, count);
+            if (res >= 0 && res < min) {
+                min = 1 + res;
+            }
+        }
+
+        count[rem - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
+        return count[rem - 1];
+    }
+
+    public static int coinChange2(int[] coins, int amount) {
+        if (amount < 1) {
+            return 0;
+        }
+
+        int[] dp = new int[amount + 1];
+        int sum = 0;
+
+        while (++sum <= amount) {
+            int min = -1;
+            for (int coin : coins) {
+                if (sum >= coin && dp[sum - coin] != -1) {
+                    int temp = dp[sum - coin] + 1;
+                    min = min < 0 ? temp : (temp < min ? temp : min);
+                }
+            }
+            dp[sum] = min;
+        }
+        return dp[amount];
+    }
+
+    public static void main(String[] args) {
+        int[] coins = {1, 2, 5};
+        System.out.println(coinChange(coins, 11));
+        System.out.println(coinChange2(coins, 11));
+    }
+
 }

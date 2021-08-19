@@ -29,6 +29,13 @@ public class LeetCode121 {
      * 0 <= prices[i] <= 104
      */
 
+    /**
+     * TODO 去LeetCode 看详细题解：一个方法团灭6到股票问题 labuladong
+     * @author liuzhen
+     * @date 2021/8/19 23:36
+     * @param prices
+     * @return int
+     */
     public int maxProfit(int[] prices) {
 
         return 0;

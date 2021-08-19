@@ -27,6 +27,13 @@ public class LeetCode070 {
      * 1.  1 阶 + 1 阶 + 1 阶
      * 2.  1 阶 + 2 阶
      * 3.  2 阶 + 1 阶
+     *
+     * 思路：
+     *  DP方程：F(n) = F(n-1) + F(n-2)
+     *
+     * 扩展题：
+     * 扩展1：1,2,3  =>   F(n) = F(n-1) + F(n-2) + F(n-3)
+     * 扩展2：相邻两部的步伐不能相同
      */
 
     public int climbStairs(int n) {
