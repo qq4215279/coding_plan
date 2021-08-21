@@ -43,7 +43,7 @@ public class LeetCode053 {
      * 2. DP:
      *    a: 分治（子问题）: max_sum(i) = Max(max_sum(i-1), 0) + a[i]
      *    b: 状态数组定义: f[i]
-     *    c: DP方程: f[i] = Max(f[i-1], 0) + a[i]
+     *    c: 化简后的最终DP方程: f[i] = Max(f[i-1], 0) + a[i]
      *
      *    ->DP方程推导过程：最大子序和 = 当前元素自身最大，或者 包含之前后最大
      *       db[i] = max(nums[i], nums[i] + dp[i-1])

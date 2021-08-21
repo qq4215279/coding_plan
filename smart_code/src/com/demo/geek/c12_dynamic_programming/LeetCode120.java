@@ -13,7 +13,8 @@ public class LeetCode120 {
 
     /**
      * 给定一个三角形 triangle ，找出自顶向下的最小路径和。
-     * 每一步只能移动到下一行中相邻的结点上。相邻的结点 在这里指的是 下标 与 上一层结点下标 相同或者等于 上一层结点下标 + 1 的两个结点。也就是说，如果正位于当前行的下标 i ，那么下一步可以移动到下一行的下标 i 或 i + 1 。
+     * 每一步只能移动到下一行中相邻的结点上。相邻的结点在这里指的是下标与上一层结点下标相同或者等于上一层结点下标 + 1 的两个结点。也就是说，如果正位于当前行的下标 i ，
+     * 那么下一步可以移动到下一行的下标 i 或 i + 1 。
      *
      * 示例 1：
      * 输入：triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
@@ -37,31 +38,23 @@ public class LeetCode120 {
      *  
      * 进阶： 你可以只使用 O(n) 的额外空间（n 为三角形的总行数）来解决这个问题吗？
      *
-     * 思路：
-     * 1. brute-force,递归，n层：left or right：2^n
+     * 思路：类比于LeetCode062/063的比较工整的二维数组，转化为子问题就是：求2的最小路径，变为求3或4的最小路径，再加上第一层的2，dp方程如下：
+     * 1. brute-force,递归，n层：每一次走left or right：2^n
      * 2. DP:
-     *  a. 重复性（分治）:  problem(i,j) = min(sub(i+1, j), sub(i+1, j+1)) + a[i,j]
+     *  a. 重复性（分治）:  problem(i,j) = min(sub(i+1, j), sub(i+1, j+1)) + a[i,j]     注：i表示行，j表示列
      *  b. 定义状态分组: f[i,j]
      *  c. DP方程：f[i,j] = min(f[i+1, j], f[i+1, j+1]) + a[i,j]
-     */
-
-    /**
      *
-     * @author liuzhen
-     * @date 2021/8/19 22:15
-     * @param triangle
-     * @return int
+     *     2
+     *    3 4
+     *   6 5 7
+     *  4 1 8 3
+     *             tr[0,0]             //
+     *         dp[j]     dp[j + 1]    // 从第二行开始，两个两个比较，找出每一行中的最小值，通过第一个for循环，上探到上一行。。。 eg：dp[j] = 6 + Math.min(4,1) = 7
+     *      6         5             7
+     *   4     1              8        3
      */
-    public static int minimumTotal(List<List<Integer>> triangle) {
-        int[] A = new int[triangle.size() + 1];
-        for (int i = triangle.size() - 1; i >=  0; i--) {
-            for (int j = 0; j < triangle.get(i).size(); j++) {
-                A[j] = Math.min(A[j], A[j + 1]) + triangle.get(i).get(j);
-            }
-        }
 
-        return A[0];
-    }
 
     /**
      * DP方程解法
@@ -70,12 +63,17 @@ public class LeetCode120 {
      * @param triangle
      * @return int
      */
-    public static int minimumTotal2(List<List<Integer>> triangle) {
-        int n = triangle.size();
-        int[] dp = new int[n + 1];
-        for (int i = n - 1; i >= 0; i--) {
-            for (int j = 0; j <= i; j++) {
-                dp[j] = Math.min(dp[j], dp[j + 1]) + triangle.get(i).get(j);
+    public static int minimumTotal(List<List<Integer>> triangle) {
+        // 行数
+        int rowSize = triangle.size();
+        // 因为根据题意，每一列的长度等于上一列的长度+1，而且第一行只有1列，所以dp数组最大长度为行size+1
+        int[] dp = new int[rowSize + 1];
+        // 从最后一行开始
+        for (int i = rowSize - 1; i >= 0; i--) {
+            int colSize = triangle.get(i).size();
+            // 遍历当前行的每一列，将当前行的每一个元素 + 下一行的与当前元素相邻的的两个元素的较小值
+            for (int j = 0; j < colSize; j++) {
+                dp[j] = triangle.get(i).get(j) + Math.min(dp[j], dp[j + 1]); // eg：dp[j] = 6 + Math.min(4,1) = 7
             }
         }
         return dp[0];
@@ -102,10 +100,9 @@ public class LeetCode120 {
         triangle.add(list3);
         triangle.add(list4);
 
-        System.out.println(minimumTotal(triangle));
 
         System.out.println("===========================>");
 
-        System.out.println(minimumTotal2(triangle));
+        System.out.println(minimumTotal(triangle));
     }
 }

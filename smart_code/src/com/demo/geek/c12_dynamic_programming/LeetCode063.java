@@ -33,10 +33,100 @@ public class LeetCode063 {
      * n == obstacleGrid[i].length
      * 1 <= m, n <= 100
      * obstacleGrid[i][j] 为 0 或 1
+     *
      */
 
-    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
 
-        return 0;
+    /**
+     * 递归
+     * @author liuzhen
+     * @date 2021/8/21 22:17
+     * @param obstacleGrid
+     * @return int
+     */
+    public static int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        int[][] memo = new int[obstacleGrid.length][obstacleGrid[0].length];
+        for (int i = 0; i < memo.length; i++) {
+            for (int j = 0; j < memo[0].length; j++) {
+                memo[i][j] = -1;
+            }
+        }
+
+        return recursion(obstacleGrid, 0, 0, memo);
     }
+
+    private static int recursion(int[][] obstacleGrid, int row, int col, int[][] memo) {
+        int r = obstacleGrid.length;
+        int c = obstacleGrid[0].length;
+        // 终止条件
+        if (row >= r || col >= c) {
+            return 0;
+        }
+        // 有缓存，直接从缓存取
+//        if (memo[row][col] != -1) {
+//            return memo[row][col];
+//        }
+
+        // 遇到障碍物
+        if (obstacleGrid[row][col] == 1) {
+            return 0;
+        }
+
+        // 结果
+        if (row == r - 1 && col == c - 1) {
+            if (obstacleGrid[row][col] == 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+
+        if (memo[row][col] == -1) {
+            memo[row][col] = recursion(obstacleGrid, row + 1, col, memo) + recursion(obstacleGrid, row, col + 1, memo);
+        }
+
+        return memo[row][col];
+    }
+
+    /**
+     * DP方程
+     * @author liuzhen
+     * @date 2021/8/21 17:11
+     * @param obstacleGrid
+     * @return int
+     */
+    public int uniquePathsWithObstacles2(int[][] obstacleGrid) {
+        if (obstacleGrid == null || obstacleGrid.length == 0) {
+            return 0;
+        }
+
+        // 定义 dp 数组并初始化第 1 行和第 1 列。
+        int row = obstacleGrid.length;
+        int col = obstacleGrid[0].length;
+        int[][] dp = new int[row][col];
+        // 初始化第一列结果
+        for (int i = 0; i < row && obstacleGrid[i][0] == 0; i++) {
+            dp[i][0] = 1;
+        }
+        // 初始化第一行结果
+        for (int j = 0; j < col && obstacleGrid[0][j] == 0; j++) {
+            dp[0][j] = 1;
+        }
+
+        // 根据状态转移方程 dp[i][j] = dp[i - 1][j] + dp[i][j - 1] 进行递推。
+        for (int i = 1; i < row; i++) {
+            for (int j = 1; j < col; j++) {
+                if (obstacleGrid[i][j] == 0) {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                }
+            }
+        }
+        return dp[row - 1][col - 1];
+    }
+
+    public static void main(String[] args) {
+        int[][] obstacleGrid = {{0, 0, 0}, {0, 1, 0}, {0, 0, 0}};
+        System.out.println(uniquePathsWithObstacles(obstacleGrid));
+    }
+
 }

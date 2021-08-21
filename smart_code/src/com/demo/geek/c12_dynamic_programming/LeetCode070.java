@@ -2,7 +2,7 @@ package com.demo.geek.c12_dynamic_programming;
 
 /**
  * LeetCode070
- * 爬楼梯
+ * 爬楼梯 -- Fibonacci
  * @author liuzhen
  * @version 1.0.0 2021/8/18 20:57
  */
@@ -36,8 +36,36 @@ public class LeetCode070 {
      * 扩展2：相邻两部的步伐不能相同
      */
 
-    public int climbStairs(int n) {
+    /**
+     * 同Fibonacci题
+     * @author liuzhen
+     * @date 2021/8/21 22:18
+     * @param n
+     * @return int
+     */
+    public static int climbStairs(int n) {
+        int f1 = 1;
+        int f2 = 2;
 
-        return 0;
+        if (n == 1) {
+            return f1;
+        }
+        if (n == 2) {
+            return f2;
+        }
+
+        int f3 = 0;
+        for (int i = 3; i <= n; i++) {
+            f3 = f1 + f2;
+            f1 = f2;
+            f2 = f3;
+        }
+
+        return f3;
     }
+
+    public static void main(String[] args) {
+        System.out.println(climbStairs(5));
+    }
+
 }
