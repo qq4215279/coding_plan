@@ -44,18 +44,20 @@ public class LeetCode200 {
      * 解法2（广度优先遍历）：
      */
 
-    /** 
-     * 深度优先遍历(DFS)     时间复杂度：O(MN)O(MN)，其中 MM 和 NN 分别为行数和列数。空间复杂度：O(MN)O(MN)，在最坏情况下，整个网格均为陆地，深度优先搜索的深度达到 M NMN。
+
+    /**
+     * 深度优先遍历(DFS)     时间复杂度：O(MN)O(MN)，其中 MM 和 NN 分别为行数和列数。空间复杂度：O(MN)O(MN)
+     * 在最坏情况下，整个网格均为陆地，深度优先搜索的深度达到 M NMN。
      * 思路：
      *      设目前指针指向一个岛屿中的某一点 (i, j)，寻找包括此点的岛屿边界。从 (i, j) 向此点的上下左右 (i+1,j),(i-1,j),(i,j+1),(i,j-1) 做深度搜索。
      *      终止条件： (i, j) 越过矩阵边界; grid[i][j] == 0，代表此分支已越过岛屿边界。搜索岛屿的同时，执行 grid[i][j] = '0'，即将岛屿所有节点删除，以免之后重复搜索相同岛屿。
      *      主循环：遍历整个矩阵，当遇到 grid[i][j] == '1' 时，从此点开始做深度优先搜索 dfs，岛屿数 count + 1 且在深度优先搜索中删除此岛屿。最终返回岛屿数 count 即可。
      * @author liuzhen
-     * @date 2021/8/16 21:43 
+     * @date 2021/8/16 21:43
      * @param grid
      * @return int
      */
-    public static int countIslands(char[][] grid) {
+    public static int numIslandsByDFS(char[][] grid) {
         if (grid == null || grid[0] == null) {
             return 0;
         }
@@ -102,7 +104,7 @@ public class LeetCode200 {
      * @param grid
      * @return int
      */
-    public static int numIslands(char[][] grid) {
+    public static int numIslandsByBFS(char[][] grid) {
         int dx[] = {-1, 1, 0, 0};
         int dy[] = {0, 0, -1, 1};
         int isLands = 0;
@@ -119,7 +121,7 @@ public class LeetCode200 {
         return isLands;
     }
 
-    private static int sink(char[][] grid, int i, int j, int dx[], int dy[]) {
+    private static int sink(char[][] grid, int i, int j, int dx[], int dy[]) { // 下沉
         // terminator
         if (grid[i][j] == '0') {
             return 0;
@@ -146,12 +148,12 @@ public class LeetCode200 {
 
     public static void main(String[] args) {
         char[][] grid1 = {{'1', '1', '1', '1', '0' }, {'1', '1', '0', '1', '0' }, {'1', '1', '0', '0', '0' }, {'0', '0', '0', '0', '0' }};
-        System.out.println("深度优先遍历：" + countIslands(grid1));
+        System.out.println("深度优先遍历：" + numIslandsByDFS(grid1));
 
         System.out.println("---------------------------->");
 
         char[][] grid2 = {{'1', '1', '1', '1', '0' }, {'1', '1', '0', '1', '0' }, {'1', '1', '0', '0', '0' }, {'0', '0', '0', '0', '0' }};
-        System.out.println("广度优先遍历：" + numIslands(grid2));
+        System.out.println("广度优先遍历：" + numIslandsByBFS(grid2));
 
     }
 
