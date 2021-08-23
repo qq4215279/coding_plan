@@ -6,7 +6,7 @@ package com.demo.geek.c11_binary_search;
  * @author liuzhen
  * @version 1.0.0 2021/8/17 21:28
  */
-public class LeetCode033 {
+public class LeetCode033 { // 等价于 LeetCode153
 
     /**
      * 整数数组 nums 按升序排列，数组中的值互不相同 。
@@ -85,7 +85,15 @@ public class LeetCode033 {
         return -1;
     }
 
-    // TODO                                                  0 1 2 3 4 5 6
+    // 0 1 2 3 4 5 6
+    /**
+     * TODO 暴力法：先还原，在二分法查找  程序待完善...
+     * @author liuzhen
+     * @date 2021/8/23 16:25
+     * @param nums
+     * @param target
+     * @return int
+     */
     public static int search2(int[] nums, int target) { //   3 4 5 6 7 1 2
         if (nums == null || nums.length == 0) {
             return -1;
@@ -120,6 +128,14 @@ public class LeetCode033 {
         return res;
     }
 
+    /**
+     * 二分查找
+     * @author liuzhen
+     * @date 2021/8/23 16:26
+     * @param nums
+     * @param target
+     * @return int
+     */
     public static int binarySearch(int[] nums, int target) {
         if (nums == null || nums.length < 0) {
             return -1;

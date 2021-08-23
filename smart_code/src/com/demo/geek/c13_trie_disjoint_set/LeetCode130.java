@@ -1,6 +1,7 @@
 package com.demo.geek.c13_trie_disjoint_set;
 
 import com.demo.common.entity.UnionFind;
+import com.demo.common.utils.ArrayUtil;
 
 /**
  * LeetCode130
@@ -42,7 +43,7 @@ public class LeetCode130 {
      * @param board
      * @return void
      */
-    public static void solve(char[][] board) {
+    public static void solveByDFS(char[][] board) {
         if (board == null || board.length == 0) return;
         int m = board.length;
         int n = board[0].length;
@@ -68,7 +69,7 @@ public class LeetCode130 {
         }
     }
 
-    public static void dfs(char[][] board, int i, int j) {
+    private static void dfs(char[][] board, int i, int j) {
         if (i < 0 || j < 0 || i >= board.length  || j >= board[0].length || board[i][j] == 'X' || board[i][j] == '#') {
             // board[i][j] == '#' 说明已经搜索过了.
             return;
@@ -80,8 +81,6 @@ public class LeetCode130 {
         dfs(board, i, j + 1); // 右
     }
 
-
-
     /**
      * 并查集
      * https://leetcode-cn.com/problems/surrounded-regions/solution/bfsdi-gui-dfsfei-di-gui-dfsbing-cha-ji-by-ac_pipe/
@@ -90,7 +89,7 @@ public class LeetCode130 {
      * @param board
      * @return void
      */
-    public static void solve2(char[][] board) {
+    public static void solveByDisjointSet(char[][] board) {
         if (board == null || board.length == 0)
             return;
 
@@ -103,48 +102,46 @@ public class LeetCode130 {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
+                // 遇到O进行并查集操作合并
                 if (board[i][j] == 'O') {
-                    // 遇到O进行并查集操作合并
+                    // 将第一行，最后一行，第一列，最后一列的O进行合并
                     if (i == 0 || i == rows - 1 || j == 0 || j == cols - 1) {
-                        // 边界上的O,把它和dummyNode 合并成一个连通区域.
-                        uf.union(node(i, j, cols), dummyNode);
-                    } else {
+                        // 边界上的O,把它和 dummyNode 合并成一个连通区域.
+                        uf.union(ArrayUtil.getReferencePoint(i, j, cols), dummyNode);
+                    } else { // 将不是边界的O进行合并   注：下面的合并操作不需要也是可以的！
                         // 和上下左右合并成一个连通区域.
-                        if (i > 0 && board[i - 1][j] == 'O')
-                            uf.union(node(i, j, cols), node(i - 1, j, cols));
+                       /* if (i > 0 && board[i - 1][j] == 'O')
+                            uf.union(ArrayUtil.getReferencePoint(i, j, cols), ArrayUtil.getReferencePoint(i - 1, j, cols));
                         if (i < rows - 1 && board[i + 1][j] == 'O')
-                            uf.union(node(i, j, cols), node(i + 1, j, cols));
+                            uf.union(ArrayUtil.getReferencePoint(i, j, cols), ArrayUtil.getReferencePoint(i + 1, j, cols));
                         if (j > 0 && board[i][j - 1] == 'O')
-                            uf.union(node(i, j, cols), node(i, j - 1, cols));
+                            uf.union(ArrayUtil.getReferencePoint(i, j, cols), ArrayUtil.getReferencePoint(i, j - 1, cols));
                         if (j < cols - 1 && board[i][j + 1] == 'O')
-                            uf.union(node(i, j, cols), node(i, j + 1, cols));
+                            uf.union(ArrayUtil.getReferencePoint(i, j, cols), ArrayUtil.getReferencePoint(i, j + 1, cols));*/
                     }
                 }
             }
         }
 
+        // update O -> X
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (uf.isConnected(node(i, j, cols), dummyNode)) {
-                    // 和dummyNode 在一个连通区域的,那么就是O；
-                    board[i][j] = 'O';
-                } else {
+                // 不和 dummyNode 在一个连通区域的，那么就是X；
+                if (!uf.isConnected(ArrayUtil.getReferencePoint(i, j, cols), dummyNode)) {
                     board[i][j] = 'X';
+                } else { // 因为本来就是O，所以下面这部分代码也可省去
+//                    board[i][j] = 'O';
                 }
             }
         }
     }
 
-    private static int node(int i, int j, int cols) {
-        return i * cols + j;
-    }
-
     public static void main(String[] args) {
         char[][] board = {{'X','X','X','X'}, {'X','O','O','X'}, {'X','X','O','X',}, {'X','O','X','X',}};
 
-        solve(board);
+//        solveByDFS(board);
         // 并查集
-        solve2(board);
+        solveByDisjointSet(board);
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {

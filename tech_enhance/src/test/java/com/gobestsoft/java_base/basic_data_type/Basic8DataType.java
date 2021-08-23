@@ -162,6 +162,19 @@ public class Basic8DataType {
         long num2 = TEN_YI * 100L;
         long num3 = (long)TEN_YI * 100;
         long num4 = 100000000000L;
+//        long num5 = (long)100000000000; 这种不行！
+
+        /**
+         * 总结：
+         * 1. 常量转long：
+         *  - Long.valueOf();
+         *  - 加L eg: 100L;
+         *
+         * 2. 变量转long:
+         *  - Long.valueOf();
+         *  - 强转方式 eg: (long)TEN_YI
+         *  -
+         */
 
         System.out.println("num1: " + num1);
         System.out.println("num2: " + num2);

@@ -2,7 +2,7 @@ package com.demo.geek.c11_binary_search;
 
 /**
  * LeetCode069
- * x的平发根
+ * x的平方根
  * @author liuzhen
  * @version 1.0.0 2021/8/17 21:25
  */
@@ -68,7 +68,7 @@ public class LeetCode069 {
     }
 
     /**
-     * 牛顿迭代法
+     * TODO 牛顿迭代法
      * @author liuzhen
      * @date 2021/8/17 22:01
      * @param x

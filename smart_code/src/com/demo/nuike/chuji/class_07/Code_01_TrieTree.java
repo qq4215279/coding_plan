@@ -1,5 +1,8 @@
 package com.demo.nuike.chuji.class_07;
 
+/**
+ * 可参考: TrieNode
+ */
 public class Code_01_TrieTree {
 
 	public static class TrieNode { // 前缀树：		这题字母放在边上，不用放在节点上
@@ -29,34 +32,50 @@ public class Code_01_TrieTree {
 			TrieNode node = root;
 			int index = 0;
 			for (int i = 0; i < chs.length; i++) {
-				index = chs[i] - 'a'; // 比如：chs[i]为a，则index=0。表示了用0-25表示生成的路种类
-				if (node.nexts[index] == null) { // 判断当前节点有没有走向当前字母的路，
-					node.nexts[index] = new TrieNode(); // 没有，这行代码建出来
+				// 比如：chs[i]为a，则index=0。表示了用0-25表示生成的路种类
+				index = chs[i] - 'a';
+				// 判断当前节点有没有走向当前字母的路，
+				if (node.nexts[index] == null) {
+					// 没有，这行代码建出来
+					node.nexts[index] = new TrieNode();
 				}
-				node = node.nexts[index];	// 有，node跳到下一个节点，并且node++,path++
+				// 有，node跳到下一个节点，并且node++,path++
+				node = node.nexts[index];
 				node.path++;
 			}
-			node.end++;	// 到达最后一个字符时，记录结尾字母（既让end加1）
+
+			// 到达最后一个字符时，记录结尾字母（既让end加1）
+			node.end++;
 		}
 
 		public void delete(String word) {	// 在字典树中删除一个word
-			if (search(word) != 0) {	// 先判断word是否存在
+			// 先判断word是否存在
+			if (search(word) != 0) {
 				char[] chs = word.toCharArray();
 				TrieNode node = root;
 				int index = 0;
 				for (int i = 0; i < chs.length; i++) {
 					index = chs[i] - 'a';
-					if (--node.nexts[index].path == 0) { // 判断当前node所对应的path个数出现了几次，如果为0，
-						node.nexts[index] = null;	// 则该node后面的node就不用再往下跑了，后面的node直接设为赋值为空
-						return;	// 再返回
+					// 判断当前node所对应的path个数出现了几次，如果为0，则该node后面的node就不用再往下跑了，后面的node直接设为赋值为空
+					if (--node.nexts[index].path == 0) {
+						node.nexts[index] = null;
+						// 直接返回
+						return;
 					}
-					node = node.nexts[index]; // 如果大于0，则node继续往下跑（因为--node的存在）
+					// 如果大于0，则node继续往下跑（因为--node的存在）
+					node = node.nexts[index];
 				}
-				node.end--;  // 跑到最下面一个node，
+				// 跑到最下面一个node，
+				node.end--;
 			}
 		}
 
-		public int search(String word) {	// 查字符串出现过几次
+		/**
+		 * 求多少相同word
+		 * @param word
+		 * @return
+		 */
+		public int search(String word) { // 查字符串出现过几次
 			if (word == null) {
 				return 0;
 			}
@@ -73,6 +92,11 @@ public class Code_01_TrieTree {
 			return node.end;
 		}
 
+		/**
+		 * 返回生成树过程中的字母出现（经过）的次数
+		 * @param pre
+		 * @return
+		 */
 		public int prefixNumber(String pre) {
 			if (pre == null) {
 				return 0;
