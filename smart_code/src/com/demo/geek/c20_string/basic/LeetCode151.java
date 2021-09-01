@@ -1,12 +1,15 @@
 package com.demo.geek.c20_string.basic;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * LeetttCode151
  * 反转字符串里的单词
  * @author liuzhen
  * @version 1.0.0 2021/8/30 22:49
  */
-public class LeetttCode151 {
+public class LeetCode151 {
 
     /**
      * 给你一个字符串 s ，逐个翻转字符串中的所有 单词 。
@@ -47,11 +50,20 @@ public class LeetttCode151 {
      *  
      * 进阶：
      * 请尝试使用 O(1) 额外空间复杂度的原地解法。
+     *
+     * 思路：
+     * 1. split，reverse，join
+     * 2. reverse整个string，然后再单独reverse每个但崔单词
+     * eg:
+     * eulb si yks eht
+     * blue is sky the
+     *
      */
 
     public String reverseWords(String s) {
-
-        return "";
+        String[] words = s.trim().split(" +");
+        Collections.reverse(Arrays.asList(words));
+        return String.join(" ", words);
     }
 
 }

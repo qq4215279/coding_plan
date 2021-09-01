@@ -25,11 +25,27 @@ public class LeetCode014 {
      * 1 <= strs.length <= 200
      * 0 <= strs[i].length <= 200
      * strs[i] 仅由小写英文字母组成
+     *
+     * 思路
+     * 1. 纯暴力
+     * 2. folower  flow  flight
+     * 3. Trie
+     *
      */
 
     public String longestCommonPrefix(String[] strs) {
-
-        return "";
+        if (strs == null || strs.length == 0) {
+            return "";
+        }
+        for (int i = 0; i < strs[0].length(); i++) {
+            char c = strs[0].charAt(i);
+            for (int j = 1; j < strs.length; j++) {
+                if (i == strs[j].length() || strs[j].charAt(i) != c) {
+                    return strs[0].substring(0, i);
+                }
+            }
+        }
+        return strs[0];
     }
 
 }
