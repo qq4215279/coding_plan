@@ -27,9 +27,34 @@ public class LeetCode125 {
      * 字符串 s 由 ASCII 字符组成
      */
 
-    public boolean isPalindrome(String s) {
+    // TODO
+    public static boolean isPalindrome(String s) {
+        char[] chars = s.trim().toLowerCase().toCharArray();
+        int left = 0;
+        int right = chars.length - 1;
 
-        return false;
+        while (left <= right) {
+            if (left < chars.length && (!Character.isLetterOrDigit(chars[left]) || chars[left] == 32)) {
+                left++;
+            }
+            if (right > left && (!Character.isLetterOrDigit(chars[right]) || chars[left] == 32)) {
+                right--;
+            }
+
+            if (chars[left] != chars[right]) {
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+        String s = "A man, a plan, a canal: Panama";
+        System.out.println(isPalindrome(s));
     }
 
 }

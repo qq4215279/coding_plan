@@ -28,9 +28,25 @@ public class LeetCode709 {
      * s 由 ASCII 字符集中的可打印字符组成
      */
 
-    public String toLowerCase(String s) {
+    public static String toLowerCase(String s) {
+        StringBuilder sb = new StringBuilder();
 
-        return "";
+        for (int i = 0; i < s.length(); i++) {
+            char charAt = s.charAt(i);
+            if (charAt >= 65 && charAt <= 90) {
+                charAt = (char)(charAt + 32);
+            }
+            sb.append(charAt);
+        }
+
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println((int)'a');
+        System.out.println((int)'Z');
+        String s = "Hello";
+        System.out.println(toLowerCase(s));
     }
 
 }

@@ -19,9 +19,32 @@ public class LeetCode557 {
      * 在字符串中，每个单词由单个空格分隔，并且字符串中不会有任何额外的空格。
      */
 
-    public String reverseWords(String s) {
+    /**
+     *
+     * @author liuzhen
+     * @date 2021/9/2 17:22
+     * @param s
+     * @return java.lang.String
+     */
+    public static String reverseWords(String s) {
+        StringBuffer sb = new StringBuffer();
+        int length = s.length();
+        int index = 0;
+        while (index < length) {
+            int start = index;
+            while (index < length && s.charAt(index) != ' ') {
+                index++;
+            }
 
-        return "";
+            for (int p = start; p < index; p++) {
+                sb.append(s.charAt(start + index - 1 - p));
+            }
+            while (index < length && s.charAt(index) == ' ') {
+                index++;
+                sb.append(' ');
+            }
+        }
+        return sb.toString();
     }
 
 }

@@ -91,8 +91,16 @@ public class LeetCode008 {
      * s 由英文字母（大写和小写）、数字（0-9）、' '、'+'、'-' 和 '.' 组成
      */
 
-    // TODO 代码未通过？？
-    public int myAtoi(String str) {
+    /**
+     * 自动机
+     * 思路：时间复杂度：O(n)O(n)，其中 nn 为字符串的长度。我们只需要依次处理所有的字符，处理每个字符需要的时间为 O(1)O(1)。
+     *      空间复杂度：O(1)O(1)。自动机的状态只需要常数空间存储。
+     * @author liuzhen
+     * @date 2021/9/2 14:53
+     * @param str
+     * @return int
+     */
+    public static int myAtoi(String str) {
         int index = 0;
         int sign = 1;
         int total = 0;
@@ -101,34 +109,43 @@ public class LeetCode008 {
             return 0;
         }
 
-        // 2. Remove Spaces
-        while (str.charAt(index) == ' ' && index < str.length()) {
+        // 2. 去除前导空格
+        while (index < str.length() && str.charAt(index) == ' ') {
             index++;
         }
 
-        // 3. Handle sgns
-        if (str.charAt(index) == '+' || str.charAt(index) == '-') {
+        // 3. 处理符号
+        if (index < str.length() && (str.charAt(index) == '+' || str.charAt(index) == '-')) {
             sign = str.charAt(index) == '+' ? 1 : -1;
             index++;
         }
 
-        // 4. Convert number and avoid overflow
+        // 4. 将后续出现的数字字符进行转换  不能使用 long 类型，这是题目说的
         while (index < str.length()) {
             int digit = str.charAt(index) - '0';
+            // 先判断不合法的情况
             if (digit < 0 || digit > 9) {
                 break;
             }
 
             // check if total will be overflow after 10 times and add digit
-            if (Integer.MAX_VALUE / 10 < total || Integer.MAX_VALUE / 10 == total && Integer.MAX_VALUE % 10 < digit) {
+            // 题目中说：环境只能存储 32 位大小的有符号整数，因此，需要提前判：断乘以 10 以后是否越界
+            if (Integer.MAX_VALUE / 10 < total || (Integer.MAX_VALUE / 10 == total && Integer.MAX_VALUE % 10 < digit)) {
                 return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
             }
+
+            // 合法的情况下，才考虑转换，每一步都把符号位乘进去
             total = 10 * total + digit;
             index++;
         }
 
-        return total + sign;
+        return total * sign;
     }
 
+
+    public static void main(String[] args) {
+        String str = "42";
+        System.out.println(myAtoi(str));
+    }
 
 }

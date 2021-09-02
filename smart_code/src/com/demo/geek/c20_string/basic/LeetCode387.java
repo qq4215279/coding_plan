@@ -30,6 +30,25 @@ public class LeetCode387 {
      *
      */
 
+    /**
+     * 暴力法
+     * @author liuzhen
+     * @date 2021/9/2 14:22
+     * @param s
+     * @return int
+     */
+    public static int firstUniqCharByForce(String s) {
+
+        return 1;
+    }
+
+    /**
+     * hash表存储频数   时间复杂度：O(n)
+     * @author liuzhen
+     * @date 2021/9/2 14:17
+     * @param s
+     * @return int
+     */
     public static int firstUniqChar(String s) {
         Map<Character, Integer> hm = new HashMap<>();
         for (int i = 0; i < s.length(); i++) {
@@ -42,8 +61,44 @@ public class LeetCode387 {
             }
         }
 
-
         return -1;
+    }
+
+    /**
+     * 使用hash存储索引
+     * @author liuzhen
+     * @date 2021/9/2 14:22
+     * @param s
+     * @return int
+     */
+    public static int firstUniqChar2(String s) {
+        Map<Character, Integer> position = new HashMap<>();
+        int n = s.length();
+        for (int i = 0; i < n; ++i) {
+            char ch = s.charAt(i);
+            if (position.containsKey(ch)) {
+                position.put(ch, -1);
+            } else {
+                position.put(ch, i);
+            }
+        }
+        int first = n;
+        for (Map.Entry<Character, Integer> entry : position.entrySet()) {
+            int pos = entry.getValue();
+            if (pos != -1 && pos < first) {
+                first = pos;
+            }
+        }
+        if (first == n) {
+            first = -1;
+        }
+        return first;
+    }
+
+    public static void main(String[] args) {
+        String s = "loveleetcode";
+
+        System.out.println(firstUniqChar(s));
     }
 
 }

@@ -52,18 +52,64 @@ public class LeetCode151 {
      * 请尝试使用 O(1) 额外空间复杂度的原地解法。
      *
      * 思路：
-     * 1. split，reverse，join
-     * 2. reverse整个string，然后再单独reverse每个但崔单词
+     * 2.
      * eg:
      * eulb si yks eht
      * blue is sky the
      *
      */
 
-    public String reverseWords(String s) {
+    /**
+     * 思路：split，reverse，join
+     * @author liuzhen
+     * @date 2021/9/2 16:56
+     * @param s
+     * @return java.lang.String
+     */
+    public static String reverseWords(String s) {
         String[] words = s.trim().split(" +");
         Collections.reverse(Arrays.asList(words));
         return String.join(" ", words);
+    }
+
+    /**
+     * 思路：reverse整个string，然后再单独reverse每个但崔单词   TODO 未通过？？
+     * @author liuzhen
+     * @date 2021/9/2 17:11
+     * @param s
+     * @return java.lang.String
+     */
+    public static String reverseWords2(String s) {
+        s = new StringBuilder(s).reverse().toString();
+        String[] words = s.trim().split(" ");
+
+        for (int i = 0; i < words.length; i++) {
+            words[i] = reverseSingleWord(words[i]);
+        }
+
+        return String.join(" ", words);
+    }
+
+    private static String reverseSingleWord(String word) {
+        int left = 0;
+        int right = word.length() - 1;
+        char[] chars = word.trim().toCharArray();
+        while (left <= right) {
+            char temp = chars[left];
+            chars[left] = chars[right];
+            chars[right] = temp;
+
+            left++;
+            right--;
+        }
+
+        return String.valueOf(chars);
+    }
+
+    public static void main(String[] args) {
+        String s = "a good   example";
+//        System.out.println(reverseWords(s));
+        System.out.println(reverseWords2(s));
     }
 
 }
