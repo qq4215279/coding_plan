@@ -6,7 +6,7 @@ package com.demo.geek.c20_string.high_lv;
  * @author liuzhen
  * @version 1.0.0 2021/9/1 19:13
  */
-public class LeetCode072 {
+public class LeetCode072 { // c12_dynamic_programming.high_lv_dp/LeetCode072
 
     /**
      * 给你两个单词 word1 和 word2，请你计算出将 word1 转换成 word2 所使用的最少操作数 。

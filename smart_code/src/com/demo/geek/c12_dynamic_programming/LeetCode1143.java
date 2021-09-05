@@ -46,6 +46,7 @@ public class LeetCode1143 {
      *  3. s1 = "......a"
      *     s2 =   "....a"
      *
+     * dp思路图:
      *        →  →   →
      *        a  b   a   z   d   c
      * ↓  b   0  1   1   1   1   1
