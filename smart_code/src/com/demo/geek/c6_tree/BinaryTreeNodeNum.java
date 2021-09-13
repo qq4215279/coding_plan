@@ -18,12 +18,12 @@ public class BinaryTreeNodeNum {
      * @param head
      * @return
      */
-    public static int nodeNum2(TreeNode head) {
+    public static int nodeNum(TreeNode head) {
         if (head == null) {
             return 0;
         }
 
-        return nodeNum2(head.left) + nodeNum2(head.right) + 1;
+        return nodeNum(head.left) + nodeNum(head.right) + 1;
     }
 
     /**
@@ -31,7 +31,7 @@ public class BinaryTreeNodeNum {
      * @param head
      * @return
      */
-    public static int nodeNum(TreeNode head) {
+    public static int nodeNum02(TreeNode head) {
         if (head == null) {
             return 0;
         }
@@ -66,7 +66,7 @@ public class BinaryTreeNodeNum {
         head.right.left = new TreeNode(6);
 
 //        System.out.println(nodeNum(head));
-        System.out.println(nodeNum2(head));
+        System.out.println(nodeNum(head));
     }
 
 }

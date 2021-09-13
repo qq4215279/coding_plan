@@ -7,7 +7,7 @@ package com.demo.geek.c5_hash_collection;
 
 import java.util.*;
 
-public class LeetCode049 { // LeetCode  49
+public class LeetCode049 { // com.demo.geek.c20_string.basic.LeetCode049
 
     /**
      * 字符异位词分组
@@ -46,17 +46,8 @@ public class LeetCode049 { // LeetCode  49
             map.get(key).add(s);
         }
 
-        return new ArrayList<>(map.values());// 转换技巧！！！  重点！！
+        return new ArrayList<>(map.values()); // 转换技巧！！！  重点！！
     }
-
-//    public List<List<String>> groupAnagrams(String[] strs) {
-//
-//    }
-//
-
-
-
-
 
 
 }

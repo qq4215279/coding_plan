@@ -7,11 +7,11 @@ package com.demo.geek.c3_2_linkedList;
 import com.demo.common.entity.Node;
 
 /**
- * DelNode
+ * DelNode 删除节点
  * @author liuzhen
  * @version 1.0.0 2020/7/28 17:25
  */
-public class Del_last_N_Node {  // ???
+public class Del_last_N_Node {
 
     /**
      * 给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。

@@ -42,6 +42,7 @@ public class ArrayContainNum {
                 System.out.println("没有这个元素");
             }*/
         }
+
         /*for (row = arr.length - 1, clo = 0; row >= 0 && clo < arr.length; ) {
             if (num < arr[row][clo]) {
                 row--;

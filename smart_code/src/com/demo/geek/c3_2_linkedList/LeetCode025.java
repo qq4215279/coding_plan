@@ -7,7 +7,12 @@ package com.demo.geek.c3_2_linkedList;
 
 import com.demo.common.entity.Node;
 
-public class LeetCode025 { // LeetCode 25
+/**
+ * K个一组反转链表
+ * @author liuzhen
+ * @version 1.0.0 2020/7/28 17:25
+ */
+public class LeetCode025 {
 
     /**
      * K 个一组翻转链表

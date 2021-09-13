@@ -14,7 +14,6 @@ import java.util.Stack;
  */
 public class BinaryTreeNodeOrder { // 后续遍历 LeetCode145
 
-
     /**
      * 递归的方式实现先序遍历二叉树
      * @author liuzhen
@@ -41,7 +40,7 @@ public class BinaryTreeNodeOrder { // 后续遍历 LeetCode145
         System.out.print("pre-order: ");
         if (head != null) {
             // 准备一个栈 ，因为需要从底层回到上层去，所有借用了栈技术。
-            Stack<TreeNode> stack = new Stack<TreeNode>();
+            Stack<TreeNode> stack = new Stack<>();
             stack.add(head);
             while (!stack.isEmpty()) {
                 // 弹出当前节点，即为头节点。右左孩子压完栈后，此时左节点来到栈顶，即为弹出当前节点了
@@ -85,7 +84,7 @@ public class BinaryTreeNodeOrder { // 后续遍历 LeetCode145
     public static void inOrderUnRecur(TreeNode head) {
         System.out.print("in-order: ");
         if (head != null) {
-            Stack<TreeNode> stack = new Stack<TreeNode>();
+            Stack<TreeNode> stack = new Stack<>();
             // 栈不为空且有当前节点时
             while (head != null || !stack.isEmpty()) {
                 // 当前节点存在，开始进栈处理

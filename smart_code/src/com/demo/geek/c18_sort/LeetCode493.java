@@ -33,44 +33,45 @@ public class LeetCode493 {
      *
      */
 
-    public int reversePairs(int[] nums) {
+    public static int reversePairs(int[] nums) {
         return mergeSort(nums, 0, nums.length - 1);
     }
 
-    private int mergeSort(int[] nums, int s, int e) {
-        if (s >= e) {
+    private static int mergeSort(int[] nums, int start, int end) {
+        if (start >= end) {
             return 0;
         }
 
-        int mid = s + (e - s) / 2;
-        int cnt = mergeSort(nums, s, mid) + mergeSort(nums, mid + 1, e);
-        for (int i = s, j = mid + 1; i <= mid; i++) {
-            while (j <= e && nums[i] / 2.0 > nums[j]) {
+        int mid = start + (end - start) / 2;
+        int cnt = mergeSort(nums, start, mid) + mergeSort(nums, mid + 1, end);
+        for (int i = start, j = mid + 1; i <= mid; i++) {
+            while (j <= end && nums[i] / 2.0 > nums[j]) {
                 j++;
             }
             cnt += j - (mid + 1);
         }
 
-        Arrays.sort(nums, s, e + 1);
+        Arrays.sort(nums, start, end + 1);
+
         return cnt;
     }
 
-    public int ret;
-    public int reversePairs2(int[] nums) {
+    public static int ret;
+    public static int reversePairs2(int[] nums) {
         ret = 0;
         mergeSort2(nums, 0, nums.length - 1);
-        
+
         return ret;
     }
 
-    private void mergeSort2(int[] nums, int left, int right) {
+    private static void mergeSort2(int[] nums, int left, int right) {
         if (right <= left) {
             return;
         }
         int middle = left + (right - left) / 2;
         mergeSort2(nums, left, middle);
         mergeSort2(nums, middle + 1, right);
-        
+
         // count elements
         int count = 0;
         for (int l = left, r = middle + 1; l <= middle;) {
@@ -88,7 +89,7 @@ public class LeetCode493 {
     }
 
 
-    public int reversePairs3(int[] nums) {
+    public static int reversePairs3(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
@@ -96,7 +97,7 @@ public class LeetCode493 {
         return mergeSort3(nums, 0, nums.length - 1);
     }
 
-    private int mergeSort3(int[] nums, int l, int r) {
+    private static int mergeSort3(int[] nums, int l, int r) {
         if (l >= r) {
             return 0;
         }
@@ -124,6 +125,15 @@ public class LeetCode493 {
         }
         System.arraycopy(cache, 0, nums, l, r - l + 1);
         return count;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 3, 2, 3, 1};
+
+        System.out.println(reversePairs(nums));
+        System.out.println(reversePairs2(nums));
+        System.out.println(reversePairs3(nums));
+
     }
 
 }

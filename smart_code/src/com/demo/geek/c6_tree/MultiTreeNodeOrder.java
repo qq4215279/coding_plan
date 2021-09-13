@@ -30,8 +30,6 @@ public class MultiTreeNodeOrder { // LeetCode T589:N叉树的前序遍历;  层�
      */
 
 
-    private static List<Integer> list = new ArrayList<>();
-
     /**
      * 前序递归遍历N叉树
      * @author liuzhen
@@ -39,6 +37,7 @@ public class MultiTreeNodeOrder { // LeetCode T589:N叉树的前序遍历;  层�
      * @param root
      * @return java.util.List<java.lang.Integer>
      */
+    private static List<Integer> list = new ArrayList<>();
     public static List<Integer> preOrder(MultiTreeNode root) {
         if (root == null) {
             return list;

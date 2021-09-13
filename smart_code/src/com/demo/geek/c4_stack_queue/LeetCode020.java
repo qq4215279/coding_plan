@@ -8,7 +8,7 @@ package com.demo.geek.c4_stack_queue;
 import java.util.HashMap;
 import java.util.Stack;
 
-public class LeetCode020 { // LeetCode：T20
+public class LeetCode020 {
 
     /**
      * 有效的括号
@@ -37,7 +37,14 @@ public class LeetCode020 { // LeetCode：T20
      * (2)前来后到，即公平性。---用Queue。
      */
 
-    public static boolean isValid01(String s) {// 暴力求解：不断用replace()匹配的括号替换成->""      O(n^2)
+    /**
+     * 暴力求解：不断用replace()匹配的括号替换成->""      O(n^2)
+     * @author liuzhen
+     * @date 2021/9/13 17:32
+     * @param s
+     * @return boolean
+     */
+    public static boolean isValid01(String s) {
         char[] chars = s.toCharArray();
         if (chars == null) {
             return true;
@@ -76,7 +83,14 @@ public class LeetCode020 { // LeetCode：T20
         return true;
     }
 
-    public static boolean isValid02(String s) {// 通过栈：通过栈存左括号
+    /**
+     * 通过栈：通过栈存左括号
+     * @author liuzhen
+     * @date 2021/9/13 17:32
+     * @param s
+     * @return boolean
+     */
+    public static boolean isValid02(String s) {
 
         if (s == null) {
             return true;

@@ -8,7 +8,7 @@ package com.demo.geek.c4_stack_queue;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class LeetCode239 {// LeetCode：T239
+public class LeetCode239 {
 
     /**
      * 滑动窗口最大值
@@ -40,7 +40,15 @@ public class LeetCode239 {// LeetCode：T239
      * 1 <= k <= nums.length
      */
 
-    public static int[] maxSlidingWindow01(int[] nums, int k) {  // 双端队列处理    O（n）
+    /**
+     * 双端队列处理    O（n）
+     * @author liuzhen
+     * @date 2021/9/13 17:38
+     * @param nums
+     * @param k
+     * @return int[]
+     */
+    public static int[] maxSlidingWindow01(int[] nums, int k) {
         //        if (nums == null || nums.length == 0 || k <= 0 || nums.length < k) {
         //            return new int[nums.length -k + 1];
         //        }
@@ -68,7 +76,15 @@ public class LeetCode239 {// LeetCode：T239
         return res;
     }
 
-    public static int[] maxSlidingWindow02(int[] nums, int k) {  // 暴力    O（n*k）
+    /**
+     * 暴力    O（n*k）
+     * @author liuzhen
+     * @date 2021/9/13 17:38
+     * @param nums
+     * @param k
+     * @return int[]
+     */
+    public static int[] maxSlidingWindow02(int[] nums, int k) {
         int[] res = new int[nums.length - k + 1];
         for (int i = 0; i < nums.length - k + 1; i++) {
             int max = nums[i];

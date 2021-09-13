@@ -20,7 +20,7 @@ public class LeetCode001 { // LeetCode T1
      * 所以返回 [0, 1]
      */
 
-    public static int[] twoSum01(int[] nums, int target) { //方法1：使用集合
+    public static int[] twoSum01(int[] nums, int target) { // 方法1：使用集合
         HashMap<Integer, Integer> map = new HashMap<>();
 
         for (int i = 0; i < nums.length; i++) {

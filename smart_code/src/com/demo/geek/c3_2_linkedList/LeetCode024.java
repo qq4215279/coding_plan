@@ -7,7 +7,12 @@ package com.demo.geek.c3_2_linkedList;
 
 import com.demo.common.entity.Node;
 
-public class LeetCode024 { // LeetCode 24
+/**
+ * 两两交换链表中的节点
+ * @author liuzhen
+ * @version 1.0.0 2020/7/28 17:25
+ */
+public class LeetCode024 {
 
     /**
      * 给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。

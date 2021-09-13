@@ -19,7 +19,6 @@ public class LeetCode283 { // LeetCode T283          有点类似 Day01Demo01
      **/
 
     public void moveZeroes(int[] nums) { // 使用了双指针
-
         int j = 0;  // j记录0的位置
         for (int i = 0; i < nums.length ; i++) {
             if (nums[i] != 0) {

@@ -10,7 +10,8 @@ import java.util.Map;
  * @author liuzhen
  * @version 1.0.0 2021/8/30 22:53
  */
-public class LeetCode242 {
+public class LeetCode242 { // com.demo.geek.c18_sort.LeetCode242
+
 
     /**
      * 给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
@@ -32,45 +33,6 @@ public class LeetCode242 {
      */
 
     /**
-     * 排序  时间复杂度：O(nlogn)，其中 nn 为 ss 的长度。排序的时间复杂度为 O(nlogn)，比较两个字符串是否相等时间复杂度为O(n)，
-     *      因此总体时间复杂度为 O(nlogN+n) = O(nlogn)。  空间复杂度：O(logn)
-     *
-     * @author liuzhen
-     * @date 2021/9/2 17:46
-     * @param s
-     * @param t
-     * @return boolean
-     */
-    public static boolean isAnagram(String s, String t) {
-        if (s.length() != t.length()) {
-            return false;
-        }
-        char[] str1 = s.toCharArray();
-        char[] str2 = t.toCharArray();
-        Arrays.sort(str1);
-        Arrays.sort(str2);
-        return Arrays.equals(str1, str2);
-    }
-
-    public static boolean isAnagram2(String s, String t) {
-        if (s.length() != t.length()) {
-            return false;
-        }
-
-        int[] table = new int[26];
-        for (int i = 0; i < s.length(); i++) {
-            table[s.charAt(i) - 'a']++;
-        }
-        for (int i = 0; i < t.length(); i++) {
-            table[t.charAt(i) - 'a']--;
-            if (table[t.charAt(i) - 'a'] < 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
      * 进阶解决
      * @author liuzhen
      * @date 2021/9/2 17:52
@@ -82,7 +44,8 @@ public class LeetCode242 {
         if (s.length() != t.length()) {
             return false;
         }
-        Map<Character, Integer> table = new HashMap<Character, Integer>();
+
+        Map<Character, Integer> table = new HashMap<>();
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
             table.put(ch, table.getOrDefault(ch, 0) + 1);

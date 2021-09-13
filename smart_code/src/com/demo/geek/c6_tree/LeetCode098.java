@@ -24,7 +24,6 @@ public class LeetCode098 {  // LeetCode T98
      * 所有左子树和右子树自身必须也是二叉搜索树。
      */
 
-
     /**
      * 递归实现
      * @author liuzhen
@@ -38,19 +37,25 @@ public class LeetCode098 {  // LeetCode T98
 
     /** 递归 */
     private boolean recurse(TreeNode root, Integer lower, Integer upper) {
-        if (root == null)
+        if (root == null) {
             return true;
+        }
 
         int value = root.value;
-        if (lower != null && value <= lower)
+        if (lower != null && value <= lower) {
             return false;
-        if (upper != null && value >= upper)
+        }
+        if (upper != null && value >= upper) {
             return false;
+        }
 
-        if (!recurse(root.right, value, upper))
+        if (!recurse(root.left, lower, value)) {
             return false;
-        if (!recurse(root.left, lower, value))
+        }
+        if (!recurse(root.right, value, upper)) {
             return false;
+        }
+
         return true;
     }
 
@@ -77,8 +82,6 @@ public class LeetCode098 {  // LeetCode T98
 
         return true;
     }
-
-
 
     /**
      * 中序遍历

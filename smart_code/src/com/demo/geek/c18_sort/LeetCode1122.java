@@ -26,14 +26,44 @@ public class LeetCode1122 {
      * arr2 中的每个元素 arr2[i] 都出现在 arr1 中
      */
 
-    public int[] relativeSortArray(int[] arr1, int[] arr2) {
-
-        return null;
+    public static int[] relativeSortArray(int[] arr1, int[] arr2) {
+        int[] result = new int[arr1.length];
+        int[] a = new int[1001];
+        // 统计arr1中各个数的个数
+        for (int i = 0; i < arr1.length; i++) {
+            a[arr1[i]]++;
+        }
+        // 定义填写新数组的下标位置
+        int index = 0;
+        // 按arr2的顺序，填写新数组
+        for (int i = 0; i < arr2.length; i++) {
+            for (int j = 0; j < a[arr2[i]]; j++) {
+                result[index++] = arr2[i];
+            }
+            a[arr2[i]] = 0;
+        }
+        // 剩余数据，按顺序填入新数组
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[i]; j++) {
+                result[index++] = i;
+            }
+        }
+        return result;
     }
 
 
 
     public static void main(String[] args) {
+        int[] arr1 = {2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19};
+        int[] arr2 = {2, 1, 4, 3, 9, 6};
+
+        int[] result = relativeSortArray(arr1, arr2);
+        for (int i = 0; i < result.length; i++) {
+            System.out.print(result[i] + " ");
+        }
+        System.out.println();
+        System.out.println("------------->");
+
         int[] array = {3, 534, 22, 234, 1, 3};
 //        heapSort(array);
 

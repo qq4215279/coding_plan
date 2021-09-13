@@ -26,8 +26,14 @@ public class LeetCode015 { // LeetCode T15
      * ]
      */
 
-    public List<List<Integer>> threeSum01(int[] nums) {//暴力解
-
+    /**
+     * 暴力解
+     * @author liuzhen
+     * @date 2021/9/13 17:08
+     * @param nums
+     * @return java.util.List<java.util.List<java.lang.Integer>>
+     */
+    public List<List<Integer>> threeSum01(int[] nums) {
         if (nums == null || nums.length <= 2) {
             return Collections.emptyList();
         }
@@ -53,8 +59,14 @@ public class LeetCode015 { // LeetCode T15
         return new ArrayList<>(result);
     }
 
-    public List<List<Integer>> threeSum02(int[] nums) { //使用hash链表
-
+    /**
+     * 使用hash链表
+     * @author liuzhen
+     * @date 2021/9/13 17:08
+     * @param nums
+     * @return java.util.List<java.util.List<java.lang.Integer>>
+     */
+    public List<List<Integer>> threeSum02(int[] nums) {
         Arrays.sort(nums);
         Set<List<Integer>> result = new HashSet<>();
 
@@ -79,8 +91,14 @@ public class LeetCode015 { // LeetCode T15
         return new ArrayList<>(result);
     }
 
-    public List<List<Integer>> threeSum03(int[] nums) {//使用双指针
-
+    /**
+     * 使用双指针
+     * @author liuzhen
+     * @date 2021/9/13 17:09
+     * @param nums
+     * @return java.util.List<java.util.List<java.lang.Integer>>
+     */
+    public List<List<Integer>> threeSum03(int[] nums) {
         Arrays.sort(nums);
         Set<List<Integer>> set = new HashSet<>();
         for (int i = 0; i < nums.length - 2; i++) {

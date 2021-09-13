@@ -10,6 +10,11 @@ import com.demo.common.entity.Node;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * 环形链表
+ * @author liuzhen
+ * @version 1.0.0 2020/7/28 17:25
+ */
 public class LeetCode141 {  // LeetCode T141
 
     /**
@@ -24,8 +29,14 @@ public class LeetCode141 {  // LeetCode T141
      * 解释：链表中有一个环，其尾部连接到第二个节点。
      */
 
-    public boolean hasCycle(Node head) {//hash函数法
-
+    /**
+     * hash函数法
+     * @author liuzhen
+     * @date 2021/9/13 17:29
+     * @param head
+     * @return boolean
+     */
+    public boolean hasCycle(Node head) {
         if (head == null || head.next == null)
             return false;
 
@@ -42,14 +53,22 @@ public class LeetCode141 {  // LeetCode T141
 
     }
 
-    public boolean hasCycle02(Node head) { //快慢指针法
+    /**
+     * 快慢指针法
+     * @author liuzhen
+     * @date 2021/9/13 17:30
+     * @param head
+     * @return boolean
+     */
+    public boolean hasCycle02(Node head) {
         if (head == null || head.next == null)
             return false;
 
         Node slow = head.next;
         Node fast = head.next.next;
 
-        while (fast != null || fast.next != null) {//fast.next判断作用：判断fast是否移动到末尾
+        // fast.next判断作用：判断fast是否移动到末尾
+        while (fast != null || fast.next != null) {
             if (slow == fast) {
                 return true;
             }
@@ -58,9 +77,6 @@ public class LeetCode141 {  // LeetCode T141
         }
         return false;
     }
-
-
-
 
     public static void main(String[] args) {
 

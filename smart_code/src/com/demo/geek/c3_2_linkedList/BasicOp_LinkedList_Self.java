@@ -16,7 +16,14 @@ import java.util.Hashtable;
  */
 public class BasicOp_LinkedList_Self {
 
-    // 1.链表添加结点
+    /**
+     * 1.链表添加结点
+     * @author liuzhen
+     * @date 2021/9/13 17:14
+     * @param head
+     * @param value
+     * @return void
+     */
     public static void addNode(Node head, int value) {
         Node newNode = new Node(value);
         if (head == null) {
@@ -28,9 +35,15 @@ public class BasicOp_LinkedList_Self {
         head.next = newNode;
     }
 
-    // 2.删除链表指定索引结点
+    /**
+     * 2.删除链表指定索引结点
+     * @author liuzhen
+     * @date 2021/9/13 17:14
+     * @param head
+     * @param index
+     * @return void
+     */
     public static void deleteNode(Node head, int index) {
-
         if (index == 1) { //删除头结点      当index = 1，没有起作用
             head = head.next;
             return;
@@ -48,7 +61,13 @@ public class BasicOp_LinkedList_Self {
         }
     }
 
-    // 3.求链表长度
+    /**
+     * 3.求链表长度
+     * @author liuzhen
+     * @date 2021/9/13 17:15
+     * @param head
+     * @return int
+     */
     public static int nodeLength(Node head) {
         if (head == null) {
             System.out.println("链表的长度为：0");
@@ -63,7 +82,13 @@ public class BasicOp_LinkedList_Self {
         return size;
     }
 
-    // 4.排序: 并返回排序后的头结点。选择排序算法,即每次都选出未排序结点中最小的结点，与第一个未排序结点交换
+    /**
+     * 4.排序: 并返回排序后的头结点。选择排序算法,即每次都选出未排序结点中最小的结点，与第一个未排序结点交换
+     * @author liuzhen
+     * @date 2021/9/13 17:15
+     * @param head
+     * @return com.demo.common.entity.Node
+     */
     public static Node nodeSortASC(Node head) {
         if (head == null) {
             return null;
@@ -85,7 +110,13 @@ public class BasicOp_LinkedList_Self {
         return head;
     }
 
-    // *5.去掉重复元素（即重复的值）: 需要额外的存储空间hashtable，调用hashtable.containsKey()来判断重复结点
+    /**
+     * *5.去掉重复元素（即重复的值）: 需要额外的存储空间hashtable，调用hashtable.containsKey()来判断重复结点
+     * @author liuzhen
+     * @date 2021/9/13 17:15
+     * @param head
+     * @return void
+     */
     public static void distinctNodeValue(Node head) {
         Node cur = head;
         Node pre = null;
@@ -101,8 +132,15 @@ public class BasicOp_LinkedList_Self {
         }
     }
 
-    // 6.返回倒数第 k 个结点
-    // 技巧：两个指针，第一个指针向前移动k-1次，之后两个指针共同前进，当前面的指针到达末尾时，后面的指针所在的位置就是倒数第k个位置
+    /**
+     * 6.返回倒数第 k 个结点
+     * 技巧：两个指针，第一个指针向前移动k-1次，之后两个指针共同前进，当前面的指针到达末尾时，后面的指针所在的位置就是倒数第k个位置
+     * @author liuzhen
+     * @date 2021/9/13 17:15
+     * @param head
+     * @param k
+     * @return com.demo.common.entity.Node
+     */
     public static Node findReverseNode(Node head, int k) {
         Node first = head;
         Node second = head;
@@ -116,7 +154,13 @@ public class BasicOp_LinkedList_Self {
         return second;
     }
 
-    // 7-1.反转链表
+    /**
+     * 7-1.反转链表
+     * @author liuzhen
+     * @date 2021/9/13 17:15
+     * @param head
+     * @return void
+     */
     public static void nodeReverse1(Node head) {
         Node cur = head;
         Node pre = null;
@@ -129,7 +173,13 @@ public class BasicOp_LinkedList_Self {
         head = pre;
     }
 
-    // 7-2.反转链表（递归方式：递归实质上就是系统帮你压栈的过程，系统在压栈的时候会保留现场。）
+    /**
+     * 7-2.反转链表（递归方式：递归实质上就是系统帮你压栈的过程，系统在压栈的时候会保留现场。）
+     * @author liuzhen
+     * @date 2021/9/13 17:16
+     * @param head
+     * @return com.demo.common.entity.Node
+     */
     public static Node nodeReverse2(Node head) {
         if (head == null || head.next == null) {
             return head;
@@ -141,7 +191,13 @@ public class BasicOp_LinkedList_Self {
         return newHead;
     }
 
-    // 8-1.判断链表是否有环：设置快指针和慢指针，慢指针每次走一步，快指针每次走两步。当快指针与慢指针相等时，就说明该链表有环
+    /**
+     * 8-1.判断链表是否有环：设置快指针和慢指针，慢指针每次走一步，快指针每次走两步。当快指针与慢指针相等时，就说明该链表有环
+     * @author liuzhen
+     * @date 2021/9/13 17:16
+     * @param head
+     * @return boolean
+     */
     public static boolean isRinged(Node head) { //T 141
         if (head == null) {
             return false;
@@ -158,16 +214,38 @@ public class BasicOp_LinkedList_Self {
         return false;
     }
 
-    // 8-2拓展:
-    // 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
-    // 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。
+    /**
+     * 8-2拓展:
+     * 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
+     * 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。
+     * @author liuzhen
+     * @date 2021/9/13 17:16
+     * @param head
+     * @return com.demo.common.entity.Node
+     */
     public Node detectCycle(Node head) { // T 142
         return null;
     }
 
-    //9.判断两个链表是否相交
+    /**
+     * 9.判断两个链表是否相交
+     * @author liuzhen
+     * @date 2021/9/13 17:17
+     * @param
+     * @return boolean
+     */
+    public boolean checkIntersect() {
 
-    // 打印链表
+        return false;
+    }
+
+    /**
+     * 打印链表
+     * @author liuzhen
+     * @date 2021/9/13 17:16
+     * @param head
+     * @return void
+     */
     public static void printNodeList(Node head) {
         System.out.println("Print NodeList: ");
         if (head == null) {
