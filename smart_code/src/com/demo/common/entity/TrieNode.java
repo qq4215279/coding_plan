@@ -3,20 +3,22 @@ package com.demo.common.entity;
 /**
  * TrieNode
  * 字典树（前缀树）定义：每个节点最多有26个不同的小写字母
- *  时间复杂度：初始化为 O(1)O(1)，其余操作为 O(|S|)O(∣S∣)，其中 |S|∣S∣ 是每次插入或查询的字符串的长度。
- *  空间复杂度：O(|T|\cdot\Sigma)O(∣T∣⋅Σ)，其中 |T|∣T∣ 为所有插入字符串的长度之和，\SigmaΣ 为字符集的大小，本题 \Sigma=26Σ=26
+ *  时间复杂度：初始化为 O(1)，其余操作为 O(∣S∣)，其中 ∣S∣ 是每次插入或查询的字符串的长度。
+ *  空间复杂度：O(∣T∣⋅Σ)，其中 ∣T∣ 为所有插入字符串的长度之和，\SigmaΣ 为字符集的大小，本题 \Sigma=26Σ=26
  *  可参考: Code_01_TrieTree
  * @author liuzhen
  * @version 1.0.0 2021/8/22 17:59
  */
 public class TrieNode {
+    /**  */
     public String word;
-    // 有多少字符串到达过，既生成树过程中的字母出现（经过）的次数
+    /** 有多少字符串到达过，既生成树过程中的字母出现（经过）的次数 */
     public int path;
-    // 用于判断是否是一个单词
+    /** 用于判断是否是一个单词 */
     public boolean isEnd;
-    // 有多少字符串在这个节点结尾 （注：有了end的存在，则不需要上面的isEnd字段了）
+    /** 有多少字符串在这个节点结尾 （注：有了end的存在，则不需要上面的isEnd字段了） */
     public int end;
+    /**  */
     public TrieNode[] children;
 
     public TrieNode() {

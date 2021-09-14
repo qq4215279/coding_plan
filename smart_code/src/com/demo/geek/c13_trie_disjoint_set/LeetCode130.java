@@ -96,7 +96,7 @@ public class LeetCode130 {
         int rows = board.length;
         int cols = board[0].length;
 
-        // 用一个虚拟节点, 边界上的O 的父节点都是这个虚拟节点
+        // 用一个虚拟节点, 边界上的 O 的父节点都是这个虚拟节点
         UnionFind uf = new UnionFind(rows * cols + 1);
         int dummyNode = rows * cols;
 
@@ -104,7 +104,7 @@ public class LeetCode130 {
             for (int j = 0; j < cols; j++) {
                 // 遇到O进行并查集操作合并
                 if (board[i][j] == 'O') {
-                    // 将第一行，最后一行，第一列，最后一列的O进行合并
+                    // 将第一行 || 最后一行 || 第一列 || 最后一列的 O 进行合并
                     if (i == 0 || i == rows - 1 || j == 0 || j == cols - 1) {
                         // 边界上的O,把它和 dummyNode 合并成一个连通区域.
                         uf.union(ArrayUtil.getReferencePoint(i, j, cols), dummyNode);

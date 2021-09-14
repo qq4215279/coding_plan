@@ -43,14 +43,14 @@ public class LeetCode078 {
             return ans;
         }
 
-        dfs(ans, nums, new ArrayList<Integer>(), 0);
+        dfs(ans, nums, new ArrayList<>(), 0);
         return ans;
     }
 
     private static void dfs(List<List<Integer>> ans, int[] nums, ArrayList<Integer> list, int index) {
         // terminator
         if (index == nums.length) {
-            ans.add(new ArrayList<Integer>(list));
+            ans.add(new ArrayList<>(list));
             return;
         }
 
@@ -83,7 +83,9 @@ public class LeetCode078 {
             return ans;
         }
 
+        // 添加空集合
         ans.add(new ArrayList<>());
+
         for (int num : nums) {
             // all 重要！！！记录此时ans的总长度
             int all = ans.size();

@@ -27,7 +27,7 @@ public class LeetCode169 {
      */
 
     /**
-     * 暴力解法(self)  O(n)O(n)
+     * 暴力解法(self)  O(n)
      * @author liuzhen
      * @date 2021/8/15 18:05
      * @param nums
@@ -41,7 +41,7 @@ public class LeetCode169 {
         for (int n : nums) {
             map.put(n, map.getOrDefault(n, 0) + 1);
             if (map.get(n) > maxCount) {
-                key =  n;
+                key = n;
                 maxCount = map.get(n);
             }
         }
@@ -50,7 +50,7 @@ public class LeetCode169 {
     }
 
     /**
-     * 分治回溯：  时间复杂度：O(n\log n)O(nlogn)  空间复杂度：O(\log n)O(logn)
+     * 分治回溯：  时间复杂度：O(nlogn)  空间复杂度：O(logn)
      * 思路：
      *  1. 将nums数组平局分为左右两部分，分别找到左右数组中分别出现次数最多的数
      *  2. 分别将上找出的两个数，在左右两个边界上，找出这两个数分别出现的次数

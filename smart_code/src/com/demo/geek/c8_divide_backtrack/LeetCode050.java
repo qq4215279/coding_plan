@@ -37,19 +37,25 @@ public class LeetCode050 {
      * @param x
      * @param n
      * @return double
-     */
-    public double myPow01(double x, int n) {
+     */                                             // n   = 5       2          1           0
+    public static double myPow01(double x, int n) { // x^5 = x *   x * x  *   x * x     此时return
         if (n < 0) {
             return 1.0 / myPow01(x, -n);
         }
 
         double res = 1.0;
-        for (int i = n; i != 0 ; i /= 2) {
-            if (i % 2 != 0) {}
-            res *= x;
+        int i = n;
+        while (i != 0) {
+            // 奇数次幂
+            if (i % 2 != 0) {
+                res *= x;
+            }
+            x *= x;
+
+            i /= 2;
         }
-        x *= x;
-        return n < 0 ? 1 / res : res;
+
+        return res;
     }
 
     /**
@@ -71,7 +77,7 @@ public class LeetCode050 {
      * @param n
      * @return double
      */
-    public double myPow02(double x, int n) {
+    public static double myPow02(double x, int n) {
         long N = n;
         if (N < 0) {
             x = 1 / x;
@@ -80,7 +86,7 @@ public class LeetCode050 {
         return fastPow(x, N);
     }
 
-    private double fastPow(double x, long n) {
+    private static double fastPow(double x, long n) {
         if (n == 0) {
             return 1.0;
         }
@@ -100,8 +106,21 @@ public class LeetCode050 {
      * @param n
      * @return double
      */
-    public double myPow3(double x, int n) {
+    public static double myPow3(double x, int n) {
         return 1.0;
+    }
+
+    public static void main(String[] args) {
+        double x = 2.00000;
+        int n = 10;
+
+//        double x = 2.10000;
+//        int n = 3;
+
+//        double x = 2.00000;
+//        int n = -2;
+
+        System.out.println(myPow01(x, n));
     }
 
 }

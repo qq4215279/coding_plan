@@ -143,7 +143,6 @@ public class LeetCode033 { // 等价于 LeetCode153
 
         int left = 0;
         int right = nums.length;
-
         while (left <= right) {
             int middle = left + (right - left) / 2;
             if (target == nums[middle]) {

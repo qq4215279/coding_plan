@@ -89,31 +89,31 @@ public class LeetCode212 {
      * @date 2021/8/22 21:14
      * @return void
      */
-    private static void find(char[][] board, boolean[][] visited, int row, int col, int rSize, int lSize, Set<String> result, TrieNode212 cur) {
+    private static void find(char[][] board, boolean[][] visited, int row, int col, int rSize, int lSize, Set<String> result, TrieNode212 myTrie) {
         // 边界以及是否已经访问判断
         if (row < 0 || row >= rSize || col < 0 || col >= lSize || visited[row][col]) {
             return;
         }
 
-        cur = cur.children[board[row][col] - 'a'];
+        myTrie = myTrie.children[board[row][col] - 'a'];
         visited[row][col] = true;
-        if (cur == null) {
+        if (myTrie == null) {
             // 如果单词不匹配，回退
             visited[row][col] = false;
             return;
         }
 
         // 找到单词加入
-        if (cur.isEnd) {
-            result.add(cur.word);
-            // 注意：这里不能有retur，因为还要继续递归，后面可能还有别的比当前word更长的word eg: oa时，返回后oaa就添加不到结果上去了！！！
+        if (myTrie.isEnd) {
+            result.add(myTrie.word);
+            // 注意：这里不能有return，因为还要继续递归，后面可能还有别的比当前word更长的word eg: oa时，返回后oaa就添加不到结果上去了！！！
 //            return;
         }
 
         int[] dx = {-1, 1, 0, 0};
         int[] dy = {0, 0, -1, 1};
         for (int k = 0; k < 4; k++) {
-            find(board, visited, row + dx[k], col + dy[k], rSize, lSize, result, cur);
+            find(board, visited, row + dx[k], col + dy[k], rSize, lSize, result, myTrie);
         }
 
         // 等价与上面循环

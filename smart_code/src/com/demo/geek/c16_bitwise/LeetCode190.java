@@ -62,6 +62,27 @@ public class LeetCode190 {
     }
 
     public static void main(String[] args) {
+        int a = 0b1101101;
+        System.out.println(a);
+        int b = a & 7;
+        System.out.println("7：" + Integer.toBinaryString(15));
+        System.out.println("b: " + Integer.toBinaryString(b));
+
+        System.out.println("-------->");
+        System.out.println(1);
+        System.out.println(1 << 1);
+        System.out.println(1 << 2);
+        System.out.println(1 << 3);
+        System.out.println(1 << 4);
+        System.out.println(1 << 5);
+        System.out.println(1 << 6);
+
+        System.out.println("========>");
+        System.out.println(0 ^ 0);
+        System.out.println(~-1);
+
+        System.out.println((-1 << 2) & 15);
+        System.out.println((-1 & 1));
 //        System.out.println(reverseBits(00000010100101000001111010011100));
     }
 

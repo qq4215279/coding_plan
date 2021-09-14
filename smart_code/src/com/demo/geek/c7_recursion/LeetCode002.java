@@ -8,7 +8,7 @@ import com.demo.common.entity.Node;
  * @author liuzhen
  * @version 1.0.0 2021/8/5 23:25
  */
-public class LeetCode002 { // LeetCode 2
+public class LeetCode002 {
 
     /**
      * 给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。

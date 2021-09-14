@@ -8,7 +8,7 @@ import com.demo.common.entity.UnionFind;
  * @author liuzhen
  * @version 1.0.0 2021/8/22 16:01
  */
-public class FriendCircles {
+public class LeetCode116 {
 
     /**
      * 班上有N名学生，其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知A是B的朋友，B是C的朋友，那么我们也可以认为A也是C的朋友。所谓的朋友圈，是指所有朋友的集合。
@@ -62,6 +62,7 @@ public class FriendCircles {
                 }
             }
         }
+
         return uf.count;
     }
 
