@@ -81,9 +81,46 @@ public class LeetCode190 {
         System.out.println(0 ^ 0);
         System.out.println(~-1);
 
+        System.out.println("-1左移两位：" + (-1 << 2));
+        System.out.println("-2左移两位：" + (-2 << 2)); // -2 * 2^2
+        System.out.println("3左移4位：" + (3 << 4)); // 3 * 2^4
+
         System.out.println((-1 << 2) & 15);
-        System.out.println((-1 & 1));
-//        System.out.println(reverseBits(00000010100101000001111010011100));
+        System.out.println("-1 & 1：" + (-1 & 1));
+        System.out.println("------------------------------------------->");
+
+        System.out.println("0b111(7) 右移1位：" + (0b111 >> 1));
+        System.out.println("0b111(7) 右移2位：" + (0b111 >> 2));
+        System.out.println("0b111(7) 右移3位：" + (0b111 >> 3));
+
+        System.out.println("0b111(7) 无符号右移1位：" + (0b111 >>> 1));
+        System.out.println("0b111(7) 无符号右移2位：" + (0b111 >>> 2));
+        System.out.println("0b111(7) 无符号右移3位：" + (0b111 >>> 3));
+
+
+        System.out.println("-7 右移1位：" + (-7 >> 1));
+        System.out.println("-7 右移2位：" + (-7 >> 2));
+        System.out.println("-7 右移3位：" + (-7 >> 3));
+        System.out.println("-7 右移4位：" + (-7 >> 4));
+
+        System.out.println("-7 无符号右移1位：" + (-7 >>> 1));
+        System.out.println("-7 无符号右移2位：" + (-7 >>> 2));
+        System.out.println("-7 无符号右移3位：" + (-7 >>> 3));
+        System.out.println("-7 无符号右移4位：" + (-7 >>> 4));
+
+        System.out.println("Integer max value：" + Integer.toBinaryString(Integer.MAX_VALUE));
+        System.out.println("Integer min value：" + Integer.toBinaryString(Integer.MIN_VALUE));
+
+        System.out.println("   Long max value：" + Long.toBinaryString(Long.MAX_VALUE));
+        System.out.println("   Long min value：" + Long.toBinaryString(Long.MIN_VALUE));
+
+        System.out.println("------------------------------------------->");
+
+        System.out.println(" 1二进制：" + Integer.toBinaryString(1));
+        System.out.println(" 0二进制：" + Integer.toBinaryString(0));
+        System.out.println("-1二进制：" + Integer.toBinaryString(-1));
+        System.out.println("-2二进制：" + Integer.toBinaryString(-2));
+        System.out.println("-3二进制：" + Integer.toBinaryString(-3));
     }
 
 }
