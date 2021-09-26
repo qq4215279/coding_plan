@@ -3,7 +3,7 @@ package com.demo.nuike.chuji.class_08;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Code_03_Print_All_Subsquences {	//打印所有子序列
+public class Code_03_Print_All_Subsquences { // 打印所有子序列
 
 	public static void printAllSubsquence(String str) {
 		char[] chs = str.toCharArray();
@@ -21,12 +21,12 @@ public class Code_03_Print_All_Subsquences {	//打印所有子序列
 		process(chs, i + 1);
 		chs[i] = tmp;
 	}
-	
+
 	public static void function(String str) {
 		char[] chs = str.toCharArray();
 		process(chs, 0, new ArrayList<Character>());
 	}
-	
+
 	public static void process(char[] chs, int i, List<Character> res) {
 		if(i == chs.length) {
 			printList(res);
@@ -37,11 +37,11 @@ public class Code_03_Print_All_Subsquences {	//打印所有子序列
 		List<Character> resNoInclude = copyList(res);
 		process(chs, i+1, resNoInclude);
 	}
-	
+
 	public static void printList(List<Character> res) {
 		// ...;
 	}
-	
+
 	public static List<Character> copyList(List<Character> list){
 		return null;
 	}

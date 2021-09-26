@@ -27,14 +27,16 @@ public class Code_02_RandomPool {  // 设计RandomPool结构
 				int deleteIndex = this.keyIndexMap.get(key);	// 从表一key值获取要删除的序号
 				int lastIndex = --this.size;	// 拿到最后位置的序号，并且size的大小要-1
 				K lastKey = this.indexKeyMap.get(lastIndex);	// 从表二中通过最后序号拿到最后面的key值
+
 				this.keyIndexMap.put(lastKey, deleteIndex);		// 把表中末尾元素的值赋到表一删除的位置上(key,index)
 				this.indexKeyMap.put(deleteIndex, lastKey);		// 把表中末尾元素的值赋到表一删除的位置上(index,key)
+
 				this.keyIndexMap.remove(key);	// 两张表都删除掉最后那个序号表示的元素。
 				this.indexKeyMap.remove(lastIndex);
 			}
 		}
 
-		public K getRandom() {	//随机那表中的值
+		public K getRandom() {	// 随机那表中的值
 			if (this.size == 0) {
 				return null;
 			}

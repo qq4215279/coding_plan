@@ -33,21 +33,21 @@ public class Code_08_Money_Problem {
 		return dp[0][0];
 	}
 
-	//递归的分析过程解决该问题
-	public static boolean isSum(int[] arr, int i, int sum, int aim){
-		if (i == arr.length){
+	// 递归的分析过程解决该问题
+	public static boolean isSum(int[] arr, int i, int sum, int aim) {
+		if (i == arr.length) {
 			return sum == aim;
 		}
-		return isSum( arr, i + 1, sum, aim ) || isSum( arr, i + 1, sum + arr[i], aim );
+		return isSum(arr, i + 1, sum, aim) || isSum(arr, i + 1, sum + arr[i], aim);
 	}
 
 	public static void main(String[] args) {
-		int[] arr = { 1, 4, 8 };
+		int[] arr = {1, 4, 8};
 		int aim = 12;
 		System.out.println(money1(arr, aim));
 		System.out.println(money2(arr, aim));
 
-		isSum( arr, 0, 0, aim );
+		isSum(arr, 0, 0, aim);
 	}
 
 }

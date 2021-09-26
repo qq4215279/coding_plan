@@ -1,6 +1,6 @@
 package com.demo.nuike.chuji.class_08;
 
-public class Code_01_Factorial {	//求n！的结果
+public class Code_01_Factorial {	// 求 n！的结果
 	public static long getFactorial1(int n) {
 		if (n == 1) {
 			return 1L;

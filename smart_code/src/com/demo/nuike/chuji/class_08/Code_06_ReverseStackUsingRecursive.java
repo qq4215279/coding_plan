@@ -17,11 +17,11 @@ public class Code_06_ReverseStackUsingRecursive {
 		int result = stack.pop();
 		if (stack.isEmpty()) {
 			return result;
-		} else {
-			int last = getAndRemoveLastElement(stack);
-			stack.push(result);
-			return last;
 		}
+
+		int last = getAndRemoveLastElement(stack);
+		stack.push(result);
+		return last;
 	}
 
 	public static void main(String[] args) {

@@ -70,35 +70,25 @@ public class BitOperation {
      */
     @Test
     public void xorTest() {
-        /*
-        * - x ^ 0 = x   eg: x=1111时, 1111 ^ 0000 = 1111;  x=0时, 0 ^ 0 = 0
-          - x ^ 1s = ~x  // 注意：1s = ~0     （1s表示全是1）eg: x=1111时, 1111 ^ 1111 = 0000
-            - ~0 =  1111 1111 1111 1111 = -1
-            - ~1 = 1111 1111 1111 1110 = -2
-            - ~5 = -6
-          - x ^ (~x) = 1s  eg: x=1111时, 1111 ^ 0000 = 1111
-          - x ^ x = 0   eg: x=1111时, 1111 ^ 1111 = 0000
-          - c = a ^ b   =>  a ^ c = b, b ^ c = a   // 交换两个数
-          - a ^ b ^ c = a ^ (b ^ c) = (a ^ b) ^ c  // associative
-        * */
-
         System.out.println("~1：" + Integer.toBinaryString(~1) + "  十进制：" + (~1));
         System.out.println("~0：" + Integer.toBinaryString(~0) + "  十进制：" + (~0));
         System.out.println("~-1：" + Integer.toBinaryString(~-1) + "  十进制：" + (~-1));
+        System.out.println("~5：" + Integer.toBinaryString(~5) + "  十进制：" + (~5));
         System.out.println("~-6：" + Integer.toBinaryString(~-6) + "  十进制：" + (~-6));
-        System.out.println("1s：" + Integer.toBinaryString(0b1) + "  十进制：" + (~-6));
+        System.out.println("1s：" + Integer.toBinaryString(0b1) + "  十进制：" + (0b1));
 
-        System.out.println("11111111111111111111111111111001".length());
         System.out.println("------------------------------------->");
 
         int x = 0b1111;
         int y = 0b1111;
-        System.out.println("x ^ 0：" + Integer.toBinaryString((x ^ 0)) + "  十进制：" + (x ^ 0));
-        System.out.println("x ^ 1s：" + Integer.toBinaryString((x ^ y)) + "  十进制：" + (x ^ y));
-        System.out.println("x ^ (~x)：" + Integer.toBinaryString((x ^ (~x))) + "  十进制：" + (x ^ (~x)));
-        System.out.println("x ^ x：" + Integer.toBinaryString((x ^ x)) + "  十进制：" + (x ^ x));
+        System.out.println("x：" + Integer.toBinaryString(x) + " y：" + Integer.toBinaryString(y));
 
-//        System.out.println(Integer.toBinaryString(~(x)));
+        System.out.println("x ^ 0 = x：" + Integer.toBinaryString((x ^ 0)) + "  十进制：" + (x ^ 0));
+        System.out.println("x ^ 1s = ~x：" + Integer.toBinaryString((x ^ y)) + "  十进制：" + (x ^ y));
+        System.out.println("x ^ (~x) = 1s：" + Integer.toBinaryString((x ^ (~x))) + "  十进制：" + (x ^ (~x)));
+        System.out.println("~x：" + Integer.toBinaryString(~(x)) + " 十进制：" + (~x));
+        System.out.println("x ^ x = 0：" + Integer.toBinaryString((x ^ x)) + "  十进制：" + (x ^ x));
+
     }
 
     /**

@@ -8,11 +8,16 @@ public class Code_06_PrintMatrixSpiralOrder {
 	 */
 
 	public static void spiralOrderPrint(int[][] matrix) { // 二位数组表示
-		int tR = 0;						// 代表行，第一行第一个元素的位置为起点
-		int tC = 0;						// 代表列，第一列第一个元素的位置为起点
-		int dR = matrix.length - 1;		// 代表行，数组最后一行最后一个元素的位置为起点。数组的行长度-1。
-		int dC = matrix[0].length - 1;	// 代表列，数组最最后一行第一个元素的位置为起点.数组的列长度-1。
-		while (tR <= dR && tC <= dC) {	// 递归打印内圈矩阵
+		// 代表行，第一行第一个元素的位置为起点
+		int tR = 0;
+		// 代表列，第一列第一个元素的位置为起点
+		int tC = 0;
+		// 代表行，数组最后一行最后一个元素的位置为起点。数组的行长度-1。
+		int dR = matrix.length - 1;
+		// 代表列，数组最最后一行第一个元素的位置为起点.数组的列长度-1。
+		int dC = matrix[0].length - 1;
+		// 递归打印内圈矩阵
+		while (tR <= dR && tC <= dC) {
 			printEdge(matrix, tR++, tC++, dR--, dC--);
 		}
 	}

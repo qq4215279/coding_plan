@@ -8,9 +8,9 @@ public class Code_12_SmallerEqualBigger {
 	 * 将单向链表按某值划分成左边小、中间相等、右边大的形式
 	 */
 
-	public static Node listPartition1(Node head, int pivot) {	// pivot：支点，枢轴
+	public static Node listPartition1(Node head, int pivot) {    // pivot：支点，枢轴
 		if (head == null) {
-			return head;
+			return null;
 		}
 		Node cur = head;
 		int i = 0;
@@ -21,7 +21,7 @@ public class Code_12_SmallerEqualBigger {
 		Node[] nodeArr = new Node[i];
 		i = 0;
 		cur = head;
-		for (i = 0; i != nodeArr.length; i++) {		// 把单链表放进一个数组里
+		for (i = 0; i != nodeArr.length; i++) {        // 把单链表放进一个数组里
 			nodeArr[i] = cur;
 			cur = cur.next;
 		}
@@ -54,7 +54,7 @@ public class Code_12_SmallerEqualBigger {
 		nodeArr[b] = tmp;
 	}
 
-	public static Node listPartition2(Node head, int pivot) {	// 进阶问题
+	public static Node listPartition2(Node head, int pivot) {    // 进阶问题
 		Node sH = null; // small head
 		Node sT = null; // small tail
 		Node eH = null; // equal head

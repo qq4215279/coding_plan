@@ -6,7 +6,7 @@ public class Code_07_MinPath {
 		return process1(matrix, matrix.length - 1, matrix[0].length - 1);
 	}
 
-	//从(i,j)出发，到达最有下角位置，最短路径和是多少（返回）？
+	// 从(i,j)出发，到达最有下角位置，最短路径和是多少（返回）？
 	public static int process1(int[][] matrix, int i, int j) {
 		int res = matrix[i][j];
 		if (i == 0 && j == 0) {
@@ -51,26 +51,29 @@ public class Code_07_MinPath {
 		int[][] result = new int[rowSize][colSize];
 		for (int i = 0; i != result.length; i++) {
 			for (int j = 0; j != result[0].length; j++) {
-				result[i][j] = (int) (Math.random() * 10);
+				result[i][j] = (int)(Math.random() * 10);
 			}
 		}
 		return result;
 	}
 
-	//递归形式解决问题
-	public static int walk(int[][] matrix,int i, int j){
-		if (i == matrix.length - 1 && j == matrix[0].length - 1){
+	// 递归形式解决问题
+	public static int walk(int[][] matrix, int i, int j) {
+		if (i == matrix.length - 1 && j == matrix[0].length - 1) {
 			return matrix[i][j];
 		}
-		if (i == matrix.length - 1){
-			return matrix[i][j] + walk( matrix, i, j + 1 );
+		if (i == matrix.length - 1) {
+			return matrix[i][j] + walk(matrix, i, j + 1);
 		}
-		if (j == matrix[0].length - 1){
-			return matrix[i][j] + walk( matrix, i + 1, j );
+		if (j == matrix[0].length - 1) {
+			return matrix[i][j] + walk(matrix, i + 1, j);
 		}
-		int right = walk( matrix, i, j + 1 );//right -> 右边位置到右下角的最短路径和
-		int down = walk( matrix, i + 1, j );//down -> 下边位置到右下角的最短路径和
-		return matrix[i][j] + Math.min( right,down );
+
+		// right -> 右边位置到右下角的最短路径和
+		int right = walk(matrix, i, j + 1);
+		// down -> 下边位置到右下角的最短路径和
+		int down = walk(matrix, i + 1, j);
+		return matrix[i][j] + Math.min(right, down);
 	}
 
 	public static void main(String[] args) {

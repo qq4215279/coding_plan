@@ -1,6 +1,6 @@
 package com.demo.nuike.chuji.class_08;
 
-public class Code_02_Hanoi {	//汉诺塔问题：
+public class Code_02_Hanoi {	// 汉诺塔问题：
 
 	public static void hanoi(int n) {
 		if (n > 0) {

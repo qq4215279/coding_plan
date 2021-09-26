@@ -2,7 +2,7 @@ package com.demo.nuike.chuji.class_03;
 
 import java.util.Stack;
 
-public class Code_02_GetMinStack {	//找出栈中的最小值	思路就是准备两个栈
+public class Code_02_GetMinStack {	// 找出栈中的最小值	思路就是准备两个栈
 
 	public static class MyStack1 {
 		private Stack<Integer> stackData;

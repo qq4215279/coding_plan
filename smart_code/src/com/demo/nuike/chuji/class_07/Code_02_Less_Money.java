@@ -21,7 +21,6 @@ public class Code_02_Less_Money {	// 切金条最小花费问题
 	}
 
 	public static class MinheapComparator implements Comparator<Integer> {
-
 		@Override
 		public int compare(Integer o1, Integer o2) {
 			return o1 - o2; // < 0  o1 < o2  负数

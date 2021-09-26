@@ -15,7 +15,7 @@ public class Code_06_IsBalancedTree {
 		return res[0];
 	}
 
-	public static int getHeight(TreeNode head, int level, boolean[] res) {		// 通过列出所有可能性
+	public static int getHeight(TreeNode head, int level, boolean[] res) { // 通过列出所有可能性
 		if (head == null) {
 			return level;
 		}
