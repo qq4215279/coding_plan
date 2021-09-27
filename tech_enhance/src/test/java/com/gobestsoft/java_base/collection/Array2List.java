@@ -93,7 +93,7 @@ public class Array2List {
         return list;
     }
 
-    // -------------------------------------->
+    // --------------------------------------------------------------------------------------------------------------->
 
     /**
      * List转数组1
@@ -101,11 +101,11 @@ public class Array2List {
      * @return
      */
     public int[] list2Array01() {
-        Integer[] integers = list.toArray(new Integer[list.size()]);
-        int[] arr = new int[integers.length];
+        Integer[] integerArr = list.toArray(new Integer[list.size()]);
+        int[] arr = new int[integerArr.length];
 
-        for (int i = 0; i < integers.length; i++) {
-            arr[i] = integers[i].intValue();
+        for (int i = 0; i < integerArr.length; i++) {
+            arr[i] = integerArr[i].intValue();
         }
 
         return arr;

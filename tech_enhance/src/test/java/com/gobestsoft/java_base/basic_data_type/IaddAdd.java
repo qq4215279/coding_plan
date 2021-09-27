@@ -1,5 +1,7 @@
 package com.gobestsoft.java_base.basic_data_type;
 
+import org.junit.Test;
+
 /**
  * IaddAdd
  * i++ 与 ++i 问题
@@ -11,7 +13,8 @@ public class IaddAdd {
     /**
      * i++改变的只有i，++i既改变i，又改变赋值变量；
      */
-    public static void condition01() {
+    @Test
+    public void condition01() {
         int i = 1;
         int s = ++i;
         int x = i++;
@@ -28,7 +31,8 @@ public class IaddAdd {
      * 3. i-- =>  i=6; s'=7;
      * 4. --i =>  i=5; s'=5;
      */
-    public static void condition02() {
+    @Test
+    public void condition02() {
         int i = 5;
         int s = (i++) + (++i) + (i--) + (--i);
         System.out.println(i); // 5
@@ -38,17 +42,17 @@ public class IaddAdd {
     /**
      *
      */
-    public static void condition03() {
+    @Test
+    public void condition03() {
         // 1.基础：
         int a = 1, b = 0;
         b = a++;
         System.out.println("b = a++  ===>  " + b); // 1
         b = ++a;
-        System.out.println("b = ++a  ===>  " + b); // 2
+        System.out.println("b = ++a  ===>  " + b); // 3
 
         // 2.深入：
         int y = 0;
-        int i = 0;
         y = ++y;
         System.out.println("y=" + y); // 1
 
@@ -57,12 +61,10 @@ public class IaddAdd {
         *       首先等号左边 i 的值会因为 i++ 变为1；后面又因为等号右边是一个临时变量temp的值0，再次覆盖掉1，变为0.
         *
         */
+        int i = 0;
         i = i++;
         System.out.println("i=" + i); // 0
     }
 
-    public static void main(String[] args) {
-
-    }
 
 }

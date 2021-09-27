@@ -23,9 +23,13 @@ public class ExceptionTest {
         return EXCEPTION_TEST;
     }
 
-    /*
-    * 不处理
-    * */
+    /**
+     * 不处理
+     * @author liuzhen
+     * @date 2021/9/27 13:49
+     * @param n
+     * @return int
+     */
     public int division_NoTreatment(int n) {
         int denominator = 0;
 //        if (denominator == 0) {
@@ -37,9 +41,13 @@ public class ExceptionTest {
         return res;
     }
 
-    /*
-    * try catch
-    * */
+    /**
+     * try catch
+     * @author liuzhen
+     * @date 2021/9/27 13:48
+     * @param n
+     * @return int
+     */
     public int division_Try_Catch(int n) {
         int a = 0;
         try {
@@ -61,23 +69,22 @@ public class ExceptionTest {
      * @return
      * @throws ArithmeticException
      */
-    public int division_Throws(int n) throws ArithmeticException{
+    public int division_Throws(int n) throws ArithmeticException {
 
         return n / 0;
     }
 
     public static void main(String[] args) throws ArithmeticException {
+        // 1.不做处理
+        //        int division = ExceptionTest.getInstance().division_NoTreatment(10);
+        //        System.out.println("结果1---------------> " + division);
 
-        // 不做处理
-//        int division = ExceptionTest.getInstance().division_NoTreatment(10);
-//        System.out.println("结果1---------------> " + division);
-
-        // try catch
+        // 2.try catch
         int division2 = ExceptionTest.getInstance().division_Try_Catch(10);
         System.out.println("try catch 可以继续往下走。。。");
         System.out.println("结果2--------------> " + division2);
-//
-//        // throws
+
+        // 3.throws
         int division3 = ExceptionTest.getInstance().division_Throws(10);
         System.out.println("结果3--------------> " + division3);
 

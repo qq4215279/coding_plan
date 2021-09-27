@@ -84,10 +84,10 @@ public class BitOperation {
         System.out.println("x：" + Integer.toBinaryString(x) + " y：" + Integer.toBinaryString(y));
 
         System.out.println("x ^ 0 = x：" + Integer.toBinaryString((x ^ 0)) + "  十进制：" + (x ^ 0));
+        System.out.println("x ^ x = 0：" + Integer.toBinaryString((x ^ x)) + "  十进制：" + (x ^ x));
         System.out.println("x ^ 1s = ~x：" + Integer.toBinaryString((x ^ y)) + "  十进制：" + (x ^ y));
         System.out.println("x ^ (~x) = 1s：" + Integer.toBinaryString((x ^ (~x))) + "  十进制：" + (x ^ (~x)));
         System.out.println("~x：" + Integer.toBinaryString(~(x)) + " 十进制：" + (~x));
-        System.out.println("x ^ x = 0：" + Integer.toBinaryString((x ^ x)) + "  十进制：" + (x ^ x));
 
     }
 

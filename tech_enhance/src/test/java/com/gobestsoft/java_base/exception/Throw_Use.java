@@ -29,9 +29,9 @@ public class Throw_Use {
     }
 
     public static void main(String[] args) {
-
+        // 4. throw
         System.out.println("开始");
-        int type = Throw_Use.method(2);
+        int type = Throw_Use.method(4);
         System.out.println("type: " + type);
         System.out.println("结束~~~~~");
     }
