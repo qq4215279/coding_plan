@@ -3,7 +3,7 @@ package com.gobestsoft.java_base.string;
 import org.junit.Test;
 
 /**
- * DefineStringDemo
+ * DefineStringDemo  TODO 继续探究！！！
  * 定义字符串demo
  * @author liuzhen
  * @version 1.0.0 2021/9/27 14:49
@@ -25,12 +25,18 @@ public class DefineStringDemo {
     public void DefineStringTest() {
         // Java虚拟机会将其分配到常量池中
         String s1 = "Programming";
-        // 被分到堆内存中，并判断常量池中有没有"Programming"，没有的话会在常量池中创建
+        // 被分到堆内存中，并不会将其分配到常量池中，除非调用intern()进行 池化
         String s2 = new String("Programming");
         String s3 = "Program";
         String s4 = "ming";
         String s5 = "Program" + "ming";
-        String s6 = s3 + s4;
+        String s6 = s3 + s4; // s3和s4都是变量，此时相加相当于是new String()操作
+
+        String s7 = "Program" + s4; // s3和s4都是变量，此时相加相当于是new String()操作
+        System.out.println("s1 == s7：" + (s1 == s7)); // false
+        System.out.println("s1 == s7.intern()：" + (s1 == s7.intern())); // true
+
+
         System.out.println(s1 == s2); // false
         System.out.println(s1 == s5); // true
         System.out.println(s1 == s6); // false
@@ -59,20 +65,41 @@ public class DefineStringDemo {
      */
     @Test
     public void test02() {
+        // 1. 证明原来String对象没有变
         String s = "Hello";
         s = s + " world!";
         System.out.println("s：" + s);
 
         System.out.println("-------------->");
 
+        // 2. new出来的对象都在堆中，地址都不一样，所以不会相等
         String a = new String("aa");
         String b = new String(a);
+
+        System.out.println(a == b.intern()); // false
+        System.out.println(b == b.intern()); // false
 
         System.out.println("a：" + a + " b：" + b);
         System.out.println(a == b); // false 因为两个new出来的String对象，在堆中的地址是不一样的
 
+
+        // TODO
+        String aIntern = a.intern();
+        String bIntern = b.intern();
+        System.out.println("aIntern == bIntern ? " + (aIntern == bIntern)); // true ???
+
+        String aa =  "aa";
+        String bb = new String(aa);
+        System.out.println(aa == bb.intern()); // true
+        System.out.println(bb == bb.intern()); // false
+
+        String aaIntern = aa.intern();
+        String bbIntern = bb.intern();
+        System.out.println("aaIntern == bbIntern ? " + (aaIntern == bbIntern)); // true ???
+
         System.out.println("-------------->");
 
+        // 3. 这种给c、d的赋值方式，都会在字符穿常量池中（常量池没有则创建），所以会指向同一地址
         String c = a;
         String d = a;
         System.out.println("c：" + c + " d：" + d);
@@ -80,12 +107,14 @@ public class DefineStringDemo {
 
         System.out.println("==================================================>");
 
-        // 简单总结下：对于那些在编译时就能确定的字面量都会存放在运行时常量池中
+        // 4. 简单总结下：对于那些在编译时就能确定的字面量都会存放在运行时常量池中
         String e = "hello " + "world"; // JVM会将此代码优化为 String c = "hello world";
         String f = "hello world";
         System.out.println(e == f); // true
 
-        // str_1和str_2是变量，在编译时不能确定值，所以不会被放在运行时常量池中，而是在heap中重新new了一块儿内存。
+        System.out.println("-------------->");
+
+        // 5. str_1和str_2是变量，在编译时不能确定值，所以不会被放在运行时常量池中，而是在heap中重新new了一块儿内存。
         String str = "helloworld";
         String str_1 = "hello";
         String str_2 = "world";
@@ -94,6 +123,9 @@ public class DefineStringDemo {
         System.out.println(str == g); // false
         System.out.println(str == g.intern()); // true
 
+        System.out.println("-------------->");
+
+        // 6.
         // 问：下面语句创建了几个StringObject？ 答：一个或者两个。
         // 解析：若果常量池中存在，就在堆里创建一个；如果不存在，就常量池，堆里个创建一个。
         String x = new String("xyz");
@@ -126,14 +158,123 @@ public class DefineStringDemo {
     // todo  来自知乎
     @Test
     public void test04() {
-        String a = "a";
-        String param = new String("param" + a);
-        String paramSame = param.intern();
+        String aaa = "a";
+        String param = new String("param" + aaa);
+        String paramIntern = param.intern();
         String param3 = new String("parama");
 
-        System.out.println(param == paramSame); // true
-        System.out.println(param == param3); // false
-        System.out.println(param3 == paramSame); // false
+        System.out.println(param == paramIntern); // true ???
+
+        System.out.println(param3 == param); // false
+        System.out.println(param3 == paramIntern); // false
+
+        System.out.println("=============>");
+
+        // new String() 不管常量池中有没有，都会在堆中新建一个对象，所以不会和其他对象相等。
+        String a = "古时的";
+        String s1 = "古时的风筝";
+        String s2 = new String(a + "风筝");
+        String s3 = new String(a + "风筝");
+        System.out.println(s1 == s2); // false
+        System.out.println(s2 == s3); // false
     }
+    @Test
+    public void test05() {
+        // 1.
+//        String a = "古时的"; // 效果和下面一样
+        String a = new String("古时的");
+        String s2 = new String(a + "风筝");
+        String s2Intern = s2.intern();
+        System.out.println("s2 == s2Intern：" + (s2 == s2Intern)); // TODO true ???
+
+        System.out.println("--------------------------->");
+
+        // 2.
+        String b = "天天";
+        String cPoolExist = "天天向上";
+        String d = new String(b + "向上");
+        String dIntern = d.intern();
+        System.out.println(d == dIntern); // false
+        System.out.println("cPoolExist == e：" + (cPoolExist == dIntern)); // true
+
+        System.out.println("=============================>");
+
+        // 3.
+        String s22 = new String("好好学习");
+        String s22Intern = s22.intern();
+        System.out.println(s22 == s22Intern); // false
+
+        System.out.println("--------------------------->");
+
+        // 4.
+        String ccPoolExist = "天气很好";
+        String dd = new String("天气很好");
+        String ddIntern = dd.intern();
+        System.out.println("ddIntern == ccPoolExist：" + (ddIntern == ccPoolExist)); // true
+        System.out.println(dd == ddIntern); // false
+    }
+
+    @Test
+    public void test06() {
+        // 2. new出来的对象都在堆中，地址都不一样，所以不会相等
+        String a = new String("aa");
+        String b = new String(a);
+
+        System.out.println("a：" + a + " b：" + b);
+        System.out.println(a == b.intern()); // false
+        System.out.println(b == b.intern()); // false
+        System.out.println(a == b); // false 因为两个new出来的String对象，在堆中的地址是不一样的
+
+
+        // TODO
+        String aIntern = a.intern();
+        String bIntern = b.intern();
+        System.out.println("aIntern == bIntern：" + (aIntern == bIntern)); // true
+
+        String aa =  "aa";
+        String bb = new String(aa);
+        System.out.println(aa == bb.intern()); // true
+        System.out.println(bb == bb.intern()); // false
+
+        String aaIntern = aa.intern();
+        String bbIntern = bb.intern();
+        System.out.println("aaIntern == bbIntern ? " + (aaIntern == bbIntern)); // true
+
+        System.out.println("==================>>>>");
+
+        String c = new String("abc");
+        String d = c;
+        System.out.println(c.intern() == d); // false
+        String e = d.intern();
+        System.out.println(c.intern() == e); // true
+        String f = "abc";
+        System.out.println(f == e); // true
+    }
+
+    /**
+     * 总结：
+     * 1. 类中的字符串字面量会于编译期被解析，然后存储于字节码的constant pool中，在类加载完后会进入常量池。
+     * 2. 在编译期无法确定具体值的字符串变量，若要加入到字符串常量池，可以调用intern()方法。
+     *    这时如果池中没有与之字面量相同的字符串，它会进入到常量池当中，所有之前指向这块内存的引用，都会指向常量池。
+     * 3. 通过new的方式是无法实现把新的字符串放到常量池当中的。创建的时候没与常量池扯上任何关系。
+     */
+    @Test
+    public void pushPool() {
+        String a = "a";
+        String param = "b" + a;
+        //这里的"ba"为字面量不应该在类加载后就进入常量池了吗
+        //(查看字节码也可以看到它被放到了constant pool),那么param应该不会放到pool中啊
+        System.out.println(param.intern() == "ba"); // true
+        System.out.println(param == "ba"); // true TODO???
+    }
+
+    @Test
+    public void pushPool2() {
+        String a = "a";
+        String param = "b" + a;
+        System.out.println("ba" == param.intern()); // true
+        System.out.println(param == "ba"); // false TODO???
+    }
+
 
 }

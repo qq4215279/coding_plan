@@ -11,7 +11,7 @@ package com.gobestsoft.java_base.string;
  * @author liuzhen
  * @version 1.0.0 2021/5/8 20:14
  */
-public class splitTest {
+public class SplitMethodDemo {
 
     /**
      * String a = new String(“1”+”2”)最终创建了几个对象: 2
