@@ -217,27 +217,29 @@ public class DefineStringDemo {
     @Test
     public void test06() {
         // 2. new出来的对象都在堆中，地址都不一样，所以不会相等
-        String a = new String("aa");
+        String a = new String("a");
         String b = new String(a);
-
-        System.out.println("a：" + a + " b：" + b);
-        System.out.println(a == b.intern()); // false
-        System.out.println(b == b.intern()); // false
-        System.out.println(a == b); // false 因为两个new出来的String对象，在堆中的地址是不一样的
-
-
-        // TODO
         String aIntern = a.intern();
         String bIntern = b.intern();
+
+        System.out.println("a：" + a + " b：" + b);
+        System.out.println(a == b); // false 因为两个new出来的String对象，在堆中的地址是不一样的
+        System.out.println(a == bIntern); // false
+        System.out.println(b == bIntern); // false
         System.out.println("aIntern == bIntern：" + (aIntern == bIntern)); // true
 
+        System.out.println("------------------------->");
+
+        // 等号复制aa
         String aa =  "aa";
         String bb = new String(aa);
-        System.out.println(aa == bb.intern()); // true
-        System.out.println(bb == bb.intern()); // false
-
         String aaIntern = aa.intern();
         String bbIntern = bb.intern();
+
+        System.out.println("aa：" + aa + " bb：" + bb);
+        System.out.println(aa == bb); // false
+        System.out.println(aa == bbIntern); // true
+        System.out.println(bb == bbIntern); // false
         System.out.println("aaIntern == bbIntern ? " + (aaIntern == bbIntern)); // true
 
         System.out.println("==================>>>>");
