@@ -10,7 +10,6 @@ public class Code_01_PreInPosTraversal {
 
 	/**
 	 * 实现二叉树的先序、中序、后序遍历，包括递归方式和非递归方式
-	 * @param head
 	 */
 
 	// 递归的方式实现遍历二叉树

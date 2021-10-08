@@ -6,6 +6,10 @@ import java.util.Stack;
 
 public class Code_03_StackAndQueueConvert {	// 队列结构与栈结构的转换
 
+	/**
+	 * 如何仅用队列结构实现栈结构？ 如何仅用栈结构实现队列结构？
+	 */
+
 	public static class TwoStacksQueue {	// 栈结构实现队列结构
 		private Stack<Integer> stackPush;	// 进栈栈
 		private Stack<Integer> stackPop;	// 出栈栈

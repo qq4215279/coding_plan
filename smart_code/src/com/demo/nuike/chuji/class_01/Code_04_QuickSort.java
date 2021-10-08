@@ -14,6 +14,7 @@ public class Code_04_QuickSort { // 快速排序（交换排序）  时间复杂
 
 	/**
 	 *  快速排序
+	 *  随机快速排序的细节和复杂度分析 可以用荷兰国旗问题来改进快速排序 时间复杂度O(N*logN)，额外空间复杂度O(logN)
 	 * @param arr
 	 * @param l 左指针
 	 * @param r 右指针

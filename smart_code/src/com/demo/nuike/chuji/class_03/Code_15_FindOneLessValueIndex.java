@@ -2,6 +2,10 @@ package com.demo.nuike.chuji.class_03;
 
 public class Code_15_FindOneLessValueIndex {
 
+	/**
+	 * 二分的小扩展
+	 */
+
 	public static int getLessIndex(int[] arr) {
 		if (arr == null || arr.length == 0) {
 			return -1; // no exist

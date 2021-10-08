@@ -4,6 +4,13 @@ import java.util.Stack;
 
 public class Code_02_GetMinStack {	// 找出栈中的最小值	思路就是准备两个栈
 
+	/**
+	 * 实现一个特殊的栈，在实现栈的基本功能的基础上，再实现返 回栈中最小元素的操作。
+	 * 	【要求】
+	 * 	1．pop、push、getMin操作的时间复杂度都是O(1)。
+	 * 	2．设计的栈类型可以使用现成的栈结构。
+	 */
+
 	public static class MyStack1 {
 		private Stack<Integer> stackData;
 		private Stack<Integer> stackMin;

@@ -7,6 +7,10 @@ import java.util.Map.Entry;
 
 public class Code_01_HashMap {	// 认识hash函数
 
+	/**
+	 * 认识哈希函数和哈希表
+	 */
+
 	public static void main(String[] args) {
 		HashMap<String, String> map = new HashMap<>();
 		map.put("zuo", "31");

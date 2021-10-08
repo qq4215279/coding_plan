@@ -10,6 +10,10 @@ import java.util.Set;
 //undirected graph only
 public class Code_04_Kruskal {
 
+	/**
+	 * kruskal算法 适用范围：要求无向图
+	 */
+
 	// Union-Find Set
 	public static class UnionFind {
 		private HashMap<Node, Node> fatherMap;

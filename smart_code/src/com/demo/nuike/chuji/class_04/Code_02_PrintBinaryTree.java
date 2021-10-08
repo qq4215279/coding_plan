@@ -2,6 +2,10 @@ package com.demo.nuike.chuji.class_04;
 
 public class Code_02_PrintBinaryTree {	// 直观的打印一颗二叉树
 
+	/**
+	 * 如何直观的打印一颗二叉树
+	 */
+
 	public static class TreeNode {	// 可先看输出结果理解，思路：把二叉树逆时针旋转了90度，再打印踹表示
 		public int value;
 		public TreeNode left;

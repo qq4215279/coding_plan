@@ -5,6 +5,10 @@ package com.demo.nuike.chuji.class_07;
  */
 public class Code_01_TrieTree {
 
+	/**
+	 * 介绍前缀树 何为前缀树？ 如何生成前缀树？ 例子： 一个字符串类型的数组arr1，另一个字符串类型的数组arr2。
+	 */
+
 	public static class TrieNode { // 前缀树：		这题字母放在边上，不用放在节点上
 		public int path;	// 有多少字符串到达过，既生成树过程中的字母出现（经过）的次数
 		public int end;		// 有多少字符串在这个节点结尾

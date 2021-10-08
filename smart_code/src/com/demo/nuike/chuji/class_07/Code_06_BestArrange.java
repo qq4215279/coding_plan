@@ -5,6 +5,12 @@ import java.util.Comparator;
 
 public class Code_06_BestArrange {	// 项目宣讲场次最多问题。思路：根据那个项目早结束来安排时间。
 
+	/**
+	 * 输入： 参数1，正数数组costs 参数2，正数数组profits 参数3， 正数k 参数4，正数m costs[i]表示i号项目的花费 profits[i]表示i号项目在扣除花费之后还能挣到的钱(利润)
+	 * k表示你不能并行、只能串行的最多 做k个项目 m表示你初始的资金 说明：你每做完一个项目，马上获得的收益，可以支持你去做下 一个 项目。
+	 * 输出： 你最后获得的最大钱数。
+	 */
+
 	public static class Program {	// 表示项目
 		public int start;	// 开始时间
 		public int end;		// 结束时间

@@ -7,6 +7,10 @@ import java.util.Map.Entry;
 // no negative weight
 public class Code_06_Dijkstra {
 
+	/**
+	 * Dijkstra算法 适用范围：没有权值为负数的边
+	 */
+
 	public static HashMap<Node, Integer> dijkstra1(Node head) {
 		HashMap<Node, Integer> distanceMap = new HashMap<>();
 		distanceMap.put(head, 0);

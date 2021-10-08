@@ -6,6 +6,7 @@ public class Code_10_PrintCommonPart {
 
 	/**
 	 * 打印两个有序链表的公共部分	和mergesort类似，可以先理解排序那题
+	 * 【题目】 给定两个有序链表的头指针head1和head2，打印两个链表的公共部分。
 	 */
 
 	public static void printCommonPart(Node head1, Node head2) { // 找出两个链表的公共部分函数。

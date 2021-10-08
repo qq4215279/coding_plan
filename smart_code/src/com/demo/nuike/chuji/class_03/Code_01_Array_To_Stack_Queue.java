@@ -2,6 +2,10 @@ package com.demo.nuike.chuji.class_03;
 
 public class Code_01_Array_To_Stack_Queue {
 
+	/**
+	 * 用数组结构实现大小固定的队列和栈
+	 */
+
 	public static class ArrayStack { // 用数组结构实现大小固定的栈
 		private Integer[] arr;
 		private Integer size;

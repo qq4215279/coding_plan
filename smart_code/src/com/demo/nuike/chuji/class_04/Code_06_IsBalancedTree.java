@@ -6,6 +6,7 @@ public class Code_06_IsBalancedTree {
 
 	/**
 	 * 判断一棵二叉树是否是平衡二叉树
+	 *
 	 */
 
 	public static boolean isBalance(TreeNode head) {

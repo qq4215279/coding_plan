@@ -1,6 +1,6 @@
 package com.demo.nuike.chuji.class_02;
 
-public class Code_05_Manacher_ShortestEnd {	//马拉车算法
+public class Code_05_Manacher_ShortestEnd {	// 马拉车算法
 
 	public static char[] manacherString(String str) {
 		char[] charArr = str.toCharArray();

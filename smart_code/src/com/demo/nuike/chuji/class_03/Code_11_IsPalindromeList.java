@@ -7,6 +7,13 @@ import java.util.Stack;
 public class Code_11_IsPalindromeList {	// 判断一个链表是否为回文结构
 
 	/**
+	 * 判断一个链表是否为回文结构
+	 * 【题目】 给定一个链表的头节点head，请判断该链表是否为回文结构。
+	 * 例如： 1->2->1，返回true。 1->2->2->1，返回true。 15->6->15，返回true。 1->2->3，返回false。
+	 * 进阶： 如果链表长度为N，时间复杂度达到O(N)，额外空间复杂 度达到O(1)。
+	 */
+
+	/**
 	 * need n extra space\
 	 * 通过栈
 	 * @param head

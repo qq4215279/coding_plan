@@ -5,6 +5,10 @@ import java.util.List;
 
 public class Code_04_UnionFind {
 
+	/**
+	 * 认识并查集结构
+	 */
+
 	public static class Node {
 		// whatever you like
 	}

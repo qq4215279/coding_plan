@@ -8,6 +8,10 @@ import java.util.Set;
 // undirected graph only
 public class Code_05_Prim {
 
+	/**
+	 * prim算法 适用范围：要求无向图
+	 */
+
 	public static class EdgeComparator implements Comparator<Edge> {
 
 		@Override
