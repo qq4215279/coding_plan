@@ -8,7 +8,7 @@ import java.util.List;
  * @author liuzhen
  * @version 1.0.0 2021/8/16 14:06
  */
-public class LeetCode127 {
+public class LeetCode127 { // com.demo.geek.c14_search.double_bfs.LeetCode127
 
     /**
      * 字典 wordList 中从单词 beginWord 和 endWord 的转换序列是一个按下述规格形成的序列：
@@ -36,6 +36,15 @@ public class LeetCode127 {
      * wordList 中的所有字符串互不相同
      */
 
+    /**
+     * TODO
+     * @author liuzhen
+     * @date 2021/10/8 17:08
+     * @param beginWord
+     * @param endWord
+     * @param wordList
+     * @return int
+     */
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
 
         return 0;

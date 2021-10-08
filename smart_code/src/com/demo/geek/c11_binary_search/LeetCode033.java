@@ -44,8 +44,8 @@ public class LeetCode033 { // 等价于 LeetCode153
     /**
      * 二分查找
      * 思路：1 2 3 4 5 6 7 可以大致分为两类，（num[0] < num[middle] 则说明前半部分一定是有序的！！！）
-     *  第一类: 2 3 4 5 6 7 1 这种，也就是 nums[start] <= nums[mid]。此例子中就是 2 <= 5。这种情况下，前半部分有序。因此如果 nums[start] <=target<nums[mid]，则在前半部分找，否则去后半部分找。
-     *  第二类: 6 7 1 2 3 4 5 这种，也就是 nums[start] > nums[mid]。此例子中就是 6 > 2。这种情况下，后半部分有序。因此如果 nums[mid] <target<=nums[end]，则在后半部分找，否则去前半部分找。
+     *  第一类: 2 3 4 5 6 7 1 这种，也就是 nums[start] <= nums[mid]。此例子中就是 2 <= 5。这种情况下，前半部分有序。因此如果 nums[start] <= target <nums[mid]，则在前半部分找，否则去后半部分找。
+     *  第二类: 6 7 1 2 3 4 5 这种，也就是 nums[start] > nums[mid]。此例子中就是 6 > 2。这种情况下，后半部分有序。因此如果 nums[mid] < target <= nums[end]，则在后半部分找，否则去前半部分找。
      * @author liuzhen
      * @date 2021/8/17 23:08
      * @param nums
@@ -56,14 +56,17 @@ public class LeetCode033 { // 等价于 LeetCode153
         if (nums == null || nums.length == 0) {
             return -1;
         }
+
         int start = 0;
         int end = nums.length - 1;
         int middle;
         while (start <= end) {
-            middle = start + (end - start) / 2;
+//            middle = start + (end - start) / 2;
+            middle = start + ((end - start) >> 1);
             if (nums[middle] == target) {
                 return middle;
             }
+
             // 1. 前半部分有序,注意此处用小于等于
             if (nums[start] <= nums[middle]) {
                 // a.target在前半部分（向前规约）
@@ -144,7 +147,8 @@ public class LeetCode033 { // 等价于 LeetCode153
         int left = 0;
         int right = nums.length;
         while (left <= right) {
-            int middle = left + (right - left) / 2;
+//            int middle = left + (right - left) / 2;
+            int middle = left + ((right - left) >> 1);
             if (target == nums[middle]) {
                 return middle;
             } else if (target > nums[middle]) {

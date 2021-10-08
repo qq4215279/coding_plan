@@ -38,9 +38,62 @@ public class LeetCode153 { // 等价于 LeetCode033
      * nums 原来是一个升序排序的数组，并进行了 1 至 n 次旋转
      */
 
-    public int findMin(int[] nums) {
+    /**
+     * 二分
+     * @author liuzhen
+     * @date 2021/10/8 15:52
+     * @param nums
+     * @return int
+     */
+    public static int findMin(int[] nums) {
+        if (nums == null || nums.length <= 0) {
+            return -1;
+        }
 
-        return 0;
+        int left = 0;
+        int right = nums.length - 1;
+        int minValue = nums[0];
+        while (left <= right) {
+            int middle = left + ((right - left) >> 1);
+
+            if (nums[middle] >= nums[left]) {
+                left = middle + 1;
+            } else {
+                right = middle - 1;
+            }
+
+            if (left < nums.length) {
+                minValue = Math.min(minValue, nums[left]);
+            }
+        }
+
+        return minValue;
+    }
+
+    /**
+     * 官方二分法
+     * @author liuzhen
+     * @date 2021/10/8 15:52
+     * @param nums
+     * @return int
+     */
+    public static int findMin2(int[] nums) {
+        int low = 0;
+        int high = nums.length - 1;
+        while (low < high) {
+            int pivot = low + (high - low) / 2;
+            if (nums[pivot] < nums[high]) {
+                high = pivot;
+            } else {
+                low = pivot + 1;
+            }
+        }
+        return nums[low];
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {2, 1};
+        System.out.println(findMin(nums));
     }
 
 }

@@ -6,7 +6,7 @@ package com.demo.geek.c9_dfs_bfs;
  * @author liuzhen
  * @version 1.0.0 2021/8/16 14:08
  */
-public class LeetCode200 {
+public class LeetCode200 { // com.demo.geek.c13_trie_disjoint_set.LeetCode200
 
     /**
      * 给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。
@@ -46,7 +46,7 @@ public class LeetCode200 {
 
 
     /**
-     * 深度优先遍历(DFS)     时间复杂度：O(MN)O(MN)，其中 MM 和 NN 分别为行数和列数。空间复杂度：O(MN)O(MN)
+     * 深度优先遍历(DFS)     时间复杂度：O(MN)，其中 MM 和 NN 分别为行数和列数。空间复杂度：O(MN)
      * 在最坏情况下，整个网格均为陆地，深度优先搜索的深度达到 M NMN。
      * 思路：
      *      设目前指针指向一个岛屿中的某一点 (i, j)，寻找包括此点的岛屿边界。从 (i, j) 向此点的上下左右 (i+1,j),(i-1,j),(i,j+1),(i,j-1) 做深度搜索。
@@ -97,7 +97,7 @@ public class LeetCode200 {
     }
 
     /**
-     * 广度优先遍历(BFS)   时间复杂度：O(MN)O(MN)，其中 MM 和 NN 分别为行数和列数。空间复杂度：O(\min(M, N))O(min(M,N))，在最坏情况下，整个网格均为陆地，队列的大小可以达到 \min(M, N)min(M,N)
+     * 广度优先遍历(BFS)   时间复杂度：O(MN)，其中 MM 和 NN 分别为行数和列数。空间复杂度：O(min(M,N))，在最坏情况下，整个网格均为陆地，队列的大小可以达到min(M,N)
      * 思路：主循环和思路一类似，不同点是在于搜索某岛屿边界的方法不同。
      * @author liuzhen
      * @date 2021/8/16 21:27

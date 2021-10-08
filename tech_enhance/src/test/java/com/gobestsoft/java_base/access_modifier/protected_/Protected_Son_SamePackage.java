@@ -1,4 +1,4 @@
-package com.gobestsoft.java_base.access.protected_;
+package com.gobestsoft.java_base.access_modifier.protected_;
 
 /**
  * Protected_Son_SamePackage

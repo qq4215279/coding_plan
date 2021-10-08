@@ -2,7 +2,10 @@ package com.demo.geek.c9_dfs_bfs;
 
 import com.demo.common.entity.TreeNode;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * LeetCode102
@@ -34,8 +37,47 @@ public class LeetCode102 {
      * 2. DFS: 因为深度遍历时，能够知道每一层级，通过每一层层级时存储value值，eg： Map<level,list>
      */
 
+    /**
+     * 层次遍历
+     * @author liuzhen
+     * @date 2021/10/8 16:51
+     * @param root
+     * @return java.util.List<java.util.List<java.lang.Integer>>
+     */
     public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (null == root) {
+            return res;
+        }
 
-        return null;
+        Queue<TreeNode> queue = new LinkedList<>();
+        // 根节点入队
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            // 一层的结果
+            List<Integer> level = new ArrayList<>();
+            int levelCount = queue.size();
+
+            // 添加节点到一层的List中去
+            for (int i = 0; i < levelCount; i++) {
+                // 节点出队
+                TreeNode node = queue.remove();
+
+                // 节点的左子树入队
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+
+                // 节点的右子树入队
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+
+                level.add(node.value);
+            }
+            res.add(level);
+        }
+        return res;
     }
 }

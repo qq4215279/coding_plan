@@ -59,7 +59,6 @@ public class LeetCode208 {
 
         /**
          * 插入单词
-         *
          * @param word
          */
         public void insert(String word) {
@@ -78,7 +77,6 @@ public class LeetCode208 {
 
         /**
          * word 是否在字段树里.
-         *
          * @param word
          * @return
          */
@@ -89,7 +87,6 @@ public class LeetCode208 {
 
         /**
          * 返回字典树中是否有以给定前缀开头的单词
-         *
          * @param prefix
          * @return
          */
@@ -99,7 +96,6 @@ public class LeetCode208 {
 
         /**
          * 查找前缀
-         *
          * @param prefix
          * @return
          */
