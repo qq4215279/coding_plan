@@ -76,6 +76,33 @@ public class LeetCode002 {
         Node node = addTwoNumbersByRecursion(node1, node2);
         node.print();
 
+        System.out.println("---------->");
+        double init = 70000D;
+        double money = init;
+        double ratio = 0.052;
+        System.out.println("初始：" + money);
+        for (int i = 0; i < 35; i++) {
+            System.out.println((i + 1) + "年后：");
+            money = money - (money * ratio);
+
+            System.out.println("money: " + money);
+        }
+
+        System.out.println(66360 + 66360 * 0.052);
+
+        double aa = 100D;
+        double tio = 0.10;
+
+        // 1:
+        double res = aa + aa * tio;
+        // 2:
+        aa = res;
+        res = aa + aa * tio;
+
+        // ===>
+
+
+
     }
 
 }
