@@ -28,6 +28,13 @@ public class LeetCode226 { // LeetCode 226
      *  9 6 3  1
      */
 
+    /**
+     * 递归
+     * @author liuzhen
+     * @date 2021/10/15 15:43
+     * @param root
+     * @return com.demo.common.entity.TreeNode
+     */
     public static TreeNode invertTree(TreeNode root) { // 1.递归
         // 9 的左右子节点直接返回了，所以没有再调用递归。
         if (root == null)
@@ -43,9 +50,17 @@ public class LeetCode226 { // LeetCode 226
         return root; // 返回当前节点给上一级调用
     }
 
-    public static TreeNode invertTree02(TreeNode root) { // 2.迭代
-        if (root == null)
+    /**
+     * 迭代
+     * @author liuzhen
+     * @date 2021/10/15 15:43
+     * @param root
+     * @return com.demo.common.entity.TreeNode
+     */
+    public static TreeNode invertTree02(TreeNode root) {
+        if (root == null) {
             return null;
+        }
 
         TreeNode cur = root;
         Queue<TreeNode> queue = new LinkedList<>();

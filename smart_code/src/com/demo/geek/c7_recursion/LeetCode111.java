@@ -75,7 +75,7 @@ public class LeetCode111 { // LeetCode 111
             return 0;
         }
 
-        Queue<QueueNode> queue = new LinkedList<QueueNode>();
+        Queue<QueueNode> queue = new LinkedList<>();
         queue.offer(new QueueNode(root, 1));
         while (!queue.isEmpty()) {
             QueueNode nodeDepth = queue.poll();

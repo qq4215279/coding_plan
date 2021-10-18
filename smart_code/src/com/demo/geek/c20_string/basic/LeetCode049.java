@@ -60,7 +60,7 @@ public class LeetCode049 { // you ?
      * @return java.util.List<java.util.List<java.lang.String>>
      */
     public static List<List<String>> groupAnagrams2(String[] strs) {
-        Map<String, List<String>> map = new HashMap<String, List<String>>();
+        Map<String, List<String>> map = new HashMap<>();
         for (String str : strs) {
             int[] counts = new int[26];
             int length = str.length();

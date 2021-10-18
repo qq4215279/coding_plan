@@ -13,6 +13,7 @@
 
     <modules>
         <module>tech_enhance</module>
+        <module>design_patterns</module>
     </modules>
 
     <parent>

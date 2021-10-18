@@ -18,35 +18,14 @@ public class LeetCode084 {
      * 以上是柱状图的示例，其中每个柱子的宽度为 1，给定的高度为 [2,1,5,6,2,3]。
      */
 
-    public static int largestRectangleArea00(int[] heights) { // 1.暴力解法  O(n^3)
-        int maxArea = 0;
-        for (int i = 0; i < heights.length; i++) {
-            for (int j = 0; j < heights.length; j++) {
-                int minheight = Integer.MAX_VALUE;
-                for (int k = i; k <= j; k++) {
-                    minheight = Math.min(minheight, heights[k]);
-                }
-                maxArea = Math.max(maxArea, minheight * (j - i + 1));
-            }
-
-        }
-        return maxArea;
-    }
-
-    public static int largestRectangleArea0(int[] heights) { // 2.优化暴力解法
-        int maxArea = 0;
-        for (int i = 0; i < heights.length; i++) {
-            int minheight = Integer.MAX_VALUE;
-            for (int j = i; j < heights.length; j++) {
-                minheight = Math.min(minheight, heights[j]);
-                maxArea = Math.max(maxArea, minheight * (j - i + 1));
-            }
-
-        }
-        return maxArea;
-    }
-
-    public int largestRectangleArea(int[] heights) { // 3.单调栈
+    /**
+     * 单调栈
+     * @author liuzhen
+     * @date 2021/10/15 16:35
+     * @param heights
+     * @return int
+     */
+    public int largestRectangleArea(int[] heights) {
         Stack<Integer> stack = new Stack<>();
         stack.push(-1);
         int maxArea = 0;
@@ -64,9 +43,51 @@ public class LeetCode084 {
         return maxArea;
     }
 
+    /**
+     * 暴力解法  O(n^3)
+     * @author liuzhen
+     * @date 2021/10/15 16:35
+     * @param heights
+     * @return int
+     */
+    public static int largestRectangleArea2(int[] heights) {
+        int maxArea = 0;
+        for (int i = 0; i < heights.length; i++) {
+            for (int j = 0; j < heights.length; j++) {
+                int minheight = Integer.MAX_VALUE;
+                for (int k = i; k <= j; k++) {
+                    minheight = Math.min(minheight, heights[k]);
+                }
+                maxArea = Math.max(maxArea, minheight * (j - i + 1));
+            }
+
+        }
+        return maxArea;
+    }
+
+    /**
+     * 优化暴力解法
+     * @author liuzhen
+     * @date 2021/10/15 16:35
+     * @param heights
+     * @return int
+     */
+    public static int largestRectangleArea3(int[] heights) {
+        int maxArea = 0;
+        for (int i = 0; i < heights.length; i++) {
+            int minheight = Integer.MAX_VALUE;
+            for (int j = i; j < heights.length; j++) {
+                minheight = Math.min(minheight, heights[j]);
+                maxArea = Math.max(maxArea, minheight * (j - i + 1));
+            }
+
+        }
+        return maxArea;
+    }
+
     public static void main(String[] args) {
         int[] heights = {2, 1, 5, 6, 2, 3};
-        System.out.println(largestRectangleArea0(heights));
+        System.out.println(largestRectangleArea3(heights));
     }
 
 
