@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config>
+	<className>com.mumu.dp3_2_command.HelpCommand</className>
+</config>
