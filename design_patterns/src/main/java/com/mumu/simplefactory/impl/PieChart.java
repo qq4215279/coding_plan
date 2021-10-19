@@ -1,7 +1,8 @@
-//designpatterns.simplefactory.PieChart.java
-package com.mumu.simplefactory;
+package com.mumu.simplefactory.impl;
 
-//饼状图类，充当具体产品类
+import com.mumu.simplefactory.Chart;
+
+// 饼状图类，充当具体产品类
 public class PieChart implements Chart {
 	public PieChart() {
 		System.out.println("创建饼状图！");

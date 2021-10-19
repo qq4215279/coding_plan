@@ -1,7 +1,8 @@
-//designpatterns.simplefactory.HistogramChart.java
-package com.mumu.simplefactory;
+package com.mumu.simplefactory.impl;
 
-//柱状图类，充当具体产品类
+import com.mumu.simplefactory.Chart;
+
+// 柱状图类，充当具体产品类
 public class HistogramChart implements Chart {
 	public HistogramChart() {
 		System.out.println("创建柱状图！");
