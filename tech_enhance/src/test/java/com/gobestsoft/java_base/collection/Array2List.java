@@ -5,6 +5,8 @@
 
 package com.gobestsoft.java_base.collection;
 
+import org.junit.Test;
+
 import java.util.*;
 
 /**
@@ -128,6 +130,15 @@ public class Array2List {
         for (String s : list) {
             System.out.println("---->" + s);
         }
+    }
+
+    @Test
+    public void test() {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        arrayList.trimToSize();
+
+        List<Integer> list = new ArrayList<>();
+//        list.trimToSize(); // 没有该方法
     }
 
 
