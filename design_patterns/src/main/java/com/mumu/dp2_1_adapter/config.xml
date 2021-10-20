@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
 <config>
-	<className>com.mumu.dp2_1_adapter.PoliceCarAdapter</className>
+	<className>com.mumu.dp2_1_adapter.police.PoliceCarAdapter</className>
 </config>

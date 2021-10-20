@@ -26,6 +26,24 @@ public class WeeklyLog implements Cloneable {
         }
     }
 
+    /**
+     * 浅克隆实现方式2：
+     * @author liuzhen
+     * @date 2021/10/20 14:11
+     * @param
+     * @return com.mumu.dp1_4_prototype.shallowclone.WeeklyLog
+     */
+    public WeeklyLog clone2() {
+        WeeklyLog clone = new WeeklyLog();
+
+        clone.attachment = this.attachment;
+        clone.name = this.name;
+        clone.date = this.date;
+        clone.content = this.content;
+
+        return clone;
+    }
+
     public void setAttachment(Attachment attachment) {
         this.attachment = attachment;
     }

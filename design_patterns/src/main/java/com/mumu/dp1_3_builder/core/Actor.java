@@ -1,11 +1,16 @@
 package com.mumu.dp1_3_builder.core;
 
 public class Actor {
-    private String type; // 角色类型
-    private String sex; // 性别
-    private String face; // 脸型
-    private String costume; // 服装
-    private String hairstyle; // 发型
+    // 角色类型
+    private String type;
+    // 性别
+    private String sex;
+    // 脸型
+    private String face;
+    // 服装
+    private String costume;
+    // 发型
+    private String hairstyle;
 
     public void setType(String type) {
         this.type = type;

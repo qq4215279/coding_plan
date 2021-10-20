@@ -1,7 +1,6 @@
-//designpatterns.singleton.Client.java
 package com.mumu.dp1_5_singleton;
 
-//客户端测试类
+// 客户端测试类
 public class Client {
 	public static void main(String args[]) {
 		// 创建4个LoadBalancer对象

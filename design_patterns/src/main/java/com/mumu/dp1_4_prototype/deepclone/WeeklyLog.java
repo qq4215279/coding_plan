@@ -15,7 +15,7 @@ public class WeeklyLog implements Serializable {
      * @author liuzhen
      * @date 2021/10/19 21:58
      */
-    public WeeklyLog deepClone() throws IOException, ClassNotFoundException, OptionalDataException {
+    public WeeklyLog deepClone() throws IOException, ClassNotFoundException {
         // 将对象写入流中
         ByteArrayOutputStream bao = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(bao);

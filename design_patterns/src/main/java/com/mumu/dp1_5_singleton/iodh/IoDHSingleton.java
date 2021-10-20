@@ -13,6 +13,15 @@ public class IoDHSingleton {
     }
 
     /**
+     * 任何初始化失败都会导致单例类不可用。也就是说，IoDH这种实现方式只能用于能保证初始化不会失败的情况。
+     * 第一次调用getInstance()时，由于出现了异常导致SingleTon对象没有生成，进而导致该Holder类没有成功加载。
+     * 第二次调用时，则会出现NoClassDefFoundError。
+     */
+    /*private IoDHSingleton() {
+        int i = 1 / 0;
+    }*/
+
+    /**
      * 静态内部类
      */
     private static class HolderClass {

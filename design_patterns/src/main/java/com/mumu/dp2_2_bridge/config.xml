@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config>
 	<!--RefinedAbstraction-->
-	<className>com.mumu.dp2_2_bridge.GIFImage</className>
+	<className>com.mumu.dp2_2_bridge.image.GIFImage</className>
 	<!--ConcreteImplementor-->
-	<className>com.mumu.dp2_2_bridge.WindowsImp</className>
+	<className>com.mumu.dp2_2_bridge.imp.WindowsImp</className>
 </config>

@@ -1,7 +1,8 @@
 package com.mumu.dp1_4_prototype.shallowclone;
 
 public class Attachment {
-    private String name; // 附件名
+    // 附件名
+    private String name;
 
     public void setName(String name) {
         this.name = name;
