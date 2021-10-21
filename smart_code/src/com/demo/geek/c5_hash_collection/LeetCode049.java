@@ -31,16 +31,17 @@ public class LeetCode049 { // com.demo.geek.c20_string.basic.LeetCode049
      */
 
     public List<List<String>> groupAnagrams00(String[] strs) { // 1.排序数组分类
-        // 时间复杂度：O(NK \log K)O(NKlogK)，其中 NN 是 strs 的长度，而 KK 是 strs 中字符串的最大长度。
-        if (strs.length == 0)
+        // 时间复杂度：O(NKlogK)，其中 NN 是 strs 的长度，而 KK 是 strs 中字符串的最大长度。
+        if (strs.length == 0) {
             return new ArrayList<>();
+        }
 
         Map<String, ArrayList<String>> map = new HashMap<>();
         for (String s : strs) {
             char[] chars = s.toCharArray();
             Arrays.sort(chars);
             String key = String.valueOf(chars); // 字符数组也可以通过String静态类转字符串！！！！！
-            if (!map.containsKey(key)){
+            if (!map.containsKey(key)) {
                 map.put(key, new ArrayList<>());
             }
             map.get(key).add(s);

@@ -62,8 +62,9 @@ public class LeetCode242 { // com.demo.geek.c20_string.basic.LeetCode242
      * @return boolean
      */
     public boolean isAnagram01(String s, String t) {
-        if (s.length() != t.length())
+        if (s.length() != t.length()) {
             return false;
+        }
 
         int[] count = new int[26];
         for (int i = 0; i < s.length(); i++) {
@@ -72,8 +73,9 @@ public class LeetCode242 { // com.demo.geek.c20_string.basic.LeetCode242
         }
 
         for (int i = 0; i < count.length; i++) {
-            if (count[i] != 0)
+            if (count[i] != 0) {
                 return false;
+            }
         }
 
         return true;
