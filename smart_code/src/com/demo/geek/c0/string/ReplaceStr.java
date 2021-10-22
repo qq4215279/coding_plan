@@ -12,7 +12,6 @@ package com.demo.geek.c0.string;
 public class ReplaceStr {
 
     public void test() {
-
         String a = "We Are Happy";
         char[] chars = a.toCharArray();
         String[] b = new String[16];

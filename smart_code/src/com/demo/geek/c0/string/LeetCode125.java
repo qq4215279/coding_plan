@@ -64,8 +64,9 @@ public class LeetCode125 { // LeetCode T125
     }
 
     public static boolean isPalindrome03(String s) { // 验证不能用字节反转字符串操作 eg: 转成字节后：95 7 =>  7 95
-
-        if (s == null) return true;
+        if (s == null) {
+            return true;
+        }
         s = s.toLowerCase();
         int l = s.length();
 
@@ -84,7 +85,6 @@ public class LeetCode125 { // LeetCode T125
 
 
     public static boolean isPalindrome04(String s) {
-
         if (s == null || s.length() == 0)
             return true;
 
@@ -113,7 +113,6 @@ public class LeetCode125 { // LeetCode T125
     }
 
     public static void main(String[] args) {
-
         String s = "Race a car";
 
         System.out.println("方法1---双指针：" + isPalindrome01(s));

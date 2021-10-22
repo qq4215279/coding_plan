@@ -5,7 +5,7 @@
 
 package com.demo.geek.c3_1_array;
 
-public class LeetCode283 { // LeetCode T283          有点类似 Day01Demo01
+public class LeetCode283 { // 有点类似 Day01Demo01
     /**
      * 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
      *
@@ -29,7 +29,6 @@ public class LeetCode283 { // LeetCode T283          有点类似 Day01Demo01
                 j++;
             }
         }
-
     }
 
 

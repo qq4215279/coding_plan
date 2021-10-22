@@ -5,7 +5,7 @@
 
 package com.demo.geek.c3_1_array;
 
-public class LeetCode026 {  // LeetCode T26
+public class LeetCode026 {
     // TODO 2020/5/21
     /**
      * 删除排序数组中重复项
@@ -38,7 +38,7 @@ public class LeetCode026 {  // LeetCode T26
      * @param nums
      * @return
      */
-    public int removeDuplicates(int[] nums) {//【双指针】删除重复项-带优化思路
+    public int removeDuplicates(int[] nums) { //【双指针】删除重复项-带优化思路
         int p = 0; // p不相等时动
         int q = 1; // q每次一定移动
         while (q < nums.length) {

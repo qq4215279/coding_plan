@@ -5,7 +5,7 @@
 
 package com.demo.geek.c3_1_array;
 
-public class LeetCode011 {  // LeetCode T11
+public class LeetCode011 {
 
     /**
      * 盛最多水的容器
@@ -25,11 +25,11 @@ public class LeetCode011 {  // LeetCode T11
         int h = 0;
         while (left < right) {
 
-            //方式一：
+            // 方式一：
 //            h = height[left] < height[right] ? height[left] : height[right];
 //            maxArea = (h * (right - left)) > maxArea ? (h * (right - left)) : maxArea;
 
-            //方式二：
+            // 方式二：
             maxArea = Math.max(Math.min(height[left], height[right]) * (right - left), maxArea);
 
             if (height[left] < height[right]) {

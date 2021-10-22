@@ -7,7 +7,7 @@ package com.demo.geek.c3_1_array;
 
 import java.util.*;
 
-public class LeetCode015 { // LeetCode T15
+public class LeetCode015 {
 
     /**
      * 三数之和
