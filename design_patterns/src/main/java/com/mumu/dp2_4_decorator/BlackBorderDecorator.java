@@ -1,5 +1,6 @@
-//designpatterns.decorator.BlackBorderDecorator.java
 package com.mumu.dp2_4_decorator;
+
+import com.mumu.dp2_4_decorator.component.Component;
 
 public class BlackBorderDecorator extends ComponentDecorator {
 	public BlackBorderDecorator(Component component) {

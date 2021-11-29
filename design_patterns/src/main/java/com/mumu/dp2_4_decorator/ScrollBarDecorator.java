@@ -1,5 +1,6 @@
-//designpatterns.decorator.ScrollBarDecorator.java
 package com.mumu.dp2_4_decorator;
+
+import com.mumu.dp2_4_decorator.component.Component;
 
 public class ScrollBarDecorator extends ComponentDecorator {
 	public ScrollBarDecorator(Component component) {

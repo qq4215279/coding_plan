@@ -1,5 +1,4 @@
-//designpatterns.decorator.Window.java
-package com.mumu.dp2_4_decorator;
+package com.mumu.dp2_4_decorator.component;
 
 public class Window extends Component {
 	public void display() {

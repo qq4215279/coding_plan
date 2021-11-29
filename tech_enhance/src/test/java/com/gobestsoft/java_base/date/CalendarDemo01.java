@@ -30,7 +30,6 @@ public class CalendarDemo01 {
         System.out.println(year + "年" + month + "月" + dayOfMonth + "日");
 
         System.out.println(Calendar.DAY_OF_WEEK_IN_MONTH);
-
     }
 
 }
