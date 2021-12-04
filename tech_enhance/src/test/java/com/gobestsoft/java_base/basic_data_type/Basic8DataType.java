@@ -31,7 +31,7 @@ public class Basic8DataType {
      * 3.字符型：
      * char：2字节。Character。
      *
-     * 4.布尔型：
+     * 4.布尔型：1字节
      * boolean：Boolean。
      *
      * 类型转换：
@@ -161,8 +161,9 @@ public class Basic8DataType {
         long num1 = TEN_YI * Long.valueOf(RUN_NUM_PRECISION);
         long num2 = TEN_YI * 100L;
         long num3 = (long)TEN_YI * 100;
+        long num6 = TEN_YI * (long)100;
         long num4 = 100000000000L;
-//        long num5 = (long)100000000000; 这种不行！
+        long num5 = (long)1000000000 * 100;
 
         /**
          * 总结：
@@ -179,7 +180,9 @@ public class Basic8DataType {
         System.out.println("num1: " + num1);
         System.out.println("num2: " + num2);
         System.out.println("num3: " + num3);
+        System.out.println("num6: " + num6);
         System.out.println("num4: " + num4);
+        System.out.println("num5: " + num5);
     }
 
 }

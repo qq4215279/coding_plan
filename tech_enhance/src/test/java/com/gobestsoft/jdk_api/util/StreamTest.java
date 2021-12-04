@@ -111,12 +111,16 @@ public class StreamTest {
         Stream<Person> stream2 = Stream.of(p1, p2, p3, p4);
 
         // map
-        stream2.map(Person::getName); // 张三 李四 王五 王五
+        List<String> list = stream2.map(Person::getName).collect(Collectors.toList());// 张三 李四 王五 王五
+        System.out.println("list: " + list);
 
         // 排序
-        stream2.sorted(Comparator.comparingInt(Person::getAge));
+        Stream<Person> stream3 = Stream.of(p1, p2, p3, p4);
+        stream3.sorted(Comparator.comparingInt(Person::getAge));
+
         // 自定义排序：先按姓名升序，姓名相同则按年龄升序
-        stream2.sorted((o1, o2) -> {
+        Stream<Person> stream4 = Stream.of(p1, p2, p3, p4);
+        stream4.sorted((o1, o2) -> {
             if (o1.getName().equals(o2.getName())) {
                 return o1.getAge() - o2.getAge();
             } else {
@@ -184,7 +188,7 @@ public class StreamTest {
         Map<Boolean, List<Person>> partMap = list.stream().collect(Collectors.partitioningBy(person -> person.getAge() > 30));
     }
 
-    public class Person {
+    private class Person {
         private String name;
         private int age;
         private int sex;
