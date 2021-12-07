@@ -48,16 +48,15 @@ public class Array2List {
      * 会报错：java.lang.UnsupportedOperationException，并且结果会因为array的某个值的改变而改变，故需要再次构造一个新的ArrayList。
      * @return
      */
+    @Test
     public List<String> array2List02() {
         List<String> list = new ArrayList<>(Arrays.asList(arr2));
 
-        // TODO 调用add() 方法没有报错？？？？
+        /*
+         * 调用add() 方法没有报错？？？？
+         * 解释：因为Arrays.asList(arr2)返回的Arrays内部类ArrayList集合，已经被new ArrayList重新生成一个java.util包下的ArrayList集合了
+         */
         list.add("不报错？？？不报错？？？不报错？？？");
-//        try {
-//            list.add("d");
-//        } catch (UnsupportedOperationException e) {
-//            e.printStackTrace();
-//        }
 
         List<String> noErrorList = new ArrayList<>(list);
         try {
