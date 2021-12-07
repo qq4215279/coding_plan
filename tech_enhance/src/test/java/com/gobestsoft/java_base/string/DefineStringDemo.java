@@ -47,6 +47,18 @@ public class DefineStringDemo {
     }
 
     /**
+     * TODO ???
+     */
+    @Test
+    public void test() {
+        String x = "abb";
+        String y = "abb";
+        System.out.println("x == y " + x == y); // false
+        System.out.println("x.equals(y) " + x.equals(y)); // true
+        System.out.println("x.equalsIgnoreCase(y) " + x.equalsIgnoreCase(y)); // true
+    }
+
+    /**
      * String s = "Hello";s = s + " world!";这两行代码执行后，原始的 String 对象中的内容到底变了没有？
      * 没有。因为 String 被设计成不可变(immutable)类，所以它的所有对象都是不可变对象。在这段代码中，s 原先指向一个 String 对象，内容是 "Hello"
      *

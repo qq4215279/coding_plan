@@ -44,9 +44,11 @@ public class PersonComparator {
 class AseAgePerson implements Comparator<PersonComparator> {
     @Override
     public int compare(PersonComparator o1, PersonComparator o2) {
-        int result;
-        result = o1.getAge() - o2.getAge();
-        return result;
+//        return o1.getAge() - o2.getAge(); // 升序
+//        return o2.getAge() - o1.getAge(); // 降序
+
+        return o1.getAge() > o2.getAge() ? 1 : -1; // 升序
+//        return o1.getAge() > o2.getAge() ? 1 : -1; // 升序
     }
 }
 

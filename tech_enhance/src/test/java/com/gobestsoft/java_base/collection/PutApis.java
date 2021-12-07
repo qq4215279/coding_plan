@@ -29,7 +29,7 @@ public class PutApis {
     }
 
     /**
-     * putIfAbsent(): 只有在key不存在或者key为null的时候，value值才会被覆盖。 
+     * putIfAbsent(): 只有在key不存在或者key为null的时候，value值才会被覆盖。返回put之前的值。 
      * 使用场景：如果我们要变更某个key的值，我们又不知道key是否存在的情况下，而又不希望增加key的情况使用。
      */
     @Test
