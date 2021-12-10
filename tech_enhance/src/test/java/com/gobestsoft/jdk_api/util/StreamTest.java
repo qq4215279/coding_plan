@@ -47,19 +47,19 @@ public class StreamTest {
     }
 
     /**
-     * filter：过滤流中的某些元素
-     * distinct：通过流中元素的 hashCode() 和 equals() 去除重复元素
-     * skip(n)：跳过n元素，配合limit(n)可实现分页
-     * limit(n)：获取n个元素
      * count: 统计元素个数
-     * peek()：如同于map，能得到流中的每一个元素。但map接收的是一个Function表达式，有返回值；而peek接收的是Consumer表达式，没有返回值。
+     * distinct：通过流中元素的 hashCode() 和 equals() 去除重复元素
+     * filter：过滤流中的某些元素
      * forEach():
+     * limit(n)：获取n个元素
+     * skip(n)：跳过n元素，配合limit(n)可实现分页
+     * peek()：如同于map，能得到流中的每一个元素。但map接收的是一个Function表达式，有返回值；而peek接收的是Consumer表达式，没有返回值。
      *
      * max()：返回流中元素最大值
      * min()：返回流中元素最小值
      * allMatch(() -> {})：接收一个 Predicate 函数，当流中每个元素都符合该断言时才返回true，否则返回false
-     * noneMatch(() -> {})：接收一个 Predicate 函数，当流中每个元素都不符合该断言时才返回true，否则返回false
      * anyMatch：接收一个 Predicate 函数，只要流中有一个元素满足该断言则返回true，否则返回false
+     * noneMatch(() -> {})：接收一个 Predicate 函数，当流中每个元素都不符合该断言时才返回true，否则返回false
      * findFirst：返回流中第一个元素
      * findAny：返回流中的任意元素
      *
@@ -91,8 +91,8 @@ public class StreamTest {
         System.out.println("max: " + max + " min: " + min);
 
         boolean allMatch = Arrays.stream(intArr).allMatch(e -> e > 10); // false
-        boolean noneMatch = Arrays.stream(intArr).noneMatch(e -> e > 10); // true
         boolean anyMatch = Arrays.stream(intArr).anyMatch(e -> e > 4); // true
+        boolean noneMatch = Arrays.stream(intArr).noneMatch(e -> e > 10); // true
 
         OptionalInt optionalInt1 = Arrays.stream(intArr).findFirst();
         int asInt1 = optionalInt1.getAsInt(); // 1
@@ -111,12 +111,16 @@ public class StreamTest {
         Stream<Person> stream2 = Stream.of(p1, p2, p3, p4);
 
         // map
-        stream2.map(Person::getName); // 张三 李四 王五 王五
+        List<String> list = stream2.map(Person::getName).collect(Collectors.toList()); // 张三 李四 王五 王五
+        System.out.println("list: " + list);
 
         // 排序
-        stream2.sorted(Comparator.comparingInt(Person::getAge));
+        Stream<Person> stream3 = Stream.of(p1, p2, p3, p4);
+        stream3.sorted(Comparator.comparingInt(Person::getAge));
+
         // 自定义排序：先按姓名升序，姓名相同则按年龄升序
-        stream2.sorted((o1, o2) -> {
+        Stream<Person> stream4 = Stream.of(p1, p2, p3, p4);
+        stream4.sorted((o1, o2) -> {
             if (o1.getName().equals(o2.getName())) {
                 return o1.getAge() - o2.getAge();
             } else {
@@ -130,7 +134,7 @@ public class StreamTest {
      * 收集操作:
      * 1. 装成list: Collectors.toList()
      * 2. 转成set: Collectors.toSet()
-     * 3. 转成map,注:key不能相同，否则报错。Collectors.toMap(params1, params2, params3)
+     * 3. 转成map,注:key不能相同，否则报错。Collectors.toMap(params1, params2, params3) eg: Collectors.toMap(Person::getSex, v -> v, (v1, v2) -> v1)
      * 4. 字符串分隔符连接: Collectors.joining("", "", "")
      * 5. 聚合操作:
      *      求总数: Collectors.counting()
@@ -154,8 +158,11 @@ public class StreamTest {
         // 2. 转成set
         Set<Integer> ageSet = list.stream().map(Person::getAge).collect(Collectors.toSet()); // [18, 6, 99]
 
-        // 3. 转成map,注:key不能相同，否则报错。 处理key相同：处理第三个参数 eg: Collectors.toMap(Person::getName, Person::getAge, (v1, v2) -> v1)
-        Map<String, Integer> studentMap = list.stream().collect(Collectors.toMap(Person::getName, Person::getAge, (v1, v2) -> v1)); // {cc=99, bb=70, aa=18}
+        // 3. 转成map,注:key不能相同，否则报错。 处理key相同：处理第三个参数
+        Map<Integer, Person> sexMap = list.stream().collect(Collectors.toMap(Person::getSex, v -> v, (v1, v2) -> v1));
+        for (Map.Entry<Integer, Person> entry : sexMap.entrySet()) {
+            System.out.println("key:" + entry.getKey() + " value: " + entry.getValue());
+        }
 
         // 4. 字符串分隔符连接 Collectors.joining(",", "(", ")")
         String joinName = list.stream().map(Person::getName).collect(Collectors.joining(",", "(", ")")); // (aa,bb,cc)
@@ -174,7 +181,7 @@ public class StreamTest {
 
         // 6. 分组
         Map<Integer, List<Person>> ageMap = list.stream().collect(Collectors.groupingBy(Person::getAge));
-        Map<Integer, Person> sexMap = list.stream().collect(Collectors.toMap(Person::getSex, v -> v));
+
         // 多重分组,先根据类型分再根据年龄分
         Map<Integer, Map<Integer, List<Person>>> typeAgeMap = list.stream().collect(
             Collectors.groupingBy(Person::getSex, Collectors.groupingBy(Person::getAge)));
@@ -184,7 +191,7 @@ public class StreamTest {
         Map<Boolean, List<Person>> partMap = list.stream().collect(Collectors.partitioningBy(person -> person.getAge() > 30));
     }
 
-    public class Person {
+    private class Person {
         private String name;
         private int age;
         private int sex;
@@ -205,6 +212,11 @@ public class StreamTest {
 
         public int getSex() {
             return sex;
+        }
+
+        @Override
+        public String toString() {
+            return "Person{" + "name='" + name + '\'' + ", age=" + age + ", sex=" + sex + '}';
         }
     }
 

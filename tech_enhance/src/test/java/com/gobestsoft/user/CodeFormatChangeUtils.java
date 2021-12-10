@@ -24,6 +24,7 @@ public class CodeFormatChangeUtils {
         String bm1 = scan.nextLine();
         System.out.println("文件需要转换成的编码"); // utf-8
         String bm2 = scan.nextLine();
+
         getAllFiles(file, bm1, bm2);
     }
 

@@ -1,5 +1,4 @@
-//designpatterns.decorator.TextBox.java
-package com.mumu.dp2_4_decorator;
+package com.mumu.dp2_4_decorator.component;
 
 public class TextBox extends Component {
 	public void display() {

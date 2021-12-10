@@ -22,7 +22,7 @@ public class ImageFile extends AbstractFile {
 	}
 
 	public void killVirus() {
-		//模拟杀毒
+		// 模拟杀毒
 		System.out.println("----对图像文件'" + name + "'进行杀毒");
 	}
 }

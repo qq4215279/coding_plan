@@ -61,4 +61,17 @@ public class ArraysTest {
         Arrays.fill(fillArr, 2); // [2,2,2,2,2]
     }
 
+    /**
+     * Arrays.asList(arr) 不支持add() remove() api的使用！！！
+     */
+    @Test
+    public void testAsListApi() {
+        String[] arr = {"1", "2", "30", "33"};
+
+        List<String> list = Arrays.asList(arr);
+        list.remove(0);
+        list.add("haha");
+    }
+
+
 }

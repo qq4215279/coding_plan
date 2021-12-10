@@ -5,8 +5,9 @@ import java.util.Collections;
 
 /**
  * 比较器：Comparable使用
- *  升序：return this.- o2;
- *  降序: return o1 - this.;
+ *  升序：return this.- o2;  return 1
+ *  降序: return o1 - this.; return -1
+ *  自然排序：               return 0
  */
 public class PersonComparable implements Comparable<PersonComparable> {
     private int age;
@@ -37,6 +38,7 @@ public class PersonComparable implements Comparable<PersonComparable> {
 
     /**
      * 写法2：在类上：implements Comparable<PersonComparable>
+     *  compareTo(T o): 比较此对象与指定对象的顺序。如果该对象小于、等于或大于指定对象，则分别返回负整数、零或正整数。参数：o 要比较的对象。
      * @author liuzhen
      * @date 2021/8/12 14:22
      * @param personComparable
@@ -44,9 +46,9 @@ public class PersonComparable implements Comparable<PersonComparable> {
      */
     @Override
     public int compareTo(PersonComparable personComparable) {
-        int result = getAge() - personComparable.getAge(); // 升序
-        // int result = person.getAge() -  getAge(); // 降序
-        return result;
+//        return getAge() - personComparable.getAge(); // 升序
+//        return person.getAge() - getAge(); // 降序
+        return getAge() > personComparable.getAge() ? 1 : -1; // 升序
     }
 
     @Override

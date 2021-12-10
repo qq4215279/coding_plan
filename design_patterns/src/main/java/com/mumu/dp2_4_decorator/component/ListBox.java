@@ -1,5 +1,4 @@
-//designpatterns.decorator.ListBox.java
-package com.mumu.dp2_4_decorator;
+package com.mumu.dp2_4_decorator.component;
 
 public class ListBox extends Component {
 	public void display() {
