@@ -1,13 +1,23 @@
-//designpatterns.command.Client.java
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.dp3_2_command;
+
+import com.mumu.dp3_2_command.test2.commander.Command;
 
 public class Client {
 	public static void main(String args[]) {
 		FunctionButton fb = new FunctionButton();
-		Command command; //定义命令对象
-		command = (Command)XMLUtil.getBean(); //读取配置文件，反射生成对象
+		// 定义命令对象
+		Command command;
+		// 读取配置文件，反射生成对象
 
-		fb.setCommand(command); //将命令对象注入功能键
-		fb.click(); //调用功能键的业务方法
+		command = (Command)XMLUtil.getBean();
+		// 将命令对象注入功能键
+		fb.setCommand(command);
+		// 调用功能键的业务方法
+		fb.click();
 	}
 }

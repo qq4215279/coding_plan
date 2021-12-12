@@ -1,27 +1,32 @@
-//designpatterns.iterator.AbstractObjectList.java
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.dp3_4_iterator;
+
 import java.util.*;
 
-//抽象聚合类
+// 抽象聚合类
 public abstract class AbstractObjectList {
-	protected List<Object> objects = new ArrayList<Object>();
+    protected List<Object> objects;
 
-	public AbstractObjectList(List<Object> objects) {
-		this.objects = objects;
-	}
+    public AbstractObjectList(List<Object> objects) {
+        this.objects = objects;
+    }
 
-	public void addObject(Object obj) {
-		this.objects.add(obj);
-	}
+    public void addObject(Object obj) {
+        this.objects.add(obj);
+    }
 
-	public void removeObject(Object obj) {
-		this.objects.remove(obj);
-	}
+    public void removeObject(Object obj) {
+        this.objects.remove(obj);
+    }
 
-	public List<Object> getObjects() {
-		return this.objects;
-	}
+    public List<Object> getObjects() {
+        return this.objects;
+    }
 
-	//声明创建迭代器对象的抽象工厂方法
-	public abstract AbstractIterator createIterator();
+    // 声明创建迭代器对象的抽象工厂方法
+    public abstract AbstractIterator createIterator();
 }

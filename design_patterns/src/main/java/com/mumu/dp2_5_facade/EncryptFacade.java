@@ -1,4 +1,13 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.dp2_5_facade;
+
+import com.mumu.dp2_5_facade.sub_system.CipherMachine;
+import com.mumu.dp2_5_facade.sub_system.FileReader;
+import com.mumu.dp2_5_facade.sub_system.FileWriter;
 
 // 加密外观类：外观类
 public class EncryptFacade {

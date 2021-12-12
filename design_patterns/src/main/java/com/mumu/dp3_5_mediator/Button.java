@@ -1,9 +1,0 @@
-//designpatterns.mediator.Button.java
-package com.mumu.dp3_5_mediator;
-
-//按钮类：具体同事类
-public class Button extends Component {
-	public void update() {
-		//按钮不产生响应
-	}
-}

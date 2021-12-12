@@ -1,12 +1,27 @@
-//designpatterns.iterator.AbstractIterator.java
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.dp3_4_iterator;
 
-//抽象迭代器
+// 抽象迭代器
 public interface AbstractIterator {
-	public void next(); //移至下一个元素
-	public boolean isLast(); //判断是否为最后一个元素
-	public void previous(); //移至上一个元素
-	public boolean isFirst(); //判断是否为第一个元素
-	public Object getNextItem(); //获取下一个元素
-	public Object getPreviousItem(); //获取上一个元素
+    // 移至下一个元素
+    void next();
+
+    // 判断是否为最后一个元素
+    boolean isLast();
+
+    // 移至上一个元素
+    void previous();
+
+    // 判断是否为第一个元素
+    boolean isFirst();
+
+    // 获取下一个元素
+    Object getNextItem();
+
+    // 获取上一个元素
+    Object getPreviousItem();
 }

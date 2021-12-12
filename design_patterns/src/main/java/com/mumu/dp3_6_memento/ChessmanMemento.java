@@ -1,39 +1,43 @@
-//designpatterns.memento.ChessmanMemento.java
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.dp3_6_memento;
 
-//象棋棋子备忘录类：备忘录
+// 象棋棋子备忘录类：备忘录
 class ChessmanMemento {
-	private String label;
-	private int x;
-	private int y;
+    private String label;
+    private int x;
+    private int y;
 
-	public ChessmanMemento(String label,int x,int y) {
-		this.label = label;
-		this.x = x;
-		this.y = y;
-	}
+    public ChessmanMemento(String label, int x, int y) {
+        this.label = label;
+        this.x = x;
+        this.y = y;
+    }
 
-	public void setLabel(String label) {
-		this.label = label;
-	}
+    public void setLabel(String label) {
+        this.label = label;
+    }
 
-	public void setX(int x) {
-		this.x = x;
-	}
+    public void setX(int x) {
+        this.x = x;
+    }
 
-	public void setY(int y) {
-		this.y = y;
-	}
+    public void setY(int y) {
+        this.y = y;
+    }
 
-	public String getLabel() {
-		return (this.label);
-	}
+    public String getLabel() {
+        return (this.label);
+    }
 
-	public int getX() {
-		return (this.x);
-	}
+    public int getX() {
+        return (this.x);
+    }
 
-	public int getY() {
-		return (this.y);
-	}
+    public int getY() {
+        return (this.y);
+    }
 }

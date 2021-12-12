@@ -1,8 +1,15 @@
-//designpatterns.mediator.Client.java
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.dp3_5_mediator;
 
+import com.mumu.dp3_5_mediator.colleague.*;
+import com.mumu.dp3_5_mediator.mediator.SubConcreteMediator;
+
 public class Client {
-	public static void main(String args[]) {
+    public static void main(String args[]) {
 		/*
         //定义中介者对象
 		ConcreteMediator mediator;
@@ -28,30 +35,31 @@ public class Client {
 		System.out.println("-----------------------------");
 		list.changed();
 		*/
-	    //用新增具体中介者定义中介者对象
-		SubConcreteMediator mediator;
-		mediator = new SubConcreteMediator();
 
-		Button addBT = new Button();
-		List list = new List();
-		ComboBox cb = new ComboBox();
-		TextBox userNameTB = new TextBox();
-		Label label = new Label();
+        // 用新增具体中介者定义中介者对象
+        SubConcreteMediator mediator;
+        mediator = new SubConcreteMediator();
 
-		addBT.setMediator(mediator);
-		list.setMediator(mediator);
-		cb.setMediator(mediator);
-		userNameTB.setMediator(mediator);
-		label.setMediator(mediator);
+        Button addBT = new Button();
+        List list = new List();
+        ComboBox cb = new ComboBox();
+        TextBox userNameTB = new TextBox();
+        Label label = new Label();
 
-		mediator.addButton = addBT;
-		mediator.list = list;
-		mediator.cb = cb;
-		mediator.userNameTextBox = userNameTB;
-		mediator.label = label;
+        addBT.setMediator(mediator);
+        list.setMediator(mediator);
+        cb.setMediator(mediator);
+        userNameTB.setMediator(mediator);
+        label.setMediator(mediator);
 
-		addBT.changed();
-		System.out.println("-----------------------------");
-		list.changed();
-	}
+        mediator.addButton = addBT;
+        mediator.list = list;
+        mediator.cb = cb;
+        mediator.userNameTextBox = userNameTB;
+        mediator.label = label;
+
+        addBT.changed();
+        System.out.println("-----------------------------");
+        list.changed();
+    }
 }
