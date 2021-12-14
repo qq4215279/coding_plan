@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.dp1_5_singleton.lazy;
 
 /**
@@ -9,6 +14,9 @@ package com.mumu.dp1_5_singleton.lazy;
 public class LazySingleton {
 
     private static LazySingleton instance = null;
+
+    private LazySingleton() {
+    }
 
     /**
      * 懒加载实现方式1:
@@ -27,7 +35,7 @@ public class LazySingleton {
     }
 
     /**
-     * 如下错误实现单例：此方式实现单例会导致对象不唯一的情况。
+     * 如下错误实现单例：此方式实现单例会导致对象不唯一的情况。错误实例！！！！！
      * 原因如下：假如在某一瞬间线程A和线程B都在调用getInstance2()方法，此时instance对象为null值，均能通过“instance == null”的判断，由于实现了synchronized加锁机制，
      * 线程A进入synchronized锁定的代码。但当A执行完毕时线程B并不知道示例已经创建，将继续创建示例，导致产生多个示例对象。
      *
