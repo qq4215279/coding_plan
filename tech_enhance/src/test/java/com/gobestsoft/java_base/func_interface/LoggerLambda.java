@@ -52,6 +52,7 @@ public class LoggerLambda {
             System.out.println("证明 lambda 表达式的延迟执行！（条件成立时，再进行字符串拼接。）");
             return msgA + msgB + msgC;
         });
+
     }
 
 }
