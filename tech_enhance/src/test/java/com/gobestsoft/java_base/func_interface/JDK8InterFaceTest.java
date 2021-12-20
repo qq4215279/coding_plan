@@ -34,6 +34,7 @@ public interface JDK8InterFaceTest {
      * JDK1.8新增关键字：default，就是在接口中可以增加默认实现。default关键字仅仅使用于接口中!
      * 因为改动接口所有的实现类都要改动,所以增加了default关键字后不需要修改其他类,默认给所有实现类增加了方法.
      * 接口中可定义方法（public类型的）
+     * 默认interface中指定的方法都要override实现的，但是default修饰的可以不用重写了，直接可以使用。
      * @return
      */
     default int defaultMethodB() {
