@@ -1,9 +1,9 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
-package com.gobestsoft.java_base.readwritefile;
+package com.gobestsoft.java_base.readwritefile.old;
 
 import org.junit.Test;
 
@@ -22,7 +22,6 @@ public class a4_1InputStreamReaderWriter {
 
     @Test
     public void testInputStreamReaderWriter() throws IOException {
-
         InputStreamReader isr = new InputStreamReader(new FileInputStream(certificateNum));
         OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(certificateNum2));
 

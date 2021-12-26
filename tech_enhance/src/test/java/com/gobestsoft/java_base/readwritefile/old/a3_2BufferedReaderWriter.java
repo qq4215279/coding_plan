@@ -1,9 +1,9 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
-package com.gobestsoft.java_base.readwritefile;
+package com.gobestsoft.java_base.readwritefile.old;
 
 import org.junit.Test;
 
@@ -22,7 +22,6 @@ public class a3_2BufferedReaderWriter {
 
     @Test
     public void testBufferedReaderWriter() throws IOException {
-
         BufferedReader br = new BufferedReader(new FileReader(certificateNum));
         BufferedWriter bw = new BufferedWriter(new FileWriter(certificateNum2));
 

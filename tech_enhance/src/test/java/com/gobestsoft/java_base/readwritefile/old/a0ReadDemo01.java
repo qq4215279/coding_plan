@@ -1,9 +1,9 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
-package com.gobestsoft.java_base.readwritefile;
+package com.gobestsoft.java_base.readwritefile.old;
 
 import org.junit.Test;
 
@@ -17,7 +17,6 @@ public class a0ReadDemo01 {
     /* BufferedWriter BufferedReader */
     @Test
     public void testBufferedReaderBufferedWriter() throws IOException { // 字符操作不能写？ 待跟进...    ->解决：写操作没有释放流动作，会写不到文件中！
-
         BufferedReader br = new BufferedReader(new FileReader(certificateNum));
         BufferedWriter bw = new BufferedWriter(new FileWriter(certificateNum2));
 
@@ -48,7 +47,6 @@ public class a0ReadDemo01 {
 
     @Test
     public void testBufferedReader() throws IOException {
-
         //        BufferedReader br = new BufferedReader(new FileReader("H:\\MajorData\\IDEAWorkspace\\tools\\WorkGoing\\readfile\\personID.txt"));
         BufferedReader br = new BufferedReader(new FileReader(certificateNum));
         String line;
@@ -69,7 +67,6 @@ public class a0ReadDemo01 {
 
     @Test
     public void testFileInputStreamFileOutputStream1() throws IOException {  // fis可读数字,fos可写数字
-
         FileInputStream fis = new FileInputStream(certificateNum);
         FileOutputStream fos = new FileOutputStream(certificateNum2);
         int len = 0;
@@ -95,7 +92,6 @@ public class a0ReadDemo01 {
 
     @Test
     public void testFileInputStreamFileOutputStream() throws IOException { //结论：fis可以读中文，但是fos写中文会出现乱码。
-
         FileInputStream fis = new FileInputStream(certificateNum);
         FileOutputStream fos = new FileOutputStream(certificateNum2);
         int len = 0;
@@ -120,7 +116,6 @@ public class a0ReadDemo01 {
 
     @Test
     public void testFileReaderWriter1() throws IOException { //结论：FileReader可以读数字，但是不能用FileWriter写数字（为空）
-
         FileReader fr = new FileReader(certificateNum);
         FileWriter fw = new FileWriter(certificateNum2);
         int len = 0;

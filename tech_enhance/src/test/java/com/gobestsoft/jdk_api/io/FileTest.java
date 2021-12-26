@@ -27,24 +27,29 @@ public class FileTest {
      * 小贴士： 1. 一个File对象代表硬盘中实际存在的一个文件或者目录。 2. 无论该路径下是否存在文件或者目录，都不影响File对象的创建。
      */
     @Test
-    public void test01() {
+    public void test01() throws IOException {
+        // 相对路径: src/test/java/com/gobestsoft/jdk_api/io/text/
         // 文件路径名
         String pathname = "D:\\Code\\IdeaWorkSpace\\dream_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\a.txt";
         File file1 = new File(pathname);
+        file1.createNewFile();
 
         // 文件路径名
         String pathname2 = "D:/Code/IdeaWorkSpace/dream_plan/tech_enhance/src/test/java/com/gobestsoft/jdk_api/io/text/b.txt";
         File file2 = new File(pathname2);
+        file2.createNewFile();
 
         // 通过父路径和子路径字符串
-        String parent = "./text";
+        String parent = "src/test/java/com/gobestsoft/jdk_api/io/text";
         String child1 = "c.txt";
         File file3 = new File(parent, child1);
+        file3.createNewFile();
 
-        // 通过父级File对象和子路径字符串
-        File parentDir = new File("./text/haha");
+        // 通过父级File对象和子路径字符串，父级File对象必须是一个文件目录对象
+        File parentDir = new File("src/test/java/com/gobestsoft/jdk_api/io/text");
         String child2 = "d.txt";
         File file4 = new File(parentDir, child2);
+        file4.createNewFile();
     }
 
     /**
@@ -57,14 +62,16 @@ public class FileTest {
      * API中说明：length()，表示文件的长度。但是File对象表示目录，则返回值未指定。
      */
     @Test
-    public void getMethodTest() {
-        File f = new File("D:\\Code\\IdeaWorkSpace\\dream_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\f.java");
+    public void getMethodTest() throws IOException {
+        File f = new File("src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\f.java");
+        f.createNewFile();
         System.out.println("文件绝对路径:" + f.getAbsolutePath());
         System.out.println("文件构造路径:" + f.getPath());
         System.out.println("文件名称:" + f.getName());
         System.out.println("文件长度:" + f.length() + "字节");
 
         File f2 = new File("D:/Code/IdeaWorkSpace/dream_plan/tech_enhance/src/test/java/com/gobestsoft/jdk_api/io/text/e.txt");
+        f2.createNewFile();
         System.out.println("目录绝对路径:" + f2.getAbsolutePath());
         System.out.println("目录构造路径:" + f2.getPath());
         System.out.println("目录名称:" + f2.getName());
@@ -78,17 +85,18 @@ public class FileTest {
      * public boolean isFile() ：此File表示的是否为文件。
      */
     @Test
-    public void judgeMethodTest() {
-        File f = new File("D:\\Code\\IdeaWorkSpace\\dream_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\g.java");
-        File f2 = new File("D:/Code/IdeaWorkSpace/dream_plan/tech_enhance/src/test/java/com/gobestsoft/jdk_api/io/text/bb");
+    public void judgeMethodTest() throws IOException {
+        File f = new File("src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\g.java");
+        File f2 = new File("src/test/java/com/gobestsoft/jdk_api/io/text/bb.txt");
+        f2.createNewFile();
 
         // 判断是否存在
         System.out.println("g.java 是否存在:" + f.exists());
-        System.out.println("text/bb 是否存在:" + f2.exists());
+        System.out.println("text/bb/bb.txt 是否存在:" + f2.exists());
 
         // 判断是文件还是目录
         System.out.println("text/bb 文件?:" + f2.isFile());
-        System.out.println("text/bb 目录?:" + f2.isDirectory());
+        System.out.println("text/bb/bb.txt 目录?:" + f2.isDirectory());
     }
 
     /**
@@ -99,11 +107,22 @@ public class FileTest {
      * public boolean mkdirs() ：创建由此File表示的目录，包括任何必需但不存在的父目录。
      * <p>
      * API中说明：delete方法，如果此File表示目录，则目录必须为空才能删除。
+     *
+     * 绝对路径和相对路径
+     * 绝对路径：从盘符开始的路径，这是一个完整的路径。
+     * 相对路径：相对于项目目录的路径，这是一个便捷的路径，开发中经常使用。
      */
     @Test
     public void crudMethod() throws IOException {
-        // 文件的创建
-        File f = new File("D:/Code/IdeaWorkSpace/dream_plan/tech_enhance/src/test/java/com/gobestsoft/jdk_api/io/text/ff.txt");
+        // 文件的创建 正斜杠、反斜杠都可以，相对路径从包所在路径开始
+        //  绝对路径
+        // String absolutePath = "D:/Code/IdeaWorkSpace/dream_plan/tech_enhance/src/test/java/com/gobestsoft/jdk_api/io/text/absolutePath.txt";
+        // File f = new File(absolutePath)
+
+        // 相对路径 tech_enhance目录开始
+        // String path = "src/test/java/com/gobestsoft/jdk_api/io/text/path.txt";
+        String path = "src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\path22.txt";
+        File f = new File(path);
         System.out.println("是否存在:" + f.exists()); // false
         System.out.println("是否创建:" + f.createNewFile()); // true
         System.out.println("是否存在:" + f.exists()); // true
@@ -115,19 +134,17 @@ public class FileTest {
         System.out.println("是否存在:" + f2.exists()); // true
 
         // 创建多级目录
-        File f3 = new File(
-            "D:\\Code\\IdeaWorkSpace\\dream_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\newDir2\\newDir22");
+        File f3 = new File("D:\\Code\\IdeaWorkSpace\\dream_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\newDir2\\newDir22");
         System.out.println(f3.mkdir()); // false
-        File f4 = new File(
-            "D:\\Code\\IdeaWorkSpace\\dream_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\newDir2\\newDir22");
+        File f4 = new File("D:\\Code\\IdeaWorkSpace\\dream_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\newDir2\\newDir22");
         System.out.println(f4.mkdirs()); // true
 
         // 文件的删除
-        System.out.println(f.delete()); // true
+        /*System.out.println(f.delete()); // true
 
         // 目录的删除
-        System.out.println(f2.delete());// true
-        System.out.println(f4.delete());// false
+        System.out.println(f2.delete()); // true
+        System.out.println(f4.delete()); // false*/
     }
 
     /**
@@ -139,13 +156,15 @@ public class FileTest {
      */
     @Test
     public void getMethod() {
-        File dir = new File("d:\\java_code");
+        File dir = new File("src/test/java/com/gobestsoft/jdk_api/io");
         // 获取当前目录下的文件以及文件夹的名称。
         String[] names = dir.list();
         for (String name : names) {
             System.out.println(name);
 
         }
+
+        System.out.println("------------>");
 
         // 获取当前目录下的文件以及文件夹对象，只要拿到了文件对象，那么就可以获取更多信息
         File[] files = dir.listFiles();

@@ -1,9 +1,9 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
-package com.gobestsoft.java_base.readwritefile;
+package com.gobestsoft.java_base.readwritefile.old;
 
 import org.junit.Test;
 
