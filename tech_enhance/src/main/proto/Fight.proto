@@ -1,0 +1,148 @@
+syntax = "proto3"; // PB协议版本
+
+option java_outer_classname = "FightMessages"; // 生成类的类名，注意：下划线的命名会在编译的时候被自动改为驼峰命名
+option java_package = "com.gobestsoft.proto.protobuf"; // 生成类的包名，注意：会在指定路径下按照该包名的定义来生成文件夹
+option java_multiple_files = true;
+
+// 生成java文件命令 protoc -I=./ ./Fight.proto --java_out=../java/
+// 通用协议
+message FightMessage {
+    int32 protoId = 1; // 协议Id
+    int32 order = 2; // 发生的顺序
+    repeated bytes payload = 15; // 协议具体内容
+}
+
+// 战斗帧消息
+message FightFrame {
+    int32 id = 1; // 战场Id
+    int32 frameNum = 2; // 帧号
+    int32 time = 3; // 当前时间
+    repeated FightMessage messages = 10; // 这帧中包含的协议
+}
+
+// 战报消息
+message FightReport {
+    repeated bytes payload = 1; // 每帧协议
+}
+
+
+// aoe伤害
+message AOEDamageMessage {
+    int32 attId = 1; // 攻击方Id
+    repeated int32 defIds = 2; // 受击方
+    repeated int32 defHps = 3; // 受击方血量
+    int32 attackTimes = 4; // 攻击次数
+    repeated int32 damArray = 5; // 伤害数组
+    bool hit = 6; // 是否命中目标
+}
+
+// 单体伤害
+message MonomerDamageMessage {
+    int32 attId = 1; // 攻击方Id
+    int32 defId = 2; // 受击方Id
+    int32 dam = 3; // 伤害值
+    int32 defHp = 4; // 受击方血量
+    bool crip = 5; // 是否暴击
+    bool hit = 7; // 是否命中目标
+}
+
+// 攻击协议 ProtoId 1
+message AttackMessage {
+    MonomerDamageMessage monomer = 1; // 单体伤害
+    AOEDamageMessage aoe = 2; // aoe伤害
+    int32 shieldOffset = 3; // 护盾吸收伤害
+    int32 defTeamId = 4; // 防守方teamId
+}
+
+// 战斗结束协议 ProtoId 2
+message BattleEndMessage {
+    int32 id = 1; // 战斗Id
+}
+
+// 小兵对象
+message PlayerMessage {
+    int32 id = 1; // 主体Id
+    int32 index = 2; // 下标
+    int32 lv = 3; // 等级
+    string name = 4; // 名称
+    int32 type = 5; // 类型
+    string pic = 6; // 图片
+    int32 ability = 7; // 战力
+    int32 cd = 8; // cd
+    int32 maxHp = 9; // 最大血量
+    int32 hp = 10; // 当前血量
+    int32 troopId = 11; // 编队id
+    int32 troopType = 12; // 编队类型
+    int32 reloadTime = 13; // 填弹时间
+    int32 pos = 14; // 子队在编队中的位置 (1开始)
+}
+
+// 小兵更新协议 ProtoId 3
+message PlayersUpdateMessage {
+    repeated PlayerMessage addPlayers = 1; // 新增的小兵
+    repeated int32 removePlayers = 2; // 被删除的小兵
+    int32 teamId = 3; // 编队id
+}
+
+// 重置cd ProtoId 4
+message ResetCdMessage {
+    int32 id = 1; // 小兵id
+    int32 cd = 2; // cd
+    int32 teamId = 3; // 编队id
+}
+
+// 部队切换攻击目标 ProtoId 5
+message ChangeAttackTeamMessage {
+    int32 attTeamId = 1;// 攻击编队id
+    int32 defTeamId = 2;// 防守编队id
+    int32 reloadCd = 3;// 攻击
+}
+
+// 战场融合 ProtoId 6
+message BattleFieldMixMessage {
+    int32 surviveId = 1; // 幸存的战场id
+    int32 mixedId = 2; // 被融合的战场id
+}
+
+// 部队攻击cd重置 ProtoId 7
+message TeamAttackCDResetMessage {
+    int32 teamId = 1; // 部队id
+    int32 cd = 2; // 攻击cd
+}
+
+// 部队怒气值变化 ProtoId 8
+message RageUpdateMessage {
+    int32 teamId = 1; // 部队id
+    int32 num = 2; // 怒气值
+}
+
+// 小兵受到技能的影响描述
+message PlayerSkillInfo {
+    int32 id = 1; // 小兵id
+    int32 type = 2; // 影响类型
+    int32 value = 3; // 数值
+}
+
+// 技能信息
+message TeamSkillInfo {
+    int32 teamId = 1; // 编队id
+    repeated PlayerSkillInfo infoList = 2; // 编队中受到技能影响
+    int32 shieldOffset = 3; // 护盾吸收伤害
+}
+
+// 技能协议 ProtoId 9
+message TeamSkillMessage {
+    int32 skillId = 1; // 技能id
+    int32 step = 2; // 技能阶段
+    int32 teamId = 3; // 释放技能的编队id
+    repeated TeamSkillInfo teamList = 4; // 受技能影响的编队
+}
+
+// 部队冒字 ProtoId 10
+message DisplayMessage {
+    int32 teamId = 1; // 部队id
+    int32 num = 2; // 数值
+    int32 type = 3; // 类型
+}
+
+
