@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.gobestsoft.java_base.jclass;
 
 /**
@@ -13,28 +18,41 @@ package com.gobestsoft.java_base.jclass;
  * 使用跟正常使用类的方式一样
  */
 public class ManyClass {
+
 }
 
 /**
  * 报错：不能有多个public外部类
  */
-//public class ManyClass2 {
-//}
+// public class ManyClass2 {
+// }
 
 /**
  * 可以有多个class类
  */
-class C1 {}
-class C2 {}
+class C1 {
+
+}
+class C2 {
+
+}
 
 /**
  * 可以有多个final类
   */
-final class F1 {}
-final class F2 {}
+final class F1 {
+
+}
+final class F2 {
+
+}
 
 /**
  * 可以有多个abstract类
  */
-abstract class A1{}
-abstract class A2{}
+abstract class A1{
+
+}
+abstract class A2{
+
+}

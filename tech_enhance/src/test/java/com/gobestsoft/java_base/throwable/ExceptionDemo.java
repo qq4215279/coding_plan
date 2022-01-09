@@ -1,25 +1,25 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
-package com.gobestsoft.java_base.exception;
+package com.gobestsoft.java_base.throwable;
 
 /**
- * ExceptionTest
+ * ExceptionDemo
  *
  * @author liuzhen
  * @version 1.0.0 2020/8/10 17:04
  */
-public class ExceptionTest {
+public class ExceptionDemo {
 
-    private static final ExceptionTest EXCEPTION_TEST = new ExceptionTest();
+    private static final ExceptionDemo EXCEPTION_TEST = new ExceptionDemo();
 
-    private ExceptionTest(){
+    private ExceptionDemo(){
 
     }
 
-    public static ExceptionTest getInstance() {
+    public static ExceptionDemo getInstance() {
         return EXCEPTION_TEST;
     }
 
@@ -80,12 +80,12 @@ public class ExceptionTest {
         //        System.out.println("结果1---------------> " + division);
 
         // 2.try catch
-        int division2 = ExceptionTest.getInstance().division_Try_Catch(10);
+        int division2 = ExceptionDemo.getInstance().division_Try_Catch(10);
         System.out.println("try catch 可以继续往下走。。。");
         System.out.println("结果2--------------> " + division2);
 
         // 3.throws
-        int division3 = ExceptionTest.getInstance().division_Throws(10);
+        int division3 = ExceptionDemo.getInstance().division_Throws(10);
         System.out.println("结果3--------------> " + division3);
 
     }

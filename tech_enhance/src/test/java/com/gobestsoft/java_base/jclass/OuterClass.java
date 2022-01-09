@@ -1,12 +1,25 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.gobestsoft.java_base.jclass;
 
 /**
  * OuterClass
- * 内部类Demo
+ * 内部类 Demo
  * @author liuzhen
  * @version 1.0.0 2021/10/21 17:19
  */
 public class OuterClass {
+
+    /**
+     * 内部类分类：
+     * 1. 成员内部类
+     * 2. 局部内部类
+     * 3. 匿名内部类
+     * 4. 静态内部类
+     */
 
     private String name = "tom";
     private int age = 18;
@@ -23,14 +36,6 @@ public class OuterClass {
         InnerClass1 innerClass1 = new InnerClass1();
         return innerClass1.getAge();
     }
-
-    /**
-     * 内部类分类：
-     * 1. 成员内部类
-     * 2. 局部内部类
-     * 3. 匿名内部类
-     * 4. 静态内部类
-     */
 
     /**
      * 1. 成员内部类：
@@ -79,20 +84,48 @@ public class OuterClass {
      * d. 匿名内部类是没有构造方法的。因为它连名字都没有何来构造方法。
      */
 
+
     /**
      * 4. 静态内部类：
      * a. 静态内部类也是定义在另一个类里面的类，只不过在类的前面多了一个关键字static。静态内部类是不需要依赖于外部类。
      * b. 它不能被外部类的非static成员变量或者方法访问。
      */
-    private static class StaticInnerClass4 {
-        public static final OuterClass instance = new OuterClass();
+    private static class StaticInnerClass {
+        public static final int bb = 999;
+        public int a = 1;
+
+        public int getInt() {
+            System.out.println("静态内部类 非静态方法");
+            return 999;
+        }
     }
 
     public static void main(String[] args) {
         OuterClass outerClass = new OuterClass("xingxing");
-        System.out.println(outerClass.getInnerAgeMethod());
-    }
 
+        System.out.println("1. 成员内部类 ------------------------>");
+        System.out.println(outerClass.getInnerAgeMethod());
+
+        System.out.println("2. 局部内部类 ------------------------>");
+        outerClass.innerClassDemo02();
+
+
+        System.out.println("3. 匿名内部类 ------------------------>");
+        // 3. 匿名内部类
+        InnerClass innerClass = () -> 100;
+        int num = innerClass.getNumber();
+        System.out.println("匿名内部类 -- num: " + num);
+
+        System.out.println("4. 静态内部类 ------------------------>");
+        int bb = OuterClass.StaticInnerClass.bb;
+        int bbb = StaticInnerClass.bb;
+        System.out.println("bb: " + bb);
+        System.out.println("bbb: " + bbb);
+
+        StaticInnerClass staticInnerClass = new StaticInnerClass();
+        int anInt = staticInnerClass.getInt();
+        System.out.println("anInt: " + anInt);
+    }
 
 }
 

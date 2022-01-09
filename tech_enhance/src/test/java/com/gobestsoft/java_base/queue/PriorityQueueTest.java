@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.gobestsoft.java_base.queue;
 
 import org.junit.Test;
@@ -21,15 +26,15 @@ public class PriorityQueueTest {
      * 但对于自己定义的类来说，需要自己定义比较器
      *
      * 常用api:
-     * peek(): // 返回队首元素
-     * poll(): // 返回队首元素，队首元素出队列
-     * add() / offer(): // 添加元素
-     * remove(Object o): // 从此队列中删除指定元素的单个实例（如果存在）。
-     * removeAll(Collection<?> c) / clear(): // 删除此集合的所有元素，这些元素也包含在指定的集合中（可选操作）。
-     * size(): // 返回队列元素个数
-     * isEmpty(): // 判断队列是否为空，为空返回true,不空返回false
-     * iterator(): // 不保证以任何特定顺序遍历队列元素。若想按特定顺序遍历，先将队列转成数组，然后排序遍历(Arrays.sort(arr))
-     * toArray() / toArray(T[] a)：// 返回包含此队列中所有元素的数组; 返回数组的运行时类型是指定数组的运行时类型。
+     * peek(): 返回队首元素
+     * poll(): 返回队首元素，队首元素出队列
+     * add() / offer(): 添加元素
+     * remove(Object o): 从此队列中删除指定元素的单个实例（如果存在）。
+     * removeAll(Collection<?> c) / clear(): 删除此集合的所有元素，这些元素也包含在指定的集合中（可选操作）。
+     * size(): 返回队列元素个数
+     * isEmpty(): 判断队列是否为空，为空返回true,不空返回false
+     * iterator(): 不保证以任何特定顺序遍历队列元素。若想按特定顺序遍历，先将队列转成数组，然后排序遍历(Arrays.sort(arr))
+     * toArray() / toArray(T[] a)：返回包含此队列中所有元素的数组; 返回数组的运行时类型是指定数组的运行时类型。
      */
 
     /**
