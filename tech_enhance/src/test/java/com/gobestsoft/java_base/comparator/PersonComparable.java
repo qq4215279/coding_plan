@@ -8,6 +8,11 @@ import java.util.Collections;
  *  升序：return this.- o2;  return 1
  *  降序: return o1 - this.; return -1
  *  自然排序：               return 0
+ *
+ *  理解：
+ *  eg 需求：升序排序：
+ *  当 this > o2 时，因为需要升序，所以需要 this 与 o2 发生交换，所以 return 1（1代表发生交换！）。
+ *  当 this < o2 时，因为需要升序，所以需要 this 与 o2 不发生交换，所以 return -1（-1代表不发生交换！）。
  */
 public class PersonComparable implements Comparable<PersonComparable> {
     private int age;

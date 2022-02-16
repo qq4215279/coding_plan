@@ -1,9 +1,7 @@
 package com.gobestsoft.java_base.comparator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 比较器：Comparator<T>使用
@@ -78,7 +76,13 @@ class Test {
 
         System.out.println("----------------------------------------------------------------->");
 
-        // 使用方式2:
+        // 使用方式2：
+        System.out.println("排序前list: " + list);
+        List<PersonComparator> list2 = list.stream().sorted(new DescAgePerson()).collect(Collectors.toList());
+        System.out.println("排序后list2: " + list2);
+        System.out.println("----------------------------------------------------------------->");
+
+        // 使用方式3:
         PersonComparator[] arr = list.toArray(new PersonComparator[0]);
         Arrays.sort(arr, new DescAgePerson());
         System.out.println("arr: ");
@@ -88,7 +92,7 @@ class Test {
 
         System.out.println("----------------------------------------------------------------->");
 
-        // 使用方式3:
+        // 使用方式4:
         PriorityQueue<PersonComparator> queue = new PriorityQueue<>(new AseAgePerson());
         queue.add(new PersonComparator("zhangsan", 400));
         queue.add(new PersonComparator("lisi", 30));
@@ -99,5 +103,6 @@ class Test {
             PersonComparator personComparator = queue.poll();
             System.out.println(personComparator.toString());
         }
+
     }
 }
