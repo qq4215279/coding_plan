@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
@@ -101,6 +101,9 @@ public class SystemTest {
      */
     @Test
     public void propertyTest() {
+        String javaVersion = System.getProperty("java.version");
+        System.out.println(javaVersion);
+
         String property = System.getProperty("user.home");
         System.out.println(property);
 
