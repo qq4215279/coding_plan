@@ -19,8 +19,8 @@ public class TraverseCollection {
 
     /**
      * 集合初始化集中方式：
-     * 0. add()
-     * 1.使用Arrays.asList方法，如下：List<Integer> list = Arrays.asList(1, 2, 3);
+     * 0. add() / addAll()
+     * 1.使用Arrays.asList方法，如下：List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3));
      * 2.导入Guava依赖包，使用Google Guava工具集Lists方法，如下： List<Integer> list = Lists.newArrayList(1, 2, 3);
      * 3.使用Stream，不过要求JDK版本在8以上，如下：List<Integer> list = Stream.of(1, 2, 3).collect(Collectors.toList());
      * 4.使用Lists，不过要求JDK版本在9以上，如下：List<Integer> list = Lists.of(1,2,3);
@@ -28,7 +28,7 @@ public class TraverseCollection {
      * 第二层括弧实际上是一个实例初始化块 (instance initializer block)，这个块在内部匿名类构造时被执行。推而广之，可初始化ArrayList、Set、HashMap ...
      *
      */
-    private static List<String> arrayList = new ArrayList<String>() {
+    private static List<String> arrayList = new ArrayList<>() {
         {
             add("刘亦菲");
             add("刘翔");
@@ -69,7 +69,7 @@ public class TraverseCollection {
      * for循环
      * @return
      */
-    public static void traverseListMethod01(List<T> arrayList) {
+    public static <T> void traverseListMethod01(List<T> arrayList) {
         for (int i = 0; i < arrayList.size(); i++) {
             T name = arrayList.get(i);
             System.out.println("用户名：" + name);
@@ -81,7 +81,7 @@ public class TraverseCollection {
      * 加强for循环
      * @return
      */
-    public static void traverseListMethod02(List<T> arrayList) {
+    public static <T> void traverseListMethod02(List<T> arrayList) {
         for (T name : arrayList) {
             System.out.println("用户名2：" + name);
         }

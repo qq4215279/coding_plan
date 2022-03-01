@@ -3,7 +3,7 @@
  * All Right Reserved.
  */
 
-package com.gobestsoft.java_base.func_interface.test;
+package com.gobestsoft.java_base.keyword._default;
 
 /**
  * C

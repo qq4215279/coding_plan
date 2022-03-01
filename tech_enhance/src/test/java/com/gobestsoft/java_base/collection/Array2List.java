@@ -26,7 +26,7 @@ public class Array2List {
 
     private String[] arr2 = {"a", "b", "c"};
 
-    private List<Integer> list = Arrays.asList(1, 2, 3);
+    private List<Integer> arrayList = new ArrayList<>(Arrays.asList(1, 2, 3));
 
     /**
      * 原生：for循环
@@ -50,6 +50,8 @@ public class Array2List {
      */
     @Test
     public List<String> array2List02() {
+        // arr数组是int类型，不是Integer，数组的类型不能是基本数据类型，所以不能用这种方法转List
+//        List<Integer> intList = new ArrayList<>(Arrays.asList(arr));
         List<String> list = new ArrayList<>(Arrays.asList(arr2));
 
         /*
@@ -73,8 +75,11 @@ public class Array2List {
      * @return
      */
     public List<String> array2List03() {
-        List<String> list = new ArrayList<>(arr2.length);
+        // 同上：arr数组是int类型，不是Integer，数组的类型不能是基本数据类型，所以不能用这种方法转List
+//        List<Integer> intList = new ArrayList<>(arr.length);
+//        Collections.addAll(intList, arr);
 
+        List<String> list = new ArrayList<>(arr2.length);
         Collections.addAll(list, arr2);
 
         return list;
@@ -86,12 +91,12 @@ public class Array2List {
      * @return
      */
     public List<String> array2List04() {
-        List<String> list = new ArrayList<>(arr2.length);
+//        List<int[]> intList = List.of(this.arr);
 
         // 仅仅适用于JDK9及以上
-//        List<String> resultList = List.of(array);
+        List<String> resultList = List.of(arr2);
 
-        return list;
+        return resultList;
     }
 
     // --------------------------------------------------------------------------------------------------------------->
@@ -102,7 +107,7 @@ public class Array2List {
      * @return
      */
     public int[] list2Array01() {
-        Integer[] integerArr = list.toArray(new Integer[list.size()]);
+        Integer[] integerArr = arrayList.toArray(new Integer[arrayList.size()]);
         int[] arr = new int[integerArr.length];
 
         for (int i = 0; i < integerArr.length; i++) {
@@ -118,7 +123,7 @@ public class Array2List {
      * @return
      */
     public int[] list2Array02() {
-        int[] arr = list.stream().mapToInt(Integer::intValue).toArray();
+        int[] arr = arrayList.stream().mapToInt(Integer::intValue).toArray();
         return arr;
     }
 

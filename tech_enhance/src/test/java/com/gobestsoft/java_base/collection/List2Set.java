@@ -15,8 +15,8 @@ import java.util.*;
  */
 public class List2Set {
 
-    private static List<Integer> list = Arrays.asList(1, 1, 1,2,43,2);
-    private static Set<Integer> set = new HashSet<>(Arrays.asList(1, 2, 3));
+    private static List<Integer> arrayList = new ArrayList<>(Arrays.asList(1, 1, 1, 2, 43, 2));
+    private static Set<Integer> hashSet = new HashSet<>(Arrays.asList(1, 2, 3));
 
     /***
      * 构造方法
@@ -39,7 +39,7 @@ public class List2Set {
 
 
     public static void main(String[] args) {
-        Set<Integer> set = List2Set.list2Set01(list);
+        Set<Integer> set = List2Set.list2Set01(arrayList);
         System.out.println(set);
 
     }
