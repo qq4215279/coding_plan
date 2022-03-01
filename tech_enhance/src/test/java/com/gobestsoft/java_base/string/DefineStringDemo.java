@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.gobestsoft.java_base.string;
 
 import org.junit.Test;
@@ -15,7 +20,7 @@ public class DefineStringDemo {
      * 1. String 对象的 intern()方法会得到字符串对象在常量池中对应的版本的引用（如果常量池中有一个字符串与 String 对象的 equals 结果是 true），
      *    如果常量池中没有对应的字符串，则该字符串将被添加到常量池中，然后返回常量池中字符串的引用；
      * 2. 字符串的 + 操作其本质是创建了 StringBuilder 对象进行 append 操作，然后将拼接后的 StringBuilder 对象用 toString 方法处理成 String 对象，
-     *    这一点可以用 javap -c StringEqualTest.class 命令获得 class 文件对应的 JVM 字节码指令就可以看出来。
+     *    这一点可以用 javap -c StringEqualTest.class 命令获得 class 文件对应的 JVM 字节码指令就可以看出来。（注：toString 即创将了一个new String()）
      * @author liuzhen
      * @date 2021/9/27 14:58
      * @param
@@ -37,25 +42,34 @@ public class DefineStringDemo {
         System.out.println("s1 == s7.intern()：" + (s1 == s7.intern())); // true
 
 
-        System.out.println(s1 == s2); // false
-        System.out.println(s1 == s5); // true
-        System.out.println(s1 == s6); // false
-        System.out.println(s2 == s6); // false
-        System.out.println(s2.intern() == s6.intern()); // true
-        System.out.println(s1 == s6.intern()); // true
-        System.out.println(s2 == s2.intern()); // false
+        System.out.println("s1 == s2: " + (s1 == s2)); // false
+        System.out.println("s1 == s5: " + (s1 == s5)); // true
+        System.out.println("s1 == s6: " + (s1 == s6)); // false
+        System.out.println("s2 == s6: " + (s2 == s6)); // false
+        System.out.println("s2.intern() == s6.intern(): " + (s2.intern() == s6.intern())); // true
+        System.out.println("s1 == s6.intern(): " + (s1 == s6.intern())); // true
+        System.out.println("s2 == s2.intern(): " + (s2 == s2.intern())); // false
+
+        System.out.println("------->");
+        String aa = "aa";
+        String s8 = aa + "ming";
+        System.out.println("aaming" == s8.intern()); // true
+        // System.out.println(s8.intern() == "aaming"); // true
+        System.out.println(s8 == "aaming"); // true
+
     }
 
     /**
-     * TODO ???
+     *
      */
     @Test
     public void test() {
         String x = "abb";
         String y = "abb";
-        System.out.println("x == y " + x == y); // false
+        // System.out.println("x == y " + x == y); // false  注：要用括号括起来才能是true！！！
+        System.out.println("x == y " + (x == y)); // true
         System.out.println("x.equals(y) " + x.equals(y)); // true
-        System.out.println("x.equalsIgnoreCase(y) " + x.equalsIgnoreCase(y)); // true
+        System.out.println("x.equalsIgnoreCase(y) " + (x.equalsIgnoreCase(y))); // true
     }
 
     /**
@@ -91,14 +105,12 @@ public class DefineStringDemo {
         System.out.println(a == b.intern()); // false
         System.out.println(b == b.intern()); // false
 
-        System.out.println("a：" + a + " b：" + b);
+        System.out.println("a：" + a + " b：" + b); // a：aa b：aa
         System.out.println(a == b); // false 因为两个new出来的String对象，在堆中的地址是不一样的
 
-
-        // TODO
         String aIntern = a.intern();
         String bIntern = b.intern();
-        System.out.println("aIntern == bIntern ? " + (aIntern == bIntern)); // true ???
+        System.out.println("aIntern == bIntern ? " + (aIntern == bIntern)); // true
 
         String aa =  "aa";
         String bb = new String(aa);
@@ -107,7 +119,7 @@ public class DefineStringDemo {
 
         String aaIntern = aa.intern();
         String bbIntern = bb.intern();
-        System.out.println("aaIntern == bbIntern ? " + (aaIntern == bbIntern)); // true ???
+        System.out.println("aaIntern == bbIntern ? " + (aaIntern == bbIntern)); // true
 
         System.out.println("-------------->");
 
@@ -145,6 +157,7 @@ public class DefineStringDemo {
 
     /**
      * 字符串相加test
+     * new出来的对象都在堆中，地址都不一样，所以不会相等
      * @author liuzhen
      * @date 2021/9/27 18:17
      * @param
@@ -167,102 +180,48 @@ public class DefineStringDemo {
         }
     }
 
-    // todo  来自知乎
+    /**
+     * 总结：
+     * 当使用 new String(变量 + 常量) (eg: new String(a + "param")) 创建字符创时，
+     *  如果 (a + "param") 在常量池中没有相同的字符串，会在堆中创建，在intern()到常量池中，并返回常量池中的地址。eg1
+     *  如果 (a + "param") 在常量池中有相同的字符串，则返回堆中的地址； eg2
+     * @author liuzhen
+     * @date 2022/3/1 9:08
+     * @param
+     * @return void
+     */
     @Test
     public void test04() {
-        String aaa = "a";
-        String param = new String("param" + aaa);
+        // eg1:
+        String a = "a"; // 或 String a = new String("a");
+        String param = new String(a + "param");
         String paramIntern = param.intern();
-        String param3 = new String("parama");
-
-        System.out.println(param == paramIntern); // true ???
-
-        System.out.println(param3 == param); // false
-        System.out.println(param3 == paramIntern); // false
+        System.out.println("param == paramIntern: " + (param == paramIntern)); // true ???
 
         System.out.println("=============>");
 
+        String param3 = new String("aparam中");
+        System.out.println(param3 == param); // false
+        System.out.println(param3 == paramIntern); // false
+
+        System.out.println("================================================================>");
+
+        // eg2:
         // new String() 不管常量池中有没有，都会在堆中新建一个对象，所以不会和其他对象相等。
-        String a = "古时的";
-        String s1 = "古时的风筝";
-        String s2 = new String(a + "风筝");
-        String s3 = new String(a + "风筝");
+        String b = "古时的";
+        String s2 = new String(b + "风筝");
+        String s1 = "古时的风筝"; // s1定义在s2Intern的前面，则 s2 == s2Intern: false
+        String s2Intern = s2.intern();
+        System.out.println("s1 == s2Intern: " + (s1 == s2Intern)); // true
+
+        // String s1 = "古时的风筝"; // s1定义在s2Intern的后面，则 s2 == s2Intern: true
+        System.out.println("s2 == s2Intern: " + (s2 == s2Intern)); // false  ???  结果跟上不一样？？
+
+        System.out.println("=============>");
+
+        String s3 = new String(b + "风筝");
         System.out.println(s1 == s2); // false
         System.out.println(s2 == s3); // false
-    }
-    @Test
-    public void test05() {
-        // 1.
-//        String a = "古时的"; // 效果和下面一样
-        String a = new String("古时的");
-        String s2 = new String(a + "风筝");
-        String s2Intern = s2.intern();
-        System.out.println("s2 == s2Intern：" + (s2 == s2Intern)); // TODO true ???
-
-        System.out.println("--------------------------->");
-
-        // 2.
-        String b = "天天";
-        String cPoolExist = "天天向上";
-        String d = new String(b + "向上");
-        String dIntern = d.intern();
-        System.out.println(d == dIntern); // false
-        System.out.println("cPoolExist == e：" + (cPoolExist == dIntern)); // true
-
-        System.out.println("=============================>");
-
-        // 3.
-        String s22 = new String("好好学习");
-        String s22Intern = s22.intern();
-        System.out.println(s22 == s22Intern); // false
-
-        System.out.println("--------------------------->");
-
-        // 4.
-        String ccPoolExist = "天气很好";
-        String dd = new String("天气很好");
-        String ddIntern = dd.intern();
-        System.out.println("ddIntern == ccPoolExist：" + (ddIntern == ccPoolExist)); // true
-        System.out.println(dd == ddIntern); // false
-    }
-
-    @Test
-    public void test06() {
-        // 2. new出来的对象都在堆中，地址都不一样，所以不会相等
-        String a = new String("a");
-        String b = new String(a);
-        String aIntern = a.intern();
-        String bIntern = b.intern();
-
-        System.out.println("a：" + a + " b：" + b);
-        System.out.println(a == b); // false 因为两个new出来的String对象，在堆中的地址是不一样的
-        System.out.println(a == bIntern); // false
-        System.out.println(b == bIntern); // false
-        System.out.println("aIntern == bIntern：" + (aIntern == bIntern)); // true
-
-        System.out.println("------------------------->");
-
-        // 等号复制aa
-        String aa =  "aa";
-        String bb = new String(aa);
-        String aaIntern = aa.intern();
-        String bbIntern = bb.intern();
-
-        System.out.println("aa：" + aa + " bb：" + bb);
-        System.out.println(aa == bb); // false
-        System.out.println(aa == bbIntern); // true
-        System.out.println(bb == bbIntern); // false
-        System.out.println("aaIntern == bbIntern ? " + (aaIntern == bbIntern)); // true
-
-        System.out.println("==================>>>>");
-
-        String c = new String("abc");
-        String d = c;
-        System.out.println(c.intern() == d); // false
-        String e = d.intern();
-        System.out.println(c.intern() == e); // true
-        String f = "abc";
-        System.out.println(f == e); // true
     }
 
     /**
@@ -271,6 +230,8 @@ public class DefineStringDemo {
      * 2. 在编译期无法确定具体值的字符串变量，若要加入到字符串常量池，可以调用intern()方法。
      *    这时如果池中没有与之字面量相同的字符串，它会进入到常量池当中，所有之前指向这块内存的引用，都会指向常量池。
      * 3. 通过new的方式是无法实现把新的字符串放到常量池当中的。创建的时候没与常量池扯上任何关系。
+     *
+     *
      */
     @Test
     public void pushPool() {
@@ -280,14 +241,21 @@ public class DefineStringDemo {
         //(查看字节码也可以看到它被放到了constant pool),那么param应该不会放到pool中啊
         System.out.println(param.intern() == "ba"); // true
         System.out.println(param == "ba"); // true TODO???
+
+        // 注释掉上面，执行下面两行
+        // System.out.println(param == "ba"); // false
+        // System.out.println(param.intern() == "ba"); // true
     }
 
     @Test
     public void pushPool2() {
         String a = "a";
         String param = "b" + a;
-        System.out.println("ba" == param.intern()); // true
-        System.out.println(param == "ba"); // false TODO???
+        String paramIntern = param.intern();
+        // System.out.println("ba" == param.intern()); // true
+        // System.out.println(paramIntern == "ba"); // true
+        System.out.println("ba" == paramIntern); // true
+        System.out.println(param == "ba"); // true TODO???
     }
 
 
