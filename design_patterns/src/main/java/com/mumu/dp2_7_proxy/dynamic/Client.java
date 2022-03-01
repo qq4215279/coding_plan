@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.dp2_7_proxy.dynamic;
 
 import java.lang.reflect.Proxy;
@@ -5,13 +10,11 @@ import java.lang.reflect.InvocationHandler;
 
 public class Client {
     public static void main(String args[]) {
-        InvocationHandler handler = null;
         AbstractUserDAO userDAO = new UserDAO();
-        handler = new DAOLogHandler(userDAO);
-        AbstractUserDAO proxy = null;
+        InvocationHandler handler = new DAOLogHandler(userDAO);
 
         // 动态创建代理对象，用于代理一个AbstractUserDAO类型的真实主题对象
-		proxy = (AbstractUserDAO)Proxy.newProxyInstance(AbstractUserDAO.class.getClassLoader(), new Class[] {AbstractUserDAO.class}, handler);
+        AbstractUserDAO proxy = (AbstractUserDAO)Proxy.newProxyInstance(AbstractUserDAO.class.getClassLoader(), new Class[] {AbstractUserDAO.class}, handler);
 		// 调用代理对象的业务方法
         proxy.findUserById("张无忌");
 
