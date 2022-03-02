@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
@@ -28,7 +28,7 @@ public class TraverseCollection {
      * 第二层括弧实际上是一个实例初始化块 (instance initializer block)，这个块在内部匿名类构造时被执行。推而广之，可初始化ArrayList、Set、HashMap ...
      *
      */
-    private static List<String> arrayList = new ArrayList<>() {
+    private static List<String> arrayList = new ArrayList<String>() {
         {
             add("刘亦菲");
             add("刘翔");

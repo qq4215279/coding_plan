@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.gobestsoft.java_base.ref;
 
 /**
@@ -21,27 +26,29 @@ public class RefDemo02 {
         person.setAge(30);
     }
 
-    public static class Person {
-        private String name;
-        private int age;
 
-        public Person(String name, int age) {
-            this.name = name;
-            this.age = age;
-        }
+}
 
-        public void setName(String name) {
-            this.name = name;
-        }
 
-        public void setAge(int age) {
-            this.age = age;
-        }
+class Person {
+    private String name;
+    private int age;
 
-        @Override
-        public String toString() {
-            return "Person{" + "name='" + name + '\'' + ", age=" + age + '}';
-        }
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" + "name='" + name + '\'' + ", age=" + age + '}';
+    }
 }
