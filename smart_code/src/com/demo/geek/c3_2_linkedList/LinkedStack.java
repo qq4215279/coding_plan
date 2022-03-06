@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
@@ -11,25 +11,28 @@ package com.demo.geek.c3_2_linkedList;
  * @date 2021/8/6 18:26
  */
 public class LinkedStack<T> {
-    public static class Node<T> {
-        T item;
-        Node<T> nextNode;
 
-        Node() {
+    public static class Node<T> {
+        public T item;
+        public Node<T> nextNode;
+
+        public Node() {
             item = null;
             nextNode = null;
         }
-        Node(T item, Node<T> nextNode) {
+
+        public Node(T item, Node<T> nextNode) {
             this.item = item;
             this.nextNode = nextNode;
         }
 
-        boolean end() {
+        public boolean end() {
             return item == null && nextNode == null;
         }
     }
 
     public Node<T> top = new Node<T>();
+
     public void push(T item) {
         top = new Node<T>(item, top);
     }

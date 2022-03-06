@@ -1,11 +1,12 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
 package com.demo.geek.c3_2_linkedList;
 
 import com.demo.common.entity.Node;
+import com.demo.common.utils.LinkedListUtil;
 
 /**
  * 反转链表
@@ -29,8 +30,8 @@ public class LeetCode206 {
      * @param head
      * @return com.demo.common.entity.Node
      */
-    public Node reverseList(Node head) {
-        if(head == null || head.next == null) {
+    public static Node reverseList(Node head) {
+        if (head == null || head.next == null) {
             return head;
         }
 
@@ -39,13 +40,17 @@ public class LeetCode206 {
         // 头结点
         Node cur = head;
         while (cur != null) {
-            Node nextNode = cur.next; // 保留下一个结点
-            cur.next = pre; // 指针反转
-            pre = cur; // 前结点后移
-            cur = nextNode; // 当前结点后移
-
+            // 保留下一个结点
+            Node nextNode = cur.next;
+            // 指针反转
+            cur.next = pre;
+            // 前结点后移
+            pre = cur;
+            // 当前结点后移
+            cur = nextNode;
         }
-        return cur;
+
+        return pre;
     }
 
     /**
@@ -55,20 +60,22 @@ public class LeetCode206 {
      * @param head
      * @return com.demo.common.entity.Node
      */
-    public Node reverseList02(Node head) {
-        if(head == null || head.next == null) {
+    public static Node reverseList02(Node head) {
+        if (head == null || head.next == null) {
             return head;
         }
 
-        Node temp = head.next;
         Node newHead = reverseList02(head.next);
-        temp.next = head;
+        head.next.next = head;
         head.next = null;
         return newHead;
     }
 
     public static void main(String[] args) {
+        Node head = LinkedListUtil.generateNodeList(new int[] {1, 2, 3, 4});
 
+        reverseList(head);
+        head.print();
     }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
@@ -71,7 +71,8 @@ public class LeetCode098 {  // LeetCode T98
             return true;
         }
 
-        List<Integer> list = inOrder(root);
+        List<Integer> list = new ArrayList<>();
+        inOrder(root, list);
         for (int i = 0; i < list.size() - 1; i++) {
             int cur = list.get(i);
             int next = list.get(i + 1);
@@ -90,16 +91,15 @@ public class LeetCode098 {  // LeetCode T98
      * @param root
      * @return java.util.List<java.lang.Integer>
      */
-    List<Integer> list = new ArrayList<>();
-    public List<Integer> inOrder(TreeNode root) {
+    public void inOrder(TreeNode root, List<Integer> list) {
         if (root == null) {
-            return list;
+            return;
         }
 
-        inOrder(root.left);
+        inOrder(root.left, list);
         list.add(root.value);
-        inOrder(root.right);
-        return list;
+        inOrder(root.right, list);
+        return;
     }
 
     public static void main(String[] args) {

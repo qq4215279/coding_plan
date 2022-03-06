@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
@@ -37,19 +37,18 @@ public class MultiTreeNodeOrder { // LeetCode T589:N叉树的前序遍历;  层�
      * @param root
      * @return java.util.List<java.lang.Integer>
      */
-    private static List<Integer> list = new ArrayList<>();
-    public static List<Integer> preOrder(MultiTreeNode root) {
+    public static void preOrder(MultiTreeNode root, List<Integer> list) {
         if (root == null) {
-            return list;
+            return;
         }
 
         if (root != null) {
             list.add(root.value);
             for (MultiTreeNode node : root.children) {
-                preOrder(node);
+                preOrder(node, list);
             }
         }
-        return list;
+        return;
     }
 
     /**
@@ -59,14 +58,14 @@ public class MultiTreeNodeOrder { // LeetCode T589:N叉树的前序遍历;  层�
      * @param root
      * @return java.util.List<java.lang.Integer>
      */
-    public static List<Integer> postOrder(MultiTreeNode root) {
+    public static List<Integer> postOrder(MultiTreeNode root, List<Integer> list) {
         if (root == null) {
             return list;
         }
 
         if (root != null) {
             for (MultiTreeNode node : root.children) {
-                postOrder(node);
+                postOrder(node, list);
             }
             list.add(root.value);
         }
@@ -80,9 +79,9 @@ public class MultiTreeNodeOrder { // LeetCode T589:N叉树的前序遍历;  层�
      * @param root
      * @return java.util.List<java.lang.Integer>
      */
-    public static List<Integer> levelOrder(MultiTreeNode root) {
+    public static void levelOrder(MultiTreeNode root, List<Integer> list) {
         if (root == null) {
-            return list;
+            return;
         }
 
         Queue<MultiTreeNode> queue = new LinkedList<>();
@@ -98,7 +97,7 @@ public class MultiTreeNodeOrder { // LeetCode T589:N叉树的前序遍历;  层�
             }
         }
 
-        return list;
+        return;
     }
 
     /**
@@ -122,8 +121,9 @@ public class MultiTreeNodeOrder { // LeetCode T589:N叉树的前序遍历;  层�
         headChildNodes.add(new MultiTreeNode(10));
         MultiTreeNode head = new MultiTreeNode(1, headChildNodes);
 
-        List<Integer> list = levelOrder(head);
-        System.out.println(list);
+        List<Integer> levelOrderList = new ArrayList<>();
+        levelOrder(head, levelOrderList);
+        System.out.println(levelOrderList);
     }
 
 }

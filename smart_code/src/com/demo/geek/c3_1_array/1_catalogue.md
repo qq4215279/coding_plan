@@ -1,5 +1,5 @@
 ## 目录
-- ArrayContainNum: 二维数组招数
+- ArrayContainNum: 二维数组找数
 - IntToRoman: 罗马数字  LeetCode T13
 - LeetCode001: 两数之和  LeetCode T1
 - LeetCode011: 盛最多水的容器  LeetCode T11

@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.demo.nuike.chuji.class_01;
 
 import com.demo.common.utils.LogarithmUtil;
@@ -27,23 +32,23 @@ public class Code_12_SmallSum {	// 小河问题---归并排序：多了：返回
 		return mergeSort(arr, 0, arr.length - 1);
 	}
 
-	public static int mergeSort(int[] arr, int l, int r) {	//2.归并排序
+	public static int mergeSort(int[] arr, int l, int r) {	// 2.归并排序
 		if (l == r) {
 			return 0;
 		}
 		int mid = l + ((r - l) >> 1);
-		return mergeSort(arr, l, mid) + mergeSort(arr, mid + 1, r) + merge(arr, l, mid, r);//左右两边排序过程产生小河，加merge过程产生小河
+		return mergeSort(arr, l, mid) + mergeSort(arr, mid + 1, r) + merge(arr, l, mid, r); // 左右两边排序过程产生小河，加merge过程产生小河
 	}
 
-	public static int merge(int[] arr, int l, int m, int r) {	//3.外排融合的过程
+	public static int merge(int[] arr, int l, int m, int r) {	// 3.外排融合的过程
 		int[] help = new int[r - l + 1];
 		int i = 0;
 		int p1 = l;
 		int p2 = m + 1;
 		int res = 0;
 		while (p1 <= m && p2 <= r) {
-			res += arr[p1] < arr[p2] ? (r - p2 + 1) * arr[p1] : 0;//求小河过程。
-			help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];//后面于归并排序一样
+			res += arr[p1] < arr[p2] ? (r - p2 + 1) * arr[p1] : 0; // 求小河过程。
+			help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++]; // 后面于归并排序一样
 		}
 		while (p1 <= m) {
 			help[i++] = arr[p1++];
