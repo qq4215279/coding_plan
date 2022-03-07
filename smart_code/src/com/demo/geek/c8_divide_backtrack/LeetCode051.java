@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.demo.geek.c8_divide_backtrack;
 
 import java.util.*;
@@ -8,7 +13,7 @@ import java.util.*;
  * @author liuzhen
  * @version 1.0.0 2021/8/15 17:16
  */
-public class LeetCode051 {
+public class LeetCode051 { //
 
     /**
      * n 皇后问题 研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。
@@ -74,8 +79,7 @@ public class LeetCode051 {
      * @param naSet
      * @param pieSet
      */
-    private static void backtrack(List<List<String>> res, int[] queens, int n, int row, Set<Integer> columnSet, Set<Integer> naSet,
-                          Set<Integer> pieSet) {
+    private static void backtrack(List<List<String>> res, int[] queens, int n, int row, Set<Integer> columnSet, Set<Integer> naSet, Set<Integer> pieSet) {
         if (row == n) {
             List<String> board = generateBoard(queens, n);
             res.add(board);

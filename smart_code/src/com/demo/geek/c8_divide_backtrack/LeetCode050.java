@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.demo.geek.c8_divide_backtrack;
 
 /**
@@ -112,7 +117,7 @@ public class LeetCode050 {
 
     public static void main(String[] args) {
         double x = 2.00000;
-        int n = 10;
+        int n = 5;
 
 //        double x = 2.10000;
 //        int n = 3;
@@ -121,6 +126,7 @@ public class LeetCode050 {
 //        int n = -2;
 
         System.out.println(myPow01(x, n));
+
     }
 
 }

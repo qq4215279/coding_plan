@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
@@ -23,9 +23,9 @@ public class ArrayContainNum {
         * */
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
-        int row= arr.length - 1;
-        int clo=0;
-        while (row >= 0 && clo < arr.length){
+        int row = arr.length - 1;
+        int clo = 0;
+        while (row >= 0 && clo < arr.length) {
             if (num < arr[row][clo]) {
                 row--;
                 continue;

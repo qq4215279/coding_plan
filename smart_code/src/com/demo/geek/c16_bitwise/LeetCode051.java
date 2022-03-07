@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.demo.geek.c16_bitwise;
 
 import java.util.List;
@@ -8,7 +13,7 @@ import java.util.List;
  * @author liuzhen
  * @version 1.0.0 2021/8/26 21:30
  */
-public class LeetCode051 { //
+public class LeetCode051 { // c8_divide_backtrack
 
     /**
      * n 皇后问题 研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。

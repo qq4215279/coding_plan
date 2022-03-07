@@ -1,11 +1,12 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
 package com.demo.geek.c3_2_linkedList;
 
 import com.demo.common.entity.Node;
+import com.demo.common.utils.LinkedListUtil;
 
 /**
  * 两两交换链表中的节点
@@ -23,7 +24,7 @@ public class LeetCode024 {
      *
      */
 
-    public Node swapPairs(Node head) {
+    public static Node swapPairs(Node head) {
         // 定义前去结点技巧：！！！！
         Node dummy = new Node(-1);
         dummy.next = head;
@@ -48,8 +49,14 @@ public class LeetCode024 {
         return dummy.next;
     }
 
+    public static void main(String[] args) {
+        Node head = LinkedListUtil.generateNodeList(new int[] {1, 2, 3, 4});
 
+        swapPairs(head);
 
+        head.print();
+
+    }
 
 
 

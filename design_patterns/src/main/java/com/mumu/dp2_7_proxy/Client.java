@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.dp2_7_proxy;
 
 public class Client {
@@ -6,5 +11,8 @@ public class Client {
         Searcher searcher;
         searcher = (Searcher)XMLUtil.getBean();
         String result = searcher.doSearch("杨过", "玉女心经");
+
+        System.out.println("result: " + result);
+
     }
 }

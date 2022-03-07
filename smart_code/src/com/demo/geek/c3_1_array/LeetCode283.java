@@ -1,11 +1,13 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
 package com.demo.geek.c3_1_array;
 
-public class LeetCode283 { // 有点类似 Day01Demo01
+import java.util.Arrays;
+
+public class LeetCode283 { // 有点类似 LeetCode026
     /**
      * 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
      *
@@ -18,7 +20,7 @@ public class LeetCode283 { // 有点类似 Day01Demo01
      * *
      **/
 
-    public void moveZeroes(int[] nums) { // 使用了双指针
+    public static void moveZeroes(int[] nums) { // 使用了双指针
         int j = 0;  // j记录0的位置
         for (int i = 0; i < nums.length ; i++) {
             if (nums[i] != 0) {
@@ -32,11 +34,11 @@ public class LeetCode283 { // 有点类似 Day01Demo01
     }
 
 
-
-
     public static void main(String[] args) {
+        int[] nums = {0, 1, 0, 3, 12};
+        moveZeroes(nums);
 
-
+        System.out.println(Arrays.toString(nums));
     }
 
 

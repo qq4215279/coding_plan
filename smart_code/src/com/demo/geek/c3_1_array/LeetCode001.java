@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
@@ -31,17 +31,17 @@ public class LeetCode001 {
             if (map.containsKey(d) && i != map.get(d)) {
                 int left = Math.min(i, map.get(d));
                 int right = Math.max(i, map.get(d));
-                return new int[]{left, right};
+                return new int[] {left, right};
             }
         }
         return null;
     }
 
-    public static int[] twoSum02(int[] nums, int target) { //方法1：暴力解：使用两层循环。 O(n^2)
-        for (int i = 0; i < nums.length ; i++) {
-            for (int j = i+1; j < nums.length ; j++) {
-                if (target == (nums[i] + nums[j])){
-                    return new int[]{i,j};
+    public static int[] twoSum02(int[] nums, int target) { // 方法1：暴力解：使用两层循环。 O(n^2)
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (target == (nums[i] + nums[j])) {
+                    return new int[] {i, j};
                 }
             }
         }

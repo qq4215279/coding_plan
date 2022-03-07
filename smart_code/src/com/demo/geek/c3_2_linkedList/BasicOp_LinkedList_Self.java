@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
@@ -53,7 +53,7 @@ public class BasicOp_LinkedList_Self {
         int i = 2;
         while (cur != null) {
             if (i == index) {
-                pre.next = cur.next;//删除结点操作
+                pre.next = cur.next; // 删除结点操作
             }
             pre = pre.next;
             cur = cur.next;
@@ -144,7 +144,7 @@ public class BasicOp_LinkedList_Self {
     public static Node findReverseNode(Node head, int k) {
         Node first = head;
         Node second = head;
-        for (int i = 0; i < k - 1; i++) {//前移k-1步
+        for (int i = 0; i < k - 1; i++) { // 前移k-1步
             first = first.next;
         }
         while (first.next != null) {
@@ -265,14 +265,14 @@ public class BasicOp_LinkedList_Self {
         head.next.next = new Node(3);
         printNodeList(head);
 
-        //1.添加：
+        // 1.添加：
         addNode(head, 5);
         printNodeList(head);
         nodeLength(head);
-        //8.是否有环
+        // 8.是否有环
         System.out.println("是否有环：" + isRinged(head));
 
-        //反转链表：
+        // 反转链表：
         nodeReverse1(head);
         System.out.println("反转后的链表为：----------------");
         printNodeList(head);
