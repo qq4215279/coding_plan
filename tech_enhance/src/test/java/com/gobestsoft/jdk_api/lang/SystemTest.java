@@ -38,12 +38,15 @@ public class SystemTest {
         // 4. gc(): Java的GC是由JVM自行调动的，在需要的时候才执行，上面的指令只是告诉JVM尽快GC一次，但不会立即执行GC。
 //        System.gc();
 
+        System.out.println("----------------------->");
+
         // 5.1 getenv(): 返回当前系统环境的不可修改的字符串映射视图。
         // 5.2 getenv(String key): 获取指定环境变量的值。
-        Map<String, String> getenv1 = System.getenv();
-        String env2 = System.getenv("USERDOMAIN_ROAMINGPROFILE");
-        System.out.println(getenv1);
-        System.out.println("env2: " + env2);
+        Map<String, String> getenv = System.getenv();
+        System.out.println(getenv);
+
+        System.out.println("ProgramData: " + System.getenv("ProgramData"));
+        System.out.println("GOPATH: " + System.getenv("GOPATH"));
 
     }
 
