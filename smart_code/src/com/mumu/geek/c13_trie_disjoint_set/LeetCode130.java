@@ -44,7 +44,10 @@ public class LeetCode130 {
      * @return void
      */
     public static void solveByDFS(char[][] board) {
-        if (board == null || board.length == 0) return;
+        if (board == null || board.length == 0) {
+            return;
+        }
+
         int m = board.length;
         int n = board[0].length;
         for (int i = 0; i < m; i++) {
