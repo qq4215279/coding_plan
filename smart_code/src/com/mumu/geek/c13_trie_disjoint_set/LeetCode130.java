@@ -111,16 +111,24 @@ public class LeetCode130 {
                     if (i == 0 || i == rows - 1 || j == 0 || j == cols - 1) {
                         // 边界上的O,把它和 dummyNode 合并成一个连通区域.
                         uf.union(ArrayUtil.getReferencePoint(i, j, cols), dummyNode);
-                    } else { // 将不是边界的O进行合并   注：下面的合并操作不需要也是可以的！
+                    } else { // 将不是边界的O进行合并
                         // 和上下左右合并成一个连通区域.
-                       /* if (i > 0 && board[i - 1][j] == 'O')
+                        // 上面
+                        if (i > 0 && board[i - 1][j] == 'O') {
                             uf.union(ArrayUtil.getReferencePoint(i, j, cols), ArrayUtil.getReferencePoint(i - 1, j, cols));
-                        if (i < rows - 1 && board[i + 1][j] == 'O')
+                        }
+                        // 下面
+                        if (i < rows - 1 && board[i + 1][j] == 'O') {
                             uf.union(ArrayUtil.getReferencePoint(i, j, cols), ArrayUtil.getReferencePoint(i + 1, j, cols));
-                        if (j > 0 && board[i][j - 1] == 'O')
+                        }
+                        // 左边
+                        if (j > 0 && board[i][j - 1] == 'O') {
                             uf.union(ArrayUtil.getReferencePoint(i, j, cols), ArrayUtil.getReferencePoint(i, j - 1, cols));
-                        if (j < cols - 1 && board[i][j + 1] == 'O')
-                            uf.union(ArrayUtil.getReferencePoint(i, j, cols), ArrayUtil.getReferencePoint(i, j + 1, cols));*/
+                        }
+                        // 右边
+                        if (j < cols - 1 && board[i][j + 1] == 'O') {
+                            uf.union(ArrayUtil.getReferencePoint(i, j, cols), ArrayUtil.getReferencePoint(i, j + 1, cols));
+                        }
                     }
                 }
             }
