@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.geek.c7_recursion;
 
 import com.mumu.common.entity.TreeNode;
@@ -37,8 +42,9 @@ public class LeetCode226 { // LeetCode 226
      */
     public static TreeNode invertTree(TreeNode root) { // 1.递归
         // 9 的左右子节点直接返回了，所以没有再调用递归。
-        if (root == null)
+        if (root == null) {
             return null;
+        }
 
         TreeNode left = invertTree(root.left);
         TreeNode right = invertTree(root.right);
