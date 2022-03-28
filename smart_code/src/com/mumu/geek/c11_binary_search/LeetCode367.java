@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.geek.c11_binary_search;
 
 /**
@@ -40,6 +45,7 @@ public class LeetCode367 {
         int right = num / 2;
         while (left <= right) {
             int middle = left + ((right - left) >> 1);
+
             // 注意：middle * middle 是int类型计算的话，可能会存在精度缺失情况，注意将结果转为long类型！！
             long chengji = (long)middle * middle;
             if (chengji == num) {

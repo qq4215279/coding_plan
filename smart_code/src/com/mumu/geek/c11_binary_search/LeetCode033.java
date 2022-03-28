@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.geek.c11_binary_search;
 
 /**
@@ -147,13 +152,16 @@ public class LeetCode033 { // 等价于 LeetCode153
         int left = 0;
         int right = nums.length;
         while (left <= right) {
-//            int middle = left + (right - left) / 2;
+            // int middle = left + (right - left) / 2;
             int middle = left + ((right - left) >> 1);
+
             if (target == nums[middle]) {
                 return middle;
-            } else if (target > nums[middle]) {
+            }
+
+            if (target > nums[middle]) {
                 left = middle + 1;
-            } else if (target < nums[middle]) {
+            } else {
                 right = middle - 1;
             }
         }

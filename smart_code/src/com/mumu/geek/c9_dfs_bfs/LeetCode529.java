@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.geek.c9_dfs_bfs;
 
 import java.util.LinkedList;
@@ -84,7 +89,7 @@ public class LeetCode529 {
 
     public static void dfs(char[][] board, int x, int y) {
         int cnt = 0;
-        // 判断周围有几个雷
+        // 找出周围有几个雷
         for (int i = 0; i < 8; i++) {
             int tx = x + dirX[i];
             int ty = y + dirY[i];
@@ -97,6 +102,7 @@ public class LeetCode529 {
                 cnt++;
             }
         }
+
         // 有雷
         if (cnt > 0) {
             // 规则 3
@@ -111,6 +117,7 @@ public class LeetCode529 {
                 if (tx < 0 || tx >= board.length || ty < 0 || ty >= board[0].length || board[tx][ty] != 'E') {
                     continue;
                 }
+
                 dfs(board, tx, ty);
             }
         }
@@ -132,12 +139,12 @@ public class LeetCode529 {
             // 规则 1
             board[x][y] = 'X';
         } else{
-            bfs2(board, x, y);
+            bfs(board, x, y);
         }
         return board;
     }
 
-    public static void bfs2(char[][] board, int sx, int sy) {
+    public static void bfs(char[][] board, int sx, int sy) {
         boolean[][] visited = new boolean[board.length][board[0].length];
         visited[sx][sy] = true;
         Queue<int[]> queue = new LinkedList<>();

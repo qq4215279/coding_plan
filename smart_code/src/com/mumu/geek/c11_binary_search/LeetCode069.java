@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.geek.c11_binary_search;
 
 /**
@@ -39,8 +44,8 @@ public class LeetCode069 {
         long left = 1;
         long right = x;
         while (left <= right) {
-//             int middle = (left + right) / 2;
             // 防止数组越界
+            // int middle = (left + right) / 2;
             long middle = left + ((right - left) >> 1);
             if (middle * middle > x) {
                 right = middle - 1;
