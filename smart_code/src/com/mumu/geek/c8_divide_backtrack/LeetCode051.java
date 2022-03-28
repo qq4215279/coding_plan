@@ -87,39 +87,45 @@ public class LeetCode051 { //
         }
 
         // 每次递归后都是一行一行横着遍历
-        for (int i = 0; i < n; i++) {
-            if (columnSet.contains(i)) {
+        for (int column = 0; column < n; column++) {
+            // 判断这一列有没有皇后
+            if (columnSet.contains(column)) {
                 continue;
             }
             /*
-            * 判断最近左上斜对角元素：int na = row - i;
+            * 每加一行row，则列column也要加1，才能叫做在同一“na”或在同一“pie”上
+            * 判断最近左上斜对角元素：int na = row - column;
             * . Q .   Q: 0 - 1 = -1
             * . . i   i: 1 - 2 = -1
             */
-            int na = row - i;
+            int na = row - column;
             if (naSet.contains(na)) {
                 continue;
             }
             /*
-             * 判断最近右上斜对角元素：int pie = row + i;
+             * 判断最近右上斜对角元素：int pie = row + column;
              * . Q    Q: 0 + 1 = 1
              * i .    i: 1 + 0 = 1
              */
-            int pie = row + i;
+            int pie = row + column;
             if (pieSet.contains(pie)) {
                 continue;
             }
 
+            // 记录一个皇后
+            queens[row] = column;
+
             // 暂存lie、na、pie的Q位置
-            queens[row] = i;
-            columnSet.add(i);
+            columnSet.add(column);
             naSet.add(na);
             pieSet.add(pie);
+
             // 递归下一行，找下一行的Q位置
             backtrack(res, queens, n, row + 1, columnSet, naSet, pieSet);
+
             // 将每次递归中间过程产生的数清除
             queens[row] = -1;
-            columnSet.remove(i);
+            columnSet.remove(column);
             naSet.remove(na);
             pieSet.remove(pie);
         }
@@ -138,7 +144,7 @@ public class LeetCode051 { //
 
     public static void main(String[] args) {
         List<List<String>> lists = solveNQueens(4);
-        System.out.println(lists);
+        System.out.println(lists); // [[.Q.., ...Q, Q..., ..Q.], [..Q., Q..., ...Q, .Q..]]
     }
 
 }

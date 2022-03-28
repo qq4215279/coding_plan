@@ -14,7 +14,7 @@ package com.mumu.geek.c8_divide_backtrack;
 public class LeetCode050 {
 
     /**
-     * 实现 pow(x, n) ，即计算 x 的 n 次幂函数（即，xn）。
+     * 实现 pow(x, n) ，即计算 x 的 n 次幂函数（即，xn）。 -- 底数相乘，指数相加
      *
      * 示例 1：
      * 输入：x = 2.00000, n = 10

@@ -64,6 +64,8 @@ public class LeetCode102 {
                 // 节点出队
                 TreeNode node = queue.remove();
 
+                level.add(node.value);
+
                 // 节点的左子树入队
                 if (node.left != null) {
                     queue.add(node.left);
@@ -73,9 +75,8 @@ public class LeetCode102 {
                 if (node.right != null) {
                     queue.add(node.right);
                 }
-
-                level.add(node.value);
             }
+
             res.add(level);
         }
         return res;
