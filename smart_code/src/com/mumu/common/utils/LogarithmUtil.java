@@ -1,6 +1,6 @@
 package com.mumu.common.utils;
 
-import com.mumu.nuike.chuji.class_01.Code_00_BubbleSort;
+import com.mumu.nowcoder.chuji.class_01.Code_00_BubbleSort;
 
 import java.util.Arrays;
 
