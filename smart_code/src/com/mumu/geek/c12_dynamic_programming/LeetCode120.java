@@ -13,8 +13,8 @@ public class LeetCode120 {
 
     /**
      * 给定一个三角形 triangle ，找出自顶向下的最小路径和。
-     * 每一步只能移动到下一行中相邻的结点上。相邻的结点在这里指的是下标与上一层结点下标相同或者等于上一层结点下标 + 1 的两个结点。也就是说，如果正位于当前行的下标 i ，
-     * 那么下一步可以移动到下一行的下标 i 或 i + 1 。
+     * 每一步只能移动到下一行中相邻的结点上。相邻的结点在这里指的是下标与上一层结点下标相同或者等于上一层结点下标 + 1 的两个结点。
+     * 也就是说，如果正位于当前行的下标 i ，那么下一步可以移动到下一行的下标 i 或 i + 1 。
      *
      * 示例 1：
      * 输入：triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
@@ -57,7 +57,7 @@ public class LeetCode120 {
 
 
     /**
-     * DP方程解法
+     * DP方程解法：自底向上
      * @author liuzhen
      * @date 2021/8/19 22:26
      * @param triangle
@@ -73,7 +73,8 @@ public class LeetCode120 {
             int colSize = triangle.get(i).size();
             // 遍历当前行的每一列，将当前行的每一个元素 + 下一行的与当前元素相邻的的两个元素的较小值
             for (int j = 0; j < colSize; j++) {
-                dp[j] = triangle.get(i).get(j) + Math.min(dp[j], dp[j + 1]); // eg：dp[j] = 6 + Math.min(4,1) = 7
+                // eg：dp[j] = 6 + Math.min(4,1) = 7
+                dp[j] = triangle.get(i).get(j) + Math.min(dp[j], dp[j + 1]);
             }
         }
         return dp[0];

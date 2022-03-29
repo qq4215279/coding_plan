@@ -23,6 +23,19 @@ public class LeetCode152 {
      * 解释: 结果不能为 2, 因为 [-2,-1] 不是子数组。
      */
 
+    /**
+     * 动态规划
+     * 遍历数组时计算当前最大值，不断更新
+     * 令imax为当前最大值，则当前最大值为 imax = max(imax * nums[i], nums[i])
+     * 由于存在负数，那么会导致最大的变最小的，最小的变最大的。因此还需要维护当前最小值imin，imin = min(imin * nums[i], nums[i])
+     * 当负数出现时则imax与imin进行交换再进行下一步计算
+     * 时间复杂度：O(n)O(n)
+     *
+     * @author liuzhen
+     * @date 2022/3/29 18:07
+     * @param nums
+     * @return int
+     */
     public int maxProduct(int[] nums) {
         // 一个保存最大的，一个保存最小的。
         int max = Integer.MIN_VALUE;
@@ -35,6 +48,7 @@ public class LeetCode152 {
                 imax = imin;
                 imin = tmp;
             }
+
             imax = Math.max(imax * nums[i], nums[i]);
             imin = Math.min(imin * nums[i], nums[i]);
 

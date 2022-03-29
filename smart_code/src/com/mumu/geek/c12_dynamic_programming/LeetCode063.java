@@ -118,7 +118,10 @@ public class LeetCode063 {
             for (int j = 1; j < col; j++) {
                 if (obstacleGrid[i][j] == 0) {
                     dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
-                }
+                } // 可不需要如下：
+                // else {
+                //     dp[i][j] = 0;
+                // }
             }
         }
         return dp[row - 1][col - 1];
