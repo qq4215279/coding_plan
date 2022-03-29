@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.geek.c14_search.a_star;
 
 /**
@@ -47,7 +52,8 @@ public class LeetCode773 {
      * 2. BFS
      * 3. A*
      *
-     * #方向变换向量。  类似 四联通图，八联通图
+     * 技术处理：
+     * # 方向变换向量。  类似 四联通图，八联通图
      * moves = {
      *     0: [1,3],
      *     1: [0,2,4],
@@ -55,8 +61,10 @@ public class LeetCode773 {
      *     3: [0,4],
      *     4: [1,3,5],
      *     5: [2,4],
-     *
      * }
+     *
+     * 解释muves：
+     * 比如 0：[1,3]   板上索引0位置上的数，可以和索引1位置上的数或索引3位数发生交换
      */
 
     public int slidingPuzzle(int[][] board) {
