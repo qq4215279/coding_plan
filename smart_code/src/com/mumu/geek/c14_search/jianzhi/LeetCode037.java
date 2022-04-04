@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.geek.c14_search.jianzhi;
 
 import java.util.Arrays;
@@ -30,6 +35,13 @@ public class LeetCode037 {
      * 题目数据 保证 输入数独仅有一个解
      */
 
+    /**
+     * DFS
+     * @author liuzhen
+     * @date 2022/3/31 10:33
+     * @param board
+     * @return void
+     */
     public static void solveSudoku(char[][] board) {
         dfs(board, 0);
     }
@@ -40,8 +52,10 @@ public class LeetCode037 {
             return true;
         }
 
+        // 表示坐标
         int i = d / 9;
         int j = d % 9;
+
         // prefill number skip
         if (board[i][j] != '.') {
             return dfs(board, d + 1);
@@ -66,12 +80,15 @@ public class LeetCode037 {
     private static void validate(char[][] board, int i, int j, boolean[] flag) {
         Arrays.fill(flag, true);
         for (int k = 0; k < 9; k++) {
+            // 这一行上的数字信息
             if (board[i][k] != '.') {
                 flag[board[i][k] - '0'] = false;
             }
+            // 这一列上的数字信息
             if (board[k][j] != '.') {
                 flag[board[k][j] - '0'] = false;
             }
+            //
             int r = i / 3 * 3 + k / 3;
             int c = j / 3 * 3 + k % 3;
             if (board[r][c] != '.') {
