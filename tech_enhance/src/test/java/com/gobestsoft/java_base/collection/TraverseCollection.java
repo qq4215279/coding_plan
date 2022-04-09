@@ -6,6 +6,7 @@
 package com.gobestsoft.java_base.collection;
 
 import org.apache.poi.ss.formula.functions.T;
+import org.junit.Test;
 
 import java.util.*;
 
@@ -16,6 +17,39 @@ import java.util.*;
  * @version 1.0.0 2021/3/21 15:28
  */
 public class TraverseCollection {
+
+    /**
+     * 迭代器和for循环效率差异
+     * ⼀万个元素两者之间都相差⼀倍多的时间，如果是⼗万，百万个元素，那么两者之间相差的速度会越来越⼤。下⾯通过图形来解释：
+     * 普通for循环：每次遍历⼀个索引的元素之前，都要访问之间所有的索引。
+     * 迭代器：每次访问⼀个元素后，都会⽤游标记录当前访问元素的位置，遍历⼀个元素，记录⼀个位置。
+     * @author liuzhen
+     * @date 2022/4/9 22:41
+     * @param
+     * @return void
+     */
+    @Test
+    public void TraverseEffect() {
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        for (int i = 0; i < 10000; i++) {// 向链表中添加⼀万个元素
+            linkedList.add(i);
+        }
+        long beginTimeFor = System.currentTimeMillis();
+        for (int i = 0; i < 10000; i++) {
+            System.out.print(linkedList.get(i));
+        }
+        System.out.println();
+        long endTimeFor = System.currentTimeMillis();
+        System.out.println("使⽤普通for循环遍历10000个元素需要的时间：" + (endTimeFor - beginTimeFor));
+        long beginTimeIte = System.currentTimeMillis();
+        Iterator<Integer> it = linkedList.listIterator();
+        while (it.hasNext()) {
+            System.out.print(it.next() + " ");
+        }
+        System.out.println();
+        long endTimeIte = System.currentTimeMillis();
+        System.out.println("使⽤迭代器遍历10000个元素需要的时间：" + (endTimeIte - beginTimeIte));
+    }
 
     /**
      * 集合初始化集中方式：

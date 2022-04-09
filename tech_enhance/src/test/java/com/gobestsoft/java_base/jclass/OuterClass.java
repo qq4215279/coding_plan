@@ -63,9 +63,11 @@ public class OuterClass {
     }
 
     /**
-     * 2. 局部内部类：
+     * 2. 局部内部类（普通内部类）：
      * a. 局部内部类是定义在一个方法或者一个作用域里面的类，它和成员内部类的区别在于局部内部类的访问仅限于方法内或者该作用域内。
      * b. 局部内部类就像是方法里面的一个局部变量一样，是不能有public、protected、private以及static修饰符的。
+     *
+     * 访问普通内部类，需要先创建外部类的对象，然后通过 外部类名.new 创建内部类的实例
      */
     public void innerClassDemo02() {
         class InnerClass2 {
@@ -89,6 +91,7 @@ public class OuterClass {
      * 4. 静态内部类：
      * a. 静态内部类也是定义在另一个类里面的类，只不过在类的前面多了一个关键字static。静态内部类是不需要依赖于外部类。
      * b. 它不能被外部类的非static成员变量或者方法访问。
+     * 静态内部类的好处是：外部类可以访问内部类的所有⽅法和属性，包括私有⽅法和私有属性。
      */
     private static class StaticInnerClass {
         public static final int bb = 999;
