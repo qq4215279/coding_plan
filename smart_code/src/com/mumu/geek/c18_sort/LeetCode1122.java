@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.geek.c18_sort;
 
 
@@ -51,8 +56,6 @@ public class LeetCode1122 {
         return result;
     }
 
-
-
     public static void main(String[] args) {
         int[] arr1 = {2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19};
         int[] arr2 = {2, 1, 4, 3, 9, 6};
@@ -65,7 +68,7 @@ public class LeetCode1122 {
         System.out.println("------------->");
 
         int[] array = {3, 534, 22, 234, 1, 3};
-//        heapSort(array);
+        // heapSort(array);
 
         for (int i = 0; i < array.length; i++) {
             System.out.println(array[i]);

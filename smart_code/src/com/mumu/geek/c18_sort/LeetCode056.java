@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.geek.c18_sort;
 
 import java.util.ArrayList;
@@ -38,6 +43,7 @@ public class LeetCode056 {
         }
 
         Arrays.sort(intervals, new Comparator<int[]>() {
+            @Override
             public int compare(int[] interval1, int[] interval2) {
                 return interval1[0] - interval2[0];
             }
@@ -48,7 +54,7 @@ public class LeetCode056 {
             int l = intervals[i][0];
             int r = intervals[i][1];
             if (merged.size() == 0 || merged.get(merged.size() - 1)[1] < l) {
-                merged.add(new int[]{l, r});
+                merged.add(new int[] {l, r});
             } else {
                 merged.get(merged.size() - 1)[1] = Math.max(merged.get(merged.size() - 1)[1], r);
             }

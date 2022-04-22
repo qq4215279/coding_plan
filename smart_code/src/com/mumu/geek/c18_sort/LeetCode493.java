@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.geek.c18_sort;
 
 import java.util.Arrays;
@@ -57,6 +62,7 @@ public class LeetCode493 {
     }
 
     public static int ret;
+
     public static int reversePairs2(int[] nums) {
         ret = 0;
         mergeSort2(nums, 0, nums.length - 1);
@@ -88,7 +94,6 @@ public class LeetCode493 {
         Arrays.sort(nums, left, right + 1);
     }
 
-
     public static int reversePairs3(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
@@ -110,12 +115,12 @@ public class LeetCode493 {
         int c = 0;
 
         for (int j = mid + 1; j <= r; j++, c++) {
-           while (i <= mid && nums[i] <= 2 * (long)nums[j]) {
-               i++;
-           }
-           while (t <= mid && nums[t] < nums[j]) {
-               cache[c++] = nums[t++];
-           }
+            while (i <= mid && nums[i] <= 2 * (long)nums[j]) {
+                i++;
+            }
+            while (t <= mid && nums[t] < nums[j]) {
+                cache[c++] = nums[t++];
+            }
             cache[c] = nums[j];
             count += mid - i + 1;
         }
