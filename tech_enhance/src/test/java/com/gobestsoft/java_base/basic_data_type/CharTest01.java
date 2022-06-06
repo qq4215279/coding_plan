@@ -27,13 +27,13 @@ public class CharTest01 {
         char ff = (char)(dd + ee);
         int gg = ff;
 
-        System.out.println("aa: " + aa);
-        System.out.println("bb: " + bb);
-        System.out.println("cc: " + cc);
-        System.out.println("dd: " + dd);
-        System.out.println("ee: " + ee);
-        System.out.println("ff: " + ff);
-        System.out.println("gg: " + gg);
+        System.out.println("aa: " + aa); // aa: 1
+        System.out.println("bb: " + bb); // bb: 1
+        System.out.println("cc: " + cc); // cc: true
+        System.out.println("dd: " + dd); // dd: !
+        System.out.println("ee: " + ee); // ee: !
+        System.out.println("ff: " + ff); // ff: B
+        System.out.println("gg: " + gg); // gg: 66
 
         System.out.println("--------------->");
 
@@ -42,10 +42,10 @@ public class CharTest01 {
         float c = 1F;
         double d = 1D;
 
-        System.out.println("a: " + a);
-        System.out.println("b: " + b);
-        System.out.println("c: " + c);
-        System.out.println("d: " + d);
+        System.out.println("a: " + a); // a: 1
+        System.out.println("b: " + b); // b: 1
+        System.out.println("c: " + c); // c: 1.0
+        System.out.println("d: " + d); // d: 1.0
 
     }
 

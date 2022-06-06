@@ -15,7 +15,7 @@ import java.util.*;
 
 /**
  * DateUtil
- *
+ * 日期工具类
  * @author liuzhen
  * @version 1.0.0 2022/4/30 17:15
  */
@@ -120,6 +120,14 @@ public class DateUtil {
         return dateSplitArray;
     }
 
+    /**
+     * 日期转成指定类型字符串
+     * @author liuzhen
+     * @date 2022/6/6 17:05
+     * @param date
+     * @param pattern
+     * @return java.lang.String
+     */
     public static String formatDate(Date date, String pattern) {
         if (date == null) {
             return null;
@@ -152,6 +160,13 @@ public class DateUtil {
         }
     }
 
+    /**
+     * 字符串转换成指定格式日期
+     * @author liuzhen
+     * @date 2022/6/6 17:06
+     * @param inDate
+     * @return java.util.Date
+     */
     public static Date parseDate(String inDate) {
         if (StringUtils.isBlank(inDate)) {
             return null;
@@ -174,6 +189,20 @@ public class DateUtil {
                 }
 
                 return date;
+            }
+        }
+    }
+
+    private static boolean validate(String inData) {
+        if (StringUtils.isEmpty(inData)) {
+            return false;
+        } else {
+            String checkPattern = (String)VALIDATE_MAP.get(inData.length());
+            if (checkPattern == null) {
+                return false;
+            } else {
+                boolean isValidate = inData.matches(checkPattern);
+                return isValidate;
             }
         }
     }
@@ -208,6 +237,13 @@ public class DateUtil {
         return formatDate(inDate, "yyyyMM");
     }
 
+    /**
+     * 日期转成日历类
+     * @author liuzhen
+     * @date 2022/6/6 17:07
+     * @param date
+     * @return java.util.Calendar
+     */
     public static Calendar convertCalendar(Date date) {
         Calendar calendar = null;
         if (date != null) {
@@ -218,6 +254,13 @@ public class DateUtil {
         return calendar;
     }
 
+    /**
+     * 日历转日期
+     * @author liuzhen
+     * @date 2022/6/6 17:09
+     * @param cal
+     * @return java.util.Date
+     */
     public static Date convertDate(Calendar cal) {
         Date date = null;
         if (cal != null) {
@@ -227,20 +270,30 @@ public class DateUtil {
         return date;
     }
 
-    private static boolean validate(String inData) {
-        if (StringUtils.isEmpty(inData)) {
-            return false;
-        } else {
-            String checkPattern = (String)VALIDATE_MAP.get(inData.length());
-            if (checkPattern == null) {
-                return false;
-            } else {
-                boolean isValidate = inData.matches(checkPattern);
-                return isValidate;
-            }
-        }
+    /**
+     * 是否在同一月份
+     * @author liuzhen
+     * @date 2022/6/6 17:18
+     * @param date1
+     * @param date2
+     * @return boolean
+     */
+    public static boolean isSameMonth(Date date1, Date date2) {
+        Calendar cg1 = Calendar.getInstance();
+        Calendar cg2 = Calendar.getInstance();
+        cg1.setTime(date1);
+        cg2.setTime(date2);
+        return cg1.get(1) == cg2.get(1) && cg1.get(2) == cg2.get(2);
     }
 
+    /**
+     * 是否在相同周
+     * @author liuzhen
+     * @date 2022/6/6 17:17
+     * @param date1 日期1
+     * @param date2 日期2
+     * @return boolean
+     */
     public static boolean isSameWeek(Date date1, Date date2) {
         Calendar cg1 = Calendar.getInstance();
         Calendar cg2 = Calendar.getInstance();
@@ -252,10 +305,10 @@ public class DateUtil {
             cg2.setTime(date2);
         }
 
-        int yearWeek1 = cg1.get(3);
-        int yearWeek2 = cg2.get(3);
-        int weekDay1 = cg1.get(7);
-        int weekDay2 = cg2.get(7);
+        int yearWeek1 = cg1.get(Calendar.WEEK_OF_YEAR);
+        int yearWeek2 = cg2.get(Calendar.WEEK_OF_YEAR);
+        int weekDay1 = cg1.get(Calendar.DAY_OF_WEEK);
+        int weekDay2 = cg2.get(Calendar.DAY_OF_WEEK);
         if (weekDay1 != 1) {
             ++yearWeek1;
         }
@@ -267,6 +320,14 @@ public class DateUtil {
         return cg1.get(1) == cg2.get(1) && yearWeek1 == yearWeek2;
     }
 
+    /**
+     * 是否是相同一天
+     * @author liuzhen
+     * @date 2022/6/6 17:18
+     * @param date1
+     * @param date2
+     * @return boolean
+     */
     public static boolean isSameDay(Date date1, Date date2) {
         Calendar cg1 = Calendar.getInstance();
         Calendar cg2 = Calendar.getInstance();
@@ -275,14 +336,14 @@ public class DateUtil {
         return cg1.get(1) == cg2.get(1) && cg1.get(6) == cg2.get(6);
     }
 
-    public static boolean isSameMonth(Date date1, Date date2) {
-        Calendar cg1 = Calendar.getInstance();
-        Calendar cg2 = Calendar.getInstance();
-        cg1.setTime(date1);
-        cg2.setTime(date2);
-        return cg1.get(1) == cg2.get(1) && cg1.get(2) == cg2.get(2);
-    }
-
+    /**
+     * 是否是相同一天
+     * @author liuzhen
+     * @date 2022/6/6 17:19
+     * @param timestamp1
+     * @param timestamp2
+     * @return boolean
+     */
     public static boolean isSameDay(long timestamp1, long timestamp2) {
         Calendar cg1 = Calendar.getInstance();
         Calendar cg2 = Calendar.getInstance();
@@ -291,6 +352,13 @@ public class DateUtil {
         return cg1.get(1) == cg2.get(1) && cg1.get(6) == cg2.get(6);
     }
 
+    /**
+     * 毫米值转格式化字符串
+     * @author liuzhen
+     * @date 2022/6/6 17:19
+     * @param time 毫秒值
+     * @return java.lang.String
+     */
     public static String formatTime(long time) {
         long minute = time / 60000L;
         time %= 60000L;
@@ -298,6 +366,13 @@ public class DateUtil {
         return minute + ":" + sec;
     }
 
+    /**
+     * 获取本月的第一天
+     * @author liuzhen
+     * @date 2022/6/6 17:20
+     * @param date
+     * @return java.util.Date
+     */
     public static Date getMonthStart(Date date) {
         Calendar cg = Calendar.getInstance();
         cg.setTime(date);
@@ -305,51 +380,52 @@ public class DateUtil {
         return cg.getTime();
     }
 
+    /**
+     * 获取本月的最后一天
+     * @author liuzhen
+     * @date 2022/6/6 17:20
+     * @param date
+     * @return java.util.Date
+     */
     public static Date getMonthEnd(Date date) {
         Calendar cg = Calendar.getInstance();
         cg.setTime(date);
-        cg.set(5, 1);
-        cg.set(2, cg.get(2) + 1);
-        cg.set(6, -1);
-        cg.set(11, 23);
-        cg.set(12, 59);
-        cg.set(13, 59);
-        cg.set(14, 999);
+        cg.set(Calendar.DAY_OF_MONTH, 1);
+        cg.set(Calendar.MONTH, cg.get(Calendar.MONTH) + 1);
+        cg.set(Calendar.DAY_OF_YEAR, -1);
+        cg.set(Calendar.HOUR_OF_DAY, 23);
+        cg.set(Calendar.MINUTE, 59);
+        cg.set(Calendar.SECOND, 59);
+        cg.set(Calendar.MILLISECOND, 999);
         return cg.getTime();
     }
 
-    public static Date getDayStart(Date date) {
-        Calendar cg = Calendar.getInstance();
-        cg.setTime(date);
-        cg.set(11, 0);
-        cg.set(12, 0);
-        cg.set(13, 0);
-        cg.set(14, 0);
-        return cg.getTime();
-    }
-
-    public static Date getDayEnd(Date date) {
-        Calendar cg = Calendar.getInstance();
-        cg.setTime(date);
-        cg.set(11, 23);
-        cg.set(12, 59);
-        cg.set(13, 59);
-        cg.set(14, 999);
-        return cg.getTime();
-    }
-
+    /**
+     * 获取本周的开始日期
+     * @author liuzhen
+     * @date 2022/6/6 17:43
+     * @param date
+     * @return java.util.Date
+     */
     public static Date getWeekStart(Date date) {
         Calendar cg = Calendar.getInstance();
         cg.setTime(date);
         cg.add(5, -1);
-        cg.set(7, 2);
-        cg.set(11, 0);
-        cg.set(12, 0);
-        cg.set(13, 0);
-        cg.set(14, 0);
+        cg.set(Calendar.DAY_OF_WEEK, 2);
+        cg.set(Calendar.HOUR_OF_DAY, 0);
+        cg.set(Calendar.MINUTE, 0);
+        cg.set(Calendar.SECOND, 0);
+        cg.set(Calendar.MILLISECOND, 0);
         return cg.getTime();
     }
 
+    /**
+     * 获取本周结束日期
+     * @author liuzhen
+     * @date 2022/6/6 17:44
+     * @param date
+     * @return java.util.Date
+     */
     public static Date getWeekEnd(Date date) {
         Calendar cg = Calendar.getInstance();
         cg.setTime(date);
@@ -360,6 +436,40 @@ public class DateUtil {
         cg.set(12, 59);
         cg.set(13, 59);
         cg.set(14, 999);
+        return cg.getTime();
+    }
+
+    /**
+     * 获取当天开始时间
+     * @author liuzhen
+     * @date 2022/6/6 17:44
+     * @param date
+     * @return java.util.Date
+     */
+    public static Date getDayStart(Date date) {
+        Calendar cg = Calendar.getInstance();
+        cg.setTime(date);
+        cg.set(Calendar.HOUR_OF_DAY, 0);
+        cg.set(Calendar.MINUTE, 0);
+        cg.set(Calendar.SECOND, 0);
+        cg.set(Calendar.MILLISECOND, 0);
+        return cg.getTime();
+    }
+
+    /**
+     * 获取当天结束时间
+     * @author liuzhen
+     * @date 2022/6/6 17:44
+     * @param date
+     * @return java.util.Date
+     */
+    public static Date getDayEnd(Date date) {
+        Calendar cg = Calendar.getInstance();
+        cg.setTime(date);
+        cg.set(Calendar.HOUR_OF_DAY, 23);
+        cg.set(Calendar.MINUTE, 59);
+        cg.set(Calendar.SECOND, 59);
+        cg.set(Calendar.MILLISECOND, 999);
         return cg.getTime();
     }
 

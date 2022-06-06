@@ -63,6 +63,12 @@ public class PutApis {
         // java8之后。上面的操作可以简化为一行，若key对应的value为空，会将第二个参数的返回值存入并返回
         String value2 = map.computeIfAbsent("key2", k -> "hehehe"); // k 为key值
         System.out.println("value2:" + value2);
+
+        System.out.println("----------------->");
+
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            System.out.println("key: " + entry.getKey() + " value: " + entry.getValue());
+        }
     }
 
     /**

@@ -11,7 +11,7 @@ import java.util.Set;
  * @author liuzhen
  * @version 1.0.0 2021/8/24 8:54
  */
-public class LeetCode127 { // c9_dfs_bfs
+public class LeetCode127 { // com.mumu.geek.c9_dfs_bfs.LeetCode127
 
     /**
      * 思路：

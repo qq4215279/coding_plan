@@ -8,7 +8,7 @@ import java.util.List;
  * @author liuzhen
  * @version 1.0.0 2021/8/16 14:06
  */
-public class LeetCode127 { // com.demo.geek.c14_search.double_bfs.LeetCode127
+public class LeetCode127 {
 
     /**
      * 字典 wordList 中从单词 beginWord 和 endWord 的转换序列是一个按下述规格形成的序列：
