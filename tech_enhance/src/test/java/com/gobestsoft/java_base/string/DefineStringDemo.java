@@ -55,7 +55,7 @@ public class DefineStringDemo {
 
     /**
      *
-     * 总结：对于没有在字符创常量池中出现过的字符串str，当其调用池话方法(str.intern())时，会将改字符串str的引用从堆的引用变成常量池的引用
+     * 总结：对于在字符传常量池中没有出现过的字符串str，当其调用池话方法(str.intern())时，会将改字符串str的引用从堆的引用变成常量池的引用
      *       这时，str.intern() == str , 返回true。
      * 这种字符串的定义可以为:
      *       String str = s1 + s2;
@@ -80,6 +80,8 @@ public class DefineStringDemo {
      */
     @Test
     public void testIntern() {
+        // String bb = "aaming";
+        // String bb = new String("aaming");
         String aa = "aa";
         String str = aa + "ming";
         // 等价于
