@@ -1,6 +1,6 @@
 package com.mumu.dp1_0_simplefactory;
 
-import com.mumu.dp1_0_simplefactory.core.Chart;
+import com.mumu.dp1_0_simplefactory.impl.Chart;
 import com.mumu.dp1_0_simplefactory.core.ChartFactory;
 
 public class Client {

@@ -1,5 +1,6 @@
 package com.mumu.dp1_0_simplefactory.core;
 
+import com.mumu.dp1_0_simplefactory.impl.Chart;
 import com.mumu.dp1_0_simplefactory.impl.HistogramChart;
 import com.mumu.dp1_0_simplefactory.impl.LineChart;
 import com.mumu.dp1_0_simplefactory.impl.PieChart;
