@@ -3,7 +3,7 @@
  * All Right Reserved.
  */
 
-package com.gobestsoft.java_base.date;
+package com.gobestsoft.java_base.date.util;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
