@@ -25,7 +25,7 @@ public class _6_PrintStream {
      */
     public static void main(String[] args) throws FileNotFoundException {
         // 调用系统的打印流,控制台直接输出97
-        System.out.println(97);
+        System.out. println(97);
 
         // 创建打印流,指定文件的名称
         PrintStream ps = new PrintStream("D:\\Code\\IdeaWorkSpace\\dream_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\java_base\\readwritefile\\text\\ps.txt");

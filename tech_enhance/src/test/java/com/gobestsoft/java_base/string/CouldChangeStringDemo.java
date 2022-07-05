@@ -25,7 +25,6 @@ public class CouldChangeStringDemo {
      * ⽽且 value 是基本类型构成，那么⼀定是可变的，即使被声明为 private，我们也可以通过反射来改变。
      * @author liuzhen
      * @date 2022/4/9 18:14
-     * @param null
      * @return
      */
     @Test
