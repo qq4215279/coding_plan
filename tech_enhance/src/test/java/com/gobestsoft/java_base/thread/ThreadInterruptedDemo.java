@@ -56,15 +56,16 @@ public class ThreadInterruptedDemo {
                 Thread.yield();
             }
         });
+
         thread.start();
         thread.interrupt();
     }
 
-    /** 
+    /**
      * 中断成功
      * 给示例2加上了响应中断的逻辑，程序接收到中断信号打印出信息后返回退出。
      * @date 2022/6/28 6:22
-     * @param  
+     * @param
      * @return void
      */
     public void test2() {
@@ -79,18 +80,19 @@ public class ThreadInterruptedDemo {
                 }
             }
         });
+
         thread.start();
         thread.interrupt();
     }
 
-    /** 
+    /**
      * 中断失败
      * 示例3 sleep() 方法被中断，并输出了 Java技术栈线程休眠被中断，程序退出。 程序继续运行……
      * 为什么呢？
      * sleep() 源码：public static native void sleep(long millis) throws InterruptedException;
      * 可以看出 sleep() 方法被中断后会清除中断标记，所以循环会继续运行。
      * @date 2022/6/28 6:22
-     * @param  
+     * @param
      * @return void
      */
     @Test
@@ -110,22 +112,25 @@ public class ThreadInterruptedDemo {
                 }
             }
         });
+
         thread.start();
         Thread.sleep(2000);
+        System.out.println("main 调用 thread.interrupt()");
         thread.interrupt();
     }
 
-    /** 
+    /**
      * 中断成功
      * 示例4全部信息输出并正常退出，只是在 sleep() 方法被中断并清除标记后手动重新中断当前线程，然后程序接收中断信号返回退出。
      * @date 2022/6/28 6:24
-     * @param  
+     * @param
      * @return void
      */
     @Test
     public void test4() throws InterruptedException {
         Thread thread = new Thread(() -> {
             while (true) {
+                System.out.println("进入 where true ...");
                 // 响应中断
                 if (Thread.currentThread().isInterrupted()) {
                     System.out.println("Java技术栈线程被中断，程序退出。111");
@@ -133,16 +138,26 @@ public class ThreadInterruptedDemo {
                 }
 
                 try {
+                    System.out.println("start 进入 try 里的 Thread.sleep(3000) ...");
                     Thread.sleep(3000);
+                    System.out.println("end 进入 try 里的 Thread.sleep(3000) ...");
+
                 } catch (InterruptedException e) {
                     System.out.println("Java技术栈线程休眠被中断，程序退出。222");
                     Thread.currentThread().interrupt();
                 }
             }
         });
+
         thread.start();
+
+        System.out.println("main start 调用 Thread.sleep(2000)");
         Thread.sleep(2000);
+        System.out.println("main end 调用 Thread.sleep(2000)");
+
+        System.out.println("main start 调用 thread.interrupt()");
         thread.interrupt();
+        System.out.println("main end 调用 thread.interrupt()");
     }
 
 
