@@ -5,8 +5,6 @@
 
 package com.gobestsoft.java_base.reflect.annotation;
 
-import com.sun.corba.se.spi.orbutil.threadpool.Work;
-
 public @interface MyAnno {
 
      int value();

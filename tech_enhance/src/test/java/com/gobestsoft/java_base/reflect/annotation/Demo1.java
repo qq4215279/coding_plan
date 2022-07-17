@@ -6,7 +6,7 @@
 package com.gobestsoft.java_base.reflect.annotation;
 
 public class Demo1 {
-    public void show(){
+    public void show() {
         System.out.println("demo1...show...");
     }
 }

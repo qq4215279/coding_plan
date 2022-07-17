@@ -7,5 +7,5 @@ package com.gobestsoft.java_base.reflect.annotation;
 
 public enum Person {
 
-    P1,P2;
+    P1, P2;
 }
