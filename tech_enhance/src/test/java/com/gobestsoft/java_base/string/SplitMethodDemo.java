@@ -1,9 +1,13 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2021, 木木996.
  * All Right Reserved.
  */
 
 package com.gobestsoft.java_base.string;
+
+import org.junit.Test;
+
+import java.util.Arrays;
 
 /**
  * Test split()方法
@@ -33,5 +37,51 @@ public class SplitMethodDemo {
         System.out.println("长度： " + bbSplit.length); // 长度： 3
         System.out.println("bbSplit[3]--->" + bbSplit[3]); // 报错: java.lang.ArrayIndexOutOfBoundsException: 3
     }
+
+    /**
+     * limit > 0 ，则pattern（模式）应⽤ n - 1 次
+     * @date 2022/7/23 16:06
+     * @param
+     * @return void
+     */
+    @Test
+    public void splitDemo1() {
+        // String str = "a,b,c";
+        // String str = "a,b,c,,";
+        String str = "a,b,c,,d,,";
+        // String[] c1 = str.split(",", 2);
+        String[] c1 = str.split(",", 5);
+        System.out.println(c1.length); // 2
+        System.out.println(Arrays.toString(c1)); // {"a","b,c"}
+    }
+
+    /** 
+     * limit = 0 ，则pattern（模式）应⽤⽆限次并且省略末尾的空字串
+     * @date 2022/7/23 16:06 
+     * @param  
+     * @return void
+     */
+    @Test
+    public void splitDemo2() {
+        String str2 = "a,b,c,,";
+        String[] c2 = str2.split(",", 0);
+        System.out.println(c2.length); // 3
+        System.out.println(Arrays.toString(c2)); // [a, b, c]
+    }
+
+    /** 
+     * limit < 0 ，则pattern（模式）应⽤⽆限次
+     * @date 2022/7/23 16:06
+     * @param  
+     * @return void
+     */
+    @Test
+    public void splitDemo3() {
+        String str2 = "a,b,c,,";
+        String[] c2 = str2.split(",", -1);
+        System.out.println(c2.length); // 5
+        System.out.println(Arrays.toString(c2)); // [a, b, c, , ]
+    }
+
 
 }
