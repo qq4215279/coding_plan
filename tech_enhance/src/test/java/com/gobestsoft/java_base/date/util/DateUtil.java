@@ -333,7 +333,7 @@ public class DateUtil {
         Calendar cg2 = Calendar.getInstance();
         cg1.setTime(date1);
         cg2.setTime(date2);
-        return cg1.get(1) == cg2.get(1) && cg1.get(6) == cg2.get(6);
+        return cg1.get(Calendar.YEAR) == cg2.get(Calendar.YEAR) && cg1.get(Calendar.DAY_OF_YEAR) == cg2.get(Calendar.DAY_OF_YEAR);
     }
 
     /**
@@ -349,7 +349,7 @@ public class DateUtil {
         Calendar cg2 = Calendar.getInstance();
         cg1.setTimeInMillis(timestamp1);
         cg2.setTimeInMillis(timestamp2);
-        return cg1.get(1) == cg2.get(1) && cg1.get(6) == cg2.get(6);
+        return cg1.get(Calendar.YEAR) == cg2.get(Calendar.YEAR) && cg1.get(Calendar.DAY_OF_YEAR) == cg2.get(Calendar.DAY_OF_YEAR);
     }
 
     /**
@@ -376,7 +376,7 @@ public class DateUtil {
     public static Date getMonthStart(Date date) {
         Calendar cg = Calendar.getInstance();
         cg.setTime(date);
-        cg.set(5, 1);
+        cg.set(Calendar.DAY_OF_MONTH, 1);
         return cg.getTime();
     }
 
@@ -410,13 +410,17 @@ public class DateUtil {
     public static Date getWeekStart(Date date) {
         Calendar cg = Calendar.getInstance();
         cg.setTime(date);
-        cg.add(5, -1);
+        cg.add(Calendar.DATE, -1);
         cg.set(Calendar.DAY_OF_WEEK, 2);
         cg.set(Calendar.HOUR_OF_DAY, 0);
         cg.set(Calendar.MINUTE, 0);
         cg.set(Calendar.SECOND, 0);
         cg.set(Calendar.MILLISECOND, 0);
         return cg.getTime();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getWeekStart(new Date()));
     }
 
     /**
@@ -429,13 +433,14 @@ public class DateUtil {
     public static Date getWeekEnd(Date date) {
         Calendar cg = Calendar.getInstance();
         cg.setTime(date);
-        cg.add(5, 6);
-        cg.set(7, 2);
-        cg.add(6, -1);
-        cg.set(11, 23);
-        cg.set(12, 59);
-        cg.set(13, 59);
-        cg.set(14, 999);
+        cg.add(Calendar.DATE, 6);
+        cg.set(Calendar.DAY_OF_WEEK, 2);
+        cg.add(Calendar.DAY_OF_YEAR, -1);
+
+        cg.set(Calendar.HOUR_OF_DAY, 23);
+        cg.set(Calendar.MINUTE, 59);
+        cg.set(Calendar.SECOND, 59);
+        cg.set(Calendar.MILLISECOND, 999);
         return cg.getTime();
     }
 
@@ -475,10 +480,11 @@ public class DateUtil {
 
     public static boolean isInterval(Date startTime, Date endTime, int hour, int min) {
         Calendar cg = Calendar.getInstance();
-        cg.set(11, hour);
-        cg.set(12, min);
-        cg.set(13, 0);
-        cg.set(14, 0);
+        cg.set(Calendar.HOUR_OF_DAY, hour);
+        cg.set(Calendar.MINUTE, min);
+        cg.set(Calendar.SECOND, 0);
+        cg.set(Calendar.MILLISECOND, 0);
+
         Date clearPoint = cg.getTime();
         Calendar cg1 = Calendar.getInstance();
         Calendar cg2 = Calendar.getInstance();
@@ -495,15 +501,15 @@ public class DateUtil {
             Calendar now = Calendar.getInstance();
             now.setTime(endDate);
             int nowMinute = now.get(12);
-            now.set(12, 0);
-            now.set(13, 0);
-            now.set(14, 0);
+            now.set(Calendar.MINUTE, 0);
+            now.set(Calendar.SECOND, 0);
+            now.set(Calendar.MILLISECOND, 0);
             Calendar last = Calendar.getInstance();
             last.setTime(startDate);
             int lastMinute = last.get(12);
-            last.set(12, 0);
-            last.set(13, 0);
-            last.set(14, 0);
+            last.set(Calendar.MINUTE, 0);
+            last.set(Calendar.SECOND, 0);
+            last.set(Calendar.MILLISECOND, 0);
             int num = (int)((now.getTimeInMillis() - last.getTimeInMillis()) / 3600000L);
             num *= 2;
             if (nowMinute >= 30 && lastMinute < 30) {
@@ -523,14 +529,14 @@ public class DateUtil {
         if (startDate != null && endDate != null && !endDate.before(startDate)) {
             Calendar now = Calendar.getInstance();
             now.setTime(endDate);
-            now.set(12, 0);
-            now.set(13, 0);
-            now.set(14, 0);
+            now.set(Calendar.MINUTE, 0);
+            now.set(Calendar.SECOND, 0);
+            now.set(Calendar.MILLISECOND, 0);
             Calendar last = Calendar.getInstance();
             last.setTime(startDate);
-            last.set(12, 0);
-            last.set(13, 0);
-            last.set(14, 0);
+            last.set(Calendar.MINUTE, 0);
+            last.set(Calendar.SECOND, 0);
+            last.set(Calendar.MILLISECOND, 0);
             int num = (int)((now.getTimeInMillis() - last.getTimeInMillis()) / 3600000L);
             return num;
         } else {
