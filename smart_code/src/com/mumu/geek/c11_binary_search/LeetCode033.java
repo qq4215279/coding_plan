@@ -64,10 +64,9 @@ public class LeetCode033 { // 等价于 LeetCode153
 
         int start = 0;
         int end = nums.length - 1;
-        int middle;
         while (start <= end) {
-//            middle = start + (end - start) / 2;
-            middle = start + ((end - start) >> 1);
+            // int middle = start + (end - start) / 2;
+            int middle = start + ((end - start) >> 1);
             if (nums[middle] == target) {
                 return middle;
             }

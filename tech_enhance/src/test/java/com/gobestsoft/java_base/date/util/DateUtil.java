@@ -283,7 +283,7 @@ public class DateUtil {
         Calendar cg2 = Calendar.getInstance();
         cg1.setTime(date1);
         cg2.setTime(date2);
-        return cg1.get(1) == cg2.get(1) && cg1.get(2) == cg2.get(2);
+        return cg1.get(Calendar.YEAR) == cg2.get(Calendar.YEAR) && cg1.get(Calendar.MONTH) == cg2.get(Calendar.MONTH);
     }
 
     /**
@@ -317,7 +317,7 @@ public class DateUtil {
             ++yearWeek2;
         }
 
-        return cg1.get(1) == cg2.get(1) && yearWeek1 == yearWeek2;
+        return cg1.get(Calendar.YEAR) == cg2.get(Calendar.YEAR) && yearWeek1 == yearWeek2;
     }
 
     /**
