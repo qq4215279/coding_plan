@@ -1,7 +1,12 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.gobestsoft.java_base.collection;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * ConcurrentDemo
@@ -11,7 +16,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class ConcurrentDemo {
 
-    private static List<Team> teamList = new CopyOnWriteArrayList<>();
+    private static List<Team> teamList = new ArrayList<>();
+    // private static List<Team> teamList = new CopyOnWriteArrayList<>();
 
     private static Object object = new Object();
 
