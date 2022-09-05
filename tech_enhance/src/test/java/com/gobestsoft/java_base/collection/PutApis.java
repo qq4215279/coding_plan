@@ -2,7 +2,9 @@ package com.gobestsoft.java_base.collection;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -69,6 +71,11 @@ public class PutApis {
         for (Map.Entry<String, String> entry : map.entrySet()) {
             System.out.println("key: " + entry.getKey() + " value: " + entry.getValue());
         }
+
+        // 用法2：================================>
+        Map<String, List<Integer>> strIdsMap = new HashMap<>();
+        List<Integer> idList = strIdsMap.computeIfAbsent("lihua", k -> new ArrayList<>());
+        idList.add(1);
     }
 
     /**
