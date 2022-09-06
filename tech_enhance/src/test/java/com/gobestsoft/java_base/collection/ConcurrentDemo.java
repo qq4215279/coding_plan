@@ -6,6 +6,7 @@
 package com.gobestsoft.java_base.collection;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -34,8 +35,13 @@ public class ConcurrentDemo {
 
         new Thread(() -> {
             for (int i = 0; i < 100; i++) {
-                for (Team team : getTeamList()) {
+                /*for (Team team : getTeamList()) {
                     System.out.println(team.toString());
+                }*/
+
+                Iterator<Team> it = getTeamList().iterator();
+                while (it.hasNext()) {
+                    System.out.println(it.next().toString());
                 }
             }
         }).start();
