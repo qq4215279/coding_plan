@@ -30,7 +30,7 @@ public class ReflectDemo2 {
      * 操作：
      * 1. 设置值：void set(Object obj, Object value)
      * 2. 获取值：get(Object obj)
-     * 3. 忽略访问权限修饰符的安全检查：setAccessible(true):暴力反射
+     * 3. 忽略访问权限修饰符的安全检查：setAccessible(true): 暴力反射
      *
      * Constructor:构造方法
      * 创建对象：T newInstance(Object... initargs)

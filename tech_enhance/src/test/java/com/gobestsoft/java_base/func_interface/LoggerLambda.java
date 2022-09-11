@@ -48,7 +48,7 @@ public class LoggerLambda {
         log1(1, msgA + msgB + msgC);
 
         // 只有当级别满足要求的时候，才会进行三个字符串的拼接；否则三个字符串将不会进行拼接。
-        log2(1, () ->{
+        log2(1, () -> {
             System.out.println("证明 lambda 表达式的延迟执行！（条件成立时，再进行字符串拼接。）");
             return msgA + msgB + msgC;
         });

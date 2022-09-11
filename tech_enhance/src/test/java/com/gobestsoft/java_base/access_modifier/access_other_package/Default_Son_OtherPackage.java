@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2021, 木木996.
+ * All Right Reserved.
+ */
+
 package com.gobestsoft.java_base.access_modifier.access_other_package;
 
 import com.gobestsoft.java_base.access_modifier.default_.DefaultDemo;
@@ -26,4 +31,3 @@ public class Default_Son_OtherPackage extends DefaultDemo {
     }
 
 }
-

@@ -23,8 +23,8 @@ public class MathTest {
      * round(double a) 返回最接近参数的 long。(相当于四舍五入方法)
      * random() 返回带有正号的 double值，大于或等于 0.0且小于 1.0  => 取值范围：[0,1)
      *
-     * max​(int a, int b) 返回两个 int值中较大的 int 。
-     * min​(int a, int b) 返回两个 int值中较小的 int 。
+     * max(int a, int b) 返回两个 int值中较大的 int 。
+     * min(int a, int b) 返回两个 int值中较小的 int 。
      * 注：还有其他基本类型的重载api ...
      *
      * ...

@@ -17,6 +17,6 @@ package com.gobestsoft.java_base.generic;
  * 使用泛型的好处：
  *   1. 将运行时期的ClassCastException，转移到了编译时期变成了编译失败。
  *   2. 避免了类型强转的麻烦。
- * tips:泛型是数据类型的一部分，我们将类名与泛型合并一起看做数据类型。
+ * tips: 泛型是数据类型的一部分，我们将类名与泛型合并一起看做数据类型。
  *
  */
