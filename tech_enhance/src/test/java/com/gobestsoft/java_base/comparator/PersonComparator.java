@@ -104,5 +104,8 @@ class Test {
             System.out.println(personComparator.toString());
         }
 
+        PriorityQueue<PersonComparator> queue2 = new PriorityQueue<>((o1, o2) -> o1.getAge() > o2.getAge() ? 1 : -1);
+
+
     }
 }
