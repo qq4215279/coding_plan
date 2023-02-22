@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2023, 木木996.
+ * All Right Reserved.
+ */
+
 package com.gobestsoft.java_base.basic_data_type;
 
 import org.junit.Test;
@@ -15,9 +20,9 @@ public class BitOperation {
      */
     @Test
     public void shlTest() {
-        System.out.println("-1左移两位：" + (-1 << 2));
-        System.out.println("-2左移两位：" + (-2 << 2)); // -2 * 2^2
-        System.out.println("3左移4位：" + (3 << 4)); // 3 * 2^4
+        System.out.println("-1左移两位：" + (-1 << 2)); // -4 = -1 * 2^2
+        System.out.println("-2左移两位：" + (-2 << 2)); // -8 = -2 * 2^2
+        System.out.println("3左移4位：" + (3 << 4)); // 48 = 3 * 2^4
     }
 
     /**
@@ -26,9 +31,9 @@ public class BitOperation {
     @Test
     public void shrTest() {
         // 正数右移与无符号右移没区别
-        System.out.println("7：" + Integer.toBinaryString(7));
-        System.out.println("7 / 2：" + (7 / 2));
-        System.out.println("7(0b111) 右移1位：" + Integer.toBinaryString((0b111 >> 1)) + " 十进制：" + (7 >> 1));
+        System.out.println("7：" + Integer.toBinaryString(7)); // 7：111
+        System.out.println("7 / 2：" + (7 / 2)); // 7 / 2：3
+        System.out.println("7(0b111) 右移1位：" + Integer.toBinaryString((0b111 >> 1)) + " 十进制：" + (7 >> 1)); // 7(0b111) 右移1位：11 十进制：3
         System.out.println("7(0b111) 右移2位：" + Integer.toBinaryString((0b111 >> 2)) + " 十进制：" + (7 >> 2));
         System.out.println("7(0b111) 右移3位：" + Integer.toBinaryString((0b111 >> 3)) + " 十进制：" + (7 >> 3));
         System.out.println("7(0b111) 无符号右移1位：" + Integer.toBinaryString((0b111 >>> 1)) + " 十进制：" + (7 >>> 1));
@@ -70,12 +75,12 @@ public class BitOperation {
      */
     @Test
     public void xorTest() {
-        System.out.println("~1：" + Integer.toBinaryString(~1) + "  十进制：" + (~1));
-        System.out.println("~0：" + Integer.toBinaryString(~0) + "  十进制：" + (~0));
-        System.out.println("~-1：" + Integer.toBinaryString(~-1) + "  十进制：" + (~-1));
-        System.out.println("~5：" + Integer.toBinaryString(~5) + "  十进制：" + (~5));
-        System.out.println("~-6：" + Integer.toBinaryString(~-6) + "  十进制：" + (~-6));
-        System.out.println("1s：" + Integer.toBinaryString(0b1) + "  十进制：" + (0b1));
+        System.out.println("~1：" + Integer.toBinaryString(~1) + "  十进制：" + (~1)); // ~1：11111111111111111111111111111110  十进制：-2
+        System.out.println("~0：" + Integer.toBinaryString(~0) + "  十进制：" + (~0)); // ~0：11111111111111111111111111111111  十进制：-1
+        System.out.println("~-1：" + Integer.toBinaryString(~-1) + "  十进制：" + (~-1)); // ~-1：0  十进制：0
+        System.out.println("~5：" + Integer.toBinaryString(~5) + "  十进制：" + (~5)); // ~5：11111111111111111111111111111010  十进制：-6
+        System.out.println("~-6：" + Integer.toBinaryString(~-6) + "  十进制：" + (~-6)); // ~-6：101  十进制：5
+        System.out.println("1s：" + Integer.toBinaryString(0b1) + "  十进制：" + (0b1)); // 1s：1  十进制：1
 
         System.out.println("------------------------------------->");
 

@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2023, 木木996.
+ * All Right Reserved.
+ */
+
 package com.gobestsoft.java_base.comparator;
 
 import java.util.*;
@@ -107,5 +112,16 @@ class Test {
         PriorityQueue<PersonComparator> queue2 = new PriorityQueue<>((o1, o2) -> o1.getAge() > o2.getAge() ? 1 : -1);
 
 
+        // Comparator 自带比较器
+        List<Integer> list3 = new ArrayList<>();
+        list3.add(2);
+        list3.add(-100);
+        list3.add(999);
+
+        // 方式1
+        list3 = list3.stream().sorted(Comparator.comparingInt(Integer::intValue)).collect(Collectors.toList());
+        // 方式2
+        // list3.sort(Comparator.comparingInt(Integer::intValue));
+        System.out.println("list3排序后：" + list3);
     }
 }

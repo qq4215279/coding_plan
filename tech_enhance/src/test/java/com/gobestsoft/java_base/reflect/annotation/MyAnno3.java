@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -15,9 +15,8 @@ import java.lang.annotation.*;
  * @Inherited：描述注解是否被子类继承
  */
 
-@Target({ElementType.TYPE,ElementType.METHOD,ElementType.FIELD})
+@Target({ElementType.TYPE, ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-public @interface MyAnno3 {
-}
+public @interface MyAnno3 {}

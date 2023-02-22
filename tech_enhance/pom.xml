@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright 2020-2021, 木木996.
+  ~ Copyright 2020-2023, 木木996.
   ~ All Right Reserved.
   -->
 
@@ -151,6 +151,20 @@
             <artifactId>protobuf-java</artifactId>
             <version>3.9.0</version>
         </dependency>
+
+        <!-- EasyExcel -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>2.2.6</version>
+        </dependency>
+        <!--常用工具库-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
+
 
     </dependencies>
 

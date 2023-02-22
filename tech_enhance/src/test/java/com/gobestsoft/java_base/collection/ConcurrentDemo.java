@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -28,6 +28,15 @@ public class ConcurrentDemo {
         }
     }
 
+    /**
+     * 测试，ArrayList 在遍历的时候，不能进行对集合进行元素添加、或修改。否则抛出ConcurrentModificationException
+     * 解决：
+     * 1. 使用 CopyOnWriteArrayList
+     * 2. 使用 fori循环，list.get(i) 方式遍历集合。
+     * @date 2023/2/21 22:15
+     * @param args
+     * @return void
+     */
     public static void main(String[] args) {
         teamList.add(new Team(1, "zhangsan", 100));
         teamList.add(new Team(2, "刘亦菲", 99));

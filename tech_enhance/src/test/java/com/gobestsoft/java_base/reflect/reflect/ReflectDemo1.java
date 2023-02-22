@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -25,9 +25,11 @@ public class ReflectDemo1 {
         // 1.Class.forName("全类名")
         Class cls1 = Class.forName("cn.itcast.domain.Person");
         System.out.println(cls1);
+
         // 2.类名.class
         Class cls2 = Person.class;
         System.out.println(cls2);
+
         // 3.对象.getClass()
         Person p = new Person();
         Class cls3 = p.getClass();

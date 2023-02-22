@@ -1,6 +1,15 @@
+/*
+ * Copyright 2020-2023, 木木996.
+ * All Right Reserved.
+ */
+
 package com.gobestsoft.java_base.date.tools;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * ThreadLocalRandomDemo
@@ -17,7 +26,11 @@ public class ThreadLocalRandomDemo {
      */
     @Test
     public void test01() {
-
+        long aaa = 1673884800000L;
+        Date date = new Date(aaa);
+        System.out.println(date);
+        List<Integer> list = new ArrayList<>();
+        list.stream();
     }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -76,9 +76,10 @@ public class _2_FR_FW {
         char[] cbuf = new char[2];
         // 循环读取
         while ((len = fr.read(cbuf)) != -1) {
-            // System.out.println(new String(cbuf)); // 你好 啊， 中文 字符 啊符
 
-            System.out.println(new String(cbuf, 0, len)); // 你好 啊， 中文 字符 啊
+            System.out.println(new String(cbuf)); // 你好 啊， 中文 字符 啊符
+
+            // System.out.println(new String(cbuf, 0, len)); // 你好 啊， 中文 字符 啊
         }
 
 

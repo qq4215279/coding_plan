@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -35,7 +35,7 @@ package com.gobestsoft.java_base.reflect;
  * 红色：失败
  * 绿色：成功
  * 一般我们会使用断言操作来处理结果
- * Assert.assertEquals(期望的结果,运算的结果);
+ * Assert.assertEquals(期望的结果, 运算的结果);
 
  * 补充：
  * @Before:

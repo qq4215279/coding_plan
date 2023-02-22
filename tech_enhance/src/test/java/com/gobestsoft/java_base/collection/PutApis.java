@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2023, 木木996.
+ * All Right Reserved.
+ */
+
 package com.gobestsoft.java_base.collection;
 
 import org.junit.Test;
@@ -54,21 +59,22 @@ public class PutApis {
      */
     @Test
     public void computeIfAbsentTest() {
-        Map<String, String> map = new HashMap<>();
+        Map<String, List<Integer>> map = new HashMap<>();
 
-        String value = map.get("key");
-        if (value == null) {
-            value = "test";
-            map.put("key", value);
+        List<Integer> list = map.get("key");
+        if (list == null) {
+            list = new ArrayList<>();
+            list.add(1);
+            map.put("key", list);
         }
 
         // java8之后。上面的操作可以简化为一行，若key对应的value为空，会将第二个参数的返回值存入并返回
-        String value2 = map.computeIfAbsent("key2", k -> "hehehe"); // k 为key值
-        System.out.println("value2:" + value2);
+        List<Integer> list2 = map.computeIfAbsent("key2", k -> new ArrayList<>()); // k 为key值
+        System.out.println("value2:" + list2);
 
         System.out.println("----------------->");
 
-        for (Map.Entry<String, String> entry : map.entrySet()) {
+        for (Map.Entry<String, List<Integer>> entry : map.entrySet()) {
             System.out.println("key: " + entry.getKey() + " value: " + entry.getValue());
         }
 
