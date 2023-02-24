@@ -104,6 +104,7 @@
             <artifactId>druid</artifactId>
             <version>1.1.10</version>
         </dependency>
+
         <!-- 导出文件到Excel -->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -114,11 +115,6 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>3.17</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.7</version>
         </dependency>
 
         <!-- 日志接口 -->
@@ -140,9 +136,15 @@
             <version>1.1.7</version>
         </dependency>
 
+        <!-- json操作 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.12</version>
         </dependency>
 
         <!-- protobuf -->
