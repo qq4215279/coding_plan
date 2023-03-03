@@ -58,6 +58,10 @@ public class PropertiesTest {
      * 与流相关的方法:
      * public void load(InputStream inStream)：从字节输入流中读取键值对。
      * 小贴士：文本中的数据，必须是键值对形式，可以使用空格、等号、冒号等符号分隔。
+     *
+     * 注意：
+     * 使用JDK自带Properties 工具类加载配置文件时，如果value值为中文，得将中文转成ASCII编码，不然读取出的value会乱码！！！
+     * 转码地址: https://www.ip138.com/ascii/
      */
     @Test
     public void test02() throws IOException {
