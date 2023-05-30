@@ -25,6 +25,7 @@ public class AliBaba {
      */
     @Test
     public void test01() { // [2] [2]
+
         List<String> list = new ArrayList<>();
         list.add("1");
         list.add("2");
