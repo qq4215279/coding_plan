@@ -1,6 +1,12 @@
+/*
+ * Copyright 2020-2023, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.java_tools.hutool_all;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.ObjectUtil;
 import org.junit.Test;
 
 import java.io.File;
@@ -29,6 +35,9 @@ public class HutoolAllTest {
         String path = "src\\test\\java\\com\\gobestsoft\\java_tools\\fastjson\\caipu.json";
         String jsonStr = FileUtil.readUtf8String(new File(path));
         System.out.println(jsonStr);
+
+        Object o = new Object();
+        Object clone = ObjectUtil.clone(o);
 
     }
 
