@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -47,7 +47,6 @@ public class ReflectTest {
         Method method = cls.getMethod(methodName);
         // 6.执行方法
         method.invoke(obj);
-
 
     }
 }
