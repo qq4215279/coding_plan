@@ -1,14 +1,16 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
 package com.mumu.java_base.basic_data_type;
 
+import org.junit.Test;
+
 import java.math.BigDecimal;
 
 /**
- * EqualsFloat
+ * EqualsFloatTest
  * 浮点数比较大小
  * 浮点数之间的等值判断，基本数据类型不能用==来比较，包装数据类型不能用 equals来判断。
  * 说明：浮点数采用“尾数+阶码”的编码方式，类似于科学计数法的“有效数字+指数”的表示方式。
@@ -16,7 +18,7 @@ import java.math.BigDecimal;
  * @author liuzhen
  * @version 1.0.0 2022/5/1 17:56
  */
-public class EqualsFloat {
+public class EqualsFloatTest {
 
     /**
      * 浮点数比较方式1
@@ -25,6 +27,7 @@ public class EqualsFloat {
      * @param
      * @return void
      */
+    @Test
     public void equalsTest01() {
         float a = 1.0F - 0.9F;
         float b = 0.9F - 0.8F;
@@ -44,15 +47,24 @@ public class EqualsFloat {
      * @param
      * @return void
      */
+    @Test
     public void equalsTest02() {
         BigDecimal a = new BigDecimal("1.0");
         BigDecimal b = new BigDecimal("0.9");
         BigDecimal c = new BigDecimal("0.8");
         BigDecimal x = a.subtract(b);
         BigDecimal y = b.subtract(c);
+
+        // 1.
         if (x.compareTo(y) == 0) {
             System.out.println("true");
         }
+
+        if (x.equals(y)) {
+            System.out.println("true");
+        }
+
+        System.out.println("x == y " + (x == y));
     }
 
     /**
@@ -61,6 +73,7 @@ public class EqualsFloat {
      * @param
      * @return void
      */
+    @Test
     public void mistakeEqualsTest() {
         float a = 1.0F - 0.9F;
         float b = 0.9F - 0.8F;
