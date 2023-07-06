@@ -19,4 +19,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-public @interface MyAnno3 {}
+public @interface MyAnno3 {
+
+}
