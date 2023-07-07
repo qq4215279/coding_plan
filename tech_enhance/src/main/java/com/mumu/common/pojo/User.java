@@ -11,7 +11,7 @@ package com.mumu.common.pojo;
  * @author liuzhen
  * @version 1.0.0 2023/7/7 11:05
  */
-public class User {
+public class User extends Person {
     private String userName;
     private String password;
     private int age;
@@ -83,5 +83,10 @@ public class User {
                 ", age=" + age +
                 ", sex=" + sex +
                 '}';
+    }
+
+    @Override
+    public void eat() {
+        System.out.println("用户吃肉");
     }
 }

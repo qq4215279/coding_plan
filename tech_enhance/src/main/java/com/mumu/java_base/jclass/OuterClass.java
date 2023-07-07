@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -51,6 +51,9 @@ public class OuterClass {
     public class InnerClass1 {
         private boolean isAdult = false;
 
+        public InnerClass1() {
+        }
+
         public int getAge() {
             System.out.println("外部类访问：" + OuterClass.this.name);
 
@@ -93,7 +96,7 @@ public class OuterClass {
      * b. 它不能被外部类的非static成员变量或者方法访问。
      * 静态内部类的好处是：外部类可以访问内部类的所有⽅法和属性，包括私有⽅法和私有属性。
      */
-    private static class StaticInnerClass {
+    public static class StaticInnerClass {
         public static final int bb = 999;
         public int a = 1;
 
@@ -128,6 +131,15 @@ public class OuterClass {
         StaticInnerClass staticInnerClass = new StaticInnerClass();
         int anInt = staticInnerClass.getInt();
         System.out.println("anInt: " + anInt);
+
+
+        Class<?> myClassClass = OuterClass.class;
+        Class<?> innerClassClass = StaticInnerClass.class;
+        boolean isMyClassSynthetic = myClassClass.isSynthetic();
+        System.out.println("MyClass is a synthetic class: " + isMyClassSynthetic); // 输出: false
+
+        boolean isInnerClassSynthetic = innerClassClass.isSynthetic();
+        System.out.println("InnerClass is a synthetic class: " + isInnerClassSynthetic); // 输出: true
     }
 
 }
