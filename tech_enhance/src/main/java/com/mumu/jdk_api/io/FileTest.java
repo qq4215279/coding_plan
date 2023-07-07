@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -30,12 +30,12 @@ public class FileTest {
     public void test01() throws IOException {
         // 相对路径: src/test/java/com/gobestsoft/jdk_api/io/text/
         // 文件路径名
-        String pathname = "D:\\Code\\IdeaWorkSpace\\dream_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\a.txt";
+        String pathname = "D:\\Code\\IdeaWorkSpace\\coding_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\a.txt";
         File file1 = new File(pathname);
         file1.createNewFile();
 
         // 文件路径名
-        String pathname2 = "D:/Code/IdeaWorkSpace/dream_plan/tech_enhance/src/test/java/com/gobestsoft/jdk_api/io/text/b.txt";
+        String pathname2 = "D:/Code/IdeaWorkSpace/coding_plan/tech_enhance/src/test/java/com/gobestsoft/jdk_api/io/text/b.txt";
         File file2 = new File(pathname2);
         file2.createNewFile();
 
@@ -70,7 +70,7 @@ public class FileTest {
         System.out.println("文件名称:" + f.getName());
         System.out.println("文件长度:" + f.length() + "字节");
 
-        File f2 = new File("D:/Code/IdeaWorkSpace/dream_plan/tech_enhance/src/test/java/com/gobestsoft/jdk_api/io/text/e.txt");
+        File f2 = new File("D:/Code/IdeaWorkSpace/coding_plan/tech_enhance/src/test/java/com/gobestsoft/jdk_api/io/text/e.txt");
         f2.createNewFile();
         System.out.println("目录绝对路径:" + f2.getAbsolutePath());
         System.out.println("目录构造路径:" + f2.getPath());
@@ -116,7 +116,7 @@ public class FileTest {
     public void crudMethod() throws IOException {
         // 文件的创建 正斜杠、反斜杠都可以，相对路径从包所在路径开始
         //  绝对路径
-        // String absolutePath = "D:/Code/IdeaWorkSpace/dream_plan/tech_enhance/src/test/java/com/gobestsoft/jdk_api/io/text/absolutePath.txt";
+        // String absolutePath = "D:/Code/IdeaWorkSpace/coding_plan/tech_enhance/src/test/java/com/gobestsoft/jdk_api/io/text/absolutePath.txt";
         // File f = new File(absolutePath)
 
         // 相对路径 tech_enhance目录开始
@@ -128,15 +128,15 @@ public class FileTest {
         System.out.println("是否存在:" + f.exists()); // true
 
         // 目录的创建
-        File f2 = new File("D:/Code/IdeaWorkSpace/dream_plan/tech_enhance/src/test/java/com/gobestsoft/jdk_api/io/text/newDir");
+        File f2 = new File("D:/Code/IdeaWorkSpace/coding_plan/tech_enhance/src/test/java/com/gobestsoft/jdk_api/io/text/newDir");
         System.out.println("是否存在:" + f2.exists()); // false
         System.out.println("是否创建:" + f2.mkdir()); // true
         System.out.println("是否存在:" + f2.exists()); // true
 
         // 创建多级目录
-        File f3 = new File("D:\\Code\\IdeaWorkSpace\\dream_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\newDir2\\newDir22");
+        File f3 = new File("D:\\Code\\IdeaWorkSpace\\coding_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\newDir2\\newDir22");
         System.out.println(f3.mkdir()); // false
-        File f4 = new File("D:\\Code\\IdeaWorkSpace\\dream_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\newDir2\\newDir22");
+        File f4 = new File("D:\\Code\\IdeaWorkSpace\\coding_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\jdk_api\\io\\text\\newDir2\\newDir22");
         System.out.println(f4.mkdirs()); // true
 
         // 文件的删除

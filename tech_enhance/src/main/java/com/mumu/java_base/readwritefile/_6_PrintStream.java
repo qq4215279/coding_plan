@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -28,7 +28,7 @@ public class _6_PrintStream {
         System.out. println(97);
 
         // 创建打印流,指定文件的名称
-        PrintStream ps = new PrintStream("D:\\Code\\IdeaWorkSpace\\dream_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\java_base\\readwritefile\\text\\ps.txt");
+        PrintStream ps = new PrintStream("D:\\Code\\IdeaWorkSpace\\coding_plan\\tech_enhance\\src\\test\\java\\com\\gobestsoft\\java_base\\readwritefile\\text\\ps.txt");
 
         // 设置系统的打印流流向,输出到ps.txt
         System.setOut(ps);
