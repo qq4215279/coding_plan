@@ -1,4 +1,9 @@
-package com.mumu.utils;
+/*
+ * Copyright 2020-2023, 木木996.
+ * All Right Reserved.
+ */
+
+package com.mumu.common.utils;
 
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;

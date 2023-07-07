@@ -1,23 +1,12 @@
-/**
- * Copyright (c) 2015-2016, Chill Zhuang 庄骞 (smallchill@163.com).
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+/*
+ * Copyright 2020-2023, 木木996.
+ * All Right Reserved.
  */
-package com.mumu.utils;
+
+package com.mumu.common.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,13 +17,19 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * DateUtil
+ * 日期工具类
+ * @author liuzhen
+ * @version 1.0.0 2023/7/7 11:10
+ */
 public class DateUtil {
     public static Logger log = LoggerFactory.getLogger(DateUtil.class);
 
     /**
      * 获取YYYY格式
-     *
-     * @return
+     * @param
+     * @return java.lang.String
      */
     public static String getYear() {
         return formatDate(new Date(), "yyyy");
@@ -42,8 +37,8 @@ public class DateUtil {
 
     /**
      * 获取YYYY格式
-     *
-     * @return
+     * @param date
+     * @return java.lang.String
      */
     public static String getYear(Date date) {
         return formatDate(date, "yyyy");
@@ -51,8 +46,8 @@ public class DateUtil {
 
     /**
      * 获取YYYY-MM-DD格式
-     *
-     * @return
+     * @param
+     * @return java.lang.String
      */
     public static String getDay() {
         return formatDate(new Date(), "yyyy-MM-dd");
@@ -60,8 +55,9 @@ public class DateUtil {
 
     /**
      * 获取YYYY-MM-DD格式
-     *
-     * @return
+     * @date 2023/7/7 11:12
+     * @param date
+     * @return java.lang.String
      */
     public static String getDay(Date date) {
         return formatDate(date, "yyyy-MM-dd");
@@ -69,17 +65,19 @@ public class DateUtil {
 
     /**
      * 获取YYYYMMDD格式
-     *
-     * @return
+     * @date 2023/7/7 11:12
+     * @param
+     * @return java.lang.String
      */
     public static String getDays() {
         return formatDate(new Date(), "yyyyMMdd");
     }
 
     /**
-     * 获取YYYYMMDD格式
-     *
-     * @return
+     *获取YYYYMMDD格式
+     * @date 2023/7/7 11:12
+     * @param date
+     * @return java.lang.String
      */
     public static String getDays(Date date) {
         return formatDate(date, "yyyyMMdd");
@@ -190,7 +188,7 @@ public class DateUtil {
 
     public static Date parse(String date, String pattern) {
         try {
-            return DateUtils.parseDate(date, pattern);
+            return org.apache.commons.lang3.time.DateUtils.parseDate(date, pattern);
         } catch (ParseException e) {
             log.error(e.getMessage());
             return null;
@@ -482,6 +480,5 @@ public class DateUtil {
 
         return calendar.getTime();
     }
-
 
 }

@@ -1,6 +1,11 @@
+/*
+ * Copyright 2020-2023, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.user;
 
-import com.mumu.utils.DateUtil;
+import com.mumu.common.utils.DateUtil;
 
 public class GetAfterDayWeekTest {
 

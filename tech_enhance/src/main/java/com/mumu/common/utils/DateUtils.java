@@ -1,9 +1,9 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
-package com.mumu.java_base.date.util;
+package com.mumu.common.utils;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -19,8 +19,8 @@ import java.util.*;
  * @author liuzhen
  * @version 1.0.0 2022/4/30 17:15
  */
-public class DateUtil {
-    private static Log log = LogFactory.getLog(DateUtil.class);
+public class DateUtils {
+    private static Log log = LogFactory.getLog(DateUtils.class);
 
     private static final char DATE_HYPHEN = '-';
     private static final char DATE_SLASH = '/';
@@ -86,7 +86,7 @@ public class DateUtil {
         VALIDATE_MAP.put("yyyyMM".length(), "[0-9]{6}");
     }
 
-    public DateUtil() {
+    public DateUtils() {
     }
 
     public static String formatDatetime(String strSrc) {

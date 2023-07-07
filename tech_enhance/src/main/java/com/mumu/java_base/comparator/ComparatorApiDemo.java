@@ -5,6 +5,7 @@
 
 package com.mumu.java_base.comparator;
 
+import com.mumu.common.pojo.User;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -40,27 +41,4 @@ public class ComparatorApiDemo {
         System.out.println(userList.toString());
     }
 
-
-    public class User {
-        public String name;
-        public int age;
-
-        public User(String name, int age) {
-            this.name = name;
-            this.age = age;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int getAge() {
-            return age;
-        }
-
-        @Override
-        public String toString() {
-            return "User{" + "name='" + name + '\'' + ", age=" + age + '}';
-        }
-    }
 }

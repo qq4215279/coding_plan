@@ -1,4 +1,9 @@
-package com.mumu.utils;
+/*
+ * Copyright 2020-2023, 木木996.
+ * All Right Reserved.
+ */
+
+package com.mumu.common.utils;
 
 
 import org.apache.commons.lang3.StringUtils;
@@ -59,7 +64,10 @@ public class StringRegularUtil {
      * @return
      */
     public static boolean isURL(String url) {
-        if (StringUtils.isEmpty(url)) return false;
+        if (StringUtils.isEmpty(url)) {
+            return false;
+        }
+
         if (url.startsWith("http://") || url.startsWith("https://")) {
             return true;
         }
@@ -76,6 +84,7 @@ public class StringRegularUtil {
         if (!num.matches(REGEX_ID_CARD)) {
             return false;
         }
+
         return true;
     }
 
@@ -89,6 +98,7 @@ public class StringRegularUtil {
         if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://") || imageUrl.startsWith("ftp://")) {
             return true;
         }
+
         return false;
     }
 
@@ -99,7 +109,10 @@ public class StringRegularUtil {
      * @return
      */
     public static boolean isMobile(String mobile) {
-        if (StringUtils.isEmpty(mobile)) return false;
+        if (StringUtils.isEmpty(mobile)) {
+            return false;
+        }
+
         return mobile.matches(REGEX_MOBILE);
     }
 

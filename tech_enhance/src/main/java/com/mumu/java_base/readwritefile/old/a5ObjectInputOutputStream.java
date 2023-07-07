@@ -1,13 +1,18 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
 package com.mumu.java_base.readwritefile.old;
 
+import com.mumu.common.pojo.User;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  * ObjectInputOutputStream
@@ -19,18 +24,6 @@ public class a5ObjectInputOutputStream {
 
     public static final String certificateNum = "src\\test\\java\\com\\gobestsoft\\readwritefile\\certificateNum.txt";
     public static final String certificateNum2 = "src\\test\\java\\com\\gobestsoft\\readwritefile\\certificateNum2.txt";
-
-
-    public class User {
-        private String userName;
-        private String password;
-
-        public User(String userName, String password) {
-            this.userName = userName;
-            this.password = password;
-        }
-    }
-
 
     @Test
     public void testObjectInputOutputStream() throws IOException {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -9,7 +9,7 @@ public @interface MyAnno {
 
     int value();
 
-    Person per();
+    PersonEnum per();
 
     MyAnno2 anno2();
 

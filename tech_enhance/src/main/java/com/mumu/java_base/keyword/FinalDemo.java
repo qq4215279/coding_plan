@@ -1,9 +1,11 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
 package com.mumu.java_base.keyword;
+
+import com.mumu.common.pojo.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,28 +61,13 @@ public class FinalDemo {
         map.put("a", 2);
     }
 
-    public class User {
-        public String name;
-        public int age;
-
-        public User(String name, int age) {
-            this.name = name;
-            this.age = age;
-        }
-
-        @Override
-        public String toString() {
-            return "User{" + "name='" + name + '\'' + ", age=" + age + '}';
-        }
-    }
-
     /**
      * final修饰引用类型时，在对其初始化之后便不能再让其指向另一个对象。但被引用的对象的值是可以改变的（引用变量的值实际上是它所引用的对象的地址）。
      */
     public void referenceObjDemo() {
         final User user = new User("haha", 5);
-        user.name = "李华";
-        user.age = 10;
+        user.setUserName("李华");
+        user.setAge(10);
         System.out.println(user); // 证明了：它指向的对象的内容是可变的。
 
 //        user = new User(); //  // 报错,不可重新赋值

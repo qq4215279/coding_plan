@@ -1,7 +1,14 @@
+/*
+ * Copyright 2020-2023, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.java_tools.fastjson;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.mumu.common.pojo.User;
+import com.mumu.common.pojo.UserGroup;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -122,71 +129,5 @@ public class FastJsonTest {
 
 }
 
-class User {
-    public String name;
-    public String password;
 
-    public User(String name, String password) {
-        this.name = name;
-        this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" + "name='" + name + '\'' + ", password='" + password + '\'' + '}';
-    }
-}
-
-class UserGroup {
-    private String name;
-    private List<User> users = new ArrayList<User>();
-
-    public UserGroup() {
-    }
-
-    public UserGroup(String name, List<User> users) {
-        this.name = name;
-        this.users = users;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    @Override
-    public String toString() {
-        return "UserGroup{" +
-               "name='" + name + '\'' +
-               ", users=" + users +
-               '}';
-    }
-}
 
