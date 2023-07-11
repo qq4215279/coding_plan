@@ -11,9 +11,19 @@ package com.mumu.common.pojo;
  * @author liuzhen
  * @version 1.0.0 2023/7/7 15:51
  */
-public class Person implements IPerson {
+public class Person extends AbstractPerson {
+    public String a;
+    protected String b;
+    String c;
+    private String d;
+
+
     @Override
     public void eat() {
         System.out.println("人吃饭");
+    }
+
+    public void eat(String food) {
+        System.out.println("eat..." + food);
     }
 }

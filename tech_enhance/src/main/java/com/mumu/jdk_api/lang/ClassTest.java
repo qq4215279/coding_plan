@@ -21,6 +21,7 @@ import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedType;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -28,6 +29,7 @@ import java.lang.reflect.TypeVariable;
 import java.net.URL;
 import java.security.ProtectionDomain;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * ClassTest
@@ -115,7 +117,7 @@ public class ClassTest {
      * isNestmateOf(类<?> c)  检查当前类是否与指定的类是嵌套关系（校验是否是外部类与内部类）。
      * getNestHost()  获取当前类所属的嵌套主机类的Class对象。
      * getNestMembers()  返回一个数组，其中包含类对象，这些对象表示作为此类对象所表示的类或接口所属的嵌套成员的所有类和接口。 该嵌套的nest host是数组的第0个元素。
-     * isSynthetic()  如果此类是合成类，则返回true; 否则返回false。合成类是在编译器生成的、在源代码中没有显式定义的类（既校验是否是内部类）。
+     * isSynthetic()  （既校验是否是内部类）如果此类是合成类，则返回true; 否则返回false。合成类是在编译器生成的、在源代码中没有显式定义的类。
      * isAnonymousClass()  判断当前类是否是匿名内部类。当且仅当基础类是匿名类时，返回 true 。
      * isLocalClass()  判断当前类是否是局部内部类。当且仅当基础类是本地类时，返回 true 。
      * getEnclosingClass()  获取包含当前类的最外层类的Class对象。如果当前类是顶层类或匿名类，则返回null。如果当前类是一个内部类，则返回包含它的最外层类的Class对象。
@@ -174,12 +176,55 @@ public class ClassTest {
      * @return void
      */
     @Test
-    public void getClassLoaderTest() {
-        // TODO classLoader 作用！
-        Class<User> userClass = User.class;
-        ClassLoader classLoader = userClass.getClassLoader();
-        // jdk.internal.loader.ClassLoaders$AppClassLoader@61064425
-        System.out.println("getClassLoader()  " + classLoader);
+    public void getClassLoaderTest() throws ClassNotFoundException {
+        // 可以创建任意类的对象，可以执行任意方法
+        // 前提：不能改变该类的任何代码。可以创建任意类的对象，可以执行任意方法
+       /* Person p = new Person();
+        p.eat();
+
+        Student stu = new Student();
+        stu.sleep();*/
+
+        // 1. 加载配置文件
+        // 1.1 创建Properties对象
+        Properties pro = new Properties();
+        try {
+            // 1.2 加载配置文件，转换为一个集合
+            // 1.2.1 获取class目录下的配置文件
+            ClassLoader classLoader = ClassTest.class.getClassLoader();
+            InputStream is = classLoader.getResourceAsStream("pro.properties");
+            pro.load(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 2. 获取配置文件中定义的数据
+        String className = pro.getProperty("className");
+        String methodName = pro.getProperty("methodName");
+
+        // 3. 加载该类进内存
+        Class cls = Class.forName(className);
+        try {
+            // 4. 创建对象
+            Constructor constructor = cls.getConstructor();
+            Object obj = constructor.newInstance();
+            // Object obj = cls.newInstance();
+
+            // 5. 获取方法对象
+            Method method = cls.getMethod(methodName);
+
+            // 6. 执行方法
+            method.invoke(obj);
+
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -360,16 +405,16 @@ public class ClassTest {
     @Test
     public void innerClassTest() {
         Class<OuterClass> outerClassClass = OuterClass.class;
-        Class<OuterClass.InnerClass1> innerClassClass = OuterClass.InnerClass1.class;
+        Class<OuterClass.MemberInnerClass> memberInnerClass = OuterClass.MemberInnerClass.class;
         // isNestmateOf() 是否是嵌套关系
-        System.out.println("OuterClass与InnerClass1是否是嵌套关系：" + outerClassClass.isNestmateOf(innerClassClass));
-        System.out.println("InnerClass1与OuterClass是否是嵌套关系：" + innerClassClass.isNestmateOf(outerClassClass));
+        System.out.println("OuterClass与MemberInnerClass是否是嵌套关系：" + outerClassClass.isNestmateOf(memberInnerClass));
+        System.out.println("MemberInnerClass与OuterClass是否是嵌套关系：" + memberInnerClass.isNestmateOf(outerClassClass));
 
         System.out.println("嵌套主机类(最外层类)：" + outerClassClass.getNestHost());
-        System.out.println("嵌套主机类(最外层类)：" + innerClassClass.getNestHost());
+        System.out.println("嵌套主机类(最外层类)：" + memberInnerClass.getNestHost());
 
         System.out.println("所有的嵌套类有：" );
-        Class<?>[] nestMembers = innerClassClass.getNestMembers();
+        Class<?>[] nestMembers = memberInnerClass.getNestMembers();
         for (Class nestClass : nestMembers) {
             System.out.println("      " + nestClass);
         }
@@ -390,16 +435,16 @@ public class ClassTest {
         System.out.println("Enclosing class of InnerClass: " + enclosingClass);
 
 
-        Constructor<?> enclosingConstructor = innerClassClass.getEnclosingConstructor();
+        Constructor<?> enclosingConstructor = memberInnerClass.getEnclosingConstructor();
         // TODO 目标输出: public OuterClass$InnerClass(OuterClass)   实际输出: null  ???
         System.out.println("Enclosing constructor of InnerClass: " + enclosingConstructor);
 
         // TODO 目标输出: public OuterClass$InnerClass(OuterClass)   实际输出: null  ???
-        Method enclosingMethod = innerClassClass.getEnclosingMethod();
+        Method enclosingMethod = memberInnerClass.getEnclosingMethod();
         // 输出: public void OuterClass.outerMethod()
         System.out.println("Enclosing method of InnerClass: " + enclosingMethod);
 
-        Class<?> declaringClass = innerClassClass.getDeclaringClass();
+        Class<?> declaringClass = memberInnerClass.getDeclaringClass();
         // 输出: class com.mumu.java_base.jclass.OuterClass
         System.out.println("Declaring class of InnerClass: " + declaringClass);
     }

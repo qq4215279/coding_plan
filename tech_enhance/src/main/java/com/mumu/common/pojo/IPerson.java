@@ -6,7 +6,7 @@
 package com.mumu.common.pojo;
 
 /**
- * Person
+ * IPerson
  *
  * @author liuzhen
  * @version 1.0.0 2023/7/7 13:50

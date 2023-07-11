@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -29,6 +29,7 @@ public class ConsumerTest {
     private static void printInfo(Consumer<String> one, Consumer<String> two, String[] array) {
         for (String info : array) {
             // 姓名：迪丽热巴。性别：女。
+            // one.andThen(two).accept(info);
             one.andThen(two).accept(info);
         }
     }
@@ -36,6 +37,11 @@ public class ConsumerTest {
     public static void main(String[] args) {
         String[] array = {"迪丽热巴,女", "古力娜扎,女", "马尔扎哈,男"};
 
-        printInfo(s -> System.out.print("姓名：" + s.split(",")[0]), s -> System.out.println("性别：" + s.split(",")[1] + "。 "), array);
+        // printInfo(s -> System.out.print("姓名：" + s.split(",")[0]), s -> System.out.println(" 性别：" + s.split(",")[1] + "。 "), array);
+
+        Consumer<String> c1 = s -> System.out.print("姓名：" + s.split(",")[0]);
+        Consumer<String> c2 = s -> System.out.println(" 性别：" + s.split(",")[1] + "。 ");
+
+        printInfo(c1, c2, array);
     }
 }

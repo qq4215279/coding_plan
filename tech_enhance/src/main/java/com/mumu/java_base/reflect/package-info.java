@@ -4,7 +4,7 @@
  */
 
 /**
- * 函数式接口介绍
+ * Java反射介绍
  */
 package com.mumu.java_base.reflect;
 

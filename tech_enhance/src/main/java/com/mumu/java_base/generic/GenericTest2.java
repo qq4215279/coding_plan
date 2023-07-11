@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -30,9 +30,25 @@ public class GenericTest2 {
      *  注意: 泛型没有继承概念的
      * @param list
      */
-    public static void printArray(ArrayList<?> list){
+    public static void printArray(ArrayList<?> list) {
         // 使用迭代器遍历集合
         Iterator<?> it = list.iterator();
+        while(it.hasNext()){
+            // it.next()方法,取出的元素是Object,可以接收任意的数据类型
+            Object o = it.next();
+            System.out.println(o);
+        }
+    }
+
+    /**
+     * 如上泛型使用 ? 通配符，等同于 使用 <T>
+     * @date 2023/7/11 14:09
+     * @param list
+     * @return void
+     */
+    public static <T> void printArray2(ArrayList<T> list) {
+        // 使用迭代器遍历集合
+        Iterator<T> it = list.iterator();
         while(it.hasNext()){
             // it.next()方法,取出的元素是Object,可以接收任意的数据类型
             Object o = it.next();

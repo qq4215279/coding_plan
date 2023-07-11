@@ -96,7 +96,7 @@ public class FastJsonTest {
         String jsonStr1 = "{'password':'123456','username':'ggf'}";
         // 调用parseObject()
         User user = JSON.parseObject(jsonStr1, User.class);
-        System.out.println("json字符串转简单java对象:"+user.toString());
+        System.out.println("json字符串转简单java对象:" + user.toString());
 
         /*
          * 2.
@@ -107,7 +107,7 @@ public class FastJsonTest {
         String jsonStr2 = "[{'password':'123123','username':'zhangsan'},{'password':'321321','username':'lisi'}]";
         // 调用parseArray()将字符串转为集合
         List<User> users = JSON.parseArray(jsonStr2, User.class);
-        System.out.println("json字符串转List<Object>对象:"+users.toString());
+        System.out.println("json字符串转List<Object>对象:" + users.toString());
 
         /*
          * 3.

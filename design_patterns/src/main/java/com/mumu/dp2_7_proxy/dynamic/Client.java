@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -22,10 +22,10 @@ public class Client {
 
         AbstractDocumentDAO docDAO = new DocumentDAO();
         handler = new DAOLogHandler(docDAO);
-        AbstractDocumentDAO proxy_new = null;
 
         // 动态创建代理对象，用于代理一个AbstractDocumentDAO类型的真实主题对象
-		proxy_new = (AbstractDocumentDAO)Proxy.newProxyInstance(AbstractDocumentDAO.class.getClassLoader(), new Class[] {AbstractDocumentDAO.class}, handler);
+        AbstractDocumentDAO proxy_new = (AbstractDocumentDAO)Proxy.newProxyInstance(AbstractDocumentDAO.class.getClassLoader(),
+                new Class[] {AbstractDocumentDAO.class}, handler);
 		// 调用代理对象的业务方法
         proxy_new.deleteDocumentById("D002");
     }

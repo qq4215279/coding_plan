@@ -5,6 +5,11 @@
 
 package com.mumu.java_base.jclass;
 
+import com.mumu.common.pojo.AbstractPerson;
+import com.mumu.common.pojo.IPerson;
+import com.mumu.common.pojo.User;
+import org.junit.Test;
+
 /**
  * OuterClass
  * 内部类 Demo
@@ -32,9 +37,9 @@ public class OuterClass {
         this.name = name;
     }
 
-    public int getInnerAgeMethod() {
-        InnerClass1 innerClass1 = new InnerClass1();
-        return innerClass1.getAge();
+    public int getMemberInnerClassAgeMethod() {
+        MemberInnerClass memberInnerClass = new MemberInnerClass();
+        return memberInnerClass.getAge();
     }
 
     /**
@@ -48,10 +53,10 @@ public class OuterClass {
      * 如果用protected修饰，则只能在同一个包下或者继承外部类的情况下访问；如果是默认default访问权限，则只能在同一个包下访问。这一点和外部类有一点不一样，
      * 外部类只能被public和包访问两种权限修饰。我个人是这么理解的，由于成员内部类看起来像是外部类的一个成员，所以可以像类的成员一样拥有多种权限修饰。
      */
-    public class InnerClass1 {
+    public class MemberInnerClass {
         private boolean isAdult = false;
 
-        public InnerClass1() {
+        public MemberInnerClass() {
         }
 
         public int getAge() {
@@ -66,28 +71,74 @@ public class OuterClass {
     }
 
     /**
-     * 2. 局部内部类（普通内部类）：
+     * 2. 局部内部类（普通内部类，在方法内定义使用）：
      * a. 局部内部类是定义在一个方法或者一个作用域里面的类，它和成员内部类的区别在于局部内部类的访问仅限于方法内或者该作用域内。
      * b. 局部内部类就像是方法里面的一个局部变量一样，是不能有public、protected、private以及static修饰符的。
      *
      * 访问普通内部类，需要先创建外部类的对象，然后通过 外部类名.new 创建内部类的实例
      */
-    public void innerClassDemo02() {
-        class InnerClass2 {
+    public void LocalInnerClassDemo() {
+        class LocalInnerClass {
             private int age = 28;
         }
-        System.out.println("局部内部类：" + new InnerClass2().age);
-        return;
+
+        System.out.println("局部内部类：" + new LocalInnerClass().age);
     }
 
     /**
      * 3. 匿名内部类：
+     * - 概念：没有名字的局部内部类。
+     * - 作用：方便创建子类的对象，最终的目的是简化代码的编写。
+     * - 格式(在方法内定义使用)：
+     *        T t = new 接口名 | 抽象类名 | 或类() {
+     *                  重写方法
+     *              }
+     *
      * a. 匿名内部类是没有访问修饰符的。
      * b. new 匿名内部类，这个类首先是要存在的。如果我们将那个InnerClass接口注释掉，就会出现编译出错。
      * c. 注意getInnerClass()方法的形参，第一个形参是用final修饰的，而第二个却没有。同时我们也发现第二个形参在匿名内部类中没有使用过，
      * 所以当所在方法的形参需要被匿名内部类使用，那么这个形参就必须为final。
      * d. 匿名内部类是没有构造方法的。因为它连名字都没有何来构造方法。
+     *
      */
+    @Test
+    public void noNameInnerClassDemo() {
+        // 1. new 一个接口
+        // new 一个接口写法1
+        /*IPerson p = new IPerson() {
+            @Override
+            public void eat() {
+                System.out.println("人 吃 人 ");
+            }
+        };*/
+        // new 一个接口写法2
+        IPerson p = () -> System.out.println("人 吃 人 ");
+        p.eat();
+
+        // 2. new 一个抽象类
+        // 等号右边：是匿名内部类，定义并创建该接口的子类对象。等号左边：是多态赋值，接口类型引用指向子类对象
+        AbstractPerson abstractPerson = new AbstractPerson() {
+            @Override
+            public void eat() {
+                System.out.println("人 吃 人 ");
+            }
+        };
+        abstractPerson.eat();
+
+        // 3. new 一个类
+        User user = new User() {
+            @Override
+            public void eat(String food) {
+                super.eat(food);
+            }
+
+            @Override
+            public void play() {
+                System.out.println("看电影");
+            }
+        };
+        user.eat();
+    }
 
 
     /**
@@ -109,19 +160,20 @@ public class OuterClass {
     public static void main(String[] args) {
         OuterClass outerClass = new OuterClass("xingxing");
 
+        // 1. 成员内部类
         System.out.println("1. 成员内部类 ------------------------>");
-        System.out.println(outerClass.getInnerAgeMethod());
+        System.out.println(outerClass.getMemberInnerClassAgeMethod());
 
+        // 2. 局部内部类
         System.out.println("2. 局部内部类 ------------------------>");
-        outerClass.innerClassDemo02();
+        outerClass.LocalInnerClassDemo();
 
 
-        System.out.println("3. 匿名内部类 ------------------------>");
         // 3. 匿名内部类
-        InnerClass innerClass = () -> 100;
-        int num = innerClass.getNumber();
-        System.out.println("匿名内部类 -- num: " + num);
+        System.out.println("3. 匿名内部类 ------------------------>");
+        outerClass.noNameInnerClassDemo();
 
+        // 4. 静态内部类
         System.out.println("4. 静态内部类 ------------------------>");
         int bb = OuterClass.StaticInnerClass.bb;
         int bbb = StaticInnerClass.bb;
@@ -131,19 +183,7 @@ public class OuterClass {
         StaticInnerClass staticInnerClass = new StaticInnerClass();
         int anInt = staticInnerClass.getInt();
         System.out.println("anInt: " + anInt);
-
-
-        Class<?> myClassClass = OuterClass.class;
-        Class<?> innerClassClass = StaticInnerClass.class;
-        boolean isMyClassSynthetic = myClassClass.isSynthetic();
-        System.out.println("MyClass is a synthetic class: " + isMyClassSynthetic); // 输出: false
-
-        boolean isInnerClassSynthetic = innerClassClass.isSynthetic();
-        System.out.println("InnerClass is a synthetic class: " + isInnerClassSynthetic); // 输出: true
     }
 
 }
 
-interface InnerClass {
-    int getNumber();
-}
