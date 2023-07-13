@@ -11,12 +11,6 @@
     <name>coding_plan</name>
     <packaging>pom</packaging>
 
-    <modules>
-        <module>tech_enhance</module>
-        <module>design_patterns</module>
-        <module>commom</module>
-    </modules>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
