@@ -13,7 +13,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * Pro
+ * 定义注解
  * 描述需要执行的类名，和方法名
+ * @author liuzhen
+ * @version 1.0.0 2023/7/13 14:36
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

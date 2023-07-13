@@ -10,11 +10,14 @@ import com.mumu.java_base.annotation.anno.Pro;
 import java.lang.reflect.Method;
 
 /**
- * 框架类
+ * ProAnnotationTest
+ *
+ * @author liuzhen
+ * @version 1.0.0 2023/7/13 15:25
  */
 @Pro(className = "com.mumu.java_base.annotation.Demo1", methodName = "show")
 // @ProImpl(className = "com.mumu.java_base.annotation.Demo1", methodName = "show")
-public class ReflectTest {
+public class ProAnnotationTest {
     public static void main(String[] args) throws Exception {
 
         /*
@@ -23,11 +26,11 @@ public class ReflectTest {
 
         // 1. 解析注解
         // 1.1 获取该类的字节码文件对象
-        Class<ReflectTest> reflectTestClass = ReflectTest.class;
+        Class<ProAnnotationTest> proAnnoTestClass = ProAnnotationTest.class;
         // 2. 获取上边的注解对象
         // 其实就是在内存中生成了一个该注解接口的子类实现对象
         /*
-        
+
             public class ProImpl implements Pro {
                 public String className(){
                     return "cn.itcast.annotation.Demo1";
@@ -35,13 +38,13 @@ public class ReflectTest {
                 public String methodName(){
                     return "show";
                 }
-        
+
             }
         */
 
 
 
-        Pro an = reflectTestClass.getAnnotation(Pro.class);
+        Pro an = proAnnoTestClass.getAnnotation(Pro.class);
         // 3. 调用注解对象中定义的抽象方法，获取返回值
         String className = an.className();
         String methodName = an.methodName();

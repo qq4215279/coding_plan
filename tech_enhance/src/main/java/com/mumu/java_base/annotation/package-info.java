@@ -18,7 +18,7 @@ package com.mumu.java_base.annotation;
  * 注释：用文字描述程序的。给程序员看的
 
  * 定义：注解（Annotation），也叫元数据。一种代码级别的说明。它是JDK1.5及以后版本引入的一个特性，与类、接口、枚举是在同一个层次。
- *  它可以声明在包、类、字段、方法、局部变量、方法参数等的前面，用来对这些元素进行说明，注释。
+ *  它可以声明在包、类、方法、字段、局部变量、方法参数等的前面，用来对这些元素进行说明，注释。
  * 概念描述：
  *  1. JDK1.5之后的新特性
  *  2. 说明程序的
@@ -48,7 +48,7 @@ package com.mumu.java_base.annotation;
  *      要求：
             1. 属性的返回值类型有下列取值
                 基本数据类型
-                 String
+                String
                 枚举
                 注解
                以上类型的数组
@@ -66,7 +66,7 @@ package com.mumu.java_base.annotation;
        @Retention：描述注解被保留的阶段
            @Retention(RetentionPolicy.RUNTIME)：当前被描述的注解，会保留到class字节码文件中，并被JVM读取到
        @Documented：描述注解是否被抽取到api文档中
-       @Inherited：描述注解是否被子类继承
+       @Inherited：描述注解是否被子类继承（即子类能否获得到父类定义的注解！）
 
  * 在程序使用(解析)注解：获取注解中定义的属性值
  * 	1. 获取注解定义的位置的对象(Class, Method, Field)

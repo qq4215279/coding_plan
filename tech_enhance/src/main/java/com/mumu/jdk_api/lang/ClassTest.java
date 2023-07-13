@@ -5,7 +5,7 @@
 
 package com.mumu.jdk_api.lang;
 
-import com.mumu.common.annotation.MyAnno;
+import com.mumu.java_base.annotation.anno.MyAnno2;
 import com.mumu.common.pojo.IPerson;
 import com.mumu.common.pojo.Person;
 import com.mumu.common.pojo.User;
@@ -457,15 +457,15 @@ public class ClassTest {
      */
     @Test
     public void annotationTest() {
-        Class<MyAnno> myAnnoClass = MyAnno.class;
+        Class<MyAnno2> myAnnoClass = MyAnno2.class;
         System.out.println("是否是注解类型  " + myAnnoClass.isAnnotation());
         System.out.println("是否是接口  " + myAnnoClass.isInterface());
 
         Class<Animal> animalClass = Animal.class;
-        System.out.println("是否包含 MyAnno 注解：" + animalClass.isAnnotationPresent(MyAnno.class));
+        System.out.println("是否包含 MyAnno 注解：" + animalClass.isAnnotationPresent(MyAnno2.class));
 
-        MyAnno annotation = animalClass.getAnnotation(MyAnno.class);
-        MyAnno declaredAnnotation = animalClass.getDeclaredAnnotation(MyAnno.class);
+        MyAnno2 annotation = animalClass.getAnnotation(MyAnno2.class);
+        MyAnno2 declaredAnnotation = animalClass.getDeclaredAnnotation(MyAnno2.class);
         if (annotation != null) {
             System.out.println("获取指定注解，打印注解中的值：" + annotation.toString());
         }
@@ -474,8 +474,8 @@ public class ClassTest {
         Annotation[] declaredAnnotations = animalClass.getDeclaredAnnotations();
         System.out.println("获取所有的注解：" + annotations);
 
-        MyAnno[] annotationsByType = animalClass.getAnnotationsByType(MyAnno.class);
-        MyAnno[] declaredAnnotationsByType = animalClass.getDeclaredAnnotationsByType(MyAnno.class);
+        MyAnno2[] annotationsByType = animalClass.getAnnotationsByType(MyAnno2.class);
+        MyAnno2[] declaredAnnotationsByType = animalClass.getDeclaredAnnotationsByType(MyAnno2.class);
         System.out.println("获取当前类上，顶一顶多个 MyAnno 注解实例：" + annotations);
 
         // TODO
@@ -611,7 +611,7 @@ public class ClassTest {
     }
 }
 
-@MyAnno("定义注解的值")
+@MyAnno2("定义注解的值")
 class Animal<T> {
 }
 

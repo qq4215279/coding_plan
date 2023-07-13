@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -24,10 +24,15 @@ package com.mumu.java_base.throwable;
  *      Exception: 表示异常，异常产生后程序员可以通过代码的方式纠正，使程序继续运行，是必须要处理的。好比感冒、阑尾炎。（是程序员根据问题描述可以处理的。）
  *              1. IOException、ClassNotFoundException、ParseException...  这些异常必须被处理。
  *              2. RuntimeException：这类异常是可以被处理的，但不一定处理，一般不处理。
- * Throwable中的常用方法：
- *      public void printStackTrace(): 打印异常的详细信息。 包含了异常的类型,异常的原因,还包括异常出现的位置,在开发和调试阶段,都得使用printStackTrace。
- *      public String getMessage(): 获取发生异常的原因。 提示给用户的时候,就提示错误原因。
- *      public String toString(): 获取异常的类型和异常描述信息(不用)。
+ Throwable中的常用方法：
+ *  void printStackTrace(): 在控制台打印异常的详细信息。 包含了异常的类型,异常的原因,还包括异常出现的位置,在开发和调试阶段,都得使用printStackTrace。
+ *    调用重载的方法 printStackTrace(PrintStream stream) 或 printStackTrace(PrintWriter writer)，将堆栈信息输出到指定的流或写入器。
+ *  String getMessage(): 返回异常的详细描述信息。 提示给用户的时候,就提示错误原因。
+ *  String toString(): 获取异常的类型和异常描述信息(不用)。
+ *  Throwable getCause() 返回引发当前异常的原因（根本原因），如果没有指定原因，则返回 null。 该方法用于获取异常的根本原因，通常用于异常链中的异常嵌套。
+ *  StackTraceElement[] getStackTrace()  返回异常的堆栈跟踪信息，以数组形式返回 StackTraceElement 对象。 该对象包含了异常发生的类名、方法名和行号等详细信息。
+ *  Throwable fillInStackTrace()  更新异常的堆栈跟踪信息，通常用于异常重新抛出时更新异常的堆栈信息。该方法返回更新后的异常对象。产生一定的性能开销。
+ *
  *
  * 3. 异常分类：
  * 我们平常说的异常就是指Exception，因为这类异常一旦出现，我们就要对代码进行更正，修复程序。
