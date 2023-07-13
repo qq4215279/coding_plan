@@ -6,7 +6,9 @@
 package com.mumu.jdk_api.lang;
 
 import com.mumu.common.pojo.User;
+import org.junit.Test;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
@@ -23,10 +25,32 @@ public class ThrowableTest {
      *  String getMessage(): 返回异常的详细描述信息。 提示给用户的时候,就提示错误原因。
      *  String toString(): 获取异常的类型和异常描述信息(不用)。
      *  Throwable getCause() 返回引发当前异常的原因（根本原因），如果没有指定原因，则返回 null。 该方法用于获取异常的根本原因，通常用于异常链中的异常嵌套。
+     *
+     *  Throwable initCause(Throwable cause)  设置当前异常的根本原因（引起当前异常的原因）。该方法返回当前异常对象，并且只能在异常对象被创建后调用一次，用于将根本原因与当前异常关联起来。
      *  StackTraceElement[] getStackTrace()  返回异常的堆栈跟踪信息，以数组形式返回 StackTraceElement 对象。 该对象包含了异常发生的类名、方法名和行号等详细信息。
-     *  Throwable fillInStackTrace()  更新异常的堆栈跟踪信息，通常用于异常重新抛出时更新异常的堆栈信息。该方法返回更新后的异常对象。产生一定的性能开销。
+     *  Throwable fillInStackTrace()  更新异常的堆栈跟踪信息，通常用于异常重新抛出时更新异常的堆栈信息(即新异常的堆栈跟踪信息指向 fillInStackTrace() 方法被调用的地方)。该方法返回更新后的异常对象。产生一定的性能开销。
      *
      */
+
+
+    /**
+     * initCause(Throwable cause)
+     * @date 2023/7/13 16:47
+     * @param
+     * @return void
+     */
+    @Test
+    public void initCauseTest() {
+        try {
+            IOException rootCause = new IOException("Root cause");
+            Exception exception = new Exception("Custom exception");
+            exception.initCause(rootCause);
+            throw exception;
+        } catch (Exception e) {
+            System.out.println("Exception message: " + e.getMessage());
+            System.out.println("Root cause: " + e.getCause());
+        }
+    }
 
     public static void main(String[] args) {
         try {
