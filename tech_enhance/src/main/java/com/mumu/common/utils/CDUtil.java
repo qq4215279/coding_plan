@@ -28,7 +28,7 @@ public class CDUtil {
     public static long getCD(long totalCDTime, Date lastCDTime, Date nowDate) {
         long cd = totalCDTime - (lastCDTime == null ? totalCDTime : (nowDate.getTime() - lastCDTime.getTime()));
         if (cd < 0) {
-            cd = 0l;
+            cd = 0L;
         }
         return cd;
     }

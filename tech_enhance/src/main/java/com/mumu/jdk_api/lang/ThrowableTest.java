@@ -61,7 +61,7 @@ public class ThrowableTest {
             method.invoke(obj);
         } catch (Exception e) {
             // 控制台打印异常
-            e.printStackTrace();
+            // e.printStackTrace();
             System.out.println("----------------------------------->");
             // 更新堆栈跟踪信息（即新异常的堆栈跟踪信息指向 fillInStackTrace() 方法被调用的地方）
             // at com.mumu.jdk_api.lang.ThrowableTest.main(ThrowableTest.java:45)
@@ -81,6 +81,10 @@ public class ThrowableTest {
                 System.out.println("根本原因 toString: " + cause.toString());
             }
 
+            Throwable subCause = cause.getCause();
+            if (subCause != null) {
+                subCause.printStackTrace();
+            }
 
             // getStackTrace()
             StackTraceElement[] stackTrace = e.getStackTrace();
@@ -109,8 +113,20 @@ public class ThrowableTest {
     }
 
     public User getUser() {
-        int a = 10 / 0;
+        try {
+            // int a = 10 / 0;
+            printName();
+        } catch (Exception e) {
+            throw new ArithmeticException();
+        } finally {
+        }
         return new User();
+    }
+
+    private void printName() {
+        User user = null;
+        System.out.println("性别是：" + user.getSex());
+
     }
 
 }
