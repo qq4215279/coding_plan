@@ -21,13 +21,11 @@ public class ExceptionStackTraceLostTest {
      * @return void
      */
     public static void main(String[] args) {
-        boolean flag = false;
         for (int i = 0;; i++) {
             boolean isExceptionStackLoss = isExceptionStackLost();
             if (isExceptionStackLoss) {
-                flag = true;
                 System.out.println("异常堆栈！！ times: " + i);
-            } else if (flag) {
+            } else {
                 System.out.println("堆栈正常。 times: " + i);
             }
         }
