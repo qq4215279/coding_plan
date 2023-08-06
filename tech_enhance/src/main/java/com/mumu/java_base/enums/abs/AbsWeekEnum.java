@@ -43,11 +43,3 @@ public enum AbsWeekEnum {
 
     public abstract void getWeekIntro();
 }
-
-
-class Main {
-    public static void main(String[] args) {
-        AbsWeekEnum w = AbsWeekEnum.TUESDAY;
-        w.getWeekIntro();
-    }
-}

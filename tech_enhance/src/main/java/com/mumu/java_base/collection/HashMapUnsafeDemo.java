@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -19,7 +19,7 @@ public class HashMapUnsafeDemo {
 
     /**
      * 为什么HashMap 是非线程安全的？
-     * 1. 扩容期间取出的值不准确。代码 dream_plan下的 `HashMapUnsafeDemo`
+     * 1. 扩容期间取出的值不准确。代码 coding_plan下的 `HashMapUnsafeDemo`
      *    HashMap 本身默认的容量不是很大，如果不停地往 map 中添加新的数据，它便会在合适的时机进行扩容。而在扩容期间，它会新建一个新的空数组，
      *    并且用旧的项填充到这个新的数组中去。那么，在这个填充的过程中，如果有线程获取值，很可能会取到 null 值，而不是我们所希望的、原来添加的值。
      * 2. 同时put数据碰撞导致数据丢失。

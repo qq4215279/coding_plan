@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -83,5 +83,16 @@ public class SplitMethodDemo {
         System.out.println(Arrays.toString(c2)); // [a, b, c, , ]
     }
 
+    @Test
+    public void splitDemo4() {
+        String str2 = "";
+        String[] c2 = str2.split(",");
+        System.out.println(c2.length); // 1
+        System.out.println(Arrays.toString(c2)); // []
+
+        for (String s : c2) {
+            System.out.println(s + ":::");
+        }
+    }
 
 }

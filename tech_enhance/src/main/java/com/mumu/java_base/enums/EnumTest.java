@@ -54,6 +54,7 @@ public class EnumTest {
             weekEnum.setIntro("change Intro... 111111");
             System.out.println(weekEnum.toString());
         }
+
     }
 
     /**

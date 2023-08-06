@@ -1,10 +1,11 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
 package com.mumu.java_base.queue;
 
+import com.mumu.common.pojo.User;
 import org.junit.Test;
 
 import java.util.Comparator;
@@ -78,24 +79,9 @@ public class PriorityQueueTest {
 
 }
 
-class User {
-    public String name;
-    public int age;
-
-    public User(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" + "name='" + name + '\'' + ", age=" + age + '}';
-    }
-}
-
 class AgeUser implements Comparator<User> {
     @Override
     public int compare(User u1, User u2) {
-        return u2.age - u1.age;
+        return u2.getAge() - u1.getAge();
     }
 }

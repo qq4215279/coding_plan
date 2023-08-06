@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -45,7 +45,7 @@ public class MyGenericMethod {
     }
 
     // 定义一个含有泛型的方法
-    public <M extends Number> void method01(M m) {
+    public <M extends Number, Mvp> void method01(M m, Mvp mvp) {
         System.out.println(m);
     }
 

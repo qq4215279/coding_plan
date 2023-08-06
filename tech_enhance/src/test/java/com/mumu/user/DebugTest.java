@@ -1,10 +1,11 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
 package com.mumu.user;
 
+import com.mumu.common.pojo.User;
 import org.junit.Test;
 
 /**
@@ -45,7 +46,7 @@ public class DebugTest {
     }
 
     private void print(User user) {
-        String name = user.getName();
+        String name = user.getUserName();
         int age = user.getAge();
 
         System.out.println(user);
@@ -57,32 +58,6 @@ public class DebugTest {
 
     public User createUser() {
         return new User();
-    }
-
-    private class User {
-        private String name;
-        private Integer age;
-
-        public String getName() {
-            return name;
-        }
-
-        public Integer getAge() {
-            return age;
-        }
-
-        public User() {
-        }
-
-        public User(String name, Integer age) {
-            this.name = name;
-            this.age = age;
-        }
-
-        @Override
-        public String toString() {
-            return "User{" + "name='" + name + '\'' + ", age=" + age + '}';
-        }
     }
 
 }

@@ -1,17 +1,24 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
 package com.mumu.jdk_api.util;
 
+import com.mumu.common.pojo.User;
 import org.junit.Test;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.OptionalInt;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -104,27 +111,27 @@ public class StreamTest {
 
         System.out.println("------------------------------->");
 
-        Person p1 = new Person("张三", 18, 1);
-        Person p2 = new Person("李四", 6, 0);
-        Person p3 = new Person("王五", 99, 1);
-        Person p4 = new Person("王五", 88, 1);
-        Stream<Person> stream2 = Stream.of(p1, p2, p3, p4);
+        User p1 = new User("张三", 18, 1);
+        User p2 = new User("李四", 6, 0);
+        User p3 = new User("王五", 99, 1);
+        User p4 = new User("王五", 88, 1);
+        Stream<User> stream2 = Stream.of(p1, p2, p3, p4);
 
         // map
-        List<String> list = stream2.map(Person::getName).collect(Collectors.toList()); // 张三 李四 王五 王五
+        List<String> list = stream2.map(User::getUserName).collect(Collectors.toList()); // 张三 李四 王五 王五
         System.out.println("list: " + list);
 
         // 排序
-        Stream<Person> stream3 = Stream.of(p1, p2, p3, p4);
-        stream3.sorted(Comparator.comparingInt(Person::getAge));
+        Stream<User> stream3 = Stream.of(p1, p2, p3, p4);
+        stream3.sorted(Comparator.comparingInt(User::getAge));
 
         // 自定义排序：先按姓名升序，姓名相同则按年龄升序
-        Stream<Person> stream4 = Stream.of(p1, p2, p3, p4);
+        Stream<User> stream4 = Stream.of(p1, p2, p3, p4);
         stream4.sorted((o1, o2) -> {
-            if (o1.getName().equals(o2.getName())) {
+            if (o1.getUserName().equals(o2.getUserName())) {
                 return o1.getAge() - o2.getAge();
             } else {
-                return o1.getName().compareTo(o2.getName());
+                return o1.getUserName().compareTo(o2.getUserName());
             }
         });
 
@@ -146,78 +153,49 @@ public class StreamTest {
      */
     @Test
     public void collectTest() {
-        Person p1 = new Person("aa", 18, 1);
-        Person p2 = new Person("bb", 6, 0);
-        Person p3 = new Person("cc", 99, 1);
-        Person p4 = new Person("cc", 6, 1);
-        List<Person> list = Arrays.asList(p1, p2, p3);
+        User p1 = new User("aa", 18, 1);
+        User p2 = new User("bb", 6, 0);
+        User p3 = new User("cc", 99, 1);
+        User p4 = new User("cc", 6, 1);
+        List<User> list = Arrays.asList(p1, p2, p3);
 
         // 1. 装成list Collectors.toList()
-        List<Integer> ageList = list.stream().map(Person::getAge).collect(Collectors.toList()); // [18, 6, 99,6]
+        List<Integer> ageList = list.stream().map(User::getAge).collect(Collectors.toList()); // [18, 6, 99,6]
 
         // 2. 转成set
-        Set<Integer> ageSet = list.stream().map(Person::getAge).collect(Collectors.toSet()); // [18, 6, 99]
+        Set<Integer> ageSet = list.stream().map(User::getAge).collect(Collectors.toSet()); // [18, 6, 99]
 
         // 3. 转成map,注:key不能相同，否则报错。 处理key相同：处理第三个参数
-        Map<Integer, Person> sexMap = list.stream().collect(Collectors.toMap(Person::getSex, v -> v, (v1, v2) -> v1));
-        for (Map.Entry<Integer, Person> entry : sexMap.entrySet()) {
+        Map<Integer, User> sexMap = list.stream().collect(Collectors.toMap(User::getSex, v -> v, (v1, v2) -> v1));
+        for (Map.Entry<Integer, User> entry : sexMap.entrySet()) {
             System.out.println("key:" + entry.getKey() + " value: " + entry.getValue());
         }
 
         // 4. 字符串分隔符连接 Collectors.joining(",", "(", ")")
-        String joinName = list.stream().map(Person::getName).collect(Collectors.joining(",", "(", ")")); // (aa,bb,cc)
+        String joinName = list.stream().map(User::getUserName).collect(Collectors.joining(",", "(", ")")); // (aa,bb,cc)
 
         // 5. 聚合操作:
         // 5.1.总数 Collectors.counting()
         Long count = list.stream().collect(Collectors.counting()); // 4
         // 5.2.最大年龄 (最小的minBy同理) Collectors.maxBy(Integer::compare)
-        Integer maxAge = list.stream().map(Person::getAge).collect(Collectors.maxBy(Integer::compare)).get(); // 99
+        Integer maxAge = list.stream().map(User::getAge).collect(Collectors.maxBy(Integer::compare)).get(); // 99
         // 5.3.所有人的年龄 Collectors.summingInt(Person::getAge)
-        int sumAge = list.stream().collect(Collectors.summingInt(Person::getAge)); // 123
+        int sumAge = list.stream().collect(Collectors.summingInt(User::getAge)); // 123
         System.out.println("sumAge: " + sumAge);
         // 5.4.平均年龄 Collectors.averagingDouble(Person::getAge)
-        Double averageAge = list.stream().collect(Collectors.averagingDouble(Person::getAge)); // 40.0
+        Double averageAge = list.stream().collect(Collectors.averagingDouble(User::getAge)); // 40.0
         System.out.println("averageAge: " + averageAge);
 
         // 6. 分组
-        Map<Integer, List<Person>> ageMap = list.stream().collect(Collectors.groupingBy(Person::getAge));
+        Map<Integer, List<User>> ageMap = list.stream().collect(Collectors.groupingBy(User::getAge));
 
         // 多重分组,先根据类型分再根据年龄分
-        Map<Integer, Map<Integer, List<Person>>> typeAgeMap = list.stream().collect(
-            Collectors.groupingBy(Person::getSex, Collectors.groupingBy(Person::getAge)));
+        Map<Integer, Map<Integer, List<User>>> typeAgeMap = list.stream().collect(
+            Collectors.groupingBy(User::getSex, Collectors.groupingBy(User::getAge)));
 
         // 7.分区
         // 分成两部分，一部分大于30岁，一部分小于等于30岁
-        Map<Boolean, List<Person>> partMap = list.stream().collect(Collectors.partitioningBy(person -> person.getAge() > 30));
-    }
-
-    private class Person {
-        private String name;
-        private int age;
-        private int sex;
-
-        public Person(String name, int age, int sex) {
-            this.name = name;
-            this.age = age;
-            this.sex = sex;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int getAge() {
-            return age;
-        }
-
-        public int getSex() {
-            return sex;
-        }
-
-        @Override
-        public String toString() {
-            return "Person{" + "name='" + name + '\'' + ", age=" + age + ", sex=" + sex + '}';
-        }
+        Map<Boolean, List<User>> partMap = list.stream().collect(Collectors.partitioningBy(user -> user.getAge() > 30));
     }
 
 }
