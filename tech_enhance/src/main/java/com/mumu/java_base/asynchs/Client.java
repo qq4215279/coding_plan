@@ -24,12 +24,10 @@ public class Client {
      * 客户端请求
      * 
      * @date 2023/8/13 17:39
-     * @param callBack
      * @param msg
      * @return java.lang.String
      */
-    public String clientTest(ICallBack callBack, String msg) {
-        System.out.println("client 开始");
+    public String clientTest(String msg) {
         System.out.println("客户端：发送的消息为：" + msg);
 
         // 1. 异步方式处理回调
@@ -40,11 +38,10 @@ public class Client {
                 e.printStackTrace();
             }
 
-            s = server.serverTest(callBack, msg);
+            s = server.serverTest(Client::doCallBack, msg);
         }).start();
         System.out.println("客户端：异步发送成功");
 
-        System.out.println("client 结束");
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
@@ -52,27 +49,33 @@ public class Client {
         }
 
         // 2. 同步方式处理回调
-        // s = server.serverTest(callBack, msg);
+        // s = server.serverTest(Client::doCallBack, msg);
 
         return s;
     }
 
-    public static void main(String[] args) {
-        Server server = new Server();
-        Client client = new Client(server);
-
-        String res = client.clientTest(Client::getiCallBack, "sss");
-        
-        System.out.println("最终结果为：" + res);
-    }
-
-    private static String getiCallBack(String str) {
+    /**
+     * 处理回调
+     * @date 2023/8/13 18:25
+     * @param str
+     * @return java.lang.String
+     */
+    private static String doCallBack(String str) {
         try {
             System.out.println("开始处理回调 ------------->");
             return "" + str.substring(0, 2);
         } catch (Exception e) {
             return "出现错误";
         }
+    }
+
+    public static void main(String[] args) {
+        Server server = new Server();
+        Client client = new Client(server);
+
+        String res = client.clientTest("sss");
+
+        System.out.println("最终结果为：" + res);
     }
 
 }

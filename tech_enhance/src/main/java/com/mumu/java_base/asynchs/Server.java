@@ -5,6 +5,9 @@
 
 package com.mumu.java_base.asynchs;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
 /**
  * Server
  *
@@ -34,6 +37,24 @@ public class Server {
         System.out.println("服务端:数据处理成功，新的消息数据为：" + msg);
 
         return callBack.callBack(msg);
+    }
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        CompletableFuture<String> future = new CompletableFuture<>();
+        new Thread(() -> {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            future.complete("hello world");
+        }).start();
+
+        // javac -d out -encoding UTF-8  com\mumu\java_base\asynchs\Server.java
+        // java -cp out com.mumu.java_base.asynchs.Server
+        System.out.println("res ");
+        String result = future.get();
+        System.out.println("rew22: " + result);
     }
 
 }
