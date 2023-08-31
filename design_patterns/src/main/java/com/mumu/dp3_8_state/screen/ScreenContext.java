@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -22,6 +22,7 @@ public class ScreenContext {
         this.largerState = new LargerState();
         // 创建四倍放大状态对象
         this.largestState = new LargestState();
+
         // 设置初始状态
         this.currentState = normalState;
 

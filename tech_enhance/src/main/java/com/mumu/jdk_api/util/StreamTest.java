@@ -165,11 +165,16 @@ public class StreamTest {
         // 2. 转成set
         Set<Integer> ageSet = list.stream().map(User::getAge).collect(Collectors.toSet()); // [18, 6, 99]
 
-        // 3. 转成map,注:key不能相同，否则报错。 处理key相同：处理第三个参数
+        // 3.1 转成map,注:key不能相同，否则报错。 处理key相同：处理第三个参数
         Map<Integer, User> sexMap = list.stream().collect(Collectors.toMap(User::getSex, v -> v, (v1, v2) -> v1));
         for (Map.Entry<Integer, User> entry : sexMap.entrySet()) {
             System.out.println("key:" + entry.getKey() + " value: " + entry.getValue());
         }
+
+        // 3.2 转双层map
+        Map<String, Map<Integer, User>> nameAgeItemMap = list.stream().collect(Collectors.groupingBy(User::getUserName, Collectors.toMap(User::getAge,
+                v -> v, (v1, v2) -> v1)));
+
 
         // 4. 字符串分隔符连接 Collectors.joining(",", "(", ")")
         String joinName = list.stream().map(User::getUserName).collect(Collectors.joining(",", "(", ")")); // (aa,bb,cc)
