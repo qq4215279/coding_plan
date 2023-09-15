@@ -47,20 +47,18 @@ public class PersonComparator {
 class AseAgePerson implements Comparator<PersonComparator> {
     @Override
     public int compare(PersonComparator o1, PersonComparator o2) {
-//        return o1.getAge() - o2.getAge(); // 升序
-//        return o2.getAge() - o1.getAge(); // 降序
+        // 如下为错误写法！！！因为不满足比较器的规则：自反性，对称性，传递性
+        // return o1.getAge() > o2.getAge() ? 1 : -1; // 升序
 
-        return o1.getAge() > o2.getAge() ? 1 : -1; // 升序
-//        return o1.getAge() > o2.getAge() ? 1 : -1; // 升序
+        return o1.getAge() - o2.getAge(); // 升序
+        // return o2.getAge() - o1.getAge(); // 降序
     }
 }
 
 class DescAgePerson implements Comparator<PersonComparator> {
     @Override
     public int compare(PersonComparator o1, PersonComparator o2) {
-        int result;
-        result = o2.getAge() - o1.getAge();
-        return result;
+        return o2.getAge() - o1.getAge();
     }
 }
 
@@ -71,12 +69,13 @@ class Test {
         list.add(new PersonComparator("AAA", 30));
         list.add(new PersonComparator("bbb", 10));
         list.add(new PersonComparator("ddd", 40));
+        // list.add(new PersonComparator("eee", 40));
 
         // 使用方式1：
         // 打印list的原始序列
         System.out.println("排序前list: " + list);
         list.sort(new AseAgePerson());
-        //list.sort(new DescAgePerson());
+        // list.sort(new DescAgePerson());
         System.out.println("排序后list: " + list);
 
         System.out.println("----------------------------------------------------------------->");

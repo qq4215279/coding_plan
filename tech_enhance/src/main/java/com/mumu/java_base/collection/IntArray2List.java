@@ -22,14 +22,14 @@ import java.util.stream.Collectors;
 public class IntArray2List {
 
     /**
-     * int[]转list
+     * int[] 转 list
      * @date 2023/7/22 16:43
      * @param
      * @return void
      */
     @Test
     public void intArray2ListTest(){
-        int[] array = {1, 2, 5, 5, 5, 5, 6, 6, 7, 2, 9, 2};
+		int[] array = { 1, 2, 5, 5, 5, 5, 6, 6, 7, 2, 9, 2 };
 
         // 方法一：需要导入apache commons-lang3 jar
         List<Integer> list = Arrays.asList(ArrayUtils.toObject(array));
@@ -46,13 +46,19 @@ public class IntArray2List {
         }
     }
 
+    /**
+     * int[] 转 Integer[]
+     * @date 2023/8/31 17:15
+     * @param
+     * @return void
+     */
     @Test
     public void intArray2IntegertArrayTest(){
-        int[] array = {1, 2, 5, 5, 5, 5, 6, 6, 7, 2, 9, 2};
+        int[] intArray = {1, 2, 5, 5, 5, 5, 6, 6, 7, 2, 9, 2};
 
         // int[] 转 Integer[]
-        Integer[] integerArr = Arrays.stream(array).boxed().toArray(Integer[]::new);
-        System.out.println(Arrays.toString(integerArr));
+        Integer[] integerArray = Arrays.stream(intArray).boxed().toArray(Integer[]::new);
+        System.out.println(Arrays.toString(integerArray));
     }
 
     @Test
@@ -60,8 +66,8 @@ public class IntArray2List {
         List<Integer> list = List.of(1, 2, 3);
 
         // 方法二：java8及以上版本(需要转为int[]的请用这种)
-        int[] intArr1 =  list.stream().mapToInt(Integer::valueOf).toArray();
-        System.out.println(Arrays.toString(intArr1));
+        int[] intArray =  list.stream().mapToInt(Integer::valueOf).toArray();
+        System.out.println(Arrays.toString(intArray));
     }
 
     @Test

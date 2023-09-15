@@ -1,7 +1,13 @@
+/*
+ * Copyright 2020-2023, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.java_base.comparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * 比较器：Comparable使用
@@ -51,9 +57,11 @@ public class PersonComparable implements Comparable<PersonComparable> {
      */
     @Override
     public int compareTo(PersonComparable personComparable) {
-//        return getAge() - personComparable.getAge(); // 升序
-//        return person.getAge() - getAge(); // 降序
-        return getAge() > personComparable.getAge() ? 1 : -1; // 升序
+        // 如下为错误写法！！！因为不满足比较器的规则：自反性，对称性，传递性
+        // return getAge() > personComparable.getAge() ? 1 : -1; // 升序
+
+       // return getAge() - personComparable.getAge(); // 升序
+       return personComparable.getAge() - getAge(); // 降序
     }
 
     @Override
@@ -82,11 +90,12 @@ public class PersonComparable implements Comparable<PersonComparable> {
 
 
     public static void main(String[] args) {
-        ArrayList<PersonComparable> list = new ArrayList<>();
+        List<PersonComparable> list = new ArrayList<>();
         list.add(new PersonComparable("ccc", 20));
         list.add(new PersonComparable("AAA", 30));
         list.add(new PersonComparable("bbb", 10));
         list.add(new PersonComparable("ddd", 40));
+
         // 打印list的原始序列
         System.out.printf("Original sort, list:%s\n", list);
         Collections.sort(list);

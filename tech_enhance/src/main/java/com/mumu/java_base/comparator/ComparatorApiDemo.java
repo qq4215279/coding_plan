@@ -36,7 +36,8 @@ public class ComparatorApiDemo {
         // 2. 降序
         // userList = userList.stream().sorted(Comparator.comparingInt(User::getAge).reversed()).collect(Collectors.toList());
         // userList = userList.stream().sorted(Comparator.comparing(User::getAge, Comparator.reverseOrder())).collect(Collectors.toList());
-        userList = userList.stream().sorted(Comparator.comparing(e -> e.getAge(), Comparator.reverseOrder())).collect(Collectors.toList());
+        userList = userList.stream().sorted(Comparator.comparing(e -> e.getAge(), Comparator.reverseOrder()))
+                .collect(Collectors.toList());
 
         System.out.println(userList.toString());
     }

@@ -1,9 +1,9 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
-package com.mumu.java_base.collection;
+package com.mumu.java_base.collection.traverse;
 
 import org.apache.poi.ss.formula.functions.T;
 import org.junit.Test;
