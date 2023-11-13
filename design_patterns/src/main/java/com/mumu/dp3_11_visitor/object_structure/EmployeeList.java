@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -21,8 +21,8 @@ public class EmployeeList {
 
     // 遍历访问员工集合中的每一个员工对象
     public void accept(Department handler) {
-        for (Object obj : list) {
-            ((Employee)obj).accept(handler);
+        for (Employee obj : list) {
+            obj.accept(handler);
         }
     }
 }

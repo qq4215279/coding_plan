@@ -1,4 +1,11 @@
+/*
+ * Copyright 2020-2023, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.dp2_6_flyweight.simple;
+
+import com.mumu.dp2_6_flyweight.simple.chessman.IgoChessman;
 
 public class Client {
     public static void main(String args[]) {

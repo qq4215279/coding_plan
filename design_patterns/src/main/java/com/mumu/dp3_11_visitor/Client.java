@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -13,7 +13,7 @@ import com.mumu.dp3_11_visitor.visitor.Department;
 
 public class Client {
     public static void main(String args[]) {
-        EmployeeList list = new EmployeeList();
+        EmployeeList el = new EmployeeList();
         Employee fte1, fte2, fte3, pte1, pte2;
 
         fte1 = new FulltimeEmployee("张无忌", 3200.00, 45);
@@ -22,14 +22,14 @@ public class Client {
         pte1 = new ParttimeEmployee("洪七公", 80.00, 20);
         pte2 = new ParttimeEmployee("郭靖", 60.00, 18);
 
-        list.addEmployee(fte1);
-        list.addEmployee(fte2);
-        list.addEmployee(fte3);
-        list.addEmployee(pte1);
-        list.addEmployee(pte2);
+        el.addEmployee(fte1);
+        el.addEmployee(fte2);
+        el.addEmployee(fte3);
+        el.addEmployee(pte1);
+        el.addEmployee(pte2);
 
         Department dep;
         dep = (Department)XMLUtil.getBean();
-        list.accept(dep);
+        el.accept(dep);
     }
 }

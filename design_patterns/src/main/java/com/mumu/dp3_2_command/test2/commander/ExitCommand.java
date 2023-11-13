@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -16,6 +16,7 @@ public class ExitCommand extends Command {
     }
 
     // 命令执行方法，将调用请求接收者的业务方法
+    @Override
     public void execute() {
         seObj.exit();
     }

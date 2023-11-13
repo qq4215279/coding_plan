@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -17,8 +17,8 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class OneToHundred {
     public static void main(String[] args) throws InterruptedException {
-        Task t = new Task();
-        // Task2 t = new Task2();
+        // Task t = new Task();
+        Task2 t = new Task2();
         Thread t1 = new Thread(t, "A");
         Thread t2 = new Thread(t, "B");
         t1.start();
@@ -36,14 +36,16 @@ class Task implements Runnable {
     public void run() {
         while (number < 10) {
             lock.lock();
+
             number++;
             System.out.println("number: " + number);
+
             condition.signal();
             Thread curThread = Thread.currentThread();
-
             String curThreadName = curThread.getName();
             String otherThreadName = curThreadName.equals("A") ? "B" : "A";
             System.out.println("当前线程是：" + curThread.getName() + "，唤醒 " + otherThreadName + " 线程");
+
             try {
                 if (number < 10) {
                     System.out.println("当前线程是：" + curThread.getName() + "，进行等待...");
@@ -85,14 +87,16 @@ class Task2 implements Runnable {
     public void run() {
         while (number < 10) {
             lock.lock();
+
             number++;
             System.out.println("number: " + number);
+
             condition.signal();
             Thread curThread = Thread.currentThread();
-
             String curThreadName = curThread.getName();
             String otherThreadName = curThreadName.equals("A") ? "B" : "A";
             System.out.println("当前线程是：" + curThread.getName() + "，唤醒 " + otherThreadName + " 线程");
+
             try {
                 if (number < 10) {
                     System.out.println("当前线程是：" + curThread.getName() + "，进行等待...");

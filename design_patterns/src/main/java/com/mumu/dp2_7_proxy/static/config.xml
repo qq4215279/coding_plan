@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<!--
-  ~ Copyright 2020-2021, 木木996.
-  ~ All Right Reserved.
-  -->
-
-<config>
-	<className>com.mumu.dp2_7_proxy.ProxySearcher</className>
-</config>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -46,6 +46,7 @@ public class ParttimeEmployee implements Employee {
 		return (this.workTime);
 	}
 
+	@Override
 	public void accept(Department handler) {
 		// 调用访问者的访问方法
 		handler.visit(this);

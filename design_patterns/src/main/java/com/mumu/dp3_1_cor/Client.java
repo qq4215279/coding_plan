@@ -1,11 +1,15 @@
 /*
- * Copyright 2020-2021, 木木996.
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
 package com.mumu.dp3_1_cor;
 
-import com.mumu.dp3_1_cor.handler.*;
+import com.mumu.dp3_1_cor.handler.approver.Approver;
+import com.mumu.dp3_1_cor.handler.approver.Congress;
+import com.mumu.dp3_1_cor.handler.approver.Director;
+import com.mumu.dp3_1_cor.handler.approver.President;
+import com.mumu.dp3_1_cor.handler.approver.VicePresident;
 
 public class Client {
     public static void main(String[] args) {
