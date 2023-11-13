@@ -14,34 +14,46 @@ package com.mumu.java_base.compile_command;
 public class HelloWorld {
 
     /**
-     * 1. 编译命令
-     * javac -d out -encoding UTF-8  com\mumu\java_base\compile_command\HelloWorld.java
-     * java -cp out com.mumu.java_base.compile_command.HelloWorld
+     * 1.1. 编译字节码。javac 编译 Java 源文件。格式: javac [options] [source files]
+     * eg：- 定位到src/main/java目录下。
+     *     - 输入命令: javac -d out -encoding UTF-8  com\mumu\java_base\compile_command\HelloWorld.java
+     *          -encoding UTF-8    指定了编码为 UTF-8
+     *          -d out    指定了编译输出目录为 out 文件夹
+     *          com\mumu\java_base\compile_command\HelloWorld.java    要编译的 Java 源文件。
+     *          其他参数：
+     *              -d directory: 指定编译输出的目录。编译后的 .class 文件将存储在指定的目录中。
+     *              -classpath path 或 -cp path: 指定类路径，用于寻找依赖的类和包。路径可以是目录或 JAR 文件。
+     *              -sourcepath path: 指定源代码的搜索路径。
+     *              -encoding encoding: 指定源文件的编码。
+     *              -verbose: 显示详细的编译信息。
+     *              -version: 显示版本信息。
+     *              -help: 显示帮助信息。
      *
-     * 2. 打jar包命令
-     * jar cf HelloWorld.jar com
-     * jar cfe HelloWorld.jar com.mumu.java_base.compile_command.HelloWorld -C out .
+     * 1.2. 运行字节码
+     * eg: java -cp out com.mumu.java_base.compile_command.HelloWorld
+     *      -cp 参数来设置类路径，指向你的编译输出目录 out。然后，它会运行主类 com.mumu.java_base.compile_command.HelloWorld
      *
-     * 3. 启动
-     * java -jar HelloWorld.jar
      *
-     * 用java原生命令启动class文件：
-     * 1. 将文件里的 package... 去掉
-     * 2. 生成.class文件: javac -encoding utf-8 HelloWorld.java   // 注: 多个java文件用空格隔开。查看帮助: javac -help
-     * 3. 运行Main方法: java HelloWorld   // (注: 多个class文件用空格隔开)
+     * 2.1. 打jar包命令
+     * eg: - 先编译。
+     *     - 再执行打包命令: jar cfe HelloWorld.jar com.mumu.java_base.compile_command.HelloWorld -C out .
+     *          c    创建新的 JAR 文件。
+     *          f    指定 JAR 文件的名称。
+     *          e    指定主类。
+     *          HelloWorld.jar    指定要创建的 JAR 文件的名称。
+     *          com.mumu.java_base.compile_command.HelloWorld       指定主类的完整类名。
+     *          -C out .    进入 out 目录，将其中的文件包含在 JAR 中，. 表示当前目录
      *
-     * 用java原生命令启动jar包：
-     * 1. 将文件里的package... 去掉
-     * 2. 生成.class文件: javac -encoding utf-8 HelloWorld.java   // 注: 多个java文件用空格隔开。查看帮助: javac -help
-     * 3. 生成jar包: jar cvf test.jar HelloWorld.class  // 注: 多个class文件用空格隔开
-     * 4. 添加指定程序入口: 用解压软件打开test.jar，进入MANIFEST.MF文件夹下，增加: Main-Class: HelloWorld
-     * 5.
+     * 2.2. 执行jar包。格式: java -jar jar文件名.jar
+     * eg: 执行命令: java -jar HelloWorld.jar
      *
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         for (int i = 0; i <= 100; i++) {
             System.out.println("Hello World - " + i);
         }
+
+        Thread.sleep(100000);
     }
 
 }
