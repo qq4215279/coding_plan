@@ -38,7 +38,9 @@ public class HelloWorld {
      * eg: - 先编译。
      *     - 再执行打包命令: jar cfe HelloWorld.jar com.mumu.java_base.compile_command.HelloWorld -C out .
      *          c    创建新的 JAR 文件。
+     *          v 表示在标准输出中生成详细输出。
      *          f    指定 JAR 文件的名称。
+     *          m 后面跟着MANIFEST.MF文件的路径。
      *          e    指定主类。
      *          HelloWorld.jar    指定要创建的 JAR 文件的名称。
      *          com.mumu.java_base.compile_command.HelloWorld       指定主类的完整类名。
