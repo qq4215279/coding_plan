@@ -21,7 +21,7 @@ public class FinalDemo {
     /**
      * final
      * 修饰变量：
-     * 修饰基本数据类型指指不能更改
+     * 修饰基本数据类型指值不能更改
      * 修饰引用类型是指其引用地址不能更改
      *
      * 修饰方法：
@@ -32,9 +32,12 @@ public class FinalDemo {
      * 所以final 关键字只有明确禁⽌覆盖⽅法时，才使⽤其修饰⽅法。
      *
      * 修饰类
-     * final 修饰类表示该类不可被继承。也就是说不希望某个类有⼦类的时候，⽤final 关键字来修饰。并且由于是⽤ final 修饰的类，其类中所有的⽅法也被隐式的指为 final ⽅法。
+     * final 修饰类表示该类不可被继承。也就是说不希望某个类有⼦类的时候，⽤ final 关键字来修饰。并且由于是⽤ final 修饰的类，其类中所有的⽅法也被隐式的指为 final ⽅法。
      * 在 JDK 中有个最明显的类 String ，就是⽤ final 修饰的，将 String 类⽤ final 修饰很重要的⼀个原因是常量池。
      */
+
+
+    public final int num00;
 
     public static final int num = 100;
 
@@ -46,6 +49,10 @@ public class FinalDemo {
 
     static {
         map.put("a", 1);
+    }
+
+    public FinalDemo() {
+        this.num00 = 999;
     }
 
     /**
@@ -76,6 +83,7 @@ public class FinalDemo {
     public static void main(String[] args) {
         FinalDemo demo = new FinalDemo();
         demo.referenceObjDemo();
+        System.out.println(demo.num00);
     }
 
 }

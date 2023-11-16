@@ -3,7 +3,7 @@
  * All Right Reserved.
  */
 
-package com.mumu.java_base.queue;
+package com.mumu.java_base.collection.queue;
 
 import com.mumu.common.pojo.User;
 import org.junit.Test;
