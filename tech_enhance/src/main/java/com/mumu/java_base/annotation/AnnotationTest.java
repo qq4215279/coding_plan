@@ -28,14 +28,14 @@ public class AnnotationTest {
     }
 
     public static void main(String[] args) {
-        Class<AnnotationTest> workerClass = AnnotationTest.class;
+        Class<AnnotationTest> annotationTestClass = AnnotationTest.class;
 
-        if (!workerClass.isAnnotationPresent(Pro.class)) {
+        if (!annotationTestClass.isAnnotationPresent(Pro.class)) {
             System.out.println("不存在定义的注解：Pro");
         }
 
-        if (workerClass.isAnnotationPresent(MyAnno.class)) {
-            MyAnno annotation = workerClass.getAnnotation(MyAnno.class);
+        if (annotationTestClass.isAnnotationPresent(MyAnno.class)) {
+            MyAnno annotation = annotationTestClass.getAnnotation(MyAnno.class);
 
             System.out.println("value: " + annotation.value());
             System.out.println("weekEnum: " + annotation.weekEnum().toString());
