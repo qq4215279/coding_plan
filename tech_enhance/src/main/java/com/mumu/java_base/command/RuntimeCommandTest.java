@@ -18,9 +18,8 @@ import java.io.InputStreamReader;
 public class RuntimeCommandTest {
     public static void main(String[] args) {
         try {
-            String command = "python D:\\Code\\PythonWorkSpace\\study_python\\py_study_test\\daily\\command.py";  // 你要执行的 Python 脚本
-            String command2 = "python -c from D:\\Code\\PythonWorkSpace\\study_python\\py_study_test\\daily\\command import my_function; my_function()";
-            Process process = Runtime.getRuntime().exec(command2);
+            String command = "python -c \"import sys; sys.path.append('F:/Code/WorkSpace/yjxxl_server/app/trunk/hf-parent/3rd-party/py_tools/test'); from command import get_all_force_module_info; get_all_force_module_info()\"";
+            Process process = Runtime.getRuntime().exec(command);
 
             // 获取命令执行的输出
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -36,4 +35,13 @@ public class RuntimeCommandTest {
             e.printStackTrace();
         }
     }
+
+    private String getFinalCommand() {
+        String pythonCommand = "python";
+        String scriptPath = "F:/Code/PythonSpace/study_python/py_study_test/daily";
+        String command = "import sys; sys.path.append('" + scriptPath + "'); from command import my_function; my_function()";
+        return "";
+    }
+
+
 }
