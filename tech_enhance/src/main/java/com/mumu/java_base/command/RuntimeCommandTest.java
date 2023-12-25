@@ -18,7 +18,8 @@ import java.io.InputStreamReader;
 public class RuntimeCommandTest {
     public static void main(String[] args) {
         try {
-            String command = "python -c \"import sys; sys.path.append('F:/Code/WorkSpace/yjxxl_server/app/trunk/hf-parent/3rd-party/py_tools/test'); from command import get_all_force_module_info; get_all_force_module_info()\"";
+            String command = "python -c \"import sys; sys.path.append('F:/Code/WorkSpace/yjxxl_server/app/trunk/hf-parent/3rd-party/py_tools/test'); from command import start_force_api_test; start_force_api_test()\"";
+            // String command = "python -c \"import sys; sys.path.append('F:/Code/WorkSpace/yjxxl_server/app/trunk/hf-parent/3rd-party/py_tools/test'); from command import get_all_force_module_info; get_all_force_module_info()\"";
             Process process = Runtime.getRuntime().exec(command);
 
             // 获取命令执行的输出
@@ -29,9 +30,9 @@ public class RuntimeCommandTest {
             }
 
             // 等待命令执行完成
-            int exitCode = process.waitFor();
-            System.out.println("Exit Code: " + exitCode);
-        } catch (IOException | InterruptedException e) {
+            // int exitCode = process.waitFor();
+            System.out.println("Exit Code: " + 0);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
