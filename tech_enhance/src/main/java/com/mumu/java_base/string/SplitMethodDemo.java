@@ -95,4 +95,16 @@ public class SplitMethodDemo {
         }
     }
 
+    @Test
+    public void splitDemo5() {
+        String str2 = "";
+        String[] c2 = str2.split(",");
+        System.out.println(c2.length); // 1
+        System.out.println(Arrays.toString(c2)); // []
+
+        for (String s : c2) {
+            System.out.println(s + ":::");
+        }
+    }
+
 }
