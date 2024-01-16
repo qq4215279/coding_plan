@@ -5,10 +5,10 @@
 
 package com.mumu.java_tools.fastjson.json2;
 
-import static com.reign.util.string.SymbolConstants.*;
-
 import com.alibaba.fastjson.serializer.JSONSerializer;
 import com.alibaba.fastjson.serializer.SerializeWriter;
+
+import static com.mumu.java_tools.fastjson.json2.SymbolConstants.*;
 
 /**
  * XML文档类
@@ -55,7 +55,6 @@ public class JsonDocument {
 	
 	/**
 	 * 开始创建对象节点
-	 * @param elementName
 	 */
 	public void startObject() {
 		if (!first) {
@@ -87,7 +86,6 @@ public class JsonDocument {
 	
 	/**
 	 * 开始创建数组节点
-	 * @param elementName
 	 */
 	public void startArray() {
 		if (!first) {
@@ -121,7 +119,6 @@ public class JsonDocument {
 	
 	/**
 	 * 创建元素
-	 * @param elementName
 	 * @param o
 	 */
 	public void createElement(Object o) {
@@ -148,7 +145,6 @@ public class JsonDocument {
 
 	/**
 	 * Append
-	 * @param xml
 	 */
 	public void appendJson(final byte[] json) {
 		if (!first) {
@@ -160,7 +156,6 @@ public class JsonDocument {
 	
 	/**
 	 * Append
-	 * @param xml
 	 */
 	public void appendJson(final String elementName, final byte[] json) {
 		if (!first) {
@@ -173,7 +168,6 @@ public class JsonDocument {
 	
 	/**
 	 * Append
-	 * @param xml
 	 */
 	public void appendObjectJson(final String elementName, final byte[] json) {
 		if (!first) {
@@ -202,7 +196,6 @@ public class JsonDocument {
 	
 	/**
 	 * 往输出流中写入一个对象
-	 * @param out
 	 * @param bytes
 	 */
 	private JsonDocument append(final char[] bytes) {
@@ -216,7 +209,6 @@ public class JsonDocument {
 	
 	/**
 	 * 往输出流中写入一个对象
-	 * @param out
 	 * @param bytes
 	 */
 	private JsonDocument append(final byte[] bytes) {

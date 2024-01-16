@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.reign.framework.log.InternalLoggerFactory;
-import com.reign.framework.log.Logger;
-
 /**
  * JsonBuilder
  * @author panqq
@@ -19,9 +16,6 @@ import com.reign.framework.log.Logger;
  * 2011-3-7 上午11:34:19
  */
 public class JsonBuilder {
-	/** log */
-	private static final Logger log = InternalLoggerFactory.getLogger(JsonBuilder.class);
-	
     /**
      * 默认的表示成功的json
      */
