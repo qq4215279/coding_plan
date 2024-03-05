@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020, 上海哈里奥科技有限公司
+ * Copyright 2020-2023, 木木996.
  * All Right Reserved.
  */
 
@@ -73,5 +73,16 @@ public class ArraysTest {
         list.add("haha");
     }
 
+    public static void testAsListApi2(Object... args) {
+        Object[] newArgs = Arrays.copyOf(args, args.length);
+        newArgs[2] = -1;
+
+        System.out.println(Arrays.toString(args));
+        System.out.println(Arrays.toString(newArgs));
+    }
+
+    public static void main(String[] args) {
+        testAsListApi2(1, 222, 999, 0000);
+    }
 
 }
