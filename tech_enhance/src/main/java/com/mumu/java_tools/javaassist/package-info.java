@@ -75,6 +75,7 @@ package com.mumu.java_tools.javaassist;
  *
  *
  * 4. CtField: 是 CtClass 中表示字段的类，用于表示类的一个字段。它提供了丰富的方法，可以获取字段的信息、修改字段的结构、生成新的字段等。
+ *      CtField.make(src, ctClass);  src 为字段字符串。eg: src = "public static final int age = 18;"
  *      CtField.setModifiers(): 设置字段的修饰符，用于修改字段的访问权限。
  *
  * 5. CtConstructor: 是 CtClass 中表示构造函数的类，用于表示类的一个构造函数。它提供了丰富的方法，可以获取构造函数的信息、修改构造函数的结构、生成新的构造函数等。
