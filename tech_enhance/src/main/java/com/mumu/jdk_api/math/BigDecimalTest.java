@@ -5,6 +5,10 @@
 
 package com.mumu.jdk_api.math;
 
+import org.junit.Test;
+
+import java.math.BigDecimal;
+
 /**
  * BigDecimalTest
  *
@@ -45,4 +49,11 @@ public class BigDecimalTest {
      * 这些只是BigDecimal类的一些常用API方法。BigDecimal还提供了许多其他方法，如取绝对值、取对数、开平方等。
      * 请注意，由于BigDecimal执行的是任意精度的十进制数值计算，因此它的计算速度可能相对较慢，比基本数据类型的运算要慢得多。在处理大量数据时，请考虑性能和内存消耗。
      */
+
+    @Test
+    public void aaTest() {
+        BigDecimal b = new BigDecimal("123.456");
+        float v = b.setScale(2, BigDecimal.ROUND_DOWN).floatValue();
+        System.out.println(v);
+    }
 }
