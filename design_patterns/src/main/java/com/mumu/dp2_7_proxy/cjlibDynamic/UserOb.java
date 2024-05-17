@@ -8,10 +8,13 @@ package com.mumu.dp2_7_proxy.cjlibDynamic;
  */
 public class UserOb {
 
-    private int age = 100;
+    public int age = 100;
 
     public UserOb(int age) {
         this.age = age;
+    }
+
+    public UserOb() {
     }
 
     public int getAge() {
@@ -20,6 +23,7 @@ public class UserOb {
         return age;
     }
 
-
-
+    public void setAge(int age) {
+        this.age = age;
+    }
 }

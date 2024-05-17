@@ -11,11 +11,29 @@ import net.sf.cglib.proxy.Enhancer;
 public class CGLibProxyDemo {
 
     public static void main(String[] args) {
-        Enhancer enhancer = new Enhancer();
-        enhancer.setSuperclass(UserOb.class);
-        enhancer.setCallback(new UserInterceptor());
+        UserOb userOb = new UserOb(18);
 
-        UserOb proxy = (UserOb) enhancer.create();
-        proxy.getAge(); // 输出 Before method call, Hello CGLIB!, After method call
+        userOb = getEnhancerConfigInfo(userOb);
+        System.out.println(userOb.getAge());
     }
+
+    public static <ConfigInfo> ConfigInfo getEnhancerConfigInfo(ConfigInfo configInfo) {
+        if (configInfo == null) {
+            return configInfo;
+        }
+
+        // 已经被代理过
+        if (Enhancer.isEnhanced(configInfo.getClass())) {
+            return configInfo;
+        }
+
+        Class<ConfigInfo> aClass = (Class<ConfigInfo>) configInfo.getClass();
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(configInfo.getClass());
+        enhancer.setCallback(new UserInterceptor(configInfo));
+
+        Object obj = enhancer.create();
+        return aClass.cast(obj);
+    }
+
 }
