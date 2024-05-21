@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.OptionalInt;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -51,6 +52,11 @@ public class StreamTest {
         // 4. 从文件中获得流 使用BufferedReader的lines方法从文件中获得行的流
         BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("file.txt")));
         Stream<String> linesStream = reader.lines();
+
+        // 5. 使用 Pattern.splitAsStream() 方法，将字符串分隔成流
+        Pattern pattern = Pattern.compile(",");
+        Stream<String> stringStream = pattern.splitAsStream("a,b,c,d");
+        stringStream.forEach(System.out::println);
     }
 
     /**
