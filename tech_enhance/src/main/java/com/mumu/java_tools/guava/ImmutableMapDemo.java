@@ -20,8 +20,6 @@ import java.util.TreeMap;
  */
 public class ImmutableMapDemo {
 
-    
-
     /**
      * 创建 ImmutableMap 对象后，不可在修改值test
      * @return void

@@ -5,6 +5,9 @@ import javassist.CtClass;
 import javassist.CtField;
 import javassist.CtMethod;
 
+import javax.tools.JavaCompiler;
+import javax.tools.ToolProvider;
+
 /**
  * JavaAssistGenericDemo
  *
@@ -20,6 +23,8 @@ public class JavaAssistGenericDemo {
     }
 
     public static void demo() {
+        // 获取系统Java编译器
+        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 
         /**
          * public class MyClass<T> {
