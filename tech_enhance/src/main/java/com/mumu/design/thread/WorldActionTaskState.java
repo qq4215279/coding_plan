@@ -3,7 +3,7 @@
  * All Right Reserved.
  */
 
-package com.mumu.java_base.thread.design;
+package com.mumu.design.thread;
 
 /**
  * WorldActionTaskState
