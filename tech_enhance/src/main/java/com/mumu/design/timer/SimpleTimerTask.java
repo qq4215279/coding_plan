@@ -5,7 +5,10 @@
 
 package com.mumu.design.timer;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * SimpleTimerTask
@@ -13,22 +16,21 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author liuzhen
  * @version 1.0.0 2024/5/25 16:29
  */
-public abstract class SimpleTimerTask implements Runnable {
-
-    /** id生成器 */
-    protected static final AtomicInteger idGenerator = new AtomicInteger(0);
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Slf4j
+public abstract class SimpleTimerTask implements Runnable, Comparable<SimpleTimerTask> {
     /** 任务id */
     private int id;
     /** 任务名称 */
     private String name;
-    /** 执行时间 */
+    /** 任务执行时间 */
     private long executeTime;
-
-    /** 任务取消标记 */
-    private volatile boolean cancel;
-    /** 任务已运行标记 */
-    private volatile boolean executed;
+    /** 保存到db */
+    private boolean save2Db;
+    /** 任务状态：0: 未执行；1: 已取消；2: 已执行 */
+    private volatile int state;
 
     /**
      * 构造函数
@@ -38,18 +40,23 @@ public abstract class SimpleTimerTask implements Runnable {
      * @date 2024/5/25 16:42
      */
     public SimpleTimerTask(String name, long executeTime) {
-        this.name = name;
-        this.id = idGenerator.incrementAndGet();
-        this.executeTime = executeTime;
-        this.cancel = false;
-        this.executed = false;
+        this(name, executeTime, false);
     }
 
-
-
-    @Override
-    public void run() {
-        execute();
+    /**
+     * 构造函数
+     * @param name 任务名称
+     * @param executeTime 执行时间
+     * @param save2Db 保存到db
+     * @return
+     * @date 2024/5/25 16:42
+     */
+    public SimpleTimerTask(String name, long executeTime, boolean save2Db) {
+        this.id = SimpleTimerManager.idGenerator.incrementAndGet();
+        this.name = name;
+        this.executeTime = executeTime;
+        this.save2Db = save2Db;
+        this.state = SimpleTimerManager.UN_FINISH_STATE;
     }
 
 
@@ -60,6 +67,15 @@ public abstract class SimpleTimerTask implements Runnable {
      */
     public abstract void execute();
 
+
+    @Override
+    public void run() {
+        try {
+            execute();
+        } catch (RuntimeException e) {
+            log.error("SimpleTimerTask#execute error");
+        }
+    }
     
     
     /**
@@ -79,50 +95,84 @@ public abstract class SimpleTimerTask implements Runnable {
     public String getName() {
         return name;
     }
-    
+
     /**
-     * 取消任务
-     * @return true 取消成功， false 取消失败，任务已执行
-     * $Date: 2013-6-8 下午01:41:45
+     * 获取任务执行时间
+     * @return long
+     * @date 2024/5/27 11:52
      */
-    public boolean cancel() {
-        if (executed) {
-            return false;
-        }
-        cancel = true;
-        return true;
+    public long getExecuteTime() {
+        return executeTime;
     }
 
     /**
-     *
+     * 是否保存到db
+     * @return boolean
+     * @date 2024/5/27 15:09
+     */
+    public boolean isSave2Db() {
+        return save2Db;
+    }
+
+    /**
+     * 任务是否已经取消
      * @return boolean
      * @date 2024/5/25 16:42
      */
     public boolean isCancel() {
-        return cancel;
+        return state == SimpleTimerManager.CANCEL_STATE;
     }
 
     /**
-     * 判断任务是否可以执行, 如果可以执行，标记任务已执行
-     * @return true 可以执行 false 不可以执行，任务已取消
-     * $Date: 2013-6-8 下午01:44:32
+     * 取消任务
+     * @return boolean true 取消成功， false 取消失败，任务已执行
+     * @date 2024/5/27 11:35
      */
-    public boolean canExecute() {
-        if (cancel) {
+    public boolean cancel() {
+        if (isCancel() || isFinish()) {
             return false;
         }
-        executed = true;
+
+        state = SimpleTimerManager.CANCEL_STATE;
         return true;
     }
 
     /**
-     *  
+     * 任务是否已经执行完成
      * @return boolean
      * @date 2024/5/25 16:45
      */
-    public boolean isExecuted() {
-        return executed;
+    public boolean isFinish() {
+        return state == SimpleTimerManager.FINISH_STATE;
     }
-    
+
+    /**
+     * 判断任务是否可以执行, 如果可以执行，标记任务已执行
+     * @return boolean true 可以执行 false 不可以执行，任务已取消
+     * @date 2024/5/27 11:35
+     */
+    public boolean canExecute() {
+        if (isCancel() || isFinish()) {
+            return false;
+        }
+
+        state = SimpleTimerManager.FINISH_STATE;
+        return true;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    @Override
+    public int compareTo(SimpleTimerTask o) {
+        if (this.executeTime == o.executeTime) {
+            return 0;
+        } else if (this.executeTime > o.executeTime) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
 
 }
