@@ -6,8 +6,11 @@
 package com.mumu.design.timer;
 
 import com.mumu.design.thread.Time;
+import com.mumu.design.timer.redis.RedisTemplate;
 import lombok.extern.slf4j.Slf4j;
 
+import java.text.MessageFormat;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.PriorityBlockingQueue;
@@ -25,33 +28,33 @@ public class SimpleTimer extends Thread {
     /** 线程数量 */
     private int threadNum;
     /** 任务列表 */
-    private PriorityBlockingQueue<SimpleTimerTask> taskList = new PriorityBlockingQueue<>();
+    private final PriorityBlockingQueue<SimpleTimerTask> taskList = new PriorityBlockingQueue<>();
     /** executor */
-    private ExecutorService executor;
+    private final ExecutorService executor;
 
-    /** 开始标识符 */
-    private boolean start;
-    /** 停止标识符 */
-    private boolean stop;
-
-
-
+    /** 分布式锁redis操作模版 */
+    private RedisTemplate lockTemplate;
+    /** 数据redis操作模版 */
+    private RedisTemplate redisTemplate;
 
     /**
      * 构造函数
      */
-    public SimpleTimer() {
-        this(3);
+    public SimpleTimer(RedisTemplate lockTemplate, RedisTemplate redisTemplate) {
+        this(8, lockTemplate, redisTemplate);
     }
 
     /**
      * 构造函数
      * @param num 线程池数量
      */
-    public SimpleTimer(int num) {
+    public SimpleTimer(int num, RedisTemplate lockTemplate, RedisTemplate redisTemplate) {
         this.threadNum = num;
         this.executor = new ThreadPoolExecutor(threadNum, threadNum, 60 * 1000L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(),
                 new StandardThreadFactory("SimpleTimerPool"));
+
+        this.lockTemplate = lockTemplate;
+        this.redisTemplate = redisTemplate;
     }
 
     /**
@@ -84,27 +87,6 @@ public class SimpleTimer extends Thread {
         }
 
         return false;
-    }
-
-
-    public synchronized void startExecutor() {
-        if (start) {
-            return;
-        }
-
-        start = true;
-    }
-
-    public synchronized void stopExecutor() {
-        if (stop || !start) {
-            return;
-        }
-
-        // TODO 清空队列
-        this.taskList.clear();
-
-        // 设置标志位为停止
-        stop = true;
     }
 
 
@@ -147,7 +129,7 @@ public class SimpleTimer extends Thread {
 
     /**
      * 执行任务
-     * @param time time
+     * @param time 时间
      * @return void
      * @date 2024/5/27 11:52
      */
@@ -158,18 +140,56 @@ public class SimpleTimer extends Thread {
             SimpleTimerTask task = null;
             while ((task = taskList.peek()) != null) {
                 if (task.getExecuteTime() <= currentTime) {
-                    // 执行任务
-                    task = taskList.poll();
-                    if (task.canExecute()) {
-                        executor.execute(task);
-                        log.info("start execute timer task #name#{}taskId{}executeTime#{}#state#{}", task.getName(), task.getId(), task.getExecuteTime(), task.getState());
+                    // 服务器重启时，保证分布式环境任务只执行一次
+                    if (task.isSave2Db()) {
+                        int taskId = task.getId();
+                        String key = MessageFormat.format(SimpleTimerManager.KEY_SIMPLE_TIMER, String.valueOf(taskId));
+                        try {
+                            boolean lock = lockTemplate.tryLock(key, 100, 180 * 1000, TimeUnit.MILLISECONDS);
+                            // 没拿到锁
+                            if (!lock) {
+                                continue;
+                            }
+
+                            Object o = redisTemplate.hashGet(SimpleTimerManager.DATA_KEY_SIMPLE_TIMER_TASK_MAP, taskId);
+                            // 已执行过
+                            if (Objects.isNull(o)) {
+                                task.setFinishState();
+                            } else {
+                                doRunTask();
+
+                                redisTemplate.hashDelete(SimpleTimerManager.DATA_KEY_SIMPLE_TIMER_TASK_MAP, taskId);
+                            }
+                        } catch (Exception e) {
+                            // log.error(Utility.getTraceString(e));
+                        } finally {
+                            lockTemplate.releaseLock(key);
+                        }
                     } else {
-                        log.info("cancel execute timer task #name#{}taskId{}executeTime#{}#state#{}", task.getName(), task.getId(), task.getExecuteTime(), task.getState());
+                        doRunTask();
                     }
+
                 } else {
                     break;
                 }
             }
+        }
+    }
+
+    /**
+     * do执行任务
+     * @return void
+     * @date 2024/5/27 19:42
+     */
+    private void doRunTask() {
+        SimpleTimerTask task;// 执行任务
+        task = taskList.poll();
+        if (task.canExecute()) {
+            task.setFinishState();
+            executor.execute(task);
+            log.info("start execute timer task #name#{}taskId{}executeTime#{}#state#{}", task.getName(), task.getId(), task.getExecuteTime(), task.getState());
+        } else {
+            log.info("cancel execute timer task #name#{}taskId{}executeTime#{}#state#{}", task.getName(), task.getId(), task.getExecuteTime(), task.getState());
         }
     }
 }

@@ -5,10 +5,11 @@
 
 package com.mumu.design.timer;
 
+import com.mumu.design.timer.redis.RedisConfig;
+import com.mumu.design.timer.redis.RedisTemplate;
 import lombok.extern.slf4j.Slf4j;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -19,6 +20,13 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @Slf4j
 public class SimpleTimerManager {
+    /** 默认核心线程数 */
+    public static final int DEFAULT_LOOP_THREAD_NUM = 1;
+    /** 时间任务model key */
+    static final String KEY_SIMPLE_TIMER = "Simple_Timer_{0}";
+    /** 简单时间任务map */
+    static final String DATA_KEY_SIMPLE_TIMER_TASK_MAP = "Data_Simple_Timer_Task_Map";
+
     /** 任务状态 - 未执行 */
     static final int UN_FINISH_STATE = 0;
     /** 任务状态 - 已取消 */
@@ -38,7 +46,12 @@ public class SimpleTimerManager {
     /** MainLoop */
     private SimpleTimer[] children;
     /** 正在运行的任务数量  */
-    private AtomicInteger runningTaskNum = new AtomicInteger();
+    // private AtomicInteger runningTaskNum = new AtomicInteger();
+
+    /** 分布式锁redis操作模版 */
+    private RedisTemplate lockTemplate = new RedisTemplate(new RedisConfig());
+    /** 数据redis操作模版 */
+    private RedisTemplate redisTemplate = new RedisTemplate(new RedisConfig());
 
     /**
      * 构造函数
@@ -50,7 +63,7 @@ public class SimpleTimerManager {
 
     /**
      * 获取单例
-     * @return com.mumu.design.timer.SimpleTimerManager
+     * @return SimpleTimerManager
      * @date 2024/5/27 13:53
      */
     public static SimpleTimerManager getInstance() {
@@ -77,7 +90,7 @@ public class SimpleTimerManager {
 
         /**
          * 获取对象
-         * @return com.mumu.design.timer.SimpleTimerManager
+         * @return SimpleTimerManager
          * @date 2024/5/27 13:53
          */
         public SimpleTimerManager getSimpleTimerManager() {
@@ -87,32 +100,38 @@ public class SimpleTimerManager {
 
     /**
      * 初始化
+     * @param lockTemplate lockTemplate
+     * @param redisTemplate redisTemplate
      * @return void
      * @date 2024/5/27 13:53
      */
-    public void init() {
-        init(loopThreadNum);
+    public void init(RedisTemplate lockTemplate, RedisTemplate redisTemplate) {
+        init(loopThreadNum, lockTemplate, redisTemplate);
     }
 
     /**
      * 初始化
      * @param loopThreadNum 线程数量
+     * @param lockTemplate lockTemplate
+     * @param redisTemplate redisTemplate
      * @return void
      * @date 2024/5/27 13:54
      */
-    public void init(int loopThreadNum) {
+    public void init(int loopThreadNum, RedisTemplate lockTemplate, RedisTemplate redisTemplate) {
         if (init) {
             return;
         }
 
-        init = true;
+        this.init = true;
+        this.lockTemplate = lockTemplate;
+        this.redisTemplate = redisTemplate;
 
         // 初始化帧线程池
-        children = new SimpleTimer[loopThreadNum];
+        this.children = new SimpleTimer[loopThreadNum];
         for (int i = 0; i < loopThreadNum; i++) {
             boolean success = false;
             try {
-                children[i] = new SimpleTimer(i);
+                this.children[i] = new SimpleTimer(8, lockTemplate, redisTemplate);
                 success = true;
             } catch (Exception e) {
                 throw new IllegalStateException("failed to create thread group", e);
@@ -124,7 +143,7 @@ public class SimpleTimerManager {
         }
 
         for (int i = 0; i < loopThreadNum; i++) {
-            children[i].start();
+            this.children[i].start();
         }
 
         // 初始化db task
@@ -132,7 +151,7 @@ public class SimpleTimerManager {
             initDbTask();
         } catch (Exception e) {
             log.error("SimpleTimerManager#initDbTask error");
-            e.printStackTrace();
+            // log.error(Utility.getTraceString(e));
         }
     }
 
@@ -142,23 +161,20 @@ public class SimpleTimerManager {
      * @date 2024/5/27 15:59
      */
     private void initDbTask() {
-        // TODO test
-        SimpleTimerTaskInfo info = new SimpleTimerTaskInfo("com.mumu.design.timer.Main$RefreshConfigTask", 1, "RefreshConfigTask", 1716794255653L, 0);
-        try {
-            Class<?> taskClass = Class.forName(info.getClassName());
-            Constructor<?> constructor = taskClass.getConstructor(long.class, String.class, long.class);
-            SimpleTimerTask task = (SimpleTimerTask) constructor.newInstance(1, "RefreshConfigTask", 1716794255653L);
-            addTask(task);
+        // ServerType serverType = InnerServer.getServerConfig().getServerType();
 
-        } catch (ClassNotFoundException | NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
+        Map<Object, Object> idTaskMap = redisTemplate.hashGetAll(DATA_KEY_SIMPLE_TIMER_TASK_MAP);
+        for (Map.Entry<Object, Object> entry : idTaskMap.entrySet()) {
+            Object o = entry.getValue();
+            SimpleTimerTask task = (SimpleTimerTask) o;
+            // TODO 不是当前服任务
+            // if (!task.getServerType().equals(serverType)) {
+            //     continue;
+            // }
+
+            addTask(task);
         }
+
     }
 
     /**
@@ -173,7 +189,7 @@ public class SimpleTimerManager {
         }
 
         // save2db
-        checkSave2Db(task);
+        checkAndSave2Db(task);
 
         int index = Math.abs(task.getId() % children.length);
         children[index].addTask(task);
@@ -182,21 +198,18 @@ public class SimpleTimerManager {
     }
 
     /**
-     * 校验保存到db
+     * 校验并保存到db
      * @param task task
      * @return void
      * @date 2024/5/27 15:13
      */
-    private void checkSave2Db(SimpleTimerTask task) {
+    private void checkAndSave2Db(SimpleTimerTask task) {
         if (!task.isSave2Db()) {
             return;
         }
 
-        Class<? extends SimpleTimerTask> taskClass = task.getClass();
-        String name = taskClass.getName();
-        // TODO SimpleTimerTaskInfo{className='com.mumu.design.timer.Main$RefreshConfigTask', id=1, name='RefreshConfigTask', executeTime=1716794255653, state=0}
-        SimpleTimerTaskInfo info = new SimpleTimerTaskInfo(name, task.getId(), task.getName(), task.getExecuteTime(), task.getState());
-        System.out.println(info.toString());
+        // save2db
+        redisTemplate.hashSet(DATA_KEY_SIMPLE_TIMER_TASK_MAP, task.getId(), task);
     }
 
 
@@ -206,6 +219,7 @@ public class SimpleTimerManager {
      * @return boolean 如果任务存在并且还未被执行返回true， 否则返回false
      * @date 2024/5/27 14:00
      */
+    @SuppressWarnings("unused")
     public boolean cancelTask(int taskId) {
         if (taskId <= 0) {
             return false;
