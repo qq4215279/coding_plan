@@ -2,13 +2,6 @@ package com.mumu.design.timer.redis;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.cxx.hf.exception.CommonException;
-import com.cxx.hf.exception.ErrorCode;
-import com.cxx.hf.servercore.constant.CoreConstant;
-import com.cxx.hf.servercore.mina.impl.InnerServer;
-import com.cxx.hf.util.Utility;
-import com.cxx.hf.util.json.GsonUtil;
-import com.cxx.hf.util.other.ZLibUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.Data;
@@ -53,6 +46,12 @@ import java.util.stream.Collectors;
 @Data
 @Slf4j
 public class RedisTemplate {
+	public static final int SYSTEM_REDIS_ERROR = -4;
+	/** 数据库Lock Key的最大加锁时间 */
+	public static final int REDIS_KEY_LOCK_TIME = 500;
+	/** 数据库Lock Key的redis key前缀 */
+	public static final String LOCK_KEY_PREFIX = "LOCK_{0}";
+	
 	private static final Logger redisLog = LoggerFactory.getLogger("redis");
 
 	private static final boolean PROTOSTUFF_SERIALIZE_FALG = false;
@@ -72,17 +71,22 @@ public class RedisTemplate {
 		shutdown();
 		prefix = redisConfig.getPrefix();
 		prefixLength = (short) prefix.length();
-		if (InnerServer.getServerConfig() != null) {
+
+	/*	if (InnerServer.getServerConfig() != null) {
 			connectionPoolSize = InnerServer.getThreadNum();
 		} else {
-			connectionPoolSize = CoreConstant.SERVER_PLATFORM_THREAD_NUM;
-		}
+			connectionPoolSize = 1;
+		}*/
+		connectionPoolSize = 1;
+
+
 		log.info("Redis config={},connectionPoolSize={}", GsonUtil.toJson(redisConfig), connectionPoolSize);
 		Config config = new Config();
 		// 同一个线程重入锁的情况下释放锁时unlock操作会判断加锁次数，如果加锁次数>减锁的次数时则重新设置锁时间
 		// 这个时间默认为lockWatchdogTimeout(系统默认为30000MS)
 		// 具体操作代码为RedissonFairLock(RedissonLock)中unlockInnerAsync方法
-		config.setLockWatchdogTimeout(CoreConstant.REDIS_KEY_LOCK_TIME);
+		// config.setLockWatchdogTimeout(REDIS_KEY_LOCK_TIME);
+		config.setLockWatchdogTimeout(REDIS_KEY_LOCK_TIME);
 		// config.setNettyThreads(connectionPoolSize)
 		if (redisConfig.isCluster()) {
 			// 集群模式
@@ -174,17 +178,17 @@ public class RedisTemplate {
 	 * @return String
 	 */
 	public String buildLockKey(String key) {
-		return MessageFormat.format(CoreConstant.LOCK_KEY_PREFIX, key);
+		return MessageFormat.format(LOCK_KEY_PREFIX, key);
 	}
 
 	/**
 	 * @Title acquireFairLock
-	 * @Description 获取分布式公平锁-默认过期时间为 CoreConstant.REDIS_KEY_LOCK_TIME
+	 * @Description 获取分布式公平锁-默认过期时间为 REDIS_KEY_LOCK_TIME
 	 * @param lockKey
 	 * @return boolean
 	 */
 	public boolean acquireLock(String lockKey) {
-		return acquireLock(lockKey, CoreConstant.REDIS_KEY_LOCK_TIME, TimeUnit.MILLISECONDS);
+		return acquireLock(lockKey, REDIS_KEY_LOCK_TIME, TimeUnit.MILLISECONDS);
 	}
 
 	/**
@@ -252,7 +256,7 @@ public class RedisTemplate {
 			return redisson.getBucket(buildKey(key)).get();
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -264,7 +268,7 @@ public class RedisTemplate {
 			redisson.getBucket(buildKey(key)).setAsync(value);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -273,7 +277,7 @@ public class RedisTemplate {
 			redisson.getBucket(buildKey(key)).setAsync(value, timeToLive, timeUnit);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -285,7 +289,7 @@ public class RedisTemplate {
 			redisson.getBucket(buildKey(key)).delete();
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -298,7 +302,7 @@ public class RedisTemplate {
 			redisson.getBucket(key).delete();
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -321,7 +325,7 @@ public class RedisTemplate {
 //			}
 //		} catch (Exception e) {
 //			redisLog.error(Utility.getTraceString(e));
-//			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+//			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 //		}
 //	}
 
@@ -334,7 +338,7 @@ public class RedisTemplate {
 			return future.get(250, TimeUnit.MILLISECONDS);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -346,7 +350,7 @@ public class RedisTemplate {
 			redisson.getBucket(buildKey(key)).expireAsync(period, timeUnit);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -360,7 +364,7 @@ public class RedisTemplate {
 			redisson.getBucket(buildKey(oldKey)).rename(buildKey(newKey));
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -372,7 +376,7 @@ public class RedisTemplate {
 			return redisson.getAtomicLong(buildKey(key)).incrementAndGet();
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -384,7 +388,7 @@ public class RedisTemplate {
 			return redisson.getAtomicLong(buildKey(key)).addAndGet(delta);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -396,7 +400,7 @@ public class RedisTemplate {
 			return redisson.getAtomicLong(buildKey(key)).addAndGet(delta);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -408,7 +412,7 @@ public class RedisTemplate {
 			redisson.getAtomicLong(buildKey(key)).addAndGetAsync(delta);// .addAndGet(delta);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -420,7 +424,7 @@ public class RedisTemplate {
 			redisson.getAtomicLong(buildKey(key)).setAsync(newValue);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -434,7 +438,7 @@ public class RedisTemplate {
 			return redisson.getAtomicLong(buildKey(key)).get();
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -449,13 +453,12 @@ public class RedisTemplate {
 			return redisson.getAtomicLong(buildKey(key)).getAndSet(newValue);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
 	/**
 	 * 批量获取某自增key的当前值 不建议在集群环境使用批处理获取方法
-	 * @param keys
 	 * @return
 	 */
 //	public List<?> multiGetIncrementValue(String[] keys) {
@@ -474,7 +477,7 @@ public class RedisTemplate {
 //			return null;
 //		} catch (Exception e) {
 //			redisLog.error(Utility.getTraceString(e));
-//			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+//			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 //		}
 //	}
 
@@ -483,7 +486,7 @@ public class RedisTemplate {
 			redisson.getList(buildKey(key)).add(value);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -496,7 +499,7 @@ public class RedisTemplate {
 			return list.get(index);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -510,7 +513,7 @@ public class RedisTemplate {
 			return list.subList(start, Math.min(end, size));
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -523,7 +526,7 @@ public class RedisTemplate {
 			return list.size();
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -536,7 +539,7 @@ public class RedisTemplate {
 			return list.stream().collect(Collectors.toList());
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -548,7 +551,7 @@ public class RedisTemplate {
 			}
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 		return false;
 	}
@@ -561,7 +564,7 @@ public class RedisTemplate {
 			redisson.getMap(buildKey(key)).put(field, value);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -573,7 +576,7 @@ public class RedisTemplate {
 			return redisson.getMap(buildKey(key)).get(field);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -588,7 +591,7 @@ public class RedisTemplate {
 			return map.getAll(fieldSet);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -603,7 +606,7 @@ public class RedisTemplate {
 			redisson.getMap(buildKey(key)).addAndGetAsync(field, delta);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -640,7 +643,7 @@ public class RedisTemplate {
 			}
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 		return 0l;
 	}
@@ -653,7 +656,7 @@ public class RedisTemplate {
 			redisson.getMap(buildKey(key)).remove(field);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -668,7 +671,7 @@ public class RedisTemplate {
 			return redisson.getMap(buildKey(key)).remove(field);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -678,7 +681,7 @@ public class RedisTemplate {
 			return rMap.readAllMap();
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -690,7 +693,7 @@ public class RedisTemplate {
 			return redisson.getMap(buildKey(key)).readAllMap();
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -704,7 +707,7 @@ public class RedisTemplate {
 			return redisson.getMap(buildKey(key)).getAll(fields);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -716,7 +719,7 @@ public class RedisTemplate {
 			redisson.getMap(buildKey(key)).putAllAsync(keyValues);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -728,7 +731,7 @@ public class RedisTemplate {
 			return redisson.getMap(buildKey(key)).containsKey(field);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -740,7 +743,7 @@ public class RedisTemplate {
 			return redisson.getMap(buildKey(key)).size();
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -760,7 +763,7 @@ public class RedisTemplate {
 			return Lists.newArrayList(redisson.getKeys().getKeysByPattern(buildKey(pattern), perCount));
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -777,7 +780,7 @@ public class RedisTemplate {
 			return Lists.newArrayList(redisson.getKeys().getKeysByPattern(buildKey(pattern), count));
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -789,7 +792,7 @@ public class RedisTemplate {
 			redisson.getScoredSortedSet(buildKey(key), LongCodec.INSTANCE).addAsync(score, member);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -801,7 +804,7 @@ public class RedisTemplate {
 			redisson.getScoredSortedSet(buildKey(key), LongCodec.INSTANCE).addAllAsync(scoreMembers);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -813,7 +816,7 @@ public class RedisTemplate {
 			return redisson.getScoredSortedSet(buildKey(key), LongCodec.INSTANCE).addScore(member, scoreIncr);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -825,7 +828,7 @@ public class RedisTemplate {
 			redisson.getScoredSortedSet(buildKey(key), LongCodec.INSTANCE).removeAsync(member);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -837,7 +840,7 @@ public class RedisTemplate {
 			redisson.getScoredSortedSet(buildKey(key), LongCodec.INSTANCE).removeAllAsync(members);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -849,7 +852,7 @@ public class RedisTemplate {
 			redisson.getScoredSortedSet(buildKey(key), LongCodec.INSTANCE).removeRangeByRankAsync(start, end);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -861,7 +864,7 @@ public class RedisTemplate {
 			return Lists.newArrayList(redisson.getScoredSortedSet(buildKey(key), LongCodec.INSTANCE).entryRange(start, end));
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -873,7 +876,7 @@ public class RedisTemplate {
 			return Lists.newArrayList(redisson.getScoredSortedSet(buildKey(key), StringCodec.INSTANCE).entryRange(start, end));
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -885,7 +888,7 @@ public class RedisTemplate {
 			return Lists.newArrayList(redisson.getScoredSortedSet(buildKey(key), LongCodec.INSTANCE).entryRangeReversed(start, end));
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -897,7 +900,7 @@ public class RedisTemplate {
 			return Lists.newArrayList(redisson.getScoredSortedSet(buildKey(key), StringCodec.INSTANCE).entryRangeReversed(start, end));
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -909,7 +912,7 @@ public class RedisTemplate {
 			return redisson.getScoredSortedSet(buildKey(key), LongCodec.INSTANCE).rank(member);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -921,7 +924,7 @@ public class RedisTemplate {
 			return redisson.getScoredSortedSet(buildKey(key), LongCodec.INSTANCE).revRank(member);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -933,7 +936,7 @@ public class RedisTemplate {
 			return redisson.getScoredSortedSet(buildKey(key), LongCodec.INSTANCE).getScore(member);
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -945,7 +948,7 @@ public class RedisTemplate {
 			return redisson.getScoredSortedSet(buildKey(key), LongCodec.INSTANCE).size();
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -971,7 +974,7 @@ public class RedisTemplate {
 //			return null;
 //		} catch (Exception e) {
 //			redisLog.error(Utility.getTraceString(e));
-//			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+//			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 //		}
 //	}
 	/**
@@ -981,7 +984,7 @@ public class RedisTemplate {
 		try {
 			redisson.getBucket(buildKey(key), ByteArrayCodec.INSTANCE).setAsync(serialize(value));
 		} catch (Exception e) {
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -992,7 +995,7 @@ public class RedisTemplate {
 		try {
 			redisson.getBucket(buildKey(key), ByteArrayCodec.INSTANCE).set((serialize(value)));
 		} catch (Exception e) {
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -1003,7 +1006,7 @@ public class RedisTemplate {
 		try {
 			redisson.getBucket(buildKey(key), ByteArrayCodec.INSTANCE).setAsync(serialize(value), expire, unit);
 		} catch (Exception e) {
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -1017,7 +1020,7 @@ public class RedisTemplate {
 			}
 			redisson.getBucket(buildKey(key), ByteArrayCodec.INSTANCE).setAsync(serializeList(value));
 		} catch (Exception e) {
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -1034,7 +1037,7 @@ public class RedisTemplate {
 				batch.execute();
 			} catch (Exception e) {
 				redisLog.error(Utility.getTraceString(e));
-				throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+				throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 			} finally {
 				objectMap.clear();
 				// PoolableObjectFactory.getInstance().returnObject(objectMap);
@@ -1051,7 +1054,7 @@ public class RedisTemplate {
 			RBucket<byte[]> bucket = redisson.getBucket(buildKey(key), ByteArrayCodec.INSTANCE);
 			obj = unserialize(bucket.get(), clas);
 		} catch (Exception e) {
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 		return obj;
 	}
@@ -1065,7 +1068,7 @@ public class RedisTemplate {
 			RBucket<byte[]> bucket = redisson.getBucket(key, ByteArrayCodec.INSTANCE);
 			obj = unserialize(bucket.get(), clas);
 		} catch (Exception e) {
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 		return obj;
 	}
@@ -1081,7 +1084,7 @@ public class RedisTemplate {
 			RBucket<byte[]> bucket = redisson.getBucket(buildKey(key), ByteArrayCodec.INSTANCE);
 			obj = unserializeList(bucket.get(), clas);
 		} catch (Exception e) {
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 		return (List<T>) obj;
 	}
@@ -1096,7 +1099,7 @@ public class RedisTemplate {
 		try {
 			redisson.getSet(buildKey(key)).add(obj);
 		} catch (Exception e) {
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -1109,7 +1112,7 @@ public class RedisTemplate {
 		try {
 			return redisson.getSet(buildKey(key)).readAll();
 		} catch (Exception e) {
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -1123,7 +1126,7 @@ public class RedisTemplate {
 		try {
 			redisson.getSet(buildKey(key)).remove(obj);
 		} catch (Exception e) {
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -1136,7 +1139,7 @@ public class RedisTemplate {
 		try {
 			return redisson.getSet(buildKey(key)).size();
 		} catch (Exception e) {
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -1148,7 +1151,7 @@ public class RedisTemplate {
 		try {
 			redisson.getSet(buildKey(key)).delete();
 		} catch (Exception e) {
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -1166,7 +1169,7 @@ public class RedisTemplate {
 			batch.execute();
 		} catch (Exception e) {
 			redisLog.error(Utility.getTraceString(e));
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -1178,7 +1181,7 @@ public class RedisTemplate {
 		try {
 			redisson.getSet(key).delete();
 		} catch (Exception e) {
-			throw new CommonException(ErrorCode.SYSTEM_REDIS_ERROR, e.getMessage());
+			throw new CommonException(SYSTEM_REDIS_ERROR, e.getMessage());
 		}
 	}
 
@@ -1208,8 +1211,9 @@ public class RedisTemplate {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T unserialize(byte[] objBytes, Class<T> clas) {
-		if (objBytes == null)
+		if (objBytes == null) {
 			return null;
+		}
 		if (PROTOSTUFF_SERIALIZE_FALG) {
 			// return (T) ProtoStuffUtil.deserialize(objBytes, clas);
 		}
