@@ -108,6 +108,19 @@ public class PutApis {
         Map<String, List<Integer>> strIdsMap = new HashMap<>();
         List<Integer> idList = strIdsMap.computeIfAbsent("lihua", k -> new ArrayList<>());
         idList.add(1);
+
+        // 用法3：================================>
+        System.out.println("用法3：================================>");
+        Map<Integer, String> map3 = new HashMap<>();
+        String s1 = map3.computeIfAbsent(1, k -> "computeIfAbsent11111");
+        System.out.println("s1: " + s1);
+        if ("computeIfAbsent11111".equals(s1)) {
+            map3.put(1, "computeIfAbsent22222");
+        }
+
+        String s3 = map3.computeIfAbsent(1, k -> "computeIfAbsent3333");
+        System.out.println("s3: " + s3);
+
     }
 
     /**
