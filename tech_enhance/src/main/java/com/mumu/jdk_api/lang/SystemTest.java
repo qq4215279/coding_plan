@@ -107,6 +107,9 @@ public class SystemTest {
         String javaVersion = System.getProperty("java.version");
         System.out.println(javaVersion);
 
+        String userDir = System.getProperty("user.dir");
+        System.out.println(userDir);
+
         String property = System.getProperty("user.home");
         System.out.println(property);
 
