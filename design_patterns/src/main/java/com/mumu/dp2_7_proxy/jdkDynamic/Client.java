@@ -25,11 +25,12 @@ public class Client {
 		InvocationHandler handler = new DAOLogHandler(userDAO);
 
 		// 动态创建代理对象，用于代理一个 IUserDAO 类型的真实主题对象
-		IUserDAO proxy = (IUserDAO) Proxy.newProxyInstance(IUserDAO.class.getClassLoader(),
-                new Class[] { IUserDAO.class }, handler);
+		Object o = Proxy.newProxyInstance(IUserDAO.class.getClassLoader(),
+				new Class[]{IUserDAO.class}, handler);
+		IUserDAO proxy = (IUserDAO) o;
         // 调用代理对象的业务方法
-        proxy.findUserById("张无忌");
-
+		boolean res = proxy.findUserById("张无忌");
+		System.out.println("结果：" + res);
 
 		System.out.println("-------------------------------------------------------->");
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config_backstage_language>
+  <!-- 后台邮件表 -->
+  <config_backstage_mail>
+    <config_backstage_mailInfo>
+      <uniqueId>1001</uniqueId>
+      <category>1001</category>
+      <itemType>1</itemType>
+      <subType>0</subType>
+      <clientType>2</clientType>
+      <name>热烈欢迎</name>
+      <name_tw>熱烈歡迎</name_tw>
+      <name_eng>熱烈歡迎</name_eng>
+      <name_jap>熱烈歡迎</name_jap>
+      <icon>mail_btn_pic_01.png</icon>
+      <content>欢迎各位渔友来体验我们游戏！我们积极回应国家政策，秉持健康、休闲、绿色的游戏理念，致力于打造一个纯健康绿色的捕鱼娱乐平台。</content>
+      <content_tw>歡迎各位漁友來體驗我們遊戲！我們積極回應國家政策，秉持健康、休閒、綠色的遊戲理念，致力於打造一個純健康綠色的捕魚娛樂平臺。</content_tw>
+      <content_eng>歡迎各位漁友來體驗我們遊戲！我們積極回應國家政策，秉持健康、休閒、綠色的遊戲理念，致力於打造一個純健康綠色的捕魚娛樂平臺。</content_eng>
+      <content_jap>歡迎各位漁友來體驗我們遊戲！我們積極回應國家政策，秉持健康、休閒、綠色的遊戲理念，致力於打造一個純健康綠色的捕魚娛樂平臺。</content_jap>
+    </config_backstage_mailInfo>
+  </config_backstage_mail>
+
+  <!-- 后台公告表 -->
+  <config_backstage_notice>
+    <config_backstage_noticeInfo>
+      <uniqueId>1001</uniqueId>
+      <type>1001</type>
+      <item>1</item>
+      <award>0</award>
+      <priority>2</priority>
+      <delayTime>2</delayTime>
+      <describe>欢迎各位渔友来体验我们游戏！我们积极回应国家政策，秉持健康、休闲、绿色的游戏理念，致力于打造一个纯健康绿色的捕鱼娱乐平台。</describe>
+      <describe_tw>歡迎各位漁友來體驗我們遊戲！我們積極回應國家政策，秉持健康、休閒、綠色的遊戲理念，致力於打造一個純健康綠色的捕魚娛樂平臺。</describe_tw>
+      <describe_eng>歡迎各位漁友來體驗我們遊戲！我們積極回應國家政策，秉持健康、休閒、綠色的遊戲理念，致力於打造一個純健康綠色的捕魚娛樂平臺。</describe_eng>
+      <describe_jap>歡迎各位漁友來體驗我們遊戲！我們積極回應國家政策，秉持健康、休閒、綠色的遊戲理念，致力於打造一個純健康綠色的捕魚娛樂平臺。</describe_jap>
+    </config_backstage_noticeInfo>
+  </config_backstage_notice>
+
+</config_backstage_language>

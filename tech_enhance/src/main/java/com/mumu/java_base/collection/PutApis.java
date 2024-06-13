@@ -20,6 +20,7 @@ import java.util.Map;
  */
 public class PutApis {
 
+
     /**
      * put(): 只要key存在，value值就会被覆盖,注意put方法返回的是put之前的值，如果无put之前的值返回null
      */
@@ -54,6 +55,31 @@ public class PutApis {
     }
 
     /**
+     * compute：V compute(K key, BiFunction < ? super K, ? super V, ? extends V> remappingFunction)
+     * compute的方法,指定的key在map中的值进行操作 不管存不存在，操作完成后保存到map中
+     * @return void
+     * @date 2024/5/20 16:04
+     */
+    @Test
+    public void computeTest() {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("1", 1);
+        map.put("2", 2);
+        map.put("3", 3);
+        Integer integer = map.compute("3", (k, v) -> v + 1);
+        //key不管存在不在都会执行后面的函数，并保存到map中
+        Integer integer1 = map.compute("4", (k, v) -> {
+            if (v == null) {
+                return 0;
+            }
+            return v + 1;
+        });
+        System.out.println(integer); // 4
+        System.out.println(integer1); // 0
+        System.out.println(map.toString()); // {1=1, 2=2, 3=4, 4=0}
+    }
+
+    /**
      * computeIfAbsent(): 和putIfAbsent类似但是，在返回值上不一样，value值不存在的时候，
      * 返回的是新的value值，同时可以通过自定义一些条件进行过滤。
      */
@@ -82,6 +108,19 @@ public class PutApis {
         Map<String, List<Integer>> strIdsMap = new HashMap<>();
         List<Integer> idList = strIdsMap.computeIfAbsent("lihua", k -> new ArrayList<>());
         idList.add(1);
+
+        // 用法3：================================>
+        System.out.println("用法3：================================>");
+        Map<Integer, String> map3 = new HashMap<>();
+        String s1 = map3.computeIfAbsent(1, k -> "computeIfAbsent11111");
+        System.out.println("s1: " + s1);
+        if ("computeIfAbsent11111".equals(s1)) {
+            map3.put(1, "computeIfAbsent22222");
+        }
+
+        String s3 = map3.computeIfAbsent(1, k -> "computeIfAbsent3333");
+        System.out.println("s3: " + s3);
+
     }
 
     /**
@@ -96,7 +135,7 @@ public class PutApis {
         map.put("3", 3);
 
         //如果value值不存在，返回的是新的value值
-        map.computeIfPresent("0", (k,v) -> v * 100);
+        map.computeIfPresent("0", (k, v) -> v * 100);
 //        int value1 = map.computeIfPresent("0", (k,v) -> v * 100);
 //        System.out.println("value1: " + value1);
         int value2 = map.computeIfPresent("2", (k,v) -> v * 100);

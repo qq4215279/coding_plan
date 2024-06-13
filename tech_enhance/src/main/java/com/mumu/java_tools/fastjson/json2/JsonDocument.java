@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2020-2023, 木木996.
  * All Right Reserved.
@@ -17,13 +18,13 @@ import static com.mumu.java_tools.fastjson.json2.SymbolConstants.*;
 public class JsonDocument {
 	// SerializeWriter
 	private SerializeWriter out;
-	
+
 	// JSONSerializer
 	private JSONSerializer serializer;
-	
+
 	// index
 	private boolean first = true;
-	
+
 	/**
 	 * Construct
 	 */
@@ -31,7 +32,7 @@ public class JsonDocument {
 		out = new SerializeWriter();
 		serializer = new JSONSerializer(out);
 	}
-	
+
 	/**
 	 * reset
 	 */
@@ -40,7 +41,7 @@ public class JsonDocument {
 		serializer = new JSONSerializer(out);
 		first = true;
 	}
-	
+
 	/**
 	 * 开始创建对象节点
 	 * @param elementName
@@ -52,7 +53,7 @@ public class JsonDocument {
 		append(B_QUOT).append(elementName.toCharArray()).append(B_QUOT).append(B_COLON).append(B_L_BRACE);
 		first = true;
 	}
-	
+
 	/**
 	 * 开始创建对象节点
 	 */
@@ -63,7 +64,7 @@ public class JsonDocument {
 		append(B_L_BRACE);
 		first = true;
 	}
-	
+
 	/**
 	 * 结束对象节点
 	 */
@@ -71,7 +72,7 @@ public class JsonDocument {
 		append(B_R_BRACE);
 		first = false;
 	}
-	
+
 	/**
 	 * 开始创建数组节点
 	 * @param elementName
@@ -83,7 +84,7 @@ public class JsonDocument {
 		append(B_QUOT).append(elementName.toCharArray()).append(B_QUOT).append(B_COLON).append(B_L_BRACKET);
 		first = true;
 	}
-	
+
 	/**
 	 * 开始创建数组节点
 	 */
@@ -94,7 +95,7 @@ public class JsonDocument {
 		append(B_L_BRACKET);
 		first = true;
 	}
-	
+
 	/**
 	 * 结束数组节点
 	 */
@@ -102,7 +103,7 @@ public class JsonDocument {
 		append(B_R_BRACKET);
 		first = false;
 	}
-	
+
 	/**
 	 * 创建元素
 	 * @param elementName
@@ -116,7 +117,7 @@ public class JsonDocument {
 		createValue(o);
 		first = false;
 	}
-	
+
 	/**
 	 * 创建元素
 	 * @param o
@@ -128,7 +129,7 @@ public class JsonDocument {
 		createValue(o);
 		first = false;
 	}
-	
+
 	/**
 	 * 创建值
 	 * @param o
@@ -153,7 +154,7 @@ public class JsonDocument {
 		append(json);
 		first = false;
 	}
-	
+
 	/**
 	 * Append
 	 */
@@ -165,7 +166,7 @@ public class JsonDocument {
 		append(json);
 		first = false;
 	}
-	
+
 	/**
 	 * Append
 	 */
@@ -178,14 +179,14 @@ public class JsonDocument {
 		append(B_R_BRACE);
 		first = false;
 	}
-	
+
 	/**
 	 * toString
 	 */
 	@Override public String toString() {
 		return new String(out.toBytes("UTF-8"));
 	}
-	
+
 	/**
 	 * toByte
 	 * @return
@@ -193,7 +194,7 @@ public class JsonDocument {
 	public byte[] toByte() {
 		return out.toBytes("UTF-8");
 	}
-	
+
 	/**
 	 * 往输出流中写入一个对象
 	 * @param bytes
@@ -206,7 +207,7 @@ public class JsonDocument {
 			throw new RuntimeException("", t);
 		}
 	}
-	
+
 	/**
 	 * 往输出流中写入一个对象
 	 * @param bytes

@@ -75,14 +75,14 @@ public class TraverseCollection {
     /**
      * 匿名对象
      */
-//    private static Map<String, Object> map1 = new HashMap<String, Object>() {
-//        {
-//            map1.put("username", "zhangsan");
-//            map1.put("password", 123);
-//            map1.put("age", 20);
-//            list.add(map1);
-//        }
-//    };
+   private static Map<String, Object> map1 = new HashMap<String, Object>() {
+       {
+           put("username", "zhangsan");
+           map1.put("password", 123);
+           map1.put("age", 20);
+           list.add(map1);
+       }
+   };
 
     /**
      * 静态代码块初始化
@@ -90,7 +90,7 @@ public class TraverseCollection {
     private static Map<String, Object> map2;
 
     static {
-        map2 = new HashMap<>();
+        map2 = new HashMap<>() {};
 
         map2.put("username", "lisi");
         map2.put("password", "root");

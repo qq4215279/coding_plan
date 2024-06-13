@@ -14,7 +14,7 @@ package com.mumu.jdk_api.lang;
 public class MethodTest {
 
     /**
-     * Object invoke(Object obj, Object... args)  在具有指定参数的指定对象上调用此 方法对象表示的基础方法。
+     * Object invoke(Object obj, Object... args)  在具有指定参数的指定对象上调用此方法对象表示的基础方法。
      *
      * String getName()  返回此 方法对象表示的方法的名称，如 String 。
      * TypeVariable<方法>[] getTypeParameters()  返回的数组 TypeVariable对象表示通过此表示的一般声明声明的类型变量 GenericDeclaration目的，在声明的顺序。

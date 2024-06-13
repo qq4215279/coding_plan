@@ -9,6 +9,7 @@ import com.mumu.common.pojo.User;
 import org.junit.Test;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.TypeVariable;
 
@@ -64,6 +65,21 @@ public class ConstructorTest {
         System.out.println("是否是私有构造方法 isAccessible()  " + constructor.getParameterCount());
 
         System.out.println(" toGenericString()  " + constructor.toGenericString());
+
+        System.out.println("---------------->");
+
+        Constructor<User> constructor1 = userClass.getConstructor(String.class, int.class);
+        constructor1.setAccessible(true);
+        try {
+            User user = constructor1.newInstance("testName", 18);
+            System.out.println(user.toString());
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test

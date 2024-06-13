@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2020-2023, 木木996.
  * All Right Reserved.
@@ -20,7 +21,7 @@ public class JsonBuilder {
      * 默认的表示成功的json
      */
     public static final byte[] DEFAULT_SUCJSON = getJson(State.SUCCESS, "");
-	
+
 	/** COMMA */
 	public static final byte[] COMMA = { ',' };
 	/** QUOTE */
@@ -35,92 +36,92 @@ public class JsonBuilder {
 	public static final byte[] START_OBJECT = { '{' };
 	/** END_OBJECT */
 	public static final byte[] END_OBJECT = { '}' };
-	
+
 	/** 拦截器 */
 	private static List<JsonInterceptor> INTERCEPTORS = null;
 	/** 拦截标记位，默认为false */
 	private static volatile boolean needInterceptor = false;
-	
+
 	/**
 	 * 生成一个Json结构
-	 * 
+	 *
 	 * @param msg	提示信息
 	 * @param url	转向地址
 	 * @return
 	 */
 	public static byte[] getRedirectJson(String msg, String url) {
 		JsonDocument doc = new JsonDocument();
-		
+
 		doc.startObject();
-		
+
 		createNamedElement(doc, "state", State.REDIRECT.getValue());
-		
+
 		doc.startObject("data");
 		createNamedElement(doc, "msg", msg);
 		createNamedElement(doc, "url", url);
 		doc.endObject();
-		
+
 		doc.endObject();
-		
+
 		// 拦截消息
 		interceptor(State.REDIRECT, msg);
-		
+
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 生成一个Json结构
-	 * 
+	 *
 	 * @param state
 	 * @param msg
 	 * @return
 	 */
 	public static byte[] getJson(State state, String msg) {
 		JsonDocument doc = new JsonDocument();
-		
+
 		doc.startObject();
-		
+
 		createNamedElement(doc, "state", state.getValue());
-		
+
 		doc.startObject("data");
 		createNamedElement(doc, "msg", msg);
 		doc.endObject();
-		
+
 		doc.endObject();
-		
+
 		// 拦截消息
 		interceptor(state, msg);
-		
+
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 生成一个Json结构
-	 * 
+	 *
 	 * @param state
 	 * @param msg
 	 * @return
 	 */
 	public static byte[] getJsonWithKey(State state, String msg, String key) {
 		JsonDocument doc = new JsonDocument();
-		
+
 		doc.startObject();
-		
+
 		createNamedElement(doc, "state", state.getValue());
-		
+
 		doc.startObject("data");
 		createNamedElement(doc, "msg", msg);
 		createNamedElement(doc, "key", key);
 		doc.endObject();
-		
+
 		doc.endObject();
-		
+
 		// 拦截消息
 		interceptor(state, msg);
-		
+
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 生成一个Json结构 -- 为了兼容mjcs项目
 	 * 如果是FAIL或者EXCEPTION 格式:  {"state"=0|2, "message"=""}
@@ -131,10 +132,10 @@ public class JsonBuilder {
 	 */
 	public static byte[] getMjcsJson(State state, String msg) {
 		JsonDocument doc = new JsonDocument();
-		
+
 		doc.startObject();
 		createNamedElement(doc, "state", state.getValue());
-		
+
 		if (state.equals(State.FAIL) || state.equals(State.EXCEPTION)) {
 			createNamedElement(doc, "message", msg);
 		} else {
@@ -146,16 +147,16 @@ public class JsonBuilder {
             }
 		}
 		doc.endObject();
-		
+
 		// 拦截消息
 		interceptor(state, msg);
-		
+
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 生成一个Json结构
-	 * 
+	 *
 	 * @param state
 	 * @param title
 	 * @param msg
@@ -163,25 +164,25 @@ public class JsonBuilder {
 	 */
 	public static byte[] getJson(State state, String title, String msg) {
 		JsonDocument doc = new JsonDocument();
-		
+
 		doc.startObject();
 		createNamedElement(doc, "state", state.getValue());
-		
+
 		doc.startObject("data");
 		createNamedElement(doc, title, msg);
-		doc.endObject();		
-		
 		doc.endObject();
-		
+
+		doc.endObject();
+
 		// 拦截消息
 		interceptor(state, msg);
 
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 生成一个类结构的Json
-	 * 
+	 *
 	 * @param <T>
 	 * @param state
 	 * @param msg
@@ -191,20 +192,20 @@ public class JsonBuilder {
 	public static <T> byte[] getJson(State state, String name, T t) {
 		JsonDocument doc = new JsonDocument();
 		doc.startObject();
-		
+
 		createNamedElement(doc, "state", state.getValue());
 		doc.startObject("data");
 		createNamedElement(doc, name, t);
 		doc.endObject();
-		
+
 		doc.endObject();
 
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 生成一个类结构的Json
-	 * 
+	 *
 	 * @param <T>
 	 * @param state
 	 * @param msg
@@ -214,17 +215,17 @@ public class JsonBuilder {
 	public static <T> byte[] getJson(State state, String name, byte[] bytes) {
 		JsonDocument doc = new JsonDocument();
 		doc.startObject();
-		
+
 		createNamedElement(doc, "state", state.getValue());
 		doc.startObject("data");
 		doc.appendJson(name, bytes);
 		doc.endObject();
-		
+
 		doc.endObject();
 
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 生成一个json结构 - for 名将跨服国战
 	 * @param <T>
@@ -237,21 +238,21 @@ public class JsonBuilder {
 	public static <T> byte[] getMjcsJson(State state, String command, byte[] bytes) {
 		JsonDocument doc = new JsonDocument();
 		doc.startObject();
-		
+
 		createNamedElement(doc, "state", state.getValue());
 		createNamedElement(doc, "command", command);
 		doc.startObject("data");
 		doc.appendJson(bytes);
 		doc.endObject();
-		
+
 		doc.endObject();
 
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 生成一个类结构的Json
-	 * 
+	 *
 	 * @param <T>
 	 * @param state
 	 * @param msg
@@ -261,20 +262,20 @@ public class JsonBuilder {
 	public static byte[] getJson(State state, byte[] json) {
 		JsonDocument doc = new JsonDocument();
 		doc.startObject();
-		
+
 		createNamedElement(doc, "state", state.getValue());
 		doc.appendJson("data", json);
-		
+
 		doc.endObject();
 
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 生成一个类结构的Json
 	 * 将Json格式用一个Object包裹起来
 	 * e.g: '{' + json + '}'
-	 * 
+	 *
 	 * @param <T>
 	 * @param state
 	 * @param msg
@@ -284,19 +285,19 @@ public class JsonBuilder {
 	public static byte[] getObjectJson(State state, byte[] json) {
 		JsonDocument doc = new JsonDocument();
 		doc.startObject();
-		
+
 		createNamedElement(doc, "state", state.getValue());
 		doc.appendObjectJson("data", json);
-		
+
 		doc.endObject();
 
 		return doc.toByte();
 	}
-	
-	
+
+
 	/**
 	 * 生成一个类结构的Json
-	 * 
+	 *
 	 * @param <T>
 	 * @param state
 	 * @param msg
@@ -306,18 +307,18 @@ public class JsonBuilder {
 	public static byte[] getJson(byte[] action) {
 		JsonDocument doc = new JsonDocument();
 		doc.startObject();
-		
+
 		// action
 		doc.appendJson("action", action);
-		
+
 		doc.endObject();
 
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 生成一个类结构的Json
-	 * 
+	 *
 	 * @param <T>
 	 * @param state
 	 * @param msg
@@ -327,21 +328,21 @@ public class JsonBuilder {
 	public static byte[] getJson(byte[] action, byte[] extra) {
 		JsonDocument doc = new JsonDocument();
 		doc.startObject();
-		
+
 		// action
 		doc.appendJson("action", action);
-		
+
 		// extra
 		doc.appendJson("extra", extra);
-		
+
 		doc.endObject();
 
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 生成一个类结构的Json
-	 * 
+	 *
 	 * @param <T>
 	 * @param state
 	 * @param msg
@@ -351,22 +352,22 @@ public class JsonBuilder {
 	public static <T> byte[] getJson(State state, String msg, String name, T t) {
 		JsonDocument doc = new JsonDocument();
 		doc.startObject();
-		
+
 		createNamedElement(doc, "state", state.getValue());
-		
+
 		doc.startObject("data");
 		createNamedElement(doc, "msg", msg);
 		createNamedElement(doc, name, t);
-		doc.endObject();	
-		
 		doc.endObject();
-		
+
+		doc.endObject();
+
 		// 拦截消息
 		interceptor(state, msg);
 
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 生成Map的Json
 	 * @param <T>
@@ -390,7 +391,7 @@ public class JsonBuilder {
 
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 获取简单Json格式
 	 * {name: value}
@@ -406,7 +407,7 @@ public class JsonBuilder {
 		doc.endObject();
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 获取异常的Json格式数据
 	 * @author wangys
@@ -420,19 +421,19 @@ public class JsonBuilder {
 		JsonDocument doc = new JsonDocument();
 		doc.startObject();
 		doc.startObject("action");
-		
+
 		createNamedElement(doc, "state", state.getValue());
-		
+
 		doc.startObject("data");
 		createNamedElement(doc, "errorCode", errorCode);
-		doc.endObject();	
-		
+		doc.endObject();
+
 		doc.endObject();
 		doc.endObject();
 
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 获取异常的Json格式数据2
 	 * @param state
@@ -444,19 +445,19 @@ public class JsonBuilder {
 		JsonDocument doc = new JsonDocument();
 		doc.startObject();
 		createNamedElement(doc, "state", state.getValue());
-		
+
 		doc.startObject("data");
 		createNamedElement(doc, "errorCode", errorCode);
-		doc.endObject();	
-		
 		doc.endObject();
-		
+
+		doc.endObject();
+
 		// 拦截消息
 		interceptor(state, errorCode);
 
 		return doc.toByte();
 	}
-	
+
 	/**
 	 * 获取验证码的Json数据格式
 	 * @author wangys
@@ -469,18 +470,18 @@ public class JsonBuilder {
 		JsonDocument doc = new JsonDocument();
 		doc.startObject();
 		doc.startObject("action");
-		
+
 		createNamedElement(doc, "state", state.getValue());
-		
+
 		doc.endObject();
 		doc.endObject();
-		
+
 		// 拦截消息
 		interceptor(state, "code");
 
 		return doc.toByte();
 	}
-	
+
 
 
 	/**
@@ -491,7 +492,7 @@ public class JsonBuilder {
 	public static void createElement(JsonDocument doc, Object value) {
 		doc.createElement(value);
 	}
-	
+
 	/**
 	 * 以指定名称创建一个对象
 	 * @param out
@@ -516,7 +517,7 @@ public class JsonBuilder {
         return JsonBuilder.getJson( State.SUCCESS, doc.toByte() );
 
     }
-    
+
     /**
      * 取得包含失败理由的json
      * @param failReason
@@ -528,10 +529,10 @@ public class JsonBuilder {
         createNamedElement(doc, "state", State.FAIL.getValue());
         createNamedElement(doc, "msg", failReason);
         doc.endObject();
-        
+
         return doc.toByte();
     }
-    
+
     /**
      * 取得成功的json
      * @param info
@@ -540,7 +541,7 @@ public class JsonBuilder {
     public static byte[] getSuccJson(byte[] info) {
         return getJson(State.SUCCESS, info);
     }
-    
+
     /**
      * 添加拦截器
      * @param interceptor Json信息拦截器
@@ -553,7 +554,7 @@ public class JsonBuilder {
     	INTERCEPTORS.add(interceptor);
     	needInterceptor = true;
     }
-    
+
     /**
      * 拦截消息
      * @param state
@@ -572,5 +573,5 @@ public class JsonBuilder {
     		}
     	}
     }
-	
+
 }
