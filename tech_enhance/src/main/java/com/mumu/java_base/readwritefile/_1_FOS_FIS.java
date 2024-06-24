@@ -176,11 +176,4 @@ public class _1_FOS_FIS {
         fis.close();
     }
 
-
-    public static void main(String[] args) throws InterruptedException {
-        ManyThreadCreateFileDemo.randomAccessFileDemo();
-        // ManyThreadCreateFileDemo.fileLockDemo();
-
-        Thread.sleep(15000L);
-    }
 }
