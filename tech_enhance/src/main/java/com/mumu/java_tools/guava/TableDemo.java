@@ -57,9 +57,11 @@ public class TableDemo {
         employeeTable.put("IBM", 101, "Mahesh");
         employeeTable.put("IBM", 102, "Ramesh");
         employeeTable.put("IBM", 103, "Suresh");
+
         employeeTable.put("Microsoft", 111, "Sohan");
         employeeTable.put("Microsoft", 112, "Mohan");
         employeeTable.put("Microsoft", 113, "Rohan");
+
         employeeTable.put("TCS", 121, "Ram");
         employeeTable.put("TCS", 122, "Shyam");
         employeeTable.put("TCS", 123, "Sunil");
