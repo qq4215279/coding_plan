@@ -5,7 +5,12 @@ import com.google.common.eventbus.SubscriberExceptionHandler;
 import com.mumu.design.timer.redis.Utility;
 import lombok.extern.slf4j.Slf4j;
 
-
+/**
+ * EventBusExceptionHandler
+ * 处理事件异常
+ * @author liuzhen
+ * @version 1.0.0 2024/6/24 16:18
+ */
 @Slf4j
 public class EventBusExceptionHandler implements SubscriberExceptionHandler {
 	@Override
