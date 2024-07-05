@@ -14,12 +14,12 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * MapTranerse
+ * MapTraverseDemo
  * Map集合遍历
  * @author liuzhen
  * @version 1.0.0 2022/4/10 10:05
  */
-public class MapTranerseDemo {
+public class MapTraverseDemo {
 
     /**
      * 总结：
