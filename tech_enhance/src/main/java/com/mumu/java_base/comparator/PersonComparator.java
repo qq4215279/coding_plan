@@ -64,12 +64,15 @@ class DescAgePerson implements Comparator<PersonComparator> {
 
 class Test {
     public static void main(String[] args) {
-        ArrayList<PersonComparator> list = new ArrayList<>();
+        List<PersonComparator> list = new ArrayList<>();
         list.add(new PersonComparator("ccc", 20));
         list.add(new PersonComparator("AAA", 30));
+        list.add(new PersonComparator("EEE", 99999));
         list.add(new PersonComparator("bbb", 10));
         list.add(new PersonComparator("ddd", 40));
         // list.add(new PersonComparator("eee", 40));
+
+        System.out.println("max: " + list.stream().max(new AseAgePerson()).get().toString());
 
         // 使用方式1：
         // 打印list的原始序列

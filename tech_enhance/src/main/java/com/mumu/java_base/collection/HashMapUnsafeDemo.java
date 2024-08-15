@@ -8,6 +8,8 @@ package com.mumu.java_base.collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
+import org.apache.commons.lang.math.RandomUtils;
+import org.junit.Test;
 
 /**
  * HashMapUnsafeDemo HashMap不安全Demo
@@ -68,4 +70,90 @@ public class HashMapUnsafeDemo {
         }
     }
 
+    @Test
+    public void test() {
+        Map<Integer, Integer> map = new HashMap<>(512);
+
+        for (int i = 0; i < 4; i++) {
+            int key = RandomUtils.nextInt(300);
+
+            map.put(key, key);
+
+            System.out.println(key);
+        }
+
+        System.out.println("---------->");
+
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            System.out.println("key: " + entry.getKey() + " value: " + entry.getValue());
+        }
+    }
+
+
+    @Test
+    public void test2() {
+        Map<Integer, Integer> map = new HashMap<>(3000) {
+            {
+                put(279, 279);
+                hash(279);
+
+                put(1360, 1360);
+                hash(1360);
+
+
+                put(2478, 2478);
+                hash(2478);
+
+
+                put(2294, 2294);
+                hash(2294);
+
+            }
+        };
+
+        // key: 1360 value: 1360
+        // key: 2294 value: 2294
+        // key: 2478 value: 2478
+        // key: 279 value: 279
+
+
+        System.out.println("---------->");
+
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            System.out.println("key: " + entry.getKey() + " value: " + entry.getValue());
+        }
+    }
+
+    @Test
+    public void test3() {
+        Map<Integer, Integer> map = new HashMap<>(32) {
+            {
+                put(1, 1);
+                hash(1);
+
+                put(2, 2);
+                hash(2);
+
+                put(5, 5);
+                hash(5);
+
+                put(10, 10);
+                hash(10);
+            }
+        };
+
+        System.out.println("---------->");
+
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            System.out.println("key: " + entry.getKey() + " value: " + entry.getValue());
+        }
+    }
+
+
+    static final int hash(Object key) {
+        int h;
+        int hash = (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+        System.out.println("hash" + hash);
+        return hash;
+    }
 }
