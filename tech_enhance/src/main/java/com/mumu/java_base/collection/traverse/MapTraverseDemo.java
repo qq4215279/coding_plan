@@ -29,7 +29,11 @@ public class MapTraverseDemo {
      * 　第四种⽅法效率也挺好，关键是在遍历的过程中我们可以对集合中的元素进⾏删除。
      */
 
-    private Map<String,Object> map = new HashMap<>();
+    private Map<String,Object> map = new HashMap<>() {
+        {
+            put("D", "999");
+        }
+    };
 
     @Before
     public void before() {
