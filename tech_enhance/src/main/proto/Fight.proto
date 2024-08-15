@@ -1,10 +1,11 @@
 syntax = "proto3"; // PB协议版本
 
 option java_outer_classname = "FightMessages"; // 生成类的类名，注意：下划线的命名会在编译的时候被自动改为驼峰命名
-option java_package = "com.gobestsoft.proto.protobuf"; // 生成类的包名，注意：会在指定路径下按照该包名的定义来生成文件夹
+option java_package = "com.mumu.proto.protobuf2"; // 生成类的包名，注意：会在指定路径下按照该包名的定义来生成文件夹
 option java_multiple_files = true;
 
 // 生成java文件命令 protoc -I=./ ./Fight.proto --java_out=../java/
+// 生成java文件命令 protoc --proto_path==./ ./Fight.proto --java_out=../java/
 // 通用协议
 message FightMessage {
     int32 protoId = 1; // 协议Id
