@@ -6,8 +6,8 @@
 package com.mumu.design.baloot.common.core;
 
 import com.mumu.design.baloot.common.BalootGameListener;
+import com.mumu.design.baloot.common.enums.PokerStateEnum;
 import com.mumu.design.baloot.common.event.BalootEvent;
-import com.mumu.design.baloot.common.state.SendPokerState;
 import com.mumu.design.fsm.FSM;
 
 import java.util.HashMap;
@@ -37,8 +37,10 @@ public class BalootTable extends AbstractTable {
     /** 当前局主宰者 */
     protected PokerPlayer master;
 
-    /** 玩家tag 与 玩家信息 */
+    /** TODO 玩家tag 与 玩家信息 */
     protected Map<Integer, PokerPlayer> tagPlayerMap = new HashMap<>(4);
+
+    // TODO 记录历史牌局信息
 
     public BalootTable(int roomId, int tableId, String tableName, int tablePassword) {
         super(roomId, tableId, tableName, tablePassword);
@@ -59,7 +61,7 @@ public class BalootTable extends AbstractTable {
     public void start() {
 
         // 1. 进入发牌状态
-        changeFsmState(new SendPokerState(this));
+        changeFsmState(PokerStateEnum.SEND_POKER.createFSMState(this));
     }
 
     @Override
