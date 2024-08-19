@@ -547,13 +547,13 @@ public class JsonBuilder {
      * @param interceptor Json信息拦截器
      * $Date: 2014-1-3 上午10:53:07
      */
-    public static synchronized void addInterceptor(JsonInterceptor interceptor) {
+    /*public static synchronized void addInterceptor(JsonInterceptor interceptor) {
     	if (null == INTERCEPTORS) {
     		INTERCEPTORS = new ArrayList<JsonInterceptor>(1);
     	}
     	INTERCEPTORS.add(interceptor);
     	needInterceptor = true;
-    }
+    }*/
 
     /**
      * 拦截消息
