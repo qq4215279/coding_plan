@@ -151,35 +151,35 @@ public class GameSchedule {
      * @date 2024/8/18 13:18
      */
     private class ScheduleThread extends Thread {
-        /** 战场列表 */
-        private CopyOnWriteArrayList<Updatable> battleFieldList;
+        /** 游戏任务列表 */
+        private CopyOnWriteArrayList<Updatable> gameFieldList;
 
         /**
          * 构造函数
          */
         public ScheduleThread(int threadNo) {
             super("ScheduleThread-" + threadNo);
-            battleFieldList = new CopyOnWriteArrayList<>();
+            gameFieldList = new CopyOnWriteArrayList<>();
         }
 
         /**
-         * 添加战场
+         * 添加任务
          * @param battle battle
          * @return void
          * @date 2024/8/18 13:18
          */
         public void schedule(Updatable battle) {
-            battleFieldList.add(battle);
+            gameFieldList.add(battle);
         }
 
         /**
-         * 移除战场
+         * 移除任务
          * @param battle battle
          * @return void
          * @date 2024/8/18 13:19
          */
         public void unschedule(Updatable battle) {
-            battleFieldList.remove(battle);
+            gameFieldList.remove(battle);
         }
 
         @Override
@@ -226,12 +226,12 @@ public class GameSchedule {
          * @date 2024/8/18 13:20
          */
         private void runFrame(Time time) {
-            for (Updatable battle : battleFieldList) {
+            for (Updatable game : gameFieldList) {
                 try {
-                    battle.update(time.dt);
+                    game.update(time.dt);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    // log.error("runFrame error, roomId:{}", e, battle);
+                    // log.error("runFrame error, roomId:{}", e, game);
                 }
             }
         }

@@ -31,7 +31,7 @@ public class Room extends AbstractRoom {
      * @date 2024/8/18 15:55
      */
     @Override
-    public void doTicket(int dt) {
+    public void ticket(int dt) {
         try {
             doTicketTable(dt);
         } catch (Exception e) {
@@ -50,7 +50,7 @@ public class Room extends AbstractRoom {
         for (Map.Entry<Integer, AbstractTable> entry : tableMap.entrySet()) {
             AbstractTable abstractTable = entry.getValue();
             try {
-                abstractTable.doTicket(dt);
+                abstractTable.ticket(dt);
             } catch (Exception e) {
                 e.printStackTrace();
             }

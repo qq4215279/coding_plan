@@ -21,8 +21,9 @@ public class AbstractBalootState extends AbstractFSMState {
 
     /**
      * 构造函数
-     * @param state
-     * @param name
+     * @param state state
+     * @param name name
+     * @param table table
      */
     public AbstractBalootState(int state, String name, BalootTable table) {
         super(state, name);

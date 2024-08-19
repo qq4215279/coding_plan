@@ -65,7 +65,7 @@ public class BalootTable extends AbstractTable {
     }
 
     @Override
-    public void doTicket(int dt) {
+    public void ticket(int dt) {
         // TODO
 
         // 处理事件
@@ -150,6 +150,12 @@ public class BalootTable extends AbstractTable {
         this.dealerTag = dealerTag;
     }
 
+    /**
+     * 设置主宰者tag
+     * @param masterTag masterTag
+     * @return void
+     * @date 2024/8/19 10:23
+     */
     public void setMasterTag(int masterTag) {
         this.masterTag = masterTag;
     }

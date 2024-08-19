@@ -19,7 +19,9 @@ public class SendPokerState extends AbstractBalootState {
 
     /**
      * 构造函数
-     * @param balootTable
+     * @param state state
+     * @param name name
+     * @param balootTable table
      */
     public SendPokerState(int state, String name, BalootTable balootTable) {
         super(state, name, balootTable);
