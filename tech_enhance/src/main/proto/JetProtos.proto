@@ -5,12 +5,14 @@ syntax = "proto3"; // PB协议版本
 // package jet.protobuf; // 包名，其他 proto 在引用此 proto 的时候，就可以使用 test.protobuf.PersonTest 来使用，
 // 注意：和下面的 java_package 是两种易混淆概念，同时定义的时候，java_package 具有较高的优先级
 
-option java_package = "com.mumu.proto.protobuf"; // 生成类的包名，注意：会在指定路径下按照该包名的定义来生成文件夹
+// option java_package = "com.mumu.proto.protobuf"; // 生成类的包名，注意：会在指定路径下按照该包名的定义来生成文件夹
 option java_outer_classname = "PersonTestProtos"; // 生成类的类名，注意：下划线的命名会在编译的时候被自动改为驼峰命名
 option java_multiple_files = true;
 
-// 生成java文件命令 protoc -I=./ ./JetProtos.proto --java_out=../java
-// 生成java文件命令 protoc --proto_path=./ ./JetProtos.proto --java_out=../java
+// 1. 生成java文件命令 protoc -I=./ ./JetProtos.proto --java_out=../java   或   protoc --proto_path=./ ./JetProtos.proto --java_out=../java
+
+// 2. 需要提前生成目录，则不需要再指定 java_package
+// 生成java文件命令  protoc --proto_path=./ ./JetProtos.proto --java_out=../java/com/mumu/proto/protobuf3
 
 message PersonTest {
     int32 id = 1; // int 类型
