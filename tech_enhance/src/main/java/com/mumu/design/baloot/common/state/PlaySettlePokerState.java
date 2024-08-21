@@ -19,7 +19,9 @@ public class PlaySettlePokerState extends AbstractBalootState {
 
     /**
      * 构造函数
-     * @param balootTable
+     * @param state state
+     * @param name name
+     * @param balootTable table
      */
     public PlaySettlePokerState(int state, String name, BalootTable balootTable) {
         super(state, name, balootTable);

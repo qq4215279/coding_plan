@@ -15,7 +15,7 @@ public interface FSMEvent {
 
     /**
      * 处理状态机事件
-     * @param state
+     * @param state state
      * @return void
      * @date 2024/8/18 12:05
      */

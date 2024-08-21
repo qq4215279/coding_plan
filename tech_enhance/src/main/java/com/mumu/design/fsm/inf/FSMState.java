@@ -51,7 +51,7 @@ public interface FSMState {
 
     /**
      * 处理事件
-     * @param event
+     * @param event event
      * @return void
      * @date 2024/8/18 12:12
      */

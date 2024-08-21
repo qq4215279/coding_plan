@@ -67,7 +67,7 @@ public class Game implements Updatable {
         // TODO 帧同步
 
         try {
-            doTicketRoom(dt);
+            doTicketTable(dt);
         } catch (Exception e) {
 
         }
@@ -79,12 +79,12 @@ public class Game implements Updatable {
      * @return void
      * @date 2024/8/18 15:56
      */
-    private void doTicketRoom(int dt) {
+    private void doTicketTable(int dt) {
         // TODO
         for (Map.Entry<Integer, Room> entry : rooms.entrySet()) {
             Room room = entry.getValue();
             try {
-                room.doTicket(dt);
+                room.ticket(dt);
             } catch (Exception e) {
                 e.printStackTrace();
             }

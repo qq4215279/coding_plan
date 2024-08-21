@@ -12,4 +12,6 @@ package com.mumu.design.baloot.common;
  * @version 1.0.0 2024/8/18 15:23
  */
 public interface BalootListener {
+
+
 }

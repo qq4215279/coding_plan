@@ -83,17 +83,41 @@ protoc -proto_path=./ --java_out=./ ./JetProtos.proto
 
 > 参数说明：
 >
-> 1. `-I` 等价于 -proto_path：指定 .proto 文件所在的路径
->
-> 2. `--java_out`：编译成 java 文件时，标明输出目标路径
->
->    - --cpp_out 在目标目录DST_DIR中产生C++代码
->
->    - --java_out 在目标目录DST_DIR中产生Java代码
->
->    - --python_out 在目标目录 DST_DIR 中产生Python代码
->
-> 3. `./JetProtos.proto`：指定需要编译的 .proto 文件
+> 1. `-I` 等价于 `-proto_path`：指定 .proto 文件所在的路径。可以指定多个搜索路径。
+>2. `--java_out`：编译成 java 文件时，标明输出目标路径
+> 
+>   - `--cpp_out` 在目标目录DST_DIR中产生C++代码
+> - `--java_out` 在目标目录DST_DIR中产生Java代码
+>   - `--python_out` 在目标目录 DST_DIR 中产生Python代码
+> - `--go_out`：生成 Go 文件的输出目录。
+>3. `./JetProtos.proto`：指定需要编译的 .proto 文件
+
+**参数**：
+
+- `-I` 等价于 `-proto_path`：指定 .proto 文件所在的路径。可以指定多个搜索路径。
+
+- `--java_out`：编译成 java 文件时，标明输出目标路径
+
+  - `--cpp_out` 在目标目录DST_DIR中产生C++代码
+  - `--java_out` 在目标目录DST_DIR中产生Java代码
+  - `--python_out` 在目标目录 DST_DIR 中产生Python代码
+  - `--go_out`：生成 Go 文件的输出目录。
+
+- `./JetProtos.proto`：指定需要编译的 .proto 文件
+
+- `--descriptor_set_out`：将描述符集写入指定文件。描述符集包含有关 .proto 文件的所有信息，并且可以用于动态消息处理。
+
+  eg：protoc --descriptor_set_out=descriptor.pb myfile.proto
+
+- `--include_imports`：在生成描述符集时包含导入的文件。
+
+  eg：protoc --descriptor_set_out=descriptor.pb --include_imports myfile.proto
+
+- `--include_source_info`：在生成描述符集时包含源信息。
+
+  eg：protoc --descriptor_set_out=descriptor.pb --include_source_info myfile.proto
+
+
 
 5. 使用
 

@@ -21,8 +21,8 @@ public abstract class AbstractFSMState implements FSMState {
 
     /**
      * 构造函数
-     * @param state
-     * @param name
+     * @param state state
+     * @param name name
      */
     public AbstractFSMState(int state, String name) {
         this.state = state;

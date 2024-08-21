@@ -51,5 +51,5 @@ public abstract class AbstractRoom {
      * @return void
      * @date 2024/8/18 15:55
      */
-    public abstract void doTicket(int dt);
+    public abstract void ticket(int dt);
 }

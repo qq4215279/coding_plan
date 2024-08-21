@@ -55,7 +55,7 @@ public abstract class AbstractTable {
     public abstract void init(BalootGameListener balootGameListener);
     
     /**
-     * 
+     * start
      * @return void
      * @date 2024/8/18 15:41
      */
@@ -67,7 +67,7 @@ public abstract class AbstractTable {
      * @return void
      * @date 2024/8/18 16:01
      */
-    public abstract void doTicket(int dt);
+    public abstract void ticket(int dt);
 
     /**
      * 修改状态机状态
