@@ -1,10 +1,16 @@
+/*
+ * Copyright 2020-2024, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.design.baloot.common.core;
 
 import com.mumu.design.baloot.common.enums.PokerLevelEnum;
 import com.mumu.design.baloot.common.enums.PokerTypeEnum;
+import lombok.Data;
+
 import java.util.LinkedList;
 import java.util.List;
-import lombok.Data;
 
 /**
  * Poker
@@ -39,11 +45,11 @@ public class Poker {
      */
     private int caclId(PokerTypeEnum type, PokerLevelEnum level) {
         // 小王
-        if (level == PokerLevelEnum.LEVEL_S_X) {
+        if (level == PokerLevelEnum.LEVEL_SMALL_KING) {
             return 52;
 
             // 大王
-        } else if (level == PokerLevelEnum.LEVEL_L_X) {
+        } else if (level == PokerLevelEnum.LEVEL_BIG_KING) {
             return 53;
 
             // 数字牌
@@ -104,7 +110,7 @@ public class Poker {
 
         for (PokerTypeEnum typeEnum : PokerTypeEnum.values()) {
             for (PokerLevelEnum levelEnum : PokerLevelEnum.values()) {
-                pokers.add(new Poker(typeEnum, levelEnum));
+                pokers.add(new Poker(levelEnum, typeEnum));
             }
         }
 

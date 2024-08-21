@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2024, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.design.baloot.common.enums;
 
 /**
@@ -8,13 +13,15 @@ package com.mumu.design.baloot.common.enums;
  */
 public enum PokerTypeEnum {
     /** 方块 */
-    DIAMOND("♦方块"),
+    DIAMOND("♦"),
     /** 梅花 */
     CLUB("♣"),
     /** 红桃 */
     HEART("♥"),
     /** 黑桃 */
-    SPADE("♠");
+    SPADE("♠"),
+    BLANK(" "),
+    ;
 
     /** name */
     private final String name;

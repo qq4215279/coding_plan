@@ -1,3 +1,8 @@
+/*
+ * Copyright 2020-2024, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.design.baloot.common.enums;
 
 /**
@@ -34,9 +39,9 @@ public enum PokerLevelEnum {
     /** A */
     LEVEL_A(14, "A"),
     /** 小王 */
-    LEVEL_SMALL_KING(15, "S", 15),
+    LEVEL_SMALL_KING(15, "S"),
     /** 大王 */
-    LEVEL_BIG_KING(16, "X", 16),
+    LEVEL_BIG_KING(16, "X"),
     ;
 
     /** 大小 */
@@ -44,7 +49,7 @@ public enum PokerLevelEnum {
     /** name */
     private String name;
 
-    PokerLevelEnum(int level, String name, int priority) {
+    PokerLevelEnum(int level, String name) {
         this.level = level;
         this.name = name;
     }
