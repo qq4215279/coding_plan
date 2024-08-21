@@ -12,6 +12,15 @@ package com.mumu.design.baloot.common.enums;
  * @version 1.0.0 2024/8/18 14:33
  */
 public enum PokerLevelEnum {
+    /** 3 */
+    LEVEL_3(3, "3",3),
+    /** 4 */
+    LEVEL_4(4, "4", 4),
+    /** 5 */
+    LEVEL_5(5, "5", 5),
+    /** 6 */
+    LEVEL_6(6, "6", 6),
+
     /** 7 */
     LEVEL_7(7, "7", 7),
     /** 8 */
@@ -28,6 +37,13 @@ public enum PokerLevelEnum {
     LEVEL_K(13, "K", 13),
     /** A */
     LEVEL_A(14, "A", 14),
+
+    /** A */
+    LEVEL_2(15, "2", 2),
+    /** S */
+    LEVEL_SMALL_KING(16, "S", 15),
+    /** X */
+    LEVEL_BIG_KING(17, "X", 16),
     ;
 
     /** 大小 */

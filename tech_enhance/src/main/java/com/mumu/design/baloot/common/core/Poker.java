@@ -63,4 +63,20 @@ public class Poker {
     public String toString() {
         return level.getLevel() + " ";
     }
+
+    public PokerLevelEnum getLevel() {
+        return level;
+    }
+
+    public void setLevel(PokerLevelEnum level) {
+        this.level = level;
+    }
+
+    public PokerTypeEnum getType() {
+        return type;
+    }
+
+    public void setType(PokerTypeEnum type) {
+        this.type = type;
+    }
 }
