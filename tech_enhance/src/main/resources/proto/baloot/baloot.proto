@@ -1,0 +1,130 @@
+syntax = "proto3";
+
+option java_package = "com.game.proto.baloot";
+
+// 响应游戏桌子信息
+message BalootTableBean {
+  // 状态: 1: 等待; 2: 发牌; 3: 叫牌; 4: 行牌; 5: 行牌结算; 6: 最终结算;
+  int32 state = 1;
+  // 游戏指令: 0: 初始化; 1: 玩家准备; 2: 开始游戏，首次发牌; 3: 2次发牌; 4: 玩家叫牌; 5: 发底牌; 6: 发展示牌给指定玩家; 7: 游戏流局; 8: 玩家行牌; 9: 行牌结算; 10: 最终结算;
+  int32 action = 2;
+  // 游戏模式: 0: 未确定; 1: hokum; 2: 2rd hokum; 3: sun; 4: ashkal
+  int32 mode = 3;
+  // 游戏倍数: 1: 默认1倍; 2: 2倍; 3: 3倍; 4: 4倍; 5: 5倍(gahwa);
+  int32 multi = 4;
+  // 盘数
+  int32 circle = 5;
+  // 墩数
+  int32 round = 6;
+  // 发牌员
+  int32 dealerSeatId = 7;
+  // 主宰者
+  int32 masterSeatId = 8;
+  // 加倍者
+  int32 multiSeatId = 9;
+  // 展示牌
+  int32 displayPokerId = 10;
+  // 展示牌拥有玩家
+  int32 displaySeatId = 11;
+  // 当前叫牌玩家
+  int32 bidSeatId = 12;
+  // 玩家命令集
+  repeated CmdBean cmdBeans = 13;
+  // 操作倒计时
+  int64 countdown = 14;
+  // 队伍信息列表
+  repeated TeamBean teanbeans = 15;
+  // 游戏主花色
+  int32 mainColorType = 16;
+}
+
+// 桌子玩家信息
+message PokerPlayerBean {
+  // 是否准备开始游戏
+  bool isReady = 1;
+  // 游戏玩家信息
+  PokerBean pokerBean = 2;
+}
+
+// 玩家游戏牌
+message PokerBean {
+  // 剩余手牌
+  repeated int32 restPokers = 1;
+  // 剩余手牌数量
+  int32 restCount = 2;
+  // 获得的分数手牌
+  repeated int32 scorePokers = 3;
+  // 原始手牌
+  repeated int32 allPokers = 4;
+}
+
+// 队伍信息
+message TeamBean {
+  // 队伍id
+  int32 teamId = 1;
+  // 队伍名称
+  string name = 2;
+  // 当前局队伍总分
+  int32 totalScore = 3;
+  // 当前盘队伍总分
+  int32 score = 4;
+  // 玩家列表
+  repeated int64 playerIds = 5;
+}
+
+// 命令
+message CmdBean {
+  // 命令
+  CommandEnum command = 1;
+  // 命令参数列表
+  repeated string args = 2;
+}
+
+// 命令枚举
+enum CommandEnum {
+  /** 准备开始游戏 */
+  READY = 0;
+  /** pass */
+  PASS = 1;
+  /** wala */
+  WALA = 2;
+  /** sun */
+  SUN = 3;
+  /** hokum */
+  HOKUM = 4;
+  /** 2nd hokum */
+  SECEND_HOKUM = 5;
+  /** ashkal */
+  ASHKAL = 6;
+  /** 加倍 - double */
+  DOUBLE = 7;
+  /** 加倍 - three */
+  THREE = 8;
+  /** 加倍 - four */
+  FOUR = 9;
+  /** 加倍 - Gahwa */
+  GAHWA = 10;
+  /** 主花色 参数为选择的扑克牌类型 */
+  MAIN_COLOR = 11;
+  /** 行牌 参数为扑克牌Id */
+  PLAY = 12;
+  /** 发牌 **/
+  SEND_POKER = 13;
+  /** 发展示牌给玩家 **/
+  SEND_DISPLAY_POKER = 14;
+  /** 玩家墩结算 **/
+  SETTLE_POKER = 15;
+}
+
+// 请求执行游戏命令
+message CGExecuteCommandMessage {
+  // 游戏命令
+  CommandEnum command = 1;
+  // 游戏命令参数
+  repeated string args = 2;
+}
+
+// 响应执行游戏命令
+message GCExecuteCommandMessage {
+}
+

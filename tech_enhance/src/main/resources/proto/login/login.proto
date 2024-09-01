@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option java_package = "com.game.proto.login";
+
+import "basegame/game.proto";
+
+// 登陆请求
+message ReqLoginMessage {
+  string token = 1;
+}
+
+// 登陆响应
+message ResLoginMessage {
+  /** 玩家信息 */
+  PlayerBaseInfoBean clientPlayerInfo = 1;
+  /** 系统时间 */
+  int64 systemTime = 2;
+  /** 游戏服信息 */
+  repeated GameInfoBean games = 3;
+}
+
+// 玩家信息
+message PlayerBaseInfoBean {
+  /** 玩家id */
+  int64 id = 1;
+  /** 玩家昵称 */
+  string nick = 2;
+  /** 玩家头像 */
+  string head = 3;
+  /** 玩家头像框 */
+  int32 headFrame = 4;
+}
+
+// 登出响应
+message ResLogoutMessage {
+  /** 测试字段 */
+  string msg = 1;
+}

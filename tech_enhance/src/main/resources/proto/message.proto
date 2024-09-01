@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "com.game.proto.test";
+
+// 总协议
+message MessageProxy {
+  fixed32  cmd = 1;         // 协议号
+  fixed32  seq = 2;         // 序列号，客户端使用
+  fixed32  errorCode = 3;   // 错误码
+  bytes    data = 4;        // 具体协议数据
+  fixed64  playerId = 5;    // 服务器内部使用
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "com.game.proto.server";
+
+// ping-pong响应
+message ECPongMessage {
+  int64 systemTime = 1; // 系统时间
+}

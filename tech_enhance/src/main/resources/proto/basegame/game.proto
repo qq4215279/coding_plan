@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+option java_package = "com.game.proto.basegame";
+
+import "login/login.proto";
+import "baloot/baloot.proto";
+
+// 客户端请求进入游戏
+message CWEnterGameMessage {
+  /** 游戏id */
+  int32 gameId = 1;
+  /** 房间id */
+  int32 roomId = 2;
+}
+
+// 进入游戏响应
+message GCEnterGameMessage {
+  /** 玩家位置 */
+  PlayerSeatBean seat = 1;
+}
+
+// 请求信息同步
+message CGSyncGameMessage {
+}
+
+// 响应信息同步
+message GCSyncGameMessage {
+  /** 桌内玩家信息列表 */
+  repeated GamePlayerBean players = 1;
+  /** baloot桌子消息 */
+  BalootTableBean balootInfo = 2;
+}
+
+// 推送玩家变动消息
+message OnGCPushPlayerMessage {
+  /** 玩家位置 */
+  int32 seatId = 1;
+  /** 玩家信息 */
+  GamePlayerBean player = 2;
+  /** 玩家事件 */
+  PlayerTableAction playerAction = 3;
+}
+
+/** 玩家桌子事件 */
+enum PlayerTableAction {
+  // 进入游戏
+  ENTER = 0;
+  // 退出游戏
+  EXIT = 1;
+}
+
+// 游戏玩家信息
+message GamePlayerBean {
+  /** 玩家基础信息 */
+  PlayerBaseInfoBean baseInfo = 1;
+  /** 玩家位置信息 */
+  PlayerSeatBean seatInfo = 2;
+  /** 桌子玩家信息 */
+  PokerPlayerBean pokerPlayerBean = 3;
+}
+
+// 玩家位置
+message PlayerSeatBean {
+  /** 玩家id */
+  int64 playerId = 1;
+  /** 游戏id */
+  int32 gameId = 2;
+  /** 房间id */
+  int32 roomId = 3;
+  /** 桌子id */
+  int32 tableId = 4;
+  /** 位置id */
+  int32 seatId = 5;
+}
+
+// 推送玩家游戏中变动消息
+message OnGCPushGameMessage {
+  /** 操作玩家id */
+  int64 lastOpPlayerId = 1;
+  /** 操作命令 */
+  CmdBean cmdBean = 2;
+  /** baloot桌子消息 */
+  BalootTableBean balootInfo = 3;
+}
+
+// 游戏服信息
+message GameInfoBean {
+  int32 gameId=1;
+  string gameName=2;
+  repeated int32 roomIds=3;
+  int32 major=4;
+  int32 minor=5;
+  int64 startTime=6;
+}
