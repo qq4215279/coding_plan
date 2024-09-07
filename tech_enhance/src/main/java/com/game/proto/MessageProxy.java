@@ -1,10 +1,14 @@
+/*
+ * Copyright 2020-2024, 木木996.
+ * All Right Reserved.
+ */
+
 package com.game.proto;
 
 import com.baidu.bjf.remoting.protobuf.FieldType;
 import com.baidu.bjf.remoting.protobuf.annotation.Protobuf;
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
-import com.game.core.IoSession;
-import com.game.core.JProtoBufUtil;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,21 +44,21 @@ public class MessageProxy {
   private Long playerId;
 
   /** 消息关联 session（内部使用） */
-  private transient IoSession session;
+  // private transient IoSession session;
 
   /** 任务回调（内部使用） */
   private transient Runnable callBack;
 
   /** 获取消息 */
-  public <T> T getMsg(Class<T> clazz) {
-    return JProtoBufUtil.decode(data, clazz);
-  }
+  // public <T> T getMsg(Class<T> clazz) {
+  //   return JProtoBufUtil.decode(data, clazz);
+  // }
 
   /** 设置消息 */
-  public MessageProxy setMsg(Object data) {
-    this.data = JProtoBufUtil.encode(data);
-    return this;
-  }
+  // public MessageProxy setMsg(Object data) {
+  //   this.data = JProtoBufUtil.encode(data);
+  //   return this;
+  // }
 
   /** 获取一个新的 proxy */
   public MessageProxy copy() {

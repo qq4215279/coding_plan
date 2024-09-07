@@ -1,42 +1,31 @@
+/*
+ * Copyright 2020-2024, 木木996.
+ * All Right Reserved.
+ */
+
 package com.game.proto.baloot;
 
-import com.baidu.bjf.remoting.protobuf.FieldType;
-import com.baidu.bjf.remoting.protobuf.annotation.Protobuf;
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
 import lombok.Data;
 
+
+/**
+ * TeamBean
+ * 队伍信息
+ * @author Auto-generated
+ * @version 1.0.0 2024/9/9 10:00
+ */
 @ProtobufClass
 @Data
 public class TeamBean {
-
-  /**
-   * 队伍id optional int32 teamId=1
-   */
-  @Protobuf(fieldType = FieldType.INT32, order = 1, required = false)
-  public Integer teamId;
-
-  /**
-   * 队伍名称 optional int32 name=2
-   */
-  @Protobuf(fieldType = FieldType.STRING, order = 2, required = false)
-  public String name;
-
-  /**
-   * 当前局队伍总分 optional int32 totalsScore=3
-   */
-  @Protobuf(fieldType = FieldType.INT32, order = 3, required = false)
-  public Integer totalsScore;
-
-  /**
-   * 当前盘队伍总分 optional int32 score=4
-   */
-  @Protobuf(fieldType = FieldType.INT32, order = 4, required = false)
-  public Integer score;
-
-  /**
-   * 玩家列表 repeated int64 playerIds=5
-   */
-  @Protobuf(fieldType = FieldType.INT64, order = 5)
-  public java.util.List<Long> playerIds;
-
+  // 队伍id
+  private Integer teamId;
+  // 队伍名称
+  private String name;
+  // 当前局队伍总分
+  private Integer totalScore;
+  // 当前盘队伍总分
+  private Integer score;
+  // 玩家列表
+  private java.util.List<Long> playerIds = new java.util.ArrayList<>();
 }
