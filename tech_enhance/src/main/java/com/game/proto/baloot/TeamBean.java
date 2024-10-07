@@ -28,4 +28,6 @@ public class TeamBean {
   private Integer score;
   // 玩家列表
   private java.util.List<Long> playerIds = new java.util.ArrayList<>();
+  /** 面板信息 */
+  private PanelBean panelBean;
 }

@@ -14,6 +14,9 @@
     <version>1.0-SNAPSHOT</version>
     <!--  打包后的名字  -->
     <name>coding_plan</name>
+    <modules>
+        <module>game</module>
+    </modules>
     <packaging>pom</packaging>
 
     <parent>
