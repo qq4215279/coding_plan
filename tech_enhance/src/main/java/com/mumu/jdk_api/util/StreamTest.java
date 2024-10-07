@@ -181,6 +181,10 @@ public class StreamTest {
         Map<String, Map<Integer, User>> nameAgeItemMap = list.stream().collect(Collectors.groupingBy(User::getUserName, Collectors.toMap(User::getAge,
                 v -> v, (v1, v2) -> v1)));
 
+        // 3.3 转map，在将指定字段，并转换为 List
+        Map<String, List<Integer>> nameSexsMap = list.stream().collect(
+            Collectors.groupingBy(User::getUserName,
+                Collectors.mapping(User::getSex, Collectors.toList())));
 
         // 4. 字符串分隔符连接 Collectors.joining(",", "(", ")")
         String joinName = list.stream().map(User::getUserName).collect(Collectors.joining(",", "(", ")")); // (aa,bb,cc)
