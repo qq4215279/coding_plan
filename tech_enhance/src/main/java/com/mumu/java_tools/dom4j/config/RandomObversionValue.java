@@ -27,9 +27,6 @@ import java.math.BigInteger;
  * &lt;/complexType>
  * </pre>
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "itemid", "count", "chance" })
-@XmlRootElement(name = "randomObversionValue")
 public class RandomObversionValue {
 
 	protected BigInteger itemid;

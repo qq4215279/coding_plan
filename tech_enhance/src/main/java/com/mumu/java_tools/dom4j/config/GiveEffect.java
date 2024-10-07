@@ -8,12 +8,6 @@
 
 package com.mumu.java_tools.dom4j.config;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-
-
 /**
  * <p>anonymous complex type的 Java 类。
  * 
@@ -30,9 +24,6 @@ import javax.xml.bind.annotation.XmlType;
  * 
  * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "giveEffect")
 public class GiveEffect {
 
 

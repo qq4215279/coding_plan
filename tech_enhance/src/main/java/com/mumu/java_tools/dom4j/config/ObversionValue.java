@@ -28,12 +28,6 @@ import java.math.BigInteger;
  * 
  * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "key",
-    "value"
-})
-@XmlRootElement(name = "obversionValue")
 public class ObversionValue {
 
     protected BigInteger key;
