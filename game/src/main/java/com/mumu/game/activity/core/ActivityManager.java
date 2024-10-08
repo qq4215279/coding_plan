@@ -31,7 +31,7 @@ public class ActivityManager {
 
   /** 活动id 与 活动 映射 */
   public static HashMap<Integer, Class<? extends Activity>> ACTIVITY_MAP = Maps.newHashMap();
-  /** 活动类 与 活动id 映射 */
+  /** 活动 与 活动id 映射 */
   public static HashMap<Class<?>, Integer> CLAZZNAME_ACTIVITY_MAP = Maps.newHashMap();
   /** 功能id树 */
   public static Tree<Integer> functionIdTree = new Tree<>();
@@ -53,6 +53,7 @@ public class ActivityManager {
    * @date 2024/10/7 16:55
    */
   public static void reloadConfig(Tree<Integer> config) {
+    // TODO 初始化调用
     functionIdTree = config;
 
     loadConfigActivity();
@@ -85,7 +86,7 @@ public class ActivityManager {
    * @date 2024/10/7 16:59
    */
   public static List<Integer> getModuleAllActivityId(int myId) {
-    int parentId = getModuleActivityId(myId);
+    int parentId = getModuleParentActivityId(myId);
 
     List<Integer> res = new ArrayList<>();
     getAllSubActivityId(parentId, res);
@@ -99,7 +100,7 @@ public class ActivityManager {
    * @return int
    * @date 2024/10/7 16:59
    */
-  public static int getModuleActivityId(int myId) {
+  public static int getModuleParentActivityId(int myId) {
     int parentId = myId;
     // 循环30次！避免死循环
     for (int i = 0; i < 30; i++) {
