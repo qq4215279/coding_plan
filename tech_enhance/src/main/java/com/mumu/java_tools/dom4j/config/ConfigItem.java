@@ -1,13 +1,26 @@
 
 package com.mumu.java_tools.dom4j.config;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = {
+    "configItem",
+    "configItemInfo"
+})
+@XmlRootElement(name = "config_item")
 public class ConfigItem {
 
+    @XmlElement(name = "config_item")
     protected ConfigItem configItem;
+    @XmlElement(name = "config_itemInfo")
     protected List<ConfigItemInfo> configItemInfo;
 
 

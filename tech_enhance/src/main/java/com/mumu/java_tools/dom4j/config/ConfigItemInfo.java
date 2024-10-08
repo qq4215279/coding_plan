@@ -75,49 +75,107 @@ import java.util.List;
  * &lt;/complexType>
  * </pre>
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = { "uniqueId", "itemId", "itemType", "subType", "name", "typeName", "visual", "unit", "describe", "effectDescribe",
+		"extraIconName", "icon", "tips", "rewardShowTips", "rewardDisplay", "storageLimit", "displayState", "isRandom", "isCanUse", "isCanBatchUse",
+		"useEffect", "isCanBuy", "buyVipLimit", "buyEffect", "isCanSell", "sellEffect", "sellCondition", "isCanGive", "giveEffect", "load", "loadEffect",
+		"synthesis", "isCanEquip", "effectiveTime", "effectiveTimeLimit", "obversionValue", "randomObversionValue", "isCanJump", "jumpEffect", "recordDataDays",
+		"isCanMail", "itemGoldValue", "clearInMonth", "clearInWeek" })
+@XmlRootElement(name = "config_itemInfo")
 public class ConfigItemInfo {
 
+	@XmlElement(required = true)
 	protected BigInteger uniqueId;
+	@XmlElement(required = true)
 	protected BigInteger itemId;
+	@XmlElement(required = true)
 	protected BigInteger itemType;
+	@XmlElement(required = true)
 	protected BigInteger subType;
+	@XmlElement(required = true)
 	protected String name;
+	@XmlElement(required = true)
+	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+	@XmlSchemaType(name = "NCName")
 	protected String typeName;
+	@XmlElement(required = true)
 	protected BigInteger visual;
+	@XmlElement(required = true)
+	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+	@XmlSchemaType(name = "NCName")
 	protected String unit;
+	@XmlElement(required = true)
 	protected String describe;
+	@XmlElement(required = true)
 	protected String effectDescribe;
+	@XmlElement(required = true)
 	protected String extraIconName;
+	@XmlElement(required = true)
+	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+	@XmlSchemaType(name = "NCName")
 	protected String icon;
+	@XmlElement(required = true)
+	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+	@XmlSchemaType(name = "NCName")
 	protected String tips;
+	@XmlElement(required = true)
+	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+	@XmlSchemaType(name = "NCName")
 	protected String rewardShowTips;
+	@XmlElement(required = true)
 	protected RewardDisplay rewardDisplay;
+	@XmlElement(required = true)
 	protected BigInteger storageLimit;
+	@XmlElement(required = true)
 	protected BigInteger displayState;
+	@XmlElement(required = true)
 	protected BigInteger isRandom;
+	@XmlElement(required = true)
 	protected BigInteger isCanUse;
+	@XmlElement(required = true)
 	protected BigInteger isCanBatchUse;
+	@XmlElement(required = true)
 	protected BigInteger useEffect;
+	@XmlElement(required = true)
 	protected BigInteger isCanBuy;
+	@XmlElement(required = true)
 	protected BigInteger buyVipLimit;
+	@XmlElement(required = true)
 	protected BuyEffect buyEffect;
+	@XmlElement(required = true)
 	protected BigInteger isCanSell;
+	@XmlElement(required = true)
 	protected SellEffect sellEffect;
+	@XmlElement(required = true)
 	protected SellCondition sellCondition;
+	@XmlElement(required = true)
 	protected BigInteger isCanGive;
+	@XmlElement(required = true)
 	protected GiveEffect giveEffect;
+	@XmlElement(required = true)
 	protected BigInteger load;
+	@XmlElement(required = true)
 	protected LoadEffect loadEffect;
+	@XmlElement(required = true)
 	protected BigInteger synthesis;
+	@XmlElement(required = true)
 	protected BigInteger isCanEquip;
+	@XmlElement(required = true)
 	protected BigInteger effectiveTime;
+	@XmlElement(required = true)
 	protected BigInteger effectiveTimeLimit;
+	@XmlElement(required = true)
 	protected ObversionValue obversionValue;
+	@XmlElement(required = true)
 	protected List<RandomObversionValue> randomObversionValue;
+	@XmlElement(required = true)
 	protected BigInteger isCanJump;
 	protected double jumpEffect;
+	@XmlElement(required = true)
 	protected BigInteger recordDataDays;
+	@XmlElement(required = true)
 	protected BigInteger isCanMail;
+	@XmlElement(required = true)
 	protected BigInteger itemGoldValue;
 	protected List<BigInteger> clearInMonth;
 	protected List<BigInteger> clearInWeek;

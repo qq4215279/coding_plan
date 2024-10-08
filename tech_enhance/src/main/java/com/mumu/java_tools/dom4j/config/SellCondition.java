@@ -1,6 +1,10 @@
 
 package com.mumu.java_tools.dom4j.config;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.math.BigInteger;
 
 
@@ -24,6 +28,12 @@ import java.math.BigInteger;
  * 
  * 
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = {
+    "key",
+    "value"
+})
+@XmlRootElement(name = "sellCondition")
 public class SellCondition {
 
     protected BigInteger key;
