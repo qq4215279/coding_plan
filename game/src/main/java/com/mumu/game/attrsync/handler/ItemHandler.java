@@ -22,11 +22,16 @@ public class ItemHandler extends AbstractModuleHandler {
     }
 
     @Override
+    public void sync(long playerId) {
+
+    }
+
+    @Override
     public boolean onEvent(ModuleEvent event) {
         // TODO
 
         switch (event.eventId) {
-            case EventConstants.BALOOT_SEND_COMMAND:
+            case EventConstants.CHANGE_ITEM:
                 // TODO
 
                 return true;

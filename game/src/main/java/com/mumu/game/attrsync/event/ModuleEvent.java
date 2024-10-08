@@ -29,7 +29,7 @@ public class ModuleEvent {
 
 
     /**
-     *
+     * 发送指令
      * @param playerId playerId
      * @return com.mumu.game.attrsync.event.ModuleEvent
      * @date 2024/10/6 20:28
@@ -40,6 +40,25 @@ public class ModuleEvent {
         event.eventId = EventConstants.BALOOT_SEND_COMMAND;
         event.module = ModuleEnum.BALOOT;
         event.args = new Object[] {table};
+
+        return event;
+    }
+
+    /**
+     * 道具变化
+     * @param playerId playerId
+     * @param itemId itemId
+     * @param changeCount changeCount
+     * @param nowCount nowCount
+     * @return com.mumu.game.attrsync.event.ModuleEvent
+     * @date 2024/10/8 11:43
+     */
+    public static ModuleEvent changeItem(int playerId, int itemId, int changeCount, int nowCount) {
+        ModuleEvent event = new ModuleEvent();
+        event.playerId = playerId;
+        event.eventId = EventConstants.CHANGE_ITEM;
+        event.module = ModuleEnum.ITEM;
+        event.args = new Object[] {itemId, changeCount, nowCount};
 
         return event;
     }

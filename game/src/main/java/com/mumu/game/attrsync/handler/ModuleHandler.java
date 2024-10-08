@@ -17,6 +17,13 @@ import com.mumu.game.attrsync.event.ModuleEvent;
 public interface ModuleHandler {
 
     /**
+     *
+     * @param playerId 玩家id
+     * @date 2024/10/8 11:41
+     */
+    void sync(long playerId);
+
+    /**
      * 处理事件
      * @param event event
      * @return boolean

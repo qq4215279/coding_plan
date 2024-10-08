@@ -5,6 +5,8 @@
 
 package com.mumu.game.attrsync;
 
+import com.mumu.design.baloot.common.core.BalootTable;
+import com.mumu.game.attrsync.event.ModuleEvent;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -46,6 +48,14 @@ public class Main {
         System.out.println(isWrapperType(123.45)); // true
         System.out.println(isWrapperType("Hello")); // false
         System.out.println(isWrapperType(true)); // true
+
+
+        // 发送指令推送事件
+        ModuleSyncManager.getInstance()
+            .onEvent(ModuleEvent.sendCommand(1000, new BalootTable(1, 1, "sss", 0)));
+
+        // 道具变化推送事件
+        ModuleSyncManager.getInstance().onEvent(ModuleEvent.changeItem(1000, 1001, 100, 999999));
     }
 
 }
