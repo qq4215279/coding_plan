@@ -35,9 +35,8 @@ public class PlayerSeasonActivityInfo {
 
   /**
    * 每日重置
-   * @date 2023/6/20 15:14
    * @param resetTime 重置时间
-   * @return void
+   * @date 2024/10/8 11:35
    */
   public void dailyReset(long resetTime) {
     this.lastResetTime = resetTime;
@@ -45,9 +44,8 @@ public class PlayerSeasonActivityInfo {
 
   /**
    * 每周重置
-   * @date 2023/7/4 11:54
    * @param resetTime 重置时间
-   * @return void
+   * @date 2024/10/8 11:35
    */
   public void weekReset(long resetTime) {
     this.lastWeekResetTime = resetTime;
@@ -55,9 +53,8 @@ public class PlayerSeasonActivityInfo {
 
   /**
    * 每月重置
-   * @date 2023/7/24 14:54
    * @param resetTime 重置时间
-   * @return void
+   * @date 2024/10/8 11:35
    */
   public void monthReset(long resetTime) {
     this.lastMonthResetTime = resetTime;
@@ -65,8 +62,7 @@ public class PlayerSeasonActivityInfo {
 
   /**
    * 重置赛季数据
-   * @date 2023/6/16 18:20
-   * @return void
+   * @date 2024/10/8 11:35
    */
   public void seasonReset() {
     this.seasonInfoId = 0;

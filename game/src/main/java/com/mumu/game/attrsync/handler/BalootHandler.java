@@ -24,6 +24,11 @@ public class BalootHandler<bean extends BalootTableBean> extends AbstractModuleH
     }
 
     @Override
+    public void sync(long playerId) {
+
+    }
+
+    @Override
     public boolean onEvent(ModuleEvent event) {
 
         BalootTableBean tableBean = new BalootTableBean();

@@ -1,8 +1,6 @@
 package com.mumu.game.activity.impl;
 
 import com.mumu.game.activity.core.AbstractActivity;
-import com.mumu.game.activity.core.ActivityState;
-import java.util.Map;
 
 /**
  * DefaultTemplateActivity

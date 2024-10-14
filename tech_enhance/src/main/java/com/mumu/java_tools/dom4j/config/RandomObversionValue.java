@@ -1,6 +1,10 @@
 
 package com.mumu.java_tools.dom4j.config;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.math.BigInteger;
 
 /**
@@ -23,6 +27,9 @@ import java.math.BigInteger;
  * &lt;/complexType>
  * </pre>
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = { "itemid", "count", "chance" })
+@XmlRootElement(name = "randomObversionValue")
 public class RandomObversionValue {
 
 	protected BigInteger itemid;

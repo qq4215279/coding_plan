@@ -7,7 +7,7 @@ package com.mumu.game.attrsync.constants;
 
 /**
  * EventConstants
- * 事件常量
+ * 推送事件常量
  * @author liuzhen
  * @version 1.0.0 2024/10/6 17:20
  */
@@ -27,4 +27,6 @@ public final class EventConstants {
 
     /** baloot - 发送指令 */
     public static final int BALOOT_SEND_COMMAND = 1001;
+    /** 道具变化 */
+    public static final int CHANGE_ITEM = 1002;
 }

@@ -182,7 +182,7 @@ public abstract class AbstractSeasonActivity extends AbstractActivity {
    * @return int
    */
   protected int getModuleParentFuncId() {
-    return ActivityManager.getModuleActivityId(getActivityId());
+    return ActivityManager.getModuleParentActivityId(getActivityId());
   }
 
   /**

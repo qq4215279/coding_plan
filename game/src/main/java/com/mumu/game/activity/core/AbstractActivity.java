@@ -203,7 +203,7 @@ public abstract class AbstractActivity implements Activity {
   protected PushFunctionStatusMessage getStatusPushMsg() {
     PushFunctionStatusMessage push = new PushFunctionStatusMessage();
     push.setFunctionId(getActivityId());
-    Map<Integer, ActivityState> statusMap = getStatusMap();
+    Map<Integer, ActivityState> statusMap = getStateMap();
     statusMap.forEach((id, subStatus) -> {
       Activity subActivity = getSubActivity(id);
       SingleFunctionInfoBean singleFunctionInfo = new SingleFunctionInfoBean();
@@ -389,7 +389,7 @@ public abstract class AbstractActivity implements Activity {
    */
   protected boolean checkParentFunctionOpen() {
     int myId = getActivityId();
-    int parentId = ActivityManager.getModuleActivityId(myId);
+    int parentId = ActivityManager.getModuleParentActivityId(myId);
     if (myId == parentId) {
       return true;
     }
