@@ -12,12 +12,18 @@
     <groupId>com.mumu</groupId>
     <artifactId>coding_plan</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <!--  打包后的名字  -->
     <name>coding_plan</name>
+    <packaging>pom</packaging>
+
+    <!-- 子模块 -->
     <modules>
         <module>game</module>
+        <module>design_patterns</module>
+        <module>smart_code</module>
+        <module>common</module>
     </modules>
-    <packaging>pom</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -51,19 +57,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!--FastDFS客户端-->
+            <dependency>
+                <groupId>com.github.tobato</groupId>
+                <artifactId>fastdfs-client</artifactId>
+                <version>${fastDFS.client.version}</version>
+            </dependency>
 
-            <!-- mybatis启动器 -->
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis.starter.version}</version>
-            </dependency>
-            <!-- 通用Mapper启动器 -->
-            <dependency>
-                <groupId>tk.mybatis</groupId>
-                <artifactId>mapper-spring-boot-starter</artifactId>
-                <version>${mapper.starter.version}</version>
-            </dependency>
             <!-- mysql驱动 -->
             <dependency>
                 <groupId>mysql</groupId>
@@ -76,17 +76,54 @@
                 <artifactId>spring-boot-starter-jdbc</artifactId>
                 <version>2.0.6.RELEASE</version>
             </dependency>
+            <!-- Druid依赖 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.1.10</version>
+            </dependency>
+            <!-- mybatis启动器 -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.starter.version}</version>
+            </dependency>
+            <!-- 通用Mapper启动器 -->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${mapper.starter.version}</version>
+            </dependency>
             <!-- 分页助手启动器 -->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${pageHelper.starter.version}</version>
             </dependency>
-            <!--FastDFS客户端-->
+            <!-- redis操作 -->
             <dependency>
-                <groupId>com.github.tobato</groupId>
-                <artifactId>fastdfs-client</artifactId>
-                <version>${fastDFS.client.version}</version>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>3.4.3</version>
+            </dependency>
+
+            <!-- 日志接口 -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.21</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- 日志 -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>1.1.7</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>1.1.7</version>
             </dependency>
 
             <!-- 字符串操作 -->
@@ -95,44 +132,29 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>3.1</version>
             </dependency>
-
-            <!-- fastjson -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cglib</groupId>
-                <artifactId>cglib</artifactId>
-                <version>3.2.5</version>
-            </dependency>
-
-            <!-- Druid依赖 -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
-                <version>1.1.10</version>
-            </dependency>
-
-            <!-- 导出文件到Excel -->
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi</artifactId>
-                <version>3.17</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi-ooxml</artifactId>
-                <version>3.17</version>
-            </dependency>
-
+            <!--常用工具库-->
             <!-- hutool -->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>5.8.12</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>29.0-jre</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.8.1</version>
+            </dependency>
+
+            <!-- json操作 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
 
             <!-- protobuf -->
@@ -148,18 +170,42 @@
                 <artifactId>jprotobuf</artifactId>
                 <version>2.4.23</version>
             </dependency>
+            <!--  -->
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>3.2.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>0.9.11</version>
+            </dependency>
+            <!-- xml文件操作工具 -->
+            <dependency>
+                <groupId>dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>1.6.1</version>
+            </dependency>
+
+
+            <!-- 导出文件到Excel -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>3.17</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>3.17</version>
+            </dependency>
 
             <!-- EasyExcel -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>easyexcel</artifactId>
                 <version>2.2.6</version>
-            </dependency>
-            <!--常用工具库-->
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>29.0-jre</version>
             </dependency>
 
             <dependency>
@@ -179,30 +225,6 @@
                 <groupId>org.javassist</groupId>
                 <artifactId>javassist</artifactId>
                 <version>3.21.0-GA</version>
-            </dependency>
-
-            <!-- xml文件操作工具 -->
-            <dependency>
-                <groupId>dom4j</groupId>
-                <artifactId>dom4j</artifactId>
-                <version>1.6.1</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.redisson</groupId>
-                <artifactId>redisson</artifactId>
-                <version>3.4.3</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-                <version>2.8.1</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.reflections</groupId>
-                <artifactId>reflections</artifactId>
-                <version>0.9.11</version>
             </dependency>
 
         </dependencies>

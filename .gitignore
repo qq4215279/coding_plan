@@ -29,13 +29,13 @@ hs_err_pid*
 #maven
 /target/
 /tech_enhance/target/
-/smart_code/target/
+/smart_code2/target/
 
 # bin
 /bin/
-/smart_code/bin/
+/smart_code2/bin/
 
 # out
 /out/
 /target/
-/design_patterns/target/
+/design_patterns2/target/
