@@ -1,7 +1,5 @@
 package com.mumu.design.timer.redis;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,7 +16,7 @@ import java.util.zip.InflaterInputStream;
  * @Date 2017年6月21日 下午5:53:53
  * @version 1.0.0
  */
-@Slf4j
+// @Slf4j
 public abstract class ZLibUtil {
 	/**
 	 * 压缩
@@ -48,7 +46,7 @@ public abstract class ZLibUtil {
 				output = bos.toByteArray();
 			}
 		} catch (Exception e) {
-			log.error(Utility.getTraceString(e));
+			// log.error(Utility.getTraceString(e));
 		} finally {
 			compresser.reset();
 			// BasePooledObjectFactory.getInstance().returnObject(compresser);
@@ -106,7 +104,7 @@ public abstract class ZLibUtil {
 				output = o.toByteArray();
 			}
 		} catch (Exception e) {
-			log.error(Utility.getTraceString(e));
+			// log.error(Utility.getTraceString(e));
 		} finally {
 			decompresser.reset();
 			// BasePooledObjectFactory.getInstance().returnObject(decompresser);

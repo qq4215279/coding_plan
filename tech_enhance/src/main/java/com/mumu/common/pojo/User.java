@@ -5,6 +5,7 @@
 
 package com.mumu.common.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -14,12 +15,16 @@ import lombok.Data;
  * @version 1.0.0 2023/7/7 11:05
  */
 @Data
+@AllArgsConstructor
 public class User extends Person {
     private String userName;
     private String password;
     private int age;
     private int sex;
     private String text;
+
+    public User() {
+    }
 
     public User(String userName, String password) {
         this.userName = userName;
