@@ -129,27 +129,80 @@ public class FastJsonTest {
     System.out.println(name);
   }
 
+  /**
+   * 序列化压测
+   */
   @Test
-  public void serializeTest() {
-      // 序列化: JSON.toJSONBytes(obj, SerializerFeature.WriteClassName)
-      // 反序列化: (T) JSON.parseObject(ZLibUtil.decompress(objBytes), clas)
-
-    User user = getUser();
-    long startSerialize = System.currentTimeMillis();
-    byte[] jsonBytes = JSON.toJSONBytes(user, SerializerFeature.WriteClassName);
-    System.out.println("序列化json大小: " + jsonBytes.length);
-    long endSerialize = System.currentTimeMillis();
-
-    byte[] compress = ZLibUtil.compress(jsonBytes);
-    System.out.println("压缩序列化json大小: " + compress.length);
-
-    User unSerUser = JSON.parseObject(jsonBytes, User.class);
+  public void serializeTest() throws InterruptedException {
+    forceSerializeTest(new User("xiaoming", "123456", 18, 1), 20);
 
 
+    Thread.sleep(2000);
+    System.out.println("------------------------------->");
+
+    forceSerializeTest(getLargeUser(), 20);
+
+    Thread.sleep(2000);
   }
 
-  private User getUser() {
-    return new User("xiaoming", "123456", 18, 1);
+  private void forceSerializeTest(User user, int times) {
+    byte[] jsonBytes00 = JSON.toJSONBytes(user, SerializerFeature.WriteClassName);
+
+    // 1. json序列化 大小 时间
+    new Thread(() -> {
+      byte[] jsonBytes = null;
+      long total = 0L;
+      for (int i = 0; i < times; i++) {
+        long start = System.currentTimeMillis();
+        jsonBytes = JSON.toJSONBytes(user, SerializerFeature.WriteClassName);
+        long end = System.currentTimeMillis();
+        total += end - start;
+      }
+
+      System.out.println("1.1. json序列化大小: " + jsonBytes.length + " json序列化平均耗时: " + total / (double) times);
+    }).start();
+
+    // 1.2. 反序列化时间
+    byte[] jsonBytes2 = JSON.toJSONBytes(user, SerializerFeature.WriteClassName);
+    new Thread(() -> {
+      long total = 0L;
+      for (int i = 0; i < times; i++) {
+        long start = System.currentTimeMillis();
+        User user1 = JSON.parseObject(jsonBytes2, User.class);
+        long end = System.currentTimeMillis();
+        total += end - start;
+      }
+
+      System.out.println("1.2. json反序列化平均耗时: " + total / (double) times);
+    }).start();
+
+    // 2.1. 压缩序列化json后大小 压缩时间
+    new Thread(() -> {
+      long total = 0L;
+      byte[] compress = null;
+      for (int i = 0; i < times; i++) {
+        long start = System.currentTimeMillis();
+        compress = ZLibUtil.compress(jsonBytes00);
+        long end = System.currentTimeMillis();
+        total += end - start;
+      }
+
+      System.out.println("2.1. 压缩序列化json大小: " + compress.length + " 压缩序列化json平均耗时: " + total / (double) times);
+    }).start();
+
+    // 2.2. 解压时间
+    new Thread(() -> {
+      long total = 0L;
+      byte[] compress = ZLibUtil.compress(jsonBytes00);
+      for (int i = 0; i < times; i++) {
+        long start = System.currentTimeMillis();
+        ZLibUtil.decompress(compress);
+        long end = System.currentTimeMillis();
+        total += end - start;
+      }
+
+      System.out.println("2.2. 解压平均耗时: " + total / (double) times);
+    }).start();
   }
 
   private User getLargeUser() {
