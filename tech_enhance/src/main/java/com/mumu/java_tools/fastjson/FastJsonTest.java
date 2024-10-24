@@ -134,6 +134,20 @@ public class FastJsonTest {
    */
   @Test
   public void serializeTest() throws InterruptedException {
+    /*
+    *
+      1.1. json序列化大小: 96 json序列化平均耗时: 0.05
+      1.2. json反序列化平均耗时: 1.2
+
+      2.1. 压缩序列化json大小: 95 压缩序列化json平均耗时: 0.15
+      2.2. 解压平均耗时: 0.0
+
+      1.1. json序列化大小: 34929 json序列化平均耗时: 0.55
+      1.2. json反序列化平均耗时: 0.15
+
+      2.1. 压缩序列化json大小: 26329 压缩序列化json平均耗时: 0.9
+      2.2. 解压平均耗时: 0.2
+    *  */
     forceSerializeTest(new User("xiaoming", "123456", 18, 1), 20);
 
 
