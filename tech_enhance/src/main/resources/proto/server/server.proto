@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option java_package = "com.game.proto.server";
+option java_package = "com.mumu.game.proto.server";
 
 // ping-pong响应
 message ECPongMessage {

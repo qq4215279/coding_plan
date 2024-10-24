@@ -5,11 +5,11 @@
 
 package com.mumu.game.attrsync.handler;
 
-import com.game.proto.baloot.BalootTableBean;
 import com.mumu.design.baloot.common.core.BalootTable;
 import com.mumu.game.attrsync.constants.EventConstants;
 import com.mumu.game.attrsync.enums.ModuleEnum;
 import com.mumu.game.attrsync.event.ModuleEvent;
+import com.mumu.game.proto.baloot.BalootTableBean;
 
 /**
  * BalootHandler

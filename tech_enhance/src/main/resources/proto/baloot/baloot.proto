@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option java_package = "com.game.proto.baloot";
+option java_package = "com.mumu.game.proto.baloot";
 
 // 响应游戏桌子信息
 message BalootTableBean {

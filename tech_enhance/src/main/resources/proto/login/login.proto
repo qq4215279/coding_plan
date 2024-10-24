@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option java_package = "com.game.proto.login";
+option java_package = "com.mumu.game.proto.login";
 
 import "basegame/game.proto";
 
