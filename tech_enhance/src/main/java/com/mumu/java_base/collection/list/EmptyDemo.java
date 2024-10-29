@@ -3,7 +3,7 @@
  * All Right Reserved.
  */
 
-package com.mumu.java_base.collection;
+package com.mumu.java_base.collection.list;
 
 import java.util.Collections;
 import java.util.List;
