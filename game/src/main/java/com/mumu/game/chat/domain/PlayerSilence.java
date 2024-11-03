@@ -7,8 +7,6 @@ package com.mumu.game.chat.domain;
 
 import java.util.Date;
 
-import javax.persistence.Id;
-
 /**
  * PlayerSilence
  * 禁言
@@ -16,8 +14,7 @@ import javax.persistence.Id;
  * @version 1.0.0 2024/11/3 17:51
  */
 public class PlayerSilence {
-    /** 流水号 */
-    @Id
+    /** 主键 */
     private int id;
     /** 被禁言者角色编号 */
     private int playerId;
@@ -29,6 +26,5 @@ public class PlayerSilence {
     private Date silenceTime;
     /** 禁言原因 */
     private String reason;
-
 
 }
