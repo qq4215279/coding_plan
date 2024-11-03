@@ -7,7 +7,7 @@ package com.mumu.game.chat.common.conts;
 
 /**
  * ChatType
- *
+ * 聊天类型常量
  * @author liuzhen
  * @version 1.0.0 2024/11/3 17:41
  */
