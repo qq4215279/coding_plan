@@ -1,7 +1,11 @@
+/*
+ * Copyright 2020-2024, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.game.function.bean;
 
 import com.baidu.bjf.remoting.protobuf.annotation.ProtobufClass;
-import com.game.proto.core.ItemBean;
 import lombok.Data;
 
 /**
