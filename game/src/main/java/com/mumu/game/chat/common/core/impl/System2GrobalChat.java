@@ -19,7 +19,7 @@ public class System2GrobalChat extends AbstractSystemChat {
     private GlobalChat globalChat;
 
     public System2GrobalChat() {
-        super(ChatType.ONE_2_GLOBAL);
+        super(ChatType.SYS_2_ONE);
     }
 
     @Override

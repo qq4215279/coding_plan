@@ -5,10 +5,11 @@
 
 package com.mumu.game.chat.common.core.impl;
 
-import com.mumu.game.chat.common.ChatInfo;
-import com.mumu.game.chat.common.core.AbstractSystemChat;
-
 import java.util.Queue;
+
+import com.mumu.game.chat.common.ChatInfo;
+import com.mumu.game.chat.common.conts.ChatType;
+import com.mumu.game.chat.common.core.AbstractSystemChat;
 
 /**
  * System2OneChat
@@ -21,8 +22,8 @@ public class System2OneChat extends AbstractSystemChat {
     // TODO
     private PrivateChat privateChat;
 
-    public System2OneChat(int chatType) {
-        super(chatType);
+    public System2OneChat() {
+        super(ChatType.SYS_2_ONE);
     }
 
     @Override
