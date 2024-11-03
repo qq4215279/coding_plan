@@ -42,4 +42,13 @@ public class ChatAction {
         chatService.getChatInfo(playerId, chatType, target);
     }
 
+    /**
+     * 获取系统发送给自己的消息
+     * @date 2024/11/3 19:51
+     */
+    public void getSystemMsg() {
+        long playerId = 10001;
+        chatService.getSystemMsg(playerId);
+    }
+
 }

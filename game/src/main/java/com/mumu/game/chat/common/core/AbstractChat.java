@@ -26,7 +26,7 @@ public abstract class AbstractChat implements Chat {
     /** 聊天类型 */
     protected int chatType;
     /** 玩家聊天记录缓存 */
-    protected final ChatCache<ChatInfo, Long> chatCache = new ChatCache<>(MAX_QUEUE_SIZE, MAX_QUEUE_SIZE);
+    protected final ChatCache<Long, ChatInfo> chatCache = new ChatCache<>(MAX_QUEUE_SIZE, MAX_QUEUE_SIZE);
 
     public AbstractChat(int chatType) {
         this.chatType = chatType;

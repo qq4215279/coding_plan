@@ -11,6 +11,9 @@ import com.mumu.game.chat.common.ChatInfo;
 import com.mumu.game.chat.common.conts.ChatType;
 import com.mumu.game.chat.common.core.AbstractChat;
 import com.mumu.game.common.ErrorCode;
+import com.mumu.game.common.group.Group;
+import com.mumu.game.common.group.GroupManager;
+import com.mumu.game.common.group.GroupUtil;
 
 import reactor.util.function.Tuple3;
 
@@ -42,7 +45,10 @@ public class GlobalChat extends AbstractChat {
         if (!isOneWay) {
             chatCache.add(ONLINE_GROUP_ID, info);
 
+            // TODO 玩家登录的时候，加入组；登出，session失效，退出组
+            Group group = GroupManager.getInstance().getGroup(GroupUtil.getWorldGroupName());
             // TODO 全服推送
+            // group.notify();
 
             // TODO save to db
 

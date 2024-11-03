@@ -42,6 +42,8 @@ public class ChatManager {
     public void init() {
         // TODO init typeChatMap
 
+        // TODO 清理db多余的聊天消息
+
         // TODO 初始化聊天缓存
     }
 

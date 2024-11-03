@@ -19,7 +19,7 @@ import com.google.common.cache.CacheBuilder;
  * @author liuzhen
  * @version 1.0.0 2024/11/3 18:01
  */
-public class ChatCache<T extends ChatInfo, K extends Serializable> {
+public class ChatCache<K extends Serializable, CHAT extends ChatInfo> {
     /** 过期策略 -- 访问 */
     private static final int EXPIRE_TYPE_ACCESS = 1;
     /** 过期策略 -- 写入 */
@@ -32,7 +32,7 @@ public class ChatCache<T extends ChatInfo, K extends Serializable> {
     /** 每个队列默认消息数 */
     private int eachQueueSize = 15;
     /** 空队列 */
-    private final Queue<T> emptyQueue = new ConcurrentLinkedQueue<>();
+    private final Queue<CHAT> emptyQueue = new ConcurrentLinkedQueue<>();
 
 
     public ChatCache(int queueSize, int capacity, int expireType, int hour) {
@@ -68,12 +68,12 @@ public class ChatCache<T extends ChatInfo, K extends Serializable> {
      * @param info info
      * @date 2024/11/3 18:03
      */
-    public void add(K key, T info) {
-        Queue<T> q = (Queue<T>) cache.getIfPresent(key);
+    public void add(K key, CHAT info) {
+        Queue<CHAT> q = (Queue<CHAT>) cache.getIfPresent(key);
         if (q == null) {
-            cache.put(key, new ConcurrentLinkedQueue<T>());
+            cache.put(key, new ConcurrentLinkedQueue<CHAT>());
         }
-        Queue<T> queue = (Queue<T>) cache.getIfPresent(key);
+        Queue<CHAT> queue = (Queue<CHAT>) cache.getIfPresent(key);
         while (queue.size() >= eachQueueSize) {
             queue.poll();
         }
@@ -86,8 +86,8 @@ public class ChatCache<T extends ChatInfo, K extends Serializable> {
      * @return java.util.Queue<org.apache.poi.ss.formula.functions.T>
      * @date 2024/11/3 18:03
      */
-    public Queue<T> getQueue(K key) {
-        Queue<T> q = (Queue<T>) cache.getIfPresent(key);
+    public Queue<CHAT> getQueue(K key) {
+        Queue<CHAT> q = (Queue<CHAT>) cache.getIfPresent(key);
         if (q == null) {
             return emptyQueue;
         }
