@@ -7,7 +7,7 @@ package com.mumu.java_tools.guava.event;
 
 import com.google.common.eventbus.AsyncEventBus;
 import com.google.common.eventbus.EventBus;
-import com.mumu.design.timer.StandardThreadFactory;
+import com.mumu.common.thread.StandardThreadFactory;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;

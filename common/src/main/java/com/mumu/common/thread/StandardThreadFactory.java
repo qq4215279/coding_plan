@@ -3,7 +3,7 @@
  * All Right Reserved.
  */
 
-package com.mumu.design.timer;
+package com.mumu.common.thread;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;

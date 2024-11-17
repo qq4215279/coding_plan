@@ -35,6 +35,11 @@ public class ChatCache<K extends Serializable, CHAT extends ChatInfo> {
     private final Queue<CHAT> emptyQueue = new ConcurrentLinkedQueue<>();
 
 
+    public ChatCache(int queueSize, int capacity) {
+        this.eachQueueSize = queueSize;
+        cache = CacheBuilder.newBuilder().maximumSize(capacity).build();
+    }
+
     public ChatCache(int queueSize, int capacity, int expireType, int hour) {
         this.eachQueueSize = queueSize;
         if (expireType == EXPIRE_TYPE_ACCESS) {
@@ -46,11 +51,6 @@ public class ChatCache<K extends Serializable, CHAT extends ChatInfo> {
         } else {
             cache = CacheBuilder.newBuilder().maximumSize(capacity).build();
         }
-    }
-
-    public ChatCache(int queueSize, int capacity) {
-        this.eachQueueSize = queueSize;
-        cache = CacheBuilder.newBuilder().maximumSize(capacity).build();
     }
 
     /**
@@ -73,6 +73,7 @@ public class ChatCache<K extends Serializable, CHAT extends ChatInfo> {
         if (q == null) {
             cache.put(key, new ConcurrentLinkedQueue<CHAT>());
         }
+
         Queue<CHAT> queue = (Queue<CHAT>) cache.getIfPresent(key);
         while (queue.size() >= eachQueueSize) {
             queue.poll();
