@@ -354,7 +354,7 @@ public class RpcManager {
                 }
             }
 
-            this.asyncExecutor.execute(() -> future.callback());
+            this.asyncExecutor.execute(() -> future.doCallback());
         }
     }
 
