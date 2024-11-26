@@ -60,6 +60,8 @@ public enum ErrorCode {
   FAIL_COMMAND_NOT_EXIST,
   /** 参数错误 */
   FAIL_PARAM_ERROR,
+  /** 参数为空 */
+  FAIL_PARAM_EMPTY,
   /** 命令请求超时 */
   FAIL_REQUEST_COMMAND_TIMEOUT,
   /** 无法操作当前指令 */
@@ -68,4 +70,6 @@ public enum ErrorCode {
   FAIL_CONFIRM_MAIN_COLOR,
   /** 当前牌不符合出牌规则 */
   FAIL_UN_CONFORM_RULE_POKER,
+  /** 重新登陆 */
+  FAIL_RE_LOGIN,
 }
