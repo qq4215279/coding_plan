@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2023, 木木996.
+ * Copyright 2020-2024, 木木996.
  * All Right Reserved.
  */
 
@@ -29,7 +29,7 @@ public class MethodTest {
      *
      * getAnnotation(类<T> annotationClass)  返回该元素的，如果这样的注释 ，否则返回null指定类型的注释。
      * Annotation[] getDeclaredAnnotations()  返回 直接出现在此元素上的注释。
-     * Annotation[][] getParameterAnnotations()  返回 Annotation的数组数组，这些数组表示由此对象表示的 Executable声明顺序的形式参数的注释。
+     * Annotation[][] getParameterAnnotations()  annotations[i][j],第i个参数，第j个注解，整体表示一个注解类型
      * 类<?> getDeclaringClass()  返回表示声明此对象表示的方法的类或接口的 类对象。
      *
      * Type[] getGenericExceptionTypes()  返回 Type对象的数组， Type对象表示声明由此可执行对象引发的异常。
