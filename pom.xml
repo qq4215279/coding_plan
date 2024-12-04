@@ -227,6 +227,21 @@
                 <version>3.21.0-GA</version>
             </dependency>
 
+            <!-- 1. java原生访问mongo -->
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongo-java-driver</artifactId>
+<!--                <version>3.10.1</version>-->
+                <version>3.12.8</version>
+            </dependency>
+
+            <!-- 2. spring-boot-data-mongodb 访问 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-mongodb</artifactId>
+                <version>2.2.2.RELEASE</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
