@@ -5,6 +5,9 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSortedMap;
 import com.google.common.collect.Multimap;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -150,5 +153,21 @@ public class ImmutableMapDemo {
         System.out.println(sortedMap1);
         System.out.println(sortedMap2);
         System.out.println(sortedMap3);
+    }
+
+    public static void main(String[] args) {
+        testExtraParam(11111);
+    }
+
+    public static void testExtraParam(int a, Object... ext) {
+        if (ext.length > 0) {
+            System.out.println("不需要判空");
+        }
+
+        List<Object> list = Arrays.stream(ext).collect(Collectors.toList());
+        System.out.println(list);
+
+        Object[] array = list.stream().toArray();
+        System.out.println(array);
     }
 }

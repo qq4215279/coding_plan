@@ -6,8 +6,6 @@
 package com.mumu.jdk_api.util;
 
 import com.mumu.common.pojo.User;
-import org.junit.Test;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,6 +21,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import org.junit.Test;
 
 /**
  * StreamTest
@@ -118,14 +117,24 @@ public class StreamTest {
         System.out.println("------------------------------->");
 
         User p1 = new User("张三", 18, 1);
+        p1.setText("1,2,3");
         User p2 = new User("李四", 6, 0);
+        p2.setText("10,22,5");
         User p3 = new User("王五", 99, 1);
+        p3.setText("100,200");
         User p4 = new User("王五", 88, 1);
+        p4.setText("999");
+
         Stream<User> stream2 = Stream.of(p1, p2, p3, p4);
 
         // map
         List<String> list = stream2.map(User::getUserName).collect(Collectors.toList()); // 张三 李四 王五 王五
         System.out.println("list: " + list);
+
+        // TODO flatMap
+        Stream<User> flatMapStream = Stream.of(p1, p2, p3, p4);
+        // flatMapStream.flatMap(o -> StringUtil.str2List(o.getText()).stream()).
+        // flatMapStream.map()
 
         // 排序
         Stream<User> stream3 = Stream.of(p1, p2, p3, p4);

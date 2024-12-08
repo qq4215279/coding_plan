@@ -6,7 +6,6 @@
 package com.mumu.game.activity.core;
 
 import cn.hutool.core.date.DateUtil;
-import com.mumu.design.timer.redis.Utility;
 import com.mumu.game.function.entity.PlayerSeasonActivityInfo;
 import java.util.Date;
 import lombok.extern.slf4j.Slf4j;
@@ -63,7 +62,7 @@ public abstract class AbstractSeasonActivity extends AbstractActivity {
           }
         } catch (Exception e) {
           e.printStackTrace();
-          log.error("moduleParentFunId#{}#playerId#{}#LastSeasonCaclError#errMsg#{}", moduleParentFuncId, playerId, Utility.getTraceString(e));
+          // log.error("moduleParentFunId#{}#playerId#{}#LastSeasonCaclError#errMsg#{}", moduleParentFuncId, playerId, Utility.getTraceString(e));
         }
 
 
@@ -73,7 +72,7 @@ public abstract class AbstractSeasonActivity extends AbstractActivity {
           playerSeasonActivityInfo.seasonReset();
         } catch (Exception e) {
           e.printStackTrace();
-          log.error("moduleParentFunId#{}#playerId#{}#SeasonResetError#errMsg#{}", moduleParentFuncId, playerId, Utility.getTraceString(e));
+          // log.error("moduleParentFunId#{}#playerId#{}#SeasonResetError#errMsg#{}", moduleParentFuncId, playerId, Utility.getTraceString(e));
         }
 
         // 功能开放校验
@@ -88,7 +87,7 @@ public abstract class AbstractSeasonActivity extends AbstractActivity {
           }
         } catch (Exception e) {
           e.printStackTrace();
-          log.error("moduleParentFunId#{}#playerId#{}#InitNewSeasonDataError#errMsg#{}", moduleParentFuncId, playerId, Utility.getTraceString(e));
+          // log.error("moduleParentFunId#{}#playerId#{}#InitNewSeasonDataError#errMsg#{}", moduleParentFuncId, playerId, Utility.getTraceString(e));
         }
       }
 
@@ -100,7 +99,7 @@ public abstract class AbstractSeasonActivity extends AbstractActivity {
         }
       } catch (Exception e) {
         e.printStackTrace();
-        log.error("moduleParentFunId#{}#playerId#{}#DailyResetError#errMsg#{}", moduleParentFuncId, playerId, Utility.getTraceString(e));
+        // log.error("moduleParentFunId#{}#playerId#{}#DailyResetError#errMsg#{}", moduleParentFuncId, playerId, Utility.getTraceString(e));
       }
 
       try {
@@ -112,7 +111,7 @@ public abstract class AbstractSeasonActivity extends AbstractActivity {
         }
       } catch (Exception e) {
         e.printStackTrace();
-        log.error("moduleParentFunId#{}#playerId#{}#WeeklyResetError#errMsg#{}", moduleParentFuncId, playerId, Utility.getTraceString(e));
+        // log.error("moduleParentFunId#{}#playerId#{}#WeeklyResetError#errMsg#{}", moduleParentFuncId, playerId, Utility.getTraceString(e));
       }
 
       try {
@@ -124,7 +123,7 @@ public abstract class AbstractSeasonActivity extends AbstractActivity {
         }
       } catch (Exception e) {
         e.printStackTrace();
-        log.error("moduleParentFunId#{}#playerId#{}#MonthResetError#errMsg#{}", moduleParentFuncId, playerId, Utility.getTraceString(e));
+        // log.error("moduleParentFunId#{}#playerId#{}#MonthResetError#errMsg#{}", moduleParentFuncId, playerId, Utility.getTraceString(e));
       }
 
       // 上赛季结束期间 且 未结算过
@@ -138,7 +137,7 @@ public abstract class AbstractSeasonActivity extends AbstractActivity {
         }
       } catch (Exception e) {
         e.printStackTrace();
-        log.error("moduleParentFunId#{}#playerId#{}#SeasonCaclError#errMsg#{}", moduleParentFuncId, playerId, Utility.getTraceString(e));
+        // log.error("moduleParentFunId#{}#playerId#{}#SeasonCaclError#errMsg#{}", moduleParentFuncId, playerId, Utility.getTraceString(e));
       }
     }
   }

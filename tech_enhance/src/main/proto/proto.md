@@ -79,6 +79,10 @@ message SearchRequest {
 protoc -I=./ --java_out=./ ./JetProtos.proto
 或
 protoc -proto_path=./ --java_out=./ ./JetProtos.proto
+
+
+// 切换到: F:\Code\WorkSpace\baloot\branches\master\BalootProject\scripts\cmd\client
+protoc --proto_path=./ --python_out=./../../test/ ./client.proto
 ```
 
 > 参数说明：

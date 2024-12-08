@@ -47,9 +47,12 @@ public class PrivateChat extends AbstractChat {
         if (!isOneWay) {
             // 加入到target目标缓存
             chatCache.add(toPlayerId, info);
-            // TODO 推送给target
+
+            // TODO 在线盘点 推送给target
 
             // TODO save保存私聊 PlayerChat
+
+            // TODO 记录最近聊天列表信息
         }
 
         return true;
@@ -66,8 +69,8 @@ public class PrivateChat extends AbstractChat {
     private Queue<ChatInfo> filterOtherPlayerChatCacheInfo(long playerId, long target, Queue<ChatInfo> queue) {
         Queue<ChatInfo> playerChat = new LinkedList<>();
         for (ChatInfo chatInfo : queue) {
-            long id = chatInfo.playerId;
-            long toPlayerId = chatInfo.target;
+            long id = chatInfo.from;
+            long toPlayerId = chatInfo.to;
             if ((playerId == id && target == toPlayerId) || (playerId == toPlayerId && target == id)) {
                 playerChat.add(chatInfo);
             }

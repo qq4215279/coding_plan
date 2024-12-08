@@ -16,4 +16,7 @@ public interface MsgType {
     int CONTEXT = 0;
     /**  */
     int BAOOT = 2;
+    /**  */
+    int YUYIN = 3;
+
 }
