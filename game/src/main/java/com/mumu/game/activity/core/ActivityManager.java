@@ -10,7 +10,7 @@ import cn.hutool.core.util.ClassUtil;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.mumu.design.timer.redis.CommonException;
+// import com.mumu.design.timer.redis.CommonException;
 import com.mumu.game.activity.anno.ActivityFunction;
 import com.mumu.game.activity.impl.DefaultTemplateActivity;
 import com.mumu.game.sdata.ConfigFunction;
@@ -166,7 +166,8 @@ public class ActivityManager {
       Activity activity = loadActivity(playerId, id);
       return (T) activity;
     }
-    throw new CommonException("无效的活动类:" + clazz.getName());
+    // throw new CommonException("无效的活动类:" + clazz.getName());
+    return null;
   }
 
   /**

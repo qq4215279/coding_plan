@@ -1,19 +1,21 @@
 /*
- * Copyright 2020-2023, 木木996.
+ * Copyright 2020-2024, 木木996.
  * All Right Reserved.
  */
 
 package com.mumu.java_tools.fastjson;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.mumu.common.pojo.User;
 import com.mumu.common.pojo.UserGroup;
-import com.mumu.design.timer.redis.ZLibUtil;
-import java.util.ArrayList;
-import java.util.List;
-import org.junit.Test;
+import com.mumu.common.redis.ZLibUtil;
 
 /**
  * FastJsonTest

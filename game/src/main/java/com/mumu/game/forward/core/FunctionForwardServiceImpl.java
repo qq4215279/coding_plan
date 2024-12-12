@@ -5,40 +5,28 @@
 
 package com.mumu.game.forward.core;
 
-import static com.mumu.game.forward.core.FunctionChangeService.MethodName.doActivityEndService;
-import static com.mumu.game.forward.core.FunctionChangeService.MethodName.doBuyGoods;
-import static com.mumu.game.forward.core.FunctionChangeService.MethodName.doChargeStamps;
-import static com.mumu.game.forward.core.FunctionChangeService.MethodName.doChargeValue;
-import static com.mumu.game.forward.core.FunctionChangeService.MethodName.doGetClosedFunction;
-import static com.mumu.game.forward.core.FunctionChangeService.MethodName.doGetRedPointStatus;
-import static com.mumu.game.forward.core.FunctionChangeService.MethodName.doItemChangeService;
-import static com.mumu.game.forward.core.FunctionChangeService.MethodName.doItemOverdueService;
-import static com.mumu.game.forward.core.FunctionChangeService.MethodName.doPlayerLogin;
-import static com.mumu.game.forward.core.FunctionChangeService.MethodName.doPlayerLogout;
-import static com.mumu.game.forward.core.FunctionChangeService.MethodName.doRefreshRedPoint;
-import static com.mumu.game.forward.core.FunctionChangeService.MethodName.doTaskChange;
+import static com.mumu.game.forward.core.FunctionChangeService.MethodName.*;
+
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+
+import org.apache.commons.collections4.CollectionUtils;
+import org.reflections.Reflections;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.AbstractService;
-import com.mumu.design.timer.redis.Utility;
+import com.mumu.common.config.ConfigItemInfo;
+import com.mumu.common.redis.Utility;
 import com.mumu.game.common.Player;
 import com.mumu.game.forward.anno.FunctionType;
 import com.mumu.game.forward.anno.ShopName;
 import com.mumu.game.shop.sdata.ConfigShop;
-import com.mumu.java_tools.dom4j.config.ConfigItemInfo;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
+
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections4.CollectionUtils;
-import org.reflections.Reflections;
 
 /**
  * FunctionForwardServiceImpl

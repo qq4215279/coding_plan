@@ -92,8 +92,8 @@ public class MongoSourceTest {
         map.put("birth_day", new Date());
         map.put("expectSalary", 100000);
         Document insertDoc = new Document(map);
-        // 插入数据
-        collection.insertOne(insertDoc);
+        // 插入数据 TODO ？？？
+        // collection.insertOne(insertDoc);
 
         System.out.println("------------------------------->");
     }

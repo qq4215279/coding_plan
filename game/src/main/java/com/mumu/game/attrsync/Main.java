@@ -5,7 +5,7 @@
 
 package com.mumu.game.attrsync;
 
-import com.mumu.design.baloot.common.core.BalootTable;
+import com.baloot.game.common.core.BalootTable;
 import com.mumu.game.attrsync.event.ModuleEvent;
 import java.util.Collections;
 import java.util.HashSet;

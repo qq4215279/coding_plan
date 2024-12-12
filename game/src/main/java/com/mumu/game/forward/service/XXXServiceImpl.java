@@ -5,9 +5,9 @@
 
 package com.mumu.game.forward.service;
 
+import com.mumu.common.config.ConfigItemInfo;
 import com.mumu.game.forward.anno.FunctionType;
 import com.mumu.game.forward.core.FunctionChangeService;
-import com.mumu.java_tools.dom4j.config.ConfigItemInfo;
 
 /**
  * XXXServiceImpl
@@ -33,7 +33,7 @@ public class XXXServiceImpl implements FunctionChangeService {
 
   @Override
   public void doItemChangeService(long playerId, ConfigItemInfo configItemInfo, int itemId,
-      long changeCount, long nowCount) {
+                                  long changeCount, long nowCount) {
     // 业务中处理道具变化...
     // 红点检查
     itemChangeCheckRedPoint(playerId, itemId, changeCount);

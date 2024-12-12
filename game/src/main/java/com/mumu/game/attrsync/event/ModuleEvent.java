@@ -5,7 +5,7 @@
 
 package com.mumu.game.attrsync.event;
 
-import com.mumu.design.baloot.common.core.BalootTable;
+import com.baloot.game.common.core.BalootTable;
 import com.mumu.game.attrsync.constants.EventConstants;
 import com.mumu.game.attrsync.enums.ModuleEnum;
 

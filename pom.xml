@@ -19,19 +19,23 @@
 
     <!-- 子模块 -->
     <modules>
-        <module>game</module>
-        <module>design_patterns</module>
-        <module>smart_code</module>
         <module>common</module>
+        <module>design_patterns</module>
         <module>framework</module>
+        <module>game</module>
+        <module>smart_code</module>
+        <module>tech_enhance</module>
     </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.6.RELEASE</version>
+<!--        <version>3.3.3</version>-->
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -236,11 +240,19 @@
                 <version>3.12.8</version>
             </dependency>
 
-            <!-- 2. spring-boot-data-mongodb 访问 -->
+        <!--    &lt;!&ndash; 2. spring-boot-data-mongodb 访问 &ndash;&gt;
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-mongodb</artifactId>
-                <version>2.2.2.RELEASE</version>
+                <version>3.3.3</version>
+            </dependency>-->
+
+            <!-- 测试包 -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
             </dependency>
 
         </dependencies>

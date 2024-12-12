@@ -139,14 +139,14 @@ public interface Session {
 	 * @param push
 	 * $Date: 2014年7月10日 上午10:07:17
 	 */
-	void setPush(Push push);
+	// void setPush(Push push);
 	
 	/**
 	 * 获得推送通道
 	 * @return
 	 * $Date: 2014年7月10日 上午10:19:23
 	 */
-	Push getPush();
+	// Push getPush();
 	
 	/**
 	 * 推送数据

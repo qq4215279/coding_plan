@@ -1,6 +1,11 @@
+/*
+ * Copyright 2020-2024, 木木996.
+ * All Right Reserved.
+ */
+
 package com.mumu.java_tools.dom4j;
 
-import com.mumu.java_tools.dom4j.config.ConfigItem;
+import com.mumu.common.config.ConfigItem;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
