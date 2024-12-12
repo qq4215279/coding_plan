@@ -66,6 +66,5 @@ public class GlobalChat extends AbstractChat {
     public void getChatInfo(long playerId, int chatType, long target) {
         Queue<ChatInfo> playerChat = chatCache.getQueue(ONLINE_GROUP_ID);
 
-        // TODO
     }
 }
