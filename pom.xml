@@ -31,7 +31,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.6.RELEASE</version>
-<!--        <version>3.3.3</version>-->
+        <!--        <version>3.3.3</version>-->
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -142,8 +142,15 @@
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
-                <version>5.8.12</version>
+                <version>5.8.25</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-core -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-core</artifactId>
+                <version>5.8.25</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
@@ -236,16 +243,16 @@
             <dependency>
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongo-java-driver</artifactId>
-<!--                <version>3.10.1</version>-->
+                <!--                <version>3.10.1</version>-->
                 <version>3.12.8</version>
             </dependency>
 
-        <!--    &lt;!&ndash; 2. spring-boot-data-mongodb 访问 &ndash;&gt;
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-mongodb</artifactId>
-                <version>3.3.3</version>
-            </dependency>-->
+            <!--    &lt;!&ndash; 2. spring-boot-data-mongodb 访问 &ndash;&gt;
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-mongodb</artifactId>
+                    <version>3.3.3</version>
+                </dependency>-->
 
             <!-- 测试包 -->
             <dependency>
