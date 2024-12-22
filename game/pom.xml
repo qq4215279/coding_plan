@@ -30,6 +30,12 @@
             <artifactId>framework</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <!-- 2. spring-boot-data-mongodb 访问 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
