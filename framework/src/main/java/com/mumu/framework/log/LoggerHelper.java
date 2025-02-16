@@ -5,6 +5,8 @@
 
 package com.mumu.framework.log;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.UndeclaredThrowableException;
 
@@ -14,6 +16,7 @@ import java.lang.reflect.UndeclaredThrowableException;
  * @author liuzhen
  * @version 1.0.0 2024/12/5 22:59
  */
+@Slf4j
 public class LoggerHelper {
     /** 异常堆栈行数 */
     static volatile int LINES = 100;
@@ -24,6 +27,18 @@ public class LoggerHelper {
     /** 异常关键串 */
     protected static final String EXCEPTION_STR = "com.mumu";
 
+    public static void main(String[] args) {
+
+        String msg = "";
+
+    }
+
+    public void info(String msg, Throwable t) {
+        // TODO 打印日志
+        log.error(getThrowableTrace(msg, getOriginThrowable(t)));
+    }
+
+
     /**
      * 获取错误的原始原因
      * 
@@ -31,20 +46,23 @@ public class LoggerHelper {
      * @return java.lang.Throwable
      * @date 2024/12/5 22:59
      */
-    Throwable getOriginThrowable(Throwable t) {
+    public static Throwable getOriginThrowable(Throwable t) {
         if (t instanceof InvocationTargetException) {
             InvocationTargetException e = (InvocationTargetException)t;
             return getOriginThrowable(e.getTargetException());
+
         } else if (t instanceof UndeclaredThrowableException) {
             UndeclaredThrowableException e = (UndeclaredThrowableException)t;
             return getOriginThrowable(e.getUndeclaredThrowable());
+
         } else if (t.getClass() == RuntimeException.class) {
             RuntimeException e = (RuntimeException)t;
             if (null != e.getCause() && (e.getCause() instanceof InvocationTargetException
-                || e.getCause() instanceof UndeclaredThrowableException)) {
+                    || e.getCause() instanceof UndeclaredThrowableException)) {
                 return getOriginThrowable(e.getCause());
             }
         }
+
         return t;
     }
 
@@ -56,7 +74,7 @@ public class LoggerHelper {
      * @return java.lang.String
      * @date 2024/12/5 23:00
      */
-    protected String getThrowableTrace(String msg, Throwable arg1) {
+    public static String getThrowableTrace(String msg, Throwable arg1) {
         int num = LINES;
         StackTraceElement[] stacks = arg1.getStackTrace();
         StringBuilder builder = new StringBuilder(256);
