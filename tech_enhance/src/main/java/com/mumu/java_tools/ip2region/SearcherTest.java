@@ -41,7 +41,8 @@ public class SearcherTest {
         // 2、查询
         // String ip = "1.2.3.4";
         // String ip = "2408:840d:1320:3b8d:6cc5:8ff:fe8b:ff6";
-        String ip = "116.232.78.242";
+        String ip = "37.61.54.158";
+        // String ip = "116.232.78.242";
         try {
             long sTime = System.nanoTime();
             String region = searcher.search(ip);

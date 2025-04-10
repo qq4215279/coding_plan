@@ -27,7 +27,7 @@ public class IpInfoTest {
 		// 获取IP信息
 		String ip = "2408:840d:1320:3b8d:6cc5:8ff:fe8b:ff6";
 		IPInfo ipInfo = IPInfoUtils.getIpInfo(ip);
-		// IPInfo ipInfo = IPInfoUtils.getIpInfo("222.128.176.102");
+		// IPInfo ipInfo = IPInfoUtils.getIpInfo("37.61.54.158");
 
 		// 国家中文名称
 		System.out.println(ipInfo.getCountry());

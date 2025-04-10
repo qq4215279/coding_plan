@@ -346,7 +346,11 @@ public class DateUtil {
 //        System.out.println(year2.matches(b));
 
 
-        System.out.println(getDaySpace(new Date(), parse("20180101", "yyyyMMdd")));
+        System.out.println(getDaySpace(new Date(), parse("2025-03-03 00:00:00", "yyyy-MM-dd HH:mm:ss")));
+        System.out.println(getDaySpace(new Date(), parse("2025-03-03 18:00:00", "yyyy-MM-dd HH:mm:ss")));
+        System.out.println(getDaySpace(new Date(), parse("2025-03-04 00:00:00", "yyyy-MM-dd HH:mm:ss")));
+        System.out.println(getDaySpace(new Date(), parse("2025-03-05 00:00:00", "yyyy-MM-dd HH:mm:ss")));
+        System.out.println(getDaySpace(new Date(), parse("2025-03-05 17:10:00", "yyyy-MM-dd HH:mm:ss")));
 
     }
 
@@ -366,11 +370,39 @@ public class DateUtil {
 
 
     /**
+     * 获取两个日期相差几天
+     * @return int
+     * @date 2025/3/4 17:15
+     */
+    public static int getDaySpace(Date start, Date end) {
+        if (start.after(end)) {
+            Date t = start;
+            start = end;
+            end = t;
+        }
+
+        Calendar fromCalendar = parseCalendar(start);
+        Calendar toCalendar = parseCalendar(end);
+
+        return (int) ((toCalendar.getTime().getTime() - fromCalendar.getTime().getTime()) / (1000 * 60 * 60 * 24));
+    }
+
+    private static Calendar parseCalendar(Date start) {
+        Calendar fromCalendar = Calendar.getInstance();
+        fromCalendar.setTime(start);
+        fromCalendar.set(Calendar.HOUR_OF_DAY, 0);
+        fromCalendar.set(Calendar.MINUTE, 0);
+        fromCalendar.set(Calendar.SECOND, 0);
+        fromCalendar.set(Calendar.MILLISECOND, 0);
+        return fromCalendar;
+    }
+
+    /**
      * 获取两个日期相差几个月
-     *
-     * @param start
-     * @param end
-     * @return
+     * @param start start
+     * @param end end
+     * @return int
+     * @date 2025/3/4 17:17
      */
     public static int getMonthSpace(Date start, Date end) {
         if (start.after(end)) {
@@ -378,6 +410,7 @@ public class DateUtil {
             start = end;
             end = t;
         }
+
         Calendar startCalendar = Calendar.getInstance();
         startCalendar.setTime(start);
         Calendar endCalendar = Calendar.getInstance();
@@ -399,40 +432,11 @@ public class DateUtil {
     }
 
     /**
-     * 获取两个日期相差几天
-     *
-     * @return long
-     * @author Administrator
-     */
-    public static int getDaySpace(Date start, Date end) {
-        if (start.after(end)) {
-            Date t = start;
-            start = end;
-            end = t;
-        }
-
-        Calendar fromCalendar = Calendar.getInstance();
-        fromCalendar.setTime(start);
-        fromCalendar.set(Calendar.HOUR_OF_DAY, 0);
-        fromCalendar.set(Calendar.MINUTE, 0);
-        fromCalendar.set(Calendar.SECOND, 0);
-        fromCalendar.set(Calendar.MILLISECOND, 0);
-
-        Calendar toCalendar = Calendar.getInstance();
-        toCalendar.setTime(end);
-        toCalendar.set(Calendar.HOUR_OF_DAY, 0);
-        toCalendar.set(Calendar.MINUTE, 0);
-        toCalendar.set(Calendar.SECOND, 0);
-        toCalendar.set(Calendar.MILLISECOND, 0);
-
-        return (int) ((toCalendar.getTime().getTime() - fromCalendar.getTime().getTime()) / (1000 * 60 * 60 * 24));
-    }
-
-    /**
-     * 获取两个日期相差几天
-     *
-     * @return long
-     * @author Administrator
+     * 获取两个日期相差几个年
+     * @param start start
+     * @param end end
+     * @return int
+     * @date 2025/3/4 17:17
      */
     public static int getYearSpace(Date start, Date end) {
         if (start.after(end)) {
@@ -444,10 +448,8 @@ public class DateUtil {
         Calendar fromCalendar = Calendar.getInstance();
         fromCalendar.setTime(start);
 
-
         Calendar toCalendar = Calendar.getInstance();
         toCalendar.setTime(end);
-
 
         return toCalendar.get(Calendar.YEAR) - fromCalendar.get(Calendar.YEAR);
     }

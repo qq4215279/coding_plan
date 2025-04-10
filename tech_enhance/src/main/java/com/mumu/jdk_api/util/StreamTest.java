@@ -67,6 +67,9 @@ public class StreamTest {
      * skip(n)：跳过n元素，配合limit(n)可实现分页
      * peek()：如同于map，能得到流中的每一个元素。但map接收的是一个Function表达式，有返回值；而peek接收的是Consumer表达式，没有返回值。
      *
+     *        将流中的元素转换为int（这一步其实可以省略，因为已经是Integer类型）
+     * 求和: .mapToInt(Integer::intValue).sum(); // 计算总和
+     *
      * max()：返回流中元素最大值
      * min()：返回流中元素最小值
      * allMatch(() -> {})：接收一个 Predicate 函数，当流中每个元素都符合该断言时才返回true，否则返回false

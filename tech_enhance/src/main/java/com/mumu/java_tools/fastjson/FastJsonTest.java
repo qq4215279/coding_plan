@@ -5,17 +5,18 @@
 
 package com.mumu.java_tools.fastjson;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Test;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.mumu.common.pojo.User;
 import com.mumu.common.pojo.UserGroup;
 import com.mumu.common.redis.ZLibUtil;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.Test;
 
 /**
  * FastJsonTest
@@ -122,6 +123,73 @@ public class FastJsonTest {
     UserGroup userGroup = JSON.parseObject(jsonStr3, UserGroup.class);
     System.out.println("json字符串转复杂java对象:" + userGroup);
   }
+
+  @Test
+  public void mapToJson() {
+    // 1. 将 Map<String, Object> 转换为 JSON 字符串：
+    // 创建一个示例 Map
+    Map<String, Object> map = new HashMap<>();
+    map.put("name", "Alice");
+    map.put("age", 30);
+    map.put("isStudent", false);
+
+    // 将 Map 转换为 JSON 字符串
+    String jsonString = JSON.toJSONString(map);
+    System.out.println("JSON String: " + jsonString);
+
+    System.out.println("================>");
+
+    // 2. 将 JSON 字符串转换回 Map<String, Object>：
+    // 假设这是你的 JSON 字符串
+    String jsonString2 = "{\"name\":\"Alice\",\"age\":30,\"isStudent\":false}";
+
+    // 将 JSON 字符串转换为 Map
+    // TypeReference 是一种在 Java 中处理泛型类型参数的常用技巧，尤其在需要反射或序列化/反序列化操作涉及泛型时非常有用。
+    Map<String, Object> map2 = JSON.parseObject(jsonString2, new TypeReference<>() {});
+    Map<String, Object> map3 = JSON.parseObject(jsonString2, Map.class);
+    System.out.println("Map2: " + map2);
+    System.out.println("Map3: " + map3);
+
+    // 访问 Map 中的元素
+    String name = (String) map2.get("name");
+    Integer age = (Integer) map2.get("age");
+    Boolean isStudent = (Boolean) map2.get("isStudent");
+
+    System.out.println("Name: " + name);
+    System.out.println("Age: " + age);
+    System.out.println("Is Student: " + isStudent);
+
+  }
+
+  @Test
+  public void ComplexTypeWithoutTypeReference() {
+    String jsonString = "{\"numbers\":[1,2,3,4,5],\"moreNumbers\":[6,7,8,9,10]}";
+
+    // 使用 Fastjson 解析复杂泛型类型，不使用 TypeReference 的例子。这将展示类型信息丢失的问题。
+    // 不使用 TypeReference 来解析 JSON 字符串
+    Map<String, List<Integer>> map = JSON.parseObject(jsonString, Map.class);
+
+    // 打印结果
+    System.out.println("Map: " + map);
+
+    // 尝试访问其中的一个列表
+    List<Integer> numbers = map.get("numbers");
+    System.out.println("Numbers: " + numbers);
+
+    System.out.println("=================>");
+    System.out.println("正确学法如下：");
+
+    // 使用 TypeReference 来解析 JSON 字符串
+    Map<String, List<Integer>> map2 = JSON.parseObject(jsonString, new TypeReference<Map<String, List<Integer>>>() {});
+
+    // 打印结果
+    System.out.println("Map2: " + map2);
+
+    // 安全访问其中的一个列表
+    List<Integer> numbers2 = map2.get("numbers");
+    System.out.println("Numbers2: " + numbers2);
+  }
+
 
 
   @Test
