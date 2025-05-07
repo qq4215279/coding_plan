@@ -185,6 +185,10 @@ public class Basic8DataType {
         System.out.println("num4: " + num4);
         System.out.println("num5: " + num5);
         System.out.println("num6: " + num6);
+
+        System.out.println("===========>");
+
+        System.out.println("-1.5: " + -1.5);
     }
 
 }
