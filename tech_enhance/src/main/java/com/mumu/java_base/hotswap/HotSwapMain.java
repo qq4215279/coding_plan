@@ -16,7 +16,7 @@ public class HotSwapMain {
 
     public static void main(String[] args) throws InterruptedException {
         for (int i = 0; i < 1000; i++) {
-            System.out.println("hotSwap start " + i);
+            System.out.println("hotSwap start ===> " + i);
             Thread.sleep(1000);
         }
     }

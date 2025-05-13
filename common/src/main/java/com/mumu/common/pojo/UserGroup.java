@@ -7,6 +7,7 @@ package com.mumu.common.pojo;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Data;
 
 /**
  * UserGroup
@@ -14,6 +15,7 @@ import java.util.List;
  * @author liuzhen
  * @version 1.0.0 2023/7/7 11:08
  */
+@Data
 public class UserGroup {
     private String name;
     private List<User> users = new ArrayList<User>();

@@ -35,8 +35,9 @@ public class LinkedListBlockingQueueDemo {
 
     // 遍历元素
     for (Integer next : events) {
-      if (next == 1) {
-        events.remove(1);
+      if (next == 4) {
+        events.remove(4);
+        // events.poll();
       }
     }
 

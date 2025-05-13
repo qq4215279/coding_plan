@@ -6,6 +6,7 @@
 package com.mumu.java_tools.fastjson;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 /**
@@ -197,6 +200,96 @@ public class FastJsonTest {
     JSONObject parse = JSON.parseObject("{name:'aaa'}");
     String name = parse.getString("name");
     System.out.println(name);
+    System.out.println(parse.toJSONString());
+
+
+    JSONObject parse2 = JSON.parseObject("");
+    parse2.put("name", "111");
+    System.out.println(parse2);
+  }
+
+  @Test
+  public void jsonObjectDemo() {
+    String param = StringUtils.EMPTY;
+    JSONObject jsonObject;
+
+    if (StringUtils.isNotEmpty(param)) {
+      jsonObject = JSON.parseObject(param);
+    } else {
+      jsonObject = new JSONObject();
+    }
+
+    // int值
+    jsonObject.put("int1", 1);
+    jsonObject.put("int2", 2);
+
+    // long值
+    jsonObject.put("long1", 1000L);
+    jsonObject.put("long2", 2000L);
+
+    // String值
+    jsonObject.put("String1", "String1");
+    jsonObject.put("String2", "String2");
+
+    // list值
+    List<Long> list = List.of(1000L, 2000L);
+    jsonObject.put("list", list);
+
+    // set值
+    Set<Integer> set = Set.of(1, 2, 3);
+    jsonObject.put("set", set);
+
+    // map值
+    Map<String, Integer> map = Map.of("key1", 1, "key2", 2);
+    jsonObject.put("map", map);
+
+    param = jsonObject.toJSONString();
+    System.out.println("param: " + param);
+
+  }
+
+  @Test
+  public void jsonObjectDemo2() {
+    String param = "{\"long2\":2000,\"int2\":2,\"int1\":1,\"long1\":1000,\"set\":[2,1,3],\"list\":[1000,2000],\"String2\":\"String2\",\"String1\":\"String1\",\"map\":{\"key1\":1,\"key2\":2}}";
+    JSONObject jsonObject = JSON.parseObject(param);
+
+    System.out.println("int1: " + jsonObject.getIntValue("int1"));
+
+    System.out.println("int11: " + jsonObject.getLongValue("int1"));
+
+
+    System.out.println("不存在int key: " + jsonObject.getLongValue("int11"));
+
+    // 抛转换异常：java.lang.NumberFormatException: For input string: "String1"
+    // System.out.println("string2int: " +jsonObject.getIntValue("String1"));
+    System.out.println("String1: " + jsonObject.getString("String1"));
+
+    // 获取list 方式1
+    List<Long> list = jsonObject.getObject("list", new TypeReference<List<Long>>() {});
+    System.out.println("list: " + list);
+    // 获取list 方式2
+    List<Long> list2 = jsonObject.getJSONArray("list").toJavaList(Long.class);
+    System.out.println("list2: " + list2);
+
+    JSONArray list4 = jsonObject.getJSONArray("list3");
+    System.out.println("list4: " + list4);
+
+    // 写法错误！！！无法解析 com.alibaba.fastjson.JSONException: can not cast to : java.util.Set
+    // Set<Integer> set = jsonObject.getObject("set", Set.class);
+    // System.out.println("set: " + set);
+
+
+    // 方法2：直接转成Set（不推荐，因为TypeReference不能直接传Set接口，会用HashSet）
+    Set<Integer> set2 = jsonObject.getObject("set", new TypeReference<Set<Integer>>(){});
+    System.out.println("set: " + set2);
+
+    // 获取map
+    Map<String, Integer> map = jsonObject.getObject("map", new TypeReference<Map<String, Integer>>() {});
+    System.out.println("map: " + map);
+
+    JSONObject mapJsonObject = jsonObject.getJSONObject("map");
+    Map<String, Object> innerMap = mapJsonObject.getInnerMap();
+    System.out.println("innerMap: " + innerMap);
   }
 
   /**

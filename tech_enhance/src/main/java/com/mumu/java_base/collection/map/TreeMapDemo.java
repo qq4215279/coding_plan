@@ -36,13 +36,13 @@ public class TreeMapDemo {
       System.out.println("没有找到小于或等于 250 的键值对。");
     }
 
-    // 查找小于或等于 400 的最大键
-    entry = treeMap.floorEntry(400);
+    // 查找小于或等于 100 的最大键
+    entry = treeMap.floorEntry(100);
     if (entry != null) {
       System.out.println(
-          "小于或等于 400 的最大键值对: " + entry.getKey() + " = " + entry.getValue());
+          "小于或等于 100 的最大键值对: " + entry.getKey() + " = " + entry.getValue());
     } else {
-      System.out.println("没有找到小于或等于 400 的键值对。");
+      System.out.println("没有找到小于或等于 100 的键值对。");
     }
 
     // 查找小于或等于 50 的最大键
