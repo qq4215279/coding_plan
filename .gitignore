@@ -39,3 +39,6 @@ hs_err_pid*
 /out/
 /target/
 /design_patterns2/target/
+/game/target/
+/framework/target/
+/tmp/
