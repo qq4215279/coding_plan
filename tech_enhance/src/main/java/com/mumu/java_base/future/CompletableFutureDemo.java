@@ -23,8 +23,8 @@ import org.junit.Test;
 public class CompletableFutureDemo {
 
     /**
-     * CompletableFuture实现了Future接口，所以它也具有Future的特性：调用 get()方法会阻塞在那，直到结果返回。
-     * 另外1个线程调用 complete方法完成该Future，则所有阻塞在get()方法的线程都将获得返回结果。
+     * CompletableFuture 实现了 Future 接口，所以它也具有 Future 的特性：调用 get() 方法会阻塞在那，直到结果返回。
+     * 另外1个线程调用  complete 方法完成该Future，则所有阻塞在get()方法的线程都将获得返回结果。
      * @date 2024/11/17 15:30
      */
     @Test
@@ -91,6 +91,7 @@ public class CompletableFutureDemo {
      * 通过上面两个例子可以看出，在基本的用法上，CompletableFuture和Future很相似，都可以提交两类任务：一类是无返回值的，另一类是有返回值的。
      * @date 2024/11/17 15:31
      */
+    @Test
     public void demo03() {
         // 指定future要执行的任务，同时future会有返回值
         CompletableFuture<String> future = CompletableFuture.supplyAsync(new Supplier<String>() {
@@ -113,6 +114,8 @@ public class CompletableFutureDemo {
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         }
+
+        // hello lagou
         System.out.println(result);
     }
 
@@ -197,7 +200,9 @@ public class CompletableFutureDemo {
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(aVoid);
+
+        // aVoid: null
+        System.out.println("aVoid: " + aVoid);
     }
 
     /**
@@ -249,8 +254,8 @@ public class CompletableFutureDemo {
 
     /**
      * thenCompose 与 thenCombine
-     * 在上面的例子中，thenApply接收的是一个Function，但是这个Function的返回值是一个通常的基本数据类型或一个对象，而不是另外一个 CompletableFuture。
-     * 如果 Function 的返回值也是一个 CompletableFuture，就会出现嵌套的CompletableFuture。考虑下面的例子：
+     * 在上面的例子中，thenApply 接收的是一个 Function ，但是这个Function的返回值是一个通常的基本数据类型或一个对象，而不是另外一个 CompletableFuture。
+     * 如果 Function 的返回值也是一个 CompletableFuture，就会出现嵌套的 CompletableFuture 。考虑下面的例子：
      * @date 2024/11/17 15:39
      */
     @Test

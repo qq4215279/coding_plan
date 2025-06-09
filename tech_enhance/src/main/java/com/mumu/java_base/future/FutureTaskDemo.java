@@ -17,8 +17,8 @@ import java.util.concurrent.FutureTask;
  */
 public class FutureTaskDemo {
     /**
-     * FutureTask是Future的具体实现。FutureTask实现了RunnableFuture接口。 RunnableFuture接口又同时继承了Runnable 和 Future
-     * 接口。所以FutureTask既可以作为Runnable被线程执行，又可以作为Future得到Callable的返回值。
+     * FutureTask 是 Future 的具体实现。FutureTask 实现了 RunnableFuture 接口。 RunnableFuture 接口又同时继承了 Runnable 和 Future
+     * 接口。所以 FutureTask 既可以作为 Runnable 被线程执行，又可以作为 Future 得到 Callable 的返回值。
      * 
      * @date 2024/11/17 15:58
      */
@@ -48,7 +48,9 @@ public class FutureTaskDemo {
         });
         new Thread(input1_futuretask).start();
 
+        System.out.println("start input2_futuretask");
         Integer integer2 = input2_futuretask.get();
+        System.out.println("start input1_futuretask");
         Integer integer1 = input1_futuretask.get();
         System.out.println(algorithm(integer1, integer2));
         long endtime = System.currentTimeMillis();
