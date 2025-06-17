@@ -29,7 +29,7 @@ public class TaskChain {
     }
 
     public <T> TaskChain addTask(Supplier<T> task, Consumer<T> callback) {
-        CompletableFuture<Void> future = CompletableFuture.supplyAsync(() -> task.get())
+        CompletableFuture<Void> future = CompletableFuture.supplyAsync(task)
                 .thenAccept(callback);
 
         chainList.add(future);
