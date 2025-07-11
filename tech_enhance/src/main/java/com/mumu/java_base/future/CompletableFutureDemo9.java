@@ -79,33 +79,40 @@ public class CompletableFutureDemo9 {
                     }
                     result++;
                 }
-            });
+            })/* .thenRun(new Runnable() {
+
+                @Override
+                public void run() {
+                    System.out.println("myFuture finish: " + finalI);
+                }
+            }) */;
 
             futures[i] = myFuture;
         }
 
-        //        for (int i = 0; i < 10; i++) {
-        //            futures[i].get();
-        //            System.out.println(result);
-        //        }
+        for (int i = 0; i < 10; i++) {
+            futures[i].get();
+            System.out.println(result);
+        }
 
-        //        CompletableFuture<Void> future = CompletableFuture.allOf(futures).thenRun(new Runnable() {
-        //            @Override
-        //            public void run() {
-        //                System.out.println("计算完成");
-        //            }
-        //        });
-        //
-        //        future.get();
-        //        System.out.println(result);
-
-        CompletableFuture myfuture = CompletableFuture.anyOf(futures).thenRun(new Runnable() {
+        CompletableFuture<Void> future = CompletableFuture.allOf(futures).thenRun(new Runnable() {
             @Override
             public void run() {
-                System.out.println(result);
+                System.out.println("计算完成");
             }
         });
 
-        myfuture.get();
+        future.get();
+        System.out.println(result);
+
+
+        // CompletableFuture myfuture = CompletableFuture.anyOf(futures).thenRun(new Runnable() {
+        //     @Override
+        //     public void run() {
+        //         System.out.println(result);
+        //     }
+        // });
+        //
+        // myfuture.get();
     }
 }

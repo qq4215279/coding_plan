@@ -51,4 +51,9 @@ public class StandardThreadFactory implements ThreadFactory {
         }
         return t;
     }
+
+    public boolean isCurrentThreadFromFactory() {
+        String threadName = Thread.currentThread().getName();
+        return threadName.startsWith(namePrefix);
+    }
 }
