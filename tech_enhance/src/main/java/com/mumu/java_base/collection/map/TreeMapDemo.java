@@ -20,6 +20,7 @@ public class TreeMapDemo {
   public static void main(String[] args) {
     // 创建一个 TreeMap，并添加一些键值对
     TreeMap<Integer, String> treeMap = new TreeMap<>();
+    treeMap.put(50, "Level 0");
     treeMap.put(100, "Level 1");
     treeMap.put(200, "Level 2");
     treeMap.put(300, "Level 3");
