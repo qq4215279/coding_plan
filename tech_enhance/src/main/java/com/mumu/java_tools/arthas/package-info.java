@@ -165,6 +165,7 @@ package com.mumu.java_tools.arthas;
  *
  * 五、sc:
  *  eg: 查找类加载信息：sc -d com.mumu.java_tools.arthas.MathGame
+ *    sc -l  扫描目标JVM类信息
  *
  * 六、sm:
  *  eg: 查找方法：sm com.mumu.java_tools.arthas.MathGame
