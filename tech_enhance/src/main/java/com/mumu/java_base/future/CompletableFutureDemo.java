@@ -5,14 +5,14 @@
 
 package com.mumu.java_base.future;
 
+import org.junit.Test;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
-
-import org.junit.Test;
 
 /**
  * CompletableFutureDemo
@@ -287,25 +287,32 @@ public class CompletableFutureDemo {
 
 
         // 如果希望返回值是一个非嵌套的CompletableFuture，可以使用thenCompose：
-        // CompletableFuture<CompletableFuture<Integer>> future = CompletableFuture.supplyAsync(new Supplier<String>() {
-        //     @Override
-        //     public String get() {
-        //         return "hello lagou";
-        //     }
-        // }).thenApply(new Function<String, CompletableFuture<Integer>>() {
-        //     @Override
-        //     public CompletableFuture<Integer> apply(String s) {
-        //         return CompletableFuture.supplyAsync(new Supplier<Integer>() {
-        //             @Override
-        //             public Integer get() {
-        //                 return s.length();
-        //             }
-        //         });
-        //     }
-        // });
-        //
-        // Integer integer = future.get().get();
-        // System.out.println(integer);
+        CompletableFuture<CompletableFuture<Integer>> future2 = CompletableFuture.supplyAsync(new Supplier<String>() {
+            @Override
+            public String get() {
+                return "hello lagou";
+            }
+        }).thenApply(new Function<String, CompletableFuture<Integer>>() {
+            @Override
+            public CompletableFuture<Integer> apply(String s) {
+                return CompletableFuture.supplyAsync(new Supplier<Integer>() {
+                    @Override
+                    public Integer get() {
+                        return s.length();
+                    }
+                });
+            }
+        });
+
+        Integer integer = null;
+        try {
+            integer = future2.get().get();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(integer);
     }
 
     /**
