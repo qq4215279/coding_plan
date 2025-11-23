@@ -1,6 +1,7 @@
 package com.mumu.java_base.collection.map;
 
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 /**
@@ -46,13 +47,20 @@ public class TreeMapDemo {
       System.out.println("没有找到小于或等于 100 的键值对。");
     }
 
-    // 查找小于或等于 50 的最大键
+    // 查找小于或等于 50 的最大键 ( 找到 >= diff 的第一条)
     entry = treeMap.floorEntry(50);
     if (entry != null) {
       System.out.println(
           "小于或等于 50 的最大键值对: " + entry.getKey() + " = " + entry.getValue());
+
     } else {
       System.out.println("没有找到小于或等于 50 的键值对。");
     }
+
+    // 找到 > key 的下一条
+    Entry<Integer, String> higherEntry = treeMap.higherEntry(50);
+
+    // 找到 < key 的下一条
+    Entry<Integer, String> lowerEntry = treeMap.lowerEntry(50);
   }
 }

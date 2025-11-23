@@ -1,5 +1,6 @@
 package com.mumu.java_tools.guava;
 
+import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.CacheStats;
@@ -82,4 +83,14 @@ public class LoadingCacheDemo {
         System.out.println("Cache miss count: " + stats.missCount());
 
     }
+
+  public static void main(String[] args) throws ExecutionException {
+    Cache<Long, String> cache = CacheBuilder.newBuilder()
+        .expireAfterAccess(1, TimeUnit.DAYS)
+        .maximumSize(100)
+        .build();
+
+    String s = cache.get(-1L, () -> "aaa");
+    System.out.println(s);
+  }
 }

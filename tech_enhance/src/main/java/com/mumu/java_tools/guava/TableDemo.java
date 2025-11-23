@@ -5,6 +5,7 @@ import com.google.common.collect.Table;
 
 import java.util.Map;
 import java.util.Set;
+import org.junit.Test;
 
 /**
  * TableDemo
@@ -90,4 +91,44 @@ public class TableDemo {
         }
 
     }
+
+    @Test
+    public void test() {
+        Table<String, String, Integer> table = HashBasedTable.create();
+        table.put("row1", "col1", 1);
+        table.put("row1", "col2", 2);
+        table.put("row2", "col1", 3);
+
+        // 方法1：遍历所有单元格（Table.Cell）  最常用！！！
+        for (Table.Cell<String, String, Integer> cell : table.cellSet()) {
+            System.out.println("Row: " + cell.getRowKey()
+                + ", Column: " + cell.getColumnKey()
+                + ", Value: " + cell.getValue());
+        }
+
+        // 方法2：遍历行视图（Map 结构）
+        // table.rowMap() 返回 Map<R, Map<C, V>>
+        for (Map.Entry<String, Map<String, Integer>> rowEntry : table.rowMap().entrySet()) {
+            String rowKey = rowEntry.getKey();
+            Map<String, Integer> columns = rowEntry.getValue();
+            for (Map.Entry<String, Integer> colEntry : columns.entrySet()) {
+                String colKey = colEntry.getKey();
+                Integer value = colEntry.getValue();
+                System.out.println("Row: " + rowKey + ", Col: " + colKey + ", Value: " + value);
+            }
+        }
+
+        // 方法3：遍历列视图
+        // 同理，table.columnMap() 返回 Map<C, Map<R, V>>，你可以按列来遍历：
+        for (Map.Entry<String, Map<String, Integer>> colEntry : table.columnMap().entrySet()) {
+            String colKey = colEntry.getKey();
+            Map<String, Integer> rows = colEntry.getValue();
+            for (Map.Entry<String, Integer> rowEntry : rows.entrySet()) {
+                String rowKey = rowEntry.getKey();
+                Integer value = rowEntry.getValue();
+                System.out.println("Col: " + colKey + ", Row: " + rowKey + ", Value: " + value);
+            }
+        }
+    }
+
 }
